@@ -1,0 +1,84 @@
+queue up all rules that contain no numbers
+and remove from list
+pop rule off queue
+for each remaining rule
+substitute letters for numbers, creating new entry where branch
+if no numbers left, queue and remove
+
+start 
+
+0: 4 1 5
+1: 2 3 | 3 2
+2: 4 4 | 5 5
+3: 4 5 | 5 4
+4: "a"
+5: "b"
+
+after pass 1
+
+list
+
+0: 4 1 5
+1: 2 3 | 3 2
+2: 4 4 | 5 5
+3: 4 5 | 5 4
+
+queue
+
+4: "a"
+5: "b"
+
+after pass 2
+
+list
+
+0: a 1 5
+1: 2 3 | 3 2
+2: a a | 5 5
+3: a 5 | 5 a
+
+queue
+
+5: "b"
+
+after pass 3
+
+list
+
+0: a 1 b
+1: 2 3 | 3 2
+
+queue
+
+2: a a | b b
+3: a b | b a
+
+after pass 4
+
+list
+
+0: a 1 b
+1: a a 3 | b b 3 | 3 a a | 3 b b
+
+queue
+
+3: a b | b a
+
+after pass 5
+
+list
+
+0: a 1 b
+
+queue
+
+1: a a a b | a a b a | b b a b | b b b a | a b a a | b a a a | a b b b | b a b b
+
+after pass 6
+
+list
+
+0: a a a a b b | a a a b a b | a b b a b b | a b b b a b | a a b a a b | a b a a a b | a a b b b b | a b a a b b
+
+add final rules to list
+get count of intersect of messages and rules

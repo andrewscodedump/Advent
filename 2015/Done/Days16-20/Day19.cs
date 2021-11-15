@@ -1,0 +1,145 @@
+﻿namespace Advent2015;
+
+public partial class Day19 : Advent.Day
+{
+    public override void DoWork()
+    {
+        // Methods for this one are completely different
+        if (WhichPart == 1)
+            Part1();
+        else
+            Part2();
+    }
+
+    private void Part1()
+    {
+        Input = Input.Replace(" => ", ">");
+        string[] inputs = Input.Split(';');
+        string startMolecule = inputs[^1];
+        string[,] convs = new string[inputs.Length - 1, 2];
+        Dictionary<string, int> outputs = new();
+        for (int pos = 0; pos < inputs.Length - 1; pos++)
+        {
+            convs[pos, 0] = inputs[pos].Split('>')[0];
+            convs[pos, 1] = inputs[pos].Split('>')[1];
+        }
+
+        for (int pos = 0; pos < startMolecule.Length; pos++)
+        {
+            string newMolecule = startMolecule;
+            string atom = startMolecule[pos].ToString();
+            if (pos < startMolecule.Length - 1 && startMolecule[pos + 1].ToString().ToLower() == startMolecule[pos + 1].ToString())
+            {
+                atom += startMolecule[pos + 1].ToString();
+            }
+            for (int swap = 0; swap < convs.Length / 2; swap++)
+            {
+                if (atom == convs[swap, 0])
+                {
+                    newMolecule = pos == 0
+                        ? convs[swap, 1] + startMolecule[atom.Length..]
+                        : startMolecule[..pos] + convs[swap, 1] + startMolecule[(pos + atom.Length)..];
+                    if (outputs.ContainsKey(newMolecule))
+                        outputs[newMolecule]++;
+                    else
+                        outputs.Add(newMolecule, 1);
+                }
+            }
+        }
+        Output = outputs.Count.ToString();
+    }
+
+    private void Part2()
+    {
+        string molecule;
+        Input = Input.Replace(" => ", ">");
+        List<string> inputs = Input.Split(';').ToList();
+        string finalMolecule = inputs[^1];
+        inputs.RemoveAt(inputs.Count - 1);
+        int moves = 0;
+        int bestMoves = int.MaxValue;
+
+        List<(string atom, string after)> convsRev = new();
+        foreach (string conv in inputs)
+        {
+            string inp = conv.Split('>')[0];
+            string outp = conv.Split('>')[1];
+            convsRev.Add((outp, inp));
+        }
+
+        int sequenceTarget = 10;
+        int sequenceLength = 0;
+        int numTries = 0;
+        int prevBest = 0;
+        bool endLoop = false;
+        int randomTries = 1;
+
+        do
+        {
+            do
+            {
+                do
+                {
+                    moves = 0;
+                    molecule = finalMolecule;
+                    int pos = -1;
+                    do
+                    {
+                        //Pick a conv at random
+                        RandomizeList(convsRev);
+                        for (int i = 0; i < convsRev.Count; i++)
+                        {
+                            string atom = convsRev[i].atom;
+                            string after = convsRev[i].after;
+                            //Find the first occurrence and replace it
+                            pos = molecule.IndexOf(after);
+                            if (pos == -1)
+                                continue;
+                            moves++;
+                            molecule = molecule[..pos] + atom + molecule[(pos + after.Length)..];
+                            break;
+                        }
+                        //Loop until none found
+                    } while (pos != -1);
+
+                    //Loop until e
+                } while (molecule != "e");
+                bestMoves = Math.Min(moves, bestMoves);
+                numTries++;
+            } while (numTries < randomTries);
+
+            endLoop = false;
+            if (sequenceLength == 0 || bestMoves == prevBest)
+            {
+                prevBest = bestMoves;
+                sequenceLength++;
+                if (sequenceLength == sequenceTarget)
+                    endLoop = true;
+                else
+                {
+                    bestMoves = int.MaxValue;
+                    numTries = 0;
+                }
+            }
+            else
+            {
+                sequenceLength = 0;
+                numTries = 0;
+                prevBest = 0;
+                bestMoves = int.MaxValue;
+                randomTries *= 2;
+            }
+        } while (!endLoop);
+        Output = bestMoves.ToString();
+    }
+    protected static void RandomizeList<T>(List<T> listIn)
+    {
+        for (int pos = 0; pos < listIn.Count; pos++)
+        {
+            int swapPos = Rand.Next(pos, listIn.Count);
+            T temp = listIn[pos];
+            listIn[pos] = listIn[swapPos];
+            listIn[swapPos] = temp;
+        }
+    }
+}

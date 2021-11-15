@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows10.0.22000.0</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <SupportedOSPlatformVersion>10.0.22000.0</SupportedOSPlatformVersion>
+	  <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="XXXX\**" />
+    <EmbeddedResource Remove="XXXX\**" />
+    <None Remove="XXXX\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Advent.Designer.cs.bak" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="2017\Done\Days11-15\" />
+    <Folder Include="2017\Done\Days16-20\" />
+    <Folder Include="2017\Done\Days21-25\" />
+    <Folder Include="2018\Done\" />
+    <Folder Include="2018\Inputs\" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Using Include="System.Collections" />
+		<Using Include="System.Text" />
+		<Using Include="System.Text.RegularExpressions" />
+		<Using Include="System.Diagnostics" />
+	</ItemGroup>
+
+</Project>

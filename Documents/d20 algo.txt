@@ -1,0 +1,45 @@
+each side only represents 2 distict patterns fwd and bkwd
+squares per side = sqrt(num squares)
+4 corner squares will have 2 sides (4 numbers) with no matches
+side-2 * 4 - 4 edge squares will have 1 side (2 numbers) with no matches.
+indeed without trans, corners will only have 2 numbers, and sides 1
+
+part 1 (without finding whole pattern) - just find corner squares.
+
+all combos
+
+none	t, r, b, l
+r1	lr, t, rr, b
+r2	br, lr, tr, rr
+r3=l1	r, br, l, tr
+fh	tr, l, br, r
+fv	b, rr, t, lr
+r1fh	l, b, r, t
+r1fv	rr, tr, lr, br
+
+t,b numbered l to r, l,r t to b
+
+rebase so numbered clockwise
+
+none	t, r, b, l
+r1	l, t, r, b
+r2	b, l, t, r
+r3=l1	r, b, l, t
+fh	tr, lr, br, rr
+fv	br, rr, tr, lr
+r1fh	lr, br, rr, tr
+r1fv	rr, tr, lr, br
+
+to get full pattern,
+
+create array of all possible combos (8 * squares)
+(t, r, b, l, tile)
+create 2d array of filled tiles (n*n) (t, r, b, l, tile)
+
+do bostrouphon pattern:
+tr - move r queuing side pieces
+at end, queue corner pieces, then move down 1 and queue side piece
+move l queuing middle pieces until start - pick edge move down and reverse
+on last row, pick edge pieces (these should be all that are left anyway).
+
+queue needs filled grid, remaining tiles, current coordinate
