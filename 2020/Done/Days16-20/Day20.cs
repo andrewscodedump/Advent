@@ -4,16 +4,13 @@ public partial class Day20 : Advent.Day
 {
     private readonly List<Tile> tiles = new();
     private readonly List<string> allSides = new();
-    private List<string> bigGrid = new();
+    private readonly List<string> bigGrid = new();
 
     public override void DoWork()
     {
         #region Setup Variables and Parse Inputs
 
         long result = 1;
-
-        #endregion Setup Variables and Parse Inputs
-
         Tile tile = new();
 
         for (int i = 0; i < InputSplit.Length; i++)
@@ -27,7 +24,7 @@ public partial class Day20 : Advent.Day
                     tiles.Add(tile);
                     tile = new Tile();
                 }
-                    tile.Id = int.Parse(line[5..^1]);
+                tile.Id = int.Parse(line[5..^1]);
             }
             else
             {
@@ -43,29 +40,23 @@ public partial class Day20 : Advent.Day
             allSides.AddRange(tile1.Combos[2].Sides);
         }
 
+        #endregion Setup Variables and Parse Inputs
+
         foreach (Tile tile1 in tiles)
         {
             int matches = 0;
             foreach (string side in tile1.Combos[0].Sides)
-            {
                 if (IsMatched(side)) matches++;
-            }
             if (matches==2) result *= tile1.Id;
         }
 
         if (WhichPart == 2)
         {
-            // build grid
             Queue queue = new();
-            //  pick corner
-            //   sides[0].notismatched and sides[2].notismatched
-            //   add to queue
             queue.Enqueue((FindTopLeftCorner(), 0, 0));
-            //  iterate through grid, matching r to l / t to b
             while (queue.Count > 0)
             {
                 ((Tile currTile, Combo combo), int x, int y) = (((Tile, Combo), int, int))queue.Dequeue();
-                //(Tile currTile, Combo combo) = FindMatch(text, side);
                 if (currTile.IsPlaced) continue;
                 AddToBigGrid(combo, x, y);
                 currTile.IsPlaced = true;
@@ -76,11 +67,9 @@ public partial class Day20 : Advent.Day
                 if (nextTile != null)
                     queue.Enqueue(((nextTile, nextCombo), x, y + 1));
             }
-            //  create full grid in a new tile object (removing edges)
             Tile bigPicture = new();
             bigPicture.Raw = bigGrid;
             bigPicture.BuildCombos();
-            // for each combo
             foreach (Combo combo in bigPicture.Combos)
             {
                 result = FindMonsters(combo.Raw);
@@ -91,15 +80,15 @@ public partial class Day20 : Advent.Day
         Output = result.ToString();
     }
 
+    #region Private Methods
+
     private void AddToBigGrid(Combo combo, int x, int y)
     {
         for (int i = 1; i < combo.Raw.Count - 1; i++)
-        {
             if (x == 0)
                 bigGrid.Add(combo.Raw[i][1..^1]);
             else
                 bigGrid[(y * 8) + (i - 1)] += combo.Raw[i][1..^1];
-        }
     }
 
     private (Tile, Combo) FindMatch(string text, int side, int id)
@@ -108,10 +97,8 @@ public partial class Day20 : Advent.Day
         {
             if (tile.Id == id) continue;
             foreach(Combo combo in tile.Combos)
-            {
                 if(combo.Sides[side] == text)
                     return (tile, combo);
-            }
         }
         return (null, null);
     }
@@ -119,13 +106,9 @@ public partial class Day20 : Advent.Day
     private (Tile, Combo) FindTopLeftCorner()
     {
         foreach(Tile tile in tiles)
-        {
             foreach (Combo combo in tile.Combos)
-            {
                 if (!IsMatched(combo.Sides[0]) && IsMatched(combo.Sides[1]) && !IsMatched(combo.Sides[2]) && IsMatched(combo.Sides[3]))
                     return (tile, combo);
-            }
-        }
         return (null, null);
     }
 
@@ -134,7 +117,7 @@ public partial class Day20 : Advent.Day
     private static int FindMonsters(List<string> grid)
     {
         // Monster is (21 wide)
-        // #                  #     (18 spaces)
+        //                    #     (18 spaces)
         //  #    ##    ##    ###    (4, 4, 4 spaces)
         //   #  #  #  #  #  #       (2, 2, 2, 2, 2 spaces)
 
@@ -150,49 +133,15 @@ public partial class Day20 : Advent.Day
                 if (grid[y-1][x + 18] != '#') continue;
                 if (grid[y][x + 5] != '#' || grid[y][x + 6] != '#' || grid[y][x + 11] != '#' || grid[y][x + 12] != '#' || grid[y][x + 17] != '#' || grid[y][x + 18] != '#' || grid[y][x + 19] != '#') continue;
                 if (grid[y + 1][x + 1] != '#' || grid[y+1][x + 4] != '#' || grid[y + 1][x + 7] != '#' || grid[y + 1][x + 10] != '#' || grid[y + 1][x + 13] != '#' || grid[y + 1][x + 16] != '#') continue;
-
-
-                grid[y - 1] = grid[y-1][..(x + 18)] + "O" + grid[y-1][(x + 18 + 1)..^0];
-                grid[y] = grid[y][..x] + "O" + grid[y][(x + 1)..^0];
-                grid[y] = grid[y][..(x + 5)] + "O" + grid[y][(x + 5 + 1)..^0];
-                grid[y] = grid[y][..(x + 6)] + "O" + grid[y][(x + 6 + 1)..^0];
-                grid[y] = grid[y][..(x + 11)] + "O" + grid[y][(x + 11 + 1)..^0];
-                grid[y] = grid[y][..(x + 12)] + "O" + grid[y][(x + 12 + 1)..^0];
-                grid[y] = grid[y][..(x + 17)] + "O" + grid[y][(x + 17 + 1)..^0];
-                grid[y] = grid[y][..(x + 18)] + "O" + grid[y][(x + 18 + 1)..^0];
-                grid[y] = grid[y][..(x + 19)] + "O" + grid[y][(x + 19 + 1)..^0];
-
-                grid[y + 1] = grid[y + 1][..(x + 1)] + "O" + grid[y + 1][(x + 1 + 1)..^0];
-                grid[y + 1] = grid[y + 1][..(x + 4)] + "O" + grid[y + 1][(x + 4 + 1)..^0];
-                grid[y + 1] = grid[y + 1][..(x + 7)] + "O" + grid[y + 1][(x + 7 + 1)..^0];
-                grid[y + 1] = grid[y + 1][..(x + 10)] + "O" + grid[y + 1][(x + 10 + 1)..^0];
-                grid[y + 1] = grid[y + 1][..(x + 13)] + "O" + grid[y + 1][(x + 13 + 1)..^0];
-                grid[y + 1] = grid[y + 1][..(x + 16)] + "O" + grid[y + 1][(x + 16 + 1)..^0];
-
-                waves-=2;
                 monsters++;
             }
-        if (monsters>0)
-            PrintGrid(grid);
-
-        return monsters > 0 ? waves : 0;
-        //return monsters > 0 ? waves - (monsters * 15) : 0;
+        return monsters > 0 ? waves - (monsters * 15) : 0;
     }
 
-    private static void PrintGrid(List<string> grid)
-    {
-        int size = grid.Count;
-        for (int y = 0; y < size; y++)
-        {
-            string line = "";
-            for (int x = 0; x < size; x++)
-            {
-                if (line != "") line+= "\t";
-                line+= grid[y][x];
-            }
-            Debug.Print(line);
-        }
-    }
+    #endregion Private Methods
+
+    #region private Classes
+
     private class Combo
     {
         private List<string> raw;
@@ -286,4 +235,5 @@ public partial class Day20 : Advent.Day
         }
 
     }
+    #endregion private Classes
 }
