@@ -86,10 +86,10 @@ public partial class Day19 : Advent.Day
         // so 0 = one or more combos of 42 (16 of these, all length 5 (128 x 8 for live))
         // followed by one or more combos of 42s plus an equal no of 31s (16 of these, all length 5 (128 x 8 for live))
         int len = c42[0].Length, slices = message.Length / len, max31s = (slices - 1) / 2;
-        if (message.Length % len != 0                                       // Message length is not a multiple of the lengths of the constituent parts (in reality, there are none of these)
+        if (message.Length % len != 0                               // Message length is not a multiple of the lengths of the constituent parts (in reality, there are none of these)
             || (isPart1 && message.Length != len * 3)
-            || !c42.Contains(message[0..len])                                  // It doesn't begin with a valid 42 
-            || !c31.Contains(message[^len..^0])) return false;                     // It doesn't end with a valid 31
+            || !c42.Contains(message[0..len])                       // It doesn't begin with a valid 42 
+            || !c31.Contains(message[^len..^0])) return false;      // It doesn't end with a valid 31
         if (isPart1) return c42.Contains(message[len..(2 * len)]);  // Part 1 must be 42 42 31
 
         int[] v42 = new int[slices], v31 = new int[slices];
