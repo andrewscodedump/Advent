@@ -8,7 +8,7 @@ public partial class Day23 : Advent.Day
         *  Part 1 -        After the program completes, how many times has the MUL operator been called?
         *  Part 2 -        Register a now starts at one.  What is the value in register h when the program (eventually) ends?
     */
-    public Day23(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day23(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
@@ -17,11 +17,11 @@ public partial class Day23 : Advent.Day
                 BatchStatus = DayBatchStatus.NoTestData;
                 break;
             case (1, false):
-                Inputs.Add("set b 79;set c b;jnz a 2;jnz 1 5;mul b 100;sub b -100000;set c b;sub c -17000;set f 1;set d 2;set e 2;set g d;mul g e;sub g b;jnz g 2;set f 0;sub e -1;set g e;sub g b;jnz g -8;sub d -1;set g d;sub g b;jnz g -13;jnz f 2;sub h -1;set g b;sub g c;jnz g 2;jnz 1 3;sub b -17;jnz 1 -23");
+                AddInput("set b 79;set c b;jnz a 2;jnz 1 5;mul b 100;sub b -100000;set c b;sub c -17000;set f 1;set d 2;set e 2;set g d;mul g e;sub g b;jnz g 2;set f 0;sub e -1;set g e;sub g b;jnz g -8;sub d -1;set g d;sub g b;jnz g -13;jnz f 2;sub h -1;set g b;sub g c;jnz g 2;jnz 1 3;sub b -17;jnz 1 -23");
                 Expecteds.Add("5929");
                 break;
             case (2, false):
-                Inputs.Add("set b 79;set c b;jnz a 2;jnz 1 5;mul b 100;sub b -100000;set c b;sub c -17000;set f 1;set d 2;set e 2;set g d;mul g e;sub g b;jnz g 2;set f 0;sub e -1;set g e;sub g b;jnz g -8;sub d -1;set g d;sub g b;jnz g -13;jnz f 2;sub h -1;set g b;sub g c;jnz g 2;jnz 1 3;sub b -17;jnz 1 -23");
+                AddInput("set b 79;set c b;jnz a 2;jnz 1 5;mul b 100;sub b -100000;set c b;sub c -17000;set f 1;set d 2;set e 2;set g d;mul g e;sub g b;jnz g 2;set f 0;sub e -1;set g e;sub g b;jnz g -8;sub d -1;set g d;sub g b;jnz g -13;jnz f 2;sub h -1;set g b;sub g c;jnz g 2;jnz 1 3;sub b -17;jnz 1 -23");
                 Expecteds.Add("907");
                 break;
         }

@@ -9,24 +9,24 @@ public partial class Day17 : Advent.Day
         *  Part 2 -        As above, but in 4-D!
     */
 
-    public Day17(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day17(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
             case (1, true):
-                Inputs.Add(".#...####");
+                AddInput(".#...####");
                 Expecteds.Add("112");
                 break;
             case (1, false):
-                Inputs.Add(".#.#.#....#....######..######..######..####..#.##..##.###.#.####");
+                AddInput(".#.#.#....#....######..######..######..####..#.##..##.###.#.####");
                 Expecteds.Add("375");
                 break;
             case (2, true):
-                Inputs.Add(".#...####");
+                AddInput(".#...####");
                 Expecteds.Add("848");
                 break;
             case (2, false):
-                Inputs.Add(".#.#.#....#....######..######..######..####..#.##..##.###.#.####");
+                AddInput(".#.#.#....#....######..######..######..####..#.##..##.###.#.####");
                 Expecteds.Add("2192");
                 break;
         }

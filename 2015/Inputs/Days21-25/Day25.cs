@@ -10,16 +10,16 @@ public partial class Day25 : Advent.Day
         *	Part 2:         There is no part 2 for today
 	*/
 
-    public Day25(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day25(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
             case (1, true):
-                Inputs.Add("5,6");
+                AddInput("5,6");
                 Expecteds.Add("");
                 break;
             case (1, false):
-                Inputs.Add("2978,3083");
+                AddInput("2978,3083");
                 Expecteds.Add("31663883");
                 break;
             case (2, true):

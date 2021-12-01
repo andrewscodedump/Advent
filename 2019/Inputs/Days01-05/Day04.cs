@@ -8,7 +8,7 @@ public partial class Day04 : Advent.Day
         *  Part 1 -        The password must have a consecutive pair of digits.  How many in the range meet this criterion?
         *  Part 2 -        As above, but the pair must not be part of a larger set of the same digit.
     */
-    public Day04(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day04(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
@@ -17,11 +17,11 @@ public partial class Day04 : Advent.Day
                 BatchStatus = DayBatchStatus.NoTestData;
                 break;
             case (1, false):
-                Inputs.Add("307237-769058");
+                AddInput("307237-769058");
                 Expecteds.Add("889");
                 break;
             case (2, false):
-                Inputs.Add("307237-769058");
+                AddInput("307237-769058");
                 Expecteds.Add("589");
                 break;
         }

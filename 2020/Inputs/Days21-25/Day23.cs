@@ -10,7 +10,7 @@ public partial class Day23 : Advent.Day
         *  Part 2 -        Start with 1M cups (all but the seed just consecutive numbers).
         *                  What is the multiple of the two cups to the left of cup 1 after 10M rounds?
     */
-    public Day23(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day23(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
@@ -19,15 +19,15 @@ public partial class Day23 : Advent.Day
                 Expecteds = new() { "92658374", "67384529" };
                 break;
             case (1, false):
-                Inputs.Add("974618352;100");
+                AddInput("974618352;100");
                 Expecteds.Add("75893264");
                 break;
             case (2, true):
-                Inputs.Add("389125467;10000000");
+                AddInput("389125467;10000000");
                 Expecteds.Add("149245887792");
                 break;
             case (2, false):
-                Inputs.Add("974618352;10000000");
+                AddInput("974618352;10000000");
                 Expecteds.Add("38162588308");
                 break;
         }

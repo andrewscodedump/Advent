@@ -9,16 +9,16 @@ public partial class Day13 : Advent.Day
         *  Part 2 -        What is the earliest time on which bus 1 leaves at that time, bus 2 at that time + 1 etc?
     */
 
-    public Day13(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day13(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
             case (1, true):
-                Inputs.Add("939;7,13,x,x,59,x,31,19");
+                AddInput("939;7,13,x,x,59,x,31,19");
                 Expecteds.Add("295");
                 break;
             case (1, false):
-                Inputs.Add("1001938;41,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,37,x,x,x,x,x,431,x,x,x,x,x,x,x,23,x,x,x,x,13,x,x,x,17,x,19,x,x,x,x,x,x,x,x,x,x,x,863,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,29");
+                AddInput("1001938;41,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,37,x,x,x,x,x,431,x,x,x,x,x,x,x,23,x,x,x,x,13,x,x,x,17,x,19,x,x,x,x,x,x,x,x,x,x,x,863,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,29");
                 Expecteds.Add("4315");
                 break;
             case (2, true):
@@ -26,7 +26,7 @@ public partial class Day13 : Advent.Day
                 Expecteds = new() { "3417", "754018", "779210", "1261476", "1202161486", "1068781" };
                 break;
             case (2, false):
-                Inputs.Add("1001938;41,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,37,x,x,x,x,x,431,x,x,x,x,x,x,x,23,x,x,x,x,13,x,x,x,17,x,19,x,x,x,x,x,x,x,x,x,x,x,863,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,29");
+                AddInput("1001938;41,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,37,x,x,x,x,x,431,x,x,x,x,x,x,x,23,x,x,x,x,13,x,x,x,17,x,19,x,x,x,x,x,x,x,x,x,x,x,863,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,29");
                 Expecteds.Add("556100168221141");
                 break;
         }

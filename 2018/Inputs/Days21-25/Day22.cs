@@ -10,24 +10,24 @@ public partial class Day22 : Advent.Day
         *  Part 1 -        What is the score of the ground (calculated from the number of each type)?
         *  Part 2 -        What is the fastest time to get to the target point (given in the input)?
     */
-    public Day22(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day22(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
             case (1, true):
-                Inputs.Add("depth: 510;target: 10,10");
+                AddInput("depth: 510;target: 10,10");
                 Expecteds.Add("114");
                 break;
             case (1, false):
-                Inputs.Add("depth: 8103;target: 9,758");
+                AddInput("depth: 8103;target: 9,758");
                 Expecteds.Add("7743");
                 break;
             case (2, true):
-                Inputs.Add("depth: 510;target: 10,10");
+                AddInput("depth: 510;target: 10,10");
                 Expecteds.Add("45");
                 break;
             case (2, false):
-                Inputs.Add("depth: 8103;target: 9,758");
+                AddInput("depth: 8103;target: 9,758");
                 Expecteds.Add("1029");
                 break;
         }

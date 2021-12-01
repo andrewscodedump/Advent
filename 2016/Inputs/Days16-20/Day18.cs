@@ -12,7 +12,7 @@ public partial class Day18 : Advent.Day
 		*	Part 2 - same, but 40,000 rows
 		* 
 	*/
-    public Day18(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day18(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
@@ -21,15 +21,15 @@ public partial class Day18 : Advent.Day
                 Expecteds = new() { "6", "38" };
                 break;
             case (1, false):
-                Inputs.Add(".^^^^^.^^^..^^^^^...^.^..^^^.^^....^.^...^^^...^^^^..^...^...^^.^.^.......^..^^...^.^.^^..^^^^^...^.;40");
+                AddInput(".^^^^^.^^^..^^^^^...^.^..^^^.^^....^.^...^^^...^^^^..^...^...^^.^.^.......^..^^...^.^.^^..^^^^^...^.;40");
                 Expecteds.Add("1956");
                 break;
             case (2, true):
-                Inputs.Add(".^^.^.^^^^;40000");
+                AddInput(".^^.^.^^^^;40000");
                 Expecteds.Add("193538");
                 break;
             case (2, false):
-                Inputs.Add(".^^^^^.^^^..^^^^^...^.^..^^^.^^....^.^...^^^...^^^^..^...^...^^.^.^.......^..^^...^.^.^^..^^^^^...^.;400000");
+                AddInput(".^^^^^.^^^..^^^^^...^.^..^^^.^^....^.^...^^^...^^^^..^...^...^^.^.^.......^..^^...^.^.^^..^^^^^...^.;400000");
                 Expecteds.Add("19995121");
                 break;
         }

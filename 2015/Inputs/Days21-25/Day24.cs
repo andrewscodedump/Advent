@@ -10,24 +10,24 @@ public partial class Day24 : Advent.Day
 		*	Part 2:	same, but with four groups instead of three.
 	*/
 
-    public Day24(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day24(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
             case (1, true):
-                Inputs.Add("1, 2, 3, 4, 5, 7, 8, 9, 10, 11");
+                AddInput("1, 2, 3, 4, 5, 7, 8, 9, 10, 11");
                 Expecteds.Add("99");
                 break;
             case (1, false):
-                Inputs.Add("1, 2, 3, 5, 7, 13, 17, 19, 23, 29, 31, 37, 41, 43, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113");
+                AddInput("1, 2, 3, 5, 7, 13, 17, 19, 23, 29, 31, 37, 41, 43, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113");
                 Expecteds.Add("10723906903");
                 break;
             case (2, true):
-                Inputs.Add("1, 2, 3, 4, 5, 7, 8, 9, 10, 11");
+                AddInput("1, 2, 3, 4, 5, 7, 8, 9, 10, 11");
                 Expecteds.Add("44");
                 break;
             case (2, false):
-                Inputs.Add("1, 2, 3, 5, 7, 13, 17, 19, 23, 29, 31, 37, 41, 43, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113");
+                AddInput("1, 2, 3, 5, 7, 13, 17, 19, 23, 29, 31, 37, 41, 43, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113");
                 Expecteds.Add("74850409");
                 break;
         }

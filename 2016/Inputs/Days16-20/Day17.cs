@@ -9,7 +9,7 @@ public partial class Day17 : Advent.Day
         *  Part 1 -         What is the shortest path to reach the bottom right room?
         *  Part 2 -         What is the length of the longest path that will take you to that room?
     */
-    public Day17(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day17(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
@@ -18,7 +18,7 @@ public partial class Day17 : Advent.Day
                 Expecteds = new() { "DDRRRD", "DDUDRLRRUDRD", "DRURDRUDDLLDLUURRDULRLDUUDDDRR" };
                 break;
             case (1, false):
-                Inputs.Add("yjjvjgan");
+                AddInput("yjjvjgan");
                 Expecteds.Add("RLDRUDRDDR");
                 break;
             case (2, true):
@@ -26,7 +26,7 @@ public partial class Day17 : Advent.Day
                 Expecteds = new() { "370", "492", "830" };
                 break;
             case (2, false):
-                Inputs.Add("yjjvjgan");
+                AddInput("yjjvjgan");
                 Expecteds.Add("498");
                 break;
         }

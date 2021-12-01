@@ -10,23 +10,23 @@ public partial class Day21 : Advent.Day
        *  Part 1 -          What is the least gold you can spend and win the fight?
        *  Part 2 -          What is the most gold you can spend at still lose the fight?
    */
-    public Day21(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day21(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
             case (1, true):
-                Inputs.Add("Hit Points: 12; Damage: 7;Armor: 2");
+                AddInput("Hit Points: 12; Damage: 7;Armor: 2");
                 Expecteds.Add("28");
                 break;
             case (1, false):
-                Inputs.Add("Hit Points: 100;Damage: 8;Armor: 2");
+                AddInput("Hit Points: 100;Damage: 8;Armor: 2");
                 Expecteds.Add("91");
                 break;
             case (2, true):
                 BatchStatus = DayBatchStatus.NoTestData;
                 break;
             case (2, false):
-                Inputs.Add("Hit Points: 100;Damage: 8;Armor: 2");
+                AddInput("Hit Points: 100;Damage: 8;Armor: 2");
                 Expecteds.Add("158");
                 break;
         }

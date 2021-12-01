@@ -11,24 +11,24 @@ public partial class Day05 : Advent.Day
         * 
     */
 
-    public Day05(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day05(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
             case (1, true):
-                Inputs.Add("abc");
+                AddInput("abc");
                 Expecteds.Add("18f47a30");
                 break;
             case (1, false):
-                Inputs.Add("abbhdwsy");
+                AddInput("abbhdwsy");
                 Expecteds.Add("801b56a7");
                 break;
             case (2, true):
-                Inputs.Add("abc");
+                AddInput("abc");
                 Expecteds.Add("05ace8e3");
                 break;
             case (2, false):
-                Inputs.Add("abbhdwsy");
+                AddInput("abbhdwsy");
                 Expecteds.Add("424a0197");
                 break;
         }

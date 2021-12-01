@@ -6,16 +6,16 @@ public abstract class Day
 {
     #region Constructors and Declarations
 
-    protected Day() : this(false, 1, string.Empty) { }
-    protected Day(bool testMode, int whichPart, string input) : this(testMode, whichPart, input, DayBatchStatus.Available) { }
-    protected Day(bool testMode, int whichPart, string input, DayBatchStatus batchStatus)
+    protected Day() : this(false, 1) { }
+    protected Day(bool testMode, int whichPart) : this(testMode, whichPart, 0, DayBatchStatus.Available) { }
+    protected Day(bool testMode, int whichPart, int input, DayBatchStatus batchStatus)
     {
         Inputs = new List<string>();
         Expecteds = new List<string>();
         Output = string.Empty;
         TestMode = testMode;
         WhichPart = whichPart;
-        this.input = input;
+        CurrentInput = input;
         Rand = new Random();
         MD5 = MD5.Create();
         BatchStatus = batchStatus;
@@ -28,25 +28,82 @@ public abstract class Day
     public DayBatchStatus BatchStatus { get; set; }
     public bool BatchRun { get; set; }
     public string Output { get; set; }
-    public int CurrentInput { get; set; }
-
-    private string input;
-    public string Input
+    private int currentInput;
+    public int CurrentInput 
     {
-        get => Inputs.Count > 0 ? Inputs[CurrentInput] : input;
-        set => input = value;
+        get { return currentInput; }
+        set
+        {
+            currentInput = value;
+            SetInputs();
+        }
     }
-    public List<string> Inputs { get; set; }
-    protected string[] InputSplit => (string.IsNullOrEmpty(input) ? Inputs[0] : input).Split(';', StringSplitOptions.RemoveEmptyEntries);
-    protected int[] InputSplitInt => Array.ConvertAll(InputSplit, int.Parse);
-    protected string[] InputSplitC => (string.IsNullOrEmpty(input) ? Inputs[0] : input).Split(',');
-    protected int[] InputSplitCInt => Array.ConvertAll(InputSplitC, int.Parse);
-    protected long[] InputSplitCLong => Array.ConvertAll(InputSplitC, long.Parse);
+
+    protected string[] InputSplit;
+    protected int[] InputSplitInt;
+    protected string[] InputSplitC;
+    protected int[] InputSplitCInt;
+    protected long[] InputSplitCLong;
     protected string[] InputSplitter(char delimiter) => InputSplitter(new char[] { delimiter });
     protected string[] InputSplitter(char[] delimiters) => Input.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+    private void SetInputs()
+    {
+        if (inputs.Count == 0  || BatchStatus == DayBatchStatus.NotDoneYet) return;
+        InputSplit = Inputs[CurrentInput].Split(';', StringSplitOptions.RemoveEmptyEntries);
+        InputSplitC = Inputs[CurrentInput].Split(',');
+        try
+        {
+            InputSplitInt = Array.ConvertAll(InputSplit, int.Parse);
+        }
+        catch
+        {
+            InputSplitInt = null;
+        }
+        try
+        {
+            InputSplitCInt = Array.ConvertAll(InputSplitC, int.Parse);
+        }
+        catch
+        {
+            InputSplitCInt = null;
+        }
+        try
+        {
+            InputSplitCLong = Array.ConvertAll(InputSplitC, long.Parse);
+        }
+        catch
+        {
+            InputSplitCLong = null;
+        }
+    }
 
-    private string expected;
-    public string Expected { get => Expecteds.Count > 0 ? Expecteds[0] : expected; set => expected = value; }
+    public string Input
+    {
+        get => Inputs[CurrentInput];
+        set
+        {
+            Inputs[CurrentInput] = value;
+            SetInputs();
+        }
+    }
+
+    public void AddInput(string newInput)
+    {
+        Inputs.Add(newInput);
+        SetInputs();
+    }
+    private List<string> inputs;
+    public List<string> Inputs
+    {
+        get { return inputs; }
+        set 
+        {
+            inputs = value;
+            SetInputs();
+        }
+    }
+
+    public string Expected { get => Expecteds[CurrentInput]; }
     public List<string> Expecteds { get; set; }
 
 #pragma warning disable IDE0044 // Add readonly modifier

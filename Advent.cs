@@ -15,7 +15,9 @@ public partial class AdventOfCode : Form
 
     #region Constructors and Declarations
 
+    private Day theDay;
     private DateTime startTime;
+    bool noReset;
 
     public AdventOfCode()
     {
@@ -29,6 +31,8 @@ public partial class AdventOfCode : Form
 
     private void ResetScreen()
     {
+        if (noReset) return;
+        theDay = (Day)Activator.CreateInstance(Type.GetType("Advent" + (int)updYear.Value + ".Day" + ((int)updDay.Value).ToString("D2")), new object[] { chkTestMode.Checked, (int)updPuzzle.Value });
         List<string> Inputs = GetInputs();
         List<string> Expecteds = GetExpecteds();
         if (Inputs.Count != Expecteds.Count)
@@ -39,18 +43,9 @@ public partial class AdventOfCode : Form
             Expecteds = Expecteds.GetRange(0, 1);
 #pragma warning restore IDE0059 // Unnecessary assignment of a value
         }
-        if (Inputs.Count > 1)
-        {
-            inputNumber.Text = "0";
-            prevInput.Visible = true;
-            nextInput.Visible = true;
-        }
-        else
-        {
-            inputNumber.Text = string.Empty;
-            prevInput.Visible = false;
-            nextInput.Visible = false;
-        }
+        inputNumber.Text = "0";
+        prevInput.Visible = Inputs.Count > 1;
+        nextInput.Visible = Inputs.Count > 1;
         ResetInputs();
     }
 
@@ -74,44 +69,28 @@ public partial class AdventOfCode : Form
         txtTimeTaken.Text = string.Empty;
     }
 
-    private string GetExpected() => GetExpected((int)updYear.Value, (int)updDay.Value, (int)updPuzzle.Value);
-    private List<string> GetExpecteds() => GetExpecteds((int)updYear.Value, (int)updDay.Value, (int)updPuzzle.Value);
-
-    private string GetExpected(int year, int day, int puzzle)
+    private string GetExpected()
     {
-        Day theDay = (Day)Activator.CreateInstance(Type.GetType("Advent" + year + ".Day" + day.ToString("D2")), new object[] { chkTestMode.Checked, puzzle, string.Empty });
         return CheckStatus(theDay.BatchStatus, out string result) ? result : theDay.Expected;
     }
-    private List<string> GetExpecteds(int year, int day, int puzzle)
+    private List<string> GetExpecteds()
     {
-        Day theDay = (Day)Activator.CreateInstance(Type.GetType("Advent" + year + ".Day" + day.ToString("D2")), new object[] { chkTestMode.Checked, puzzle, string.Empty });
         return CheckStatus(theDay.BatchStatus, out List<string> results) ? results : theDay.Expecteds;
     }
 
-    private string GetInput() => GetInput((int)updYear.Value, (int)updDay.Value, (int)updPuzzle.Value);
-    private List<string> GetInputs() => GetInputs((int)updYear.Value, (int)updDay.Value, (int)updPuzzle.Value);
-
-    private string GetInput(int year, int day, int puzzle)
+    private string GetInput()
     {
-        Day theDay = (Day)Activator.CreateInstance(Type.GetType("Advent" + year + ".Day" + day.ToString("D2")), new object[] { chkTestMode.Checked, puzzle, string.Empty });
-#pragma warning disable IDE0045 // Convert to conditional expression
-        if (inputNumber.Text == string.Empty) theDay.CurrentInput = 0; else theDay.CurrentInput = int.Parse(txtInput.Text);
-#pragma warning restore IDE0045 // Convert to conditional expression
+        theDay.CurrentInput = int.Parse(txtInput.Text);
         return CheckStatus(theDay.BatchStatus, out string result) ? result : theDay.Input;
     }
 
-    private List<string> GetInputs(int year, int day, int puzzle)
+    private List<string> GetInputs()
     {
-        Day theDay = (Day)Activator.CreateInstance(Type.GetType("Advent" + year + ".Day" + day.ToString("D2")), new object[] { chkTestMode.Checked, puzzle, string.Empty });
         return CheckStatus(theDay.BatchStatus, out List<string> results) ? results : theDay.Inputs;
     }
 
-    private string DoPuzzle() => DoPuzzle((int)updYear.Value, (int)updDay.Value, (int)updPuzzle.Value, txtInput.Text);
-
-    private string DoPuzzle(int year, int day, int puzzle, string input)
+    private string DoPuzzle()
     {
-        Day theDay = (Day)Activator.CreateInstance(Type.GetType("Advent" + year + ".Day" + day.ToString("D2")), new object[] { chkTestMode.Checked, puzzle, input });
-        theDay.CurrentInput = inputNumber.Text == string.Empty ? 0 : int.Parse(inputNumber.Text);
         if (CheckStatus(theDay.BatchStatus, out string result))
             return result;
         else
@@ -151,10 +130,12 @@ public partial class AdventOfCode : Form
 
     private void SetupForm()
     {
+        noReset = true;
         updYear.Value = defaultYear;
         updDay.Value = defaultDay;
         updPuzzle.Value = defaultPuzzle;
         chkTestMode.Checked = defaultTestMode;
+        noReset = false;
         ResetScreen();
     }
 
@@ -184,7 +165,7 @@ public partial class AdventOfCode : Form
                     return output.ToString();
                 worker.ReportProgress(((day - 1) * 2) + puzzle, $"{day}/{puzzle}");
                 DateTime start = DateTime.Now;
-                Day theDay = (Day)Activator.CreateInstance(Type.GetType("Advent" + year + ".Day" + day.ToString("D2")), new object[] { chkTestMode.Checked, puzzle, string.Empty });
+                Day theDay = (Day)Activator.CreateInstance(Type.GetType("Advent" + year + ".Day" + day.ToString("D2")), new object[] { chkTestMode.Checked, puzzle });
 
                 if (theDay.BatchStatus == Day.DayBatchStatus.NotDoneYet) continue;
                 if (puzzle == 1)

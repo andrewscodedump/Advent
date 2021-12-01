@@ -9,23 +9,23 @@ public partial class Day13 : Advent.Day
         *  Part 1 -         What is the fewest steps to reach 31, 39
         *  Part 2 -         How many locations (including your start) can you reach in 50 steps?
     */
-    public Day13(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day13(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
             case (1, true):
-                Inputs.Add("10");
+                AddInput("10");
                 Expecteds.Add("11");
                 break;
             case (1, false):
-                Inputs.Add("1350");
+                AddInput("1350");
                 Expecteds.Add("92");
                 break;
             case (2, true):
                 BatchStatus = DayBatchStatus.NoTestData;
                 break;
             case (2, false):
-                Inputs.Add("1350");
+                AddInput("1350");
                 Expecteds.Add("124");
                 break;
         }

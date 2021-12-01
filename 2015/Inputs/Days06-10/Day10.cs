@@ -2,7 +2,7 @@
 
 public partial class Day10 : Advent.Day
 {
-    public Day10(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day10(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         /*
             *  Description -   The input is the start point for a "look and say" game.  1 becomes 11 (one one), 11 becomes 21 (two ones) etc.
@@ -14,18 +14,18 @@ public partial class Day10 : Advent.Day
         switch (WhichPart, TestMode)
         {
             case (1, true):
-                Inputs.Add("1");
+                AddInput("1");
                 Expecteds.Add("6");
                 break;
             case (1, false):
-                Inputs.Add("1113122113");
+                AddInput("1113122113");
                 Expecteds.Add("360154");
                 break;
             case (2, true):
                 BatchStatus = DayBatchStatus.NoTestData;
                 break;
             case (2, false):
-                Inputs.Add("1113122113");
+                AddInput("1113122113");
                 Expecteds.Add("5103798");
                 break;
         }

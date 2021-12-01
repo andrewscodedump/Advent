@@ -9,24 +9,24 @@ public partial class Day22 : Advent.Day
        *  Part 1 -          What is the least mana you can spend and win the fight?
        *  Part 2 -          As above, but at the start of every player round you lost 1 HP;
     */
-    public Day22(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day22(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
             case (1, true):
-                Inputs.Add("Hit Points: 14;Damage: 8;Armor: 0");
+                AddInput("Hit Points: 14;Damage: 8;Armor: 0");
                 Expecteds.Add("1269");
                 break;
             case (1, false):
-                Inputs.Add("Hit Points: 58;Damage: 9;Armor: 0");
+                AddInput("Hit Points: 58;Damage: 9;Armor: 0");
                 Expecteds.Add("1269");
                 break;
             case (2, true):
-                Inputs.Add("Hit Points: 14;Damage: 8;Armor: 0");
+                AddInput("Hit Points: 14;Damage: 8;Armor: 0");
                 Expecteds.Add("1309");
                 break;
             case (2, false):
-                Inputs.Add("Hit Points: 58;Damage: 9;Armor: 0");
+                AddInput("Hit Points: 58;Damage: 9;Armor: 0");
                 Expecteds.Add("1309");
                 break;
         }

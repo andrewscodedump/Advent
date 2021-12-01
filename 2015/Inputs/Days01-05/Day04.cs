@@ -9,7 +9,7 @@ public partial class Day04 : Advent.Day
         *  Part 2 -        As part one but with six zeros?
     */
 
-    public Day04(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day04(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
@@ -18,14 +18,14 @@ public partial class Day04 : Advent.Day
                 Expecteds = new() { "609043", "1048970" };
                 break;
             case (1, false):
-                Inputs.Add("ckczppom");
+                AddInput("ckczppom");
                 Expecteds.Add("117946");
                 break;
             case (2, true):
                 BatchStatus = DayBatchStatus.NoTestData;
                 break;
             case (2, false):
-                Inputs.Add("ckczppom");
+                AddInput("ckczppom");
                 Expecteds.Add("3938038");
                 break;
         }

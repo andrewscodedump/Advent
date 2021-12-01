@@ -9,24 +9,24 @@ public partial class Day14 : Advent.Day
         *  Part 1 -        What is the counter of the first valid key?
         *  Part 2 -        As part 1, but when generating a key, each hash should be performed on its own output 2016 times
     */
-    public Day14(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day14(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
             case (1, true):
-                Inputs.Add("abc");
+                AddInput("abc");
                 Expecteds.Add("22728");
                 break;
             case (1, false):
-                Inputs.Add("yjdafjpo");
+                AddInput("yjdafjpo");
                 Expecteds.Add("25427");
                 break;
             case (2, true):
-                Inputs.Add("abc");
+                AddInput("abc");
                 Expecteds.Add("22551");
                 break;
             case (2, false):
-                Inputs.Add("yjdafjpo");
+                AddInput("yjdafjpo");
                 Expecteds.Add("22045");
                 break;
         }

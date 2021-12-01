@@ -11,23 +11,23 @@ public partial class Day16 : Advent.Day
         *  Part 1 -         The disk has a capacity of 272.  What is the checksum?
         *  Part 2 -         As above, but the capacity is 35651584.
     */
-    public Day16(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day16(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
             case (1, true):
-                Inputs.Add("20;10000");
+                AddInput("20;10000");
                 Expecteds.Add("01100");
                 break;
             case (1, false):
-                Inputs.Add("272;11101000110010100");
+                AddInput("272;11101000110010100");
                 Expecteds.Add("10100101010101101");
                 break;
             case (2, true):
                 BatchStatus = DayBatchStatus.NoTestData;
                 break;
             case (2, false):
-                Inputs.Add("35651584;11101000110010100");
+                AddInput("35651584;11101000110010100");
                 Expecteds.Add("01100001101101001");
                 break;
         }

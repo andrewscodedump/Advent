@@ -9,28 +9,28 @@ public partial class Day11 : Advent.Day
         *  Part 1 -        What is the top left corner of the 3x3 square with the highest total power?
         *  Part 2 -        As above, but for a square of any size (also include the size).
     */
-    public Day11(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day11(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
             case (1, true):
-                Inputs.Add("18");
-                Inputs.Add("42");
+                AddInput("18");
+                AddInput("42");
                 Expecteds.Add("33,45");
                 Expecteds.Add("21.61");
                 break;
             case (1, false):
-                Inputs.Add("7165");
+                AddInput("7165");
                 Expecteds.Add("235,20");
                 break;
             case (2, true):
-                Inputs.Add("18");
-                Inputs.Add("42");
+                AddInput("18");
+                AddInput("42");
                 Expecteds.Add("90,269,16");
                 Expecteds.Add("232,251,12");
                 break;
             case (2, false):
-                Inputs.Add("7165");
+                AddInput("7165");
                 Expecteds.Add("237,223,14");
                 break;
         }

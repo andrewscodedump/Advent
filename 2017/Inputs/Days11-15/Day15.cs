@@ -10,24 +10,24 @@ public partial class Day15 : Advent.Day
         *  Part 1 -        How many matches after 40M iterations?
         *  Part 2 -        As part 1, but 5M iterations, and machine only passes value for comparison if it is a multiple of 4 for machine 1 and 8 for machine 2. 
     */
-    public Day15(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day15(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
             case (1, true):
-                Inputs.Add("65;8921");
+                AddInput("65;8921");
                 Expecteds.Add("588");
                 break;
             case (1, false):
-                Inputs.Add("116;299");
+                AddInput("116;299");
                 Expecteds.Add("569");
                 break;
             case (2, true):
-                Inputs.Add("65;8921");
+                AddInput("65;8921");
                 Expecteds.Add("309");
                 break;
             case (2, false):
-                Inputs.Add("116;299");
+                AddInput("116;299");
                 Expecteds.Add("298");
                 break;
         }

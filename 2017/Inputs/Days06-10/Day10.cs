@@ -12,16 +12,16 @@ public partial class Day10 : Advent.Day
         *                  After applying all the manipulations, hash the result by XORing the output in blocks of 16 bytes and output the results as hex.
     */
 
-    public Day10(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day10(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
             case (1, true):
-                Inputs.Add("3, 4, 1, 5");
+                AddInput("3, 4, 1, 5");
                 Expecteds.Add("12");
                 break;
             case (1, false):
-                Inputs.Add("165,1,255,31,87,52,24,113,0,91,148,254,158,2,73,153");
+                AddInput("165,1,255,31,87,52,24,113,0,91,148,254,158,2,73,153");
                 Expecteds.Add("4114");
                 break;
             case (2, true):
@@ -29,7 +29,7 @@ public partial class Day10 : Advent.Day
                 Expecteds = new List<string> { "a2582a3a0e66e6e86e3812dcb672a272", "33efeb34ea91902bb2f59c9920caa6cd", "3efbe78a8d82f29979031a4aa0b16a9d", "63960835bcdc130f0b66d7ff4f6a5a8e" };
                 break;
             case (2, false):
-                Inputs.Add("165,1,255,31,87,52,24,113,0,91,148,254,158,2,73,153");
+                AddInput("165,1,255,31,87,52,24,113,0,91,148,254,158,2,73,153");
                 Expecteds.Add("2f8c3d2100fdd57cec130d928b0fd2dd");
                 break;
         }

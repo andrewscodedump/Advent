@@ -9,7 +9,7 @@ public partial class Day25 : Advent.Day
 		*	Part 2 -        There is no part 2 (it's Christmas Day - get a life!)
 		* 
 	*/
-    public Day25(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day25(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
@@ -17,7 +17,7 @@ public partial class Day25 : Advent.Day
                 BatchStatus = DayBatchStatus.NoTestData;
                 break;
             case (1, false):
-                Inputs.Add("cpy a d;cpy 15 c;cpy 170 b;inc d;dec b;jnz b -2;dec c;jnz c -5;cpy d a;jnz 0 0;cpy a b;cpy 0 a;cpy 2 c;jnz b 2;jnz 1 6;dec b;dec c;jnz c -4;inc a;jnz 1 -7;cpy 2 b;jnz c 2;jnz 1 4;dec b;dec c;jnz 1 -4;jnz 0 0;out b;jnz a -19;jnz 1 -21");
+                AddInput("cpy a d;cpy 15 c;cpy 170 b;inc d;dec b;jnz b -2;dec c;jnz c -5;cpy d a;jnz 0 0;cpy a b;cpy 0 a;cpy 2 c;jnz b 2;jnz 1 6;dec b;dec c;jnz c -4;inc a;jnz 1 -7;cpy 2 b;jnz c 2;jnz 1 4;dec b;dec c;jnz 1 -4;jnz 0 0;out b;jnz a -19;jnz 1 -21");
                 Expecteds.Add("180");
                 break;
             case (2, true):

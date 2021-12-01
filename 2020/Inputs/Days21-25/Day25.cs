@@ -9,16 +9,16 @@ public partial class Day25 : Advent.Day
         *  Part 2 -        Complete both parts of all proceeding problems!!
     */
 
-    public Day25(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day25(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
             case (1, true):
-                Inputs.Add("5764801;17807724");
+                AddInput("5764801;17807724");
                 Expecteds.Add("14897079");
                 break;
             case (1, false):
-                Inputs.Add("8421034;15993936");
+                AddInput("8421034;15993936");
                 Expecteds.Add("9177528");
                 break;
             case (2, true):

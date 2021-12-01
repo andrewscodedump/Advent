@@ -9,25 +9,25 @@ public partial class Day19 : Advent.Day
         *  Part 2 -        Starting from a single "e", what is the minimum number of manipulations that will give the target molecule?
     */
 
-    public Day19(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day19(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         BatchStatus = DayBatchStatus.Performance;
         switch (WhichPart, TestMode)
         {
             case (1, true):
-                Inputs.Add("H => HO;H => OH;O => HH;HOHOHO");
+                AddInput("H => HO;H => OH;O => HH;HOHOHO");
                 Expecteds.Add("7");
                 break;
             case (1, false):
-                Inputs.Add("Al => ThF;Al => ThRnFAr;B => BCa;B => TiB;B => TiRnFAr;Ca => CaCa;Ca => PB;Ca => PRnFAr;Ca => SiRnFYFAr;Ca => SiRnMgAr;Ca => SiTh;F => CaF;F => PMg;F => SiAl;H => CRnAlAr;H => CRnFYFYFAr;H => CRnFYMgAr;H => CRnMgYFAr;H => HCa;H => NRnFYFAr;H => NRnMgAr;H => NTh;H => OB;H => ORnFAr;Mg => BF;Mg => TiMg;N => CRnFAr;N => HSi;O => CRnFYFAr;O => CRnMgAr;O => HP;O => NRnFAr;O => OTi;P => CaP;P => PTi;P => SiRnFAr;Si => CaSi;Th => ThCa;Ti => BP;Ti => TiTi;e => HF;e => NAl;e => OMg;ORnPBPMgArCaCaCaSiThCaCaSiThCaCaPBSiRnFArRnFArCaCaSiThCaCaSiThCaCaCaCaCaCaSiRnFYFArSiRnMgArCaSiRnPTiTiBFYPBFArSiRnCaSiRnTiRnFArSiAlArPTiBPTiRnCaSiAlArCaPTiTiBPMgYFArPTiRnFArSiRnCaCaFArRnCaFArCaSiRnSiRnMgArFYCaSiRnMgArCaCaSiThPRnFArPBCaSiRnMgArCaCaSiThCaSiRnTiMgArFArSiThSiThCaCaSiRnMgArCaCaSiRnFArTiBPTiRnCaSiAlArCaPTiRnFArPBPBCaCaSiThCaPBSiThPRnFArSiThCaSiThCaSiThCaPTiBSiRnFYFArCaCaPRnFArPBCaCaPBSiRnTiRnFArCaPRnFArSiRnCaCaCaSiThCaRnCaFArYCaSiRnFArBCaCaCaSiThFArPBFArCaSiRnFArRnCaCaCaFArSiRnFArTiRnPMgArF");
+                AddInput("Al => ThF;Al => ThRnFAr;B => BCa;B => TiB;B => TiRnFAr;Ca => CaCa;Ca => PB;Ca => PRnFAr;Ca => SiRnFYFAr;Ca => SiRnMgAr;Ca => SiTh;F => CaF;F => PMg;F => SiAl;H => CRnAlAr;H => CRnFYFYFAr;H => CRnFYMgAr;H => CRnMgYFAr;H => HCa;H => NRnFYFAr;H => NRnMgAr;H => NTh;H => OB;H => ORnFAr;Mg => BF;Mg => TiMg;N => CRnFAr;N => HSi;O => CRnFYFAr;O => CRnMgAr;O => HP;O => NRnFAr;O => OTi;P => CaP;P => PTi;P => SiRnFAr;Si => CaSi;Th => ThCa;Ti => BP;Ti => TiTi;e => HF;e => NAl;e => OMg;ORnPBPMgArCaCaCaSiThCaCaSiThCaCaPBSiRnFArRnFArCaCaSiThCaCaSiThCaCaCaCaCaCaSiRnFYFArSiRnMgArCaSiRnPTiTiBFYPBFArSiRnCaSiRnTiRnFArSiAlArPTiBPTiRnCaSiAlArCaPTiTiBPMgYFArPTiRnFArSiRnCaCaFArRnCaFArCaSiRnSiRnMgArFYCaSiRnMgArCaCaSiThPRnFArPBCaSiRnMgArCaCaSiThCaSiRnTiMgArFArSiThSiThCaCaSiRnMgArCaCaSiRnFArTiBPTiRnCaSiAlArCaPTiRnFArPBPBCaCaSiThCaPBSiThPRnFArSiThCaSiThCaSiThCaPTiBSiRnFYFArCaCaPRnFArPBCaCaPBSiRnTiRnFArCaPRnFArSiRnCaCaCaSiThCaRnCaFArYCaSiRnFArBCaCaCaSiThFArPBFArCaSiRnFArRnCaCaCaFArSiRnFArTiRnPMgArF");
                 Expecteds.Add("576");
                 break;
             case (2, true):
-                Inputs.Add("H => HO;H => OH;O => HH;HOHOHO");
+                AddInput("H => HO;H => OH;O => HH;HOHOHO");
                 Expecteds.Add("7");
                 break;
             case (2, false):
-                Inputs.Add("Al => ThF;Al => ThRnFAr;B => BCa;B => TiB;B => TiRnFAr;Ca => CaCa;Ca => PB;Ca => PRnFAr;Ca => SiRnFYFAr;Ca => SiRnMgAr;Ca => SiTh;F => CaF;F => PMg;F => SiAl;H => CRnAlAr;H => CRnFYFYFAr;H => CRnFYMgAr;H => CRnMgYFAr;H => HCa;H => NRnFYFAr;H => NRnMgAr;H => NTh;H => OB;H => ORnFAr;Mg => BF;Mg => TiMg;N => CRnFAr;N => HSi;O => CRnFYFAr;O => CRnMgAr;O => HP;O => NRnFAr;O => OTi;P => CaP;P => PTi;P => SiRnFAr;Si => CaSi;Th => ThCa;Ti => BP;Ti => TiTi;e => HF;e => NAl;e => OMg;ORnPBPMgArCaCaCaSiThCaCaSiThCaCaPBSiRnFArRnFArCaCaSiThCaCaSiThCaCaCaCaCaCaSiRnFYFArSiRnMgArCaSiRnPTiTiBFYPBFArSiRnCaSiRnTiRnFArSiAlArPTiBPTiRnCaSiAlArCaPTiTiBPMgYFArPTiRnFArSiRnCaCaFArRnCaFArCaSiRnSiRnMgArFYCaSiRnMgArCaCaSiThPRnFArPBCaSiRnMgArCaCaSiThCaSiRnTiMgArFArSiThSiThCaCaSiRnMgArCaCaSiRnFArTiBPTiRnCaSiAlArCaPTiRnFArPBPBCaCaSiThCaPBSiThPRnFArSiThCaSiThCaSiThCaPTiBSiRnFYFArCaCaPRnFArPBCaCaPBSiRnTiRnFArCaPRnFArSiRnCaCaCaSiThCaRnCaFArYCaSiRnFArBCaCaCaSiThFArPBFArCaSiRnFArRnCaCaCaFArSiRnFArTiRnPMgArF");
+                AddInput("Al => ThF;Al => ThRnFAr;B => BCa;B => TiB;B => TiRnFAr;Ca => CaCa;Ca => PB;Ca => PRnFAr;Ca => SiRnFYFAr;Ca => SiRnMgAr;Ca => SiTh;F => CaF;F => PMg;F => SiAl;H => CRnAlAr;H => CRnFYFYFAr;H => CRnFYMgAr;H => CRnMgYFAr;H => HCa;H => NRnFYFAr;H => NRnMgAr;H => NTh;H => OB;H => ORnFAr;Mg => BF;Mg => TiMg;N => CRnFAr;N => HSi;O => CRnFYFAr;O => CRnMgAr;O => HP;O => NRnFAr;O => OTi;P => CaP;P => PTi;P => SiRnFAr;Si => CaSi;Th => ThCa;Ti => BP;Ti => TiTi;e => HF;e => NAl;e => OMg;ORnPBPMgArCaCaCaSiThCaCaSiThCaCaPBSiRnFArRnFArCaCaSiThCaCaSiThCaCaCaCaCaCaSiRnFYFArSiRnMgArCaSiRnPTiTiBFYPBFArSiRnCaSiRnTiRnFArSiAlArPTiBPTiRnCaSiAlArCaPTiTiBPMgYFArPTiRnFArSiRnCaCaFArRnCaFArCaSiRnSiRnMgArFYCaSiRnMgArCaCaSiThPRnFArPBCaSiRnMgArCaCaSiThCaSiRnTiMgArFArSiThSiThCaCaSiRnMgArCaCaSiRnFArTiBPTiRnCaSiAlArCaPTiRnFArPBPBCaCaSiThCaPBSiThPRnFArSiThCaSiThCaSiThCaPTiBSiRnFYFArCaCaPRnFArPBCaCaPBSiRnTiRnFArCaPRnFArSiRnCaCaCaSiThCaRnCaFArYCaSiRnFArBCaCaCaSiThFArPBFArCaSiRnFArRnCaCaCaFArSiRnFArTiRnPMgArF");
                 Expecteds.Add("207");
                 break;
         }

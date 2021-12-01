@@ -8,25 +8,25 @@ public partial class Day09 : Advent.Day
      *  Part 1 -        
      *  Part 2 -        
     */
-    public Day09(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day09(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         BatchStatus = DayBatchStatus.NotDoneYet;
         switch (WhichPart, TestMode)
         {
             case (1, true):
-                Inputs.Add("Part One, Test");
+                AddInput("Part One, Test");
                 Expecteds.Add("Part One, Test");
                 break;
             case (1, false):
-                Inputs.Add("Part One, Live");
+                AddInput("Part One, Live");
                 Expecteds.Add("Part One, Live");
                 break;
             case (2, true):
-                Inputs.Add("Part Two, Test");
+                AddInput("Part Two, Test");
                 Expecteds.Add("Part Two, Test");
                 break;
             case (2, false):
-                Inputs.Add("Part Two, Live");
+                AddInput("Part Two, Live");
                 Expecteds.Add("Part Two, Live");
                 break;
         }

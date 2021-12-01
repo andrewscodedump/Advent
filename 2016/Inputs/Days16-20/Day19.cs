@@ -12,7 +12,7 @@ public partial class Day19 : Advent.Day
 		*	Part 2 - as above, but instead of taking from the left, take from the elf directly opposite (the leftmost if there are two).
 		* 
 	*/
-    public Day19(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day19(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
@@ -21,7 +21,7 @@ public partial class Day19 : Advent.Day
                 Expecteds = new() {  "3", "5" };
                 break;
             case (1, false):
-                Inputs.Add("3014603");
+                AddInput("3014603");
                 Expecteds.Add("1834903");
                 break;
             case (2, true):
@@ -29,7 +29,7 @@ public partial class Day19 : Advent.Day
                 Expecteds = new() { "2", "3" };
                 break;
             case (2, false):
-                Inputs.Add("3014603");
+                AddInput("3014603");
                 Expecteds.Add("1420280");
                 break;
         }

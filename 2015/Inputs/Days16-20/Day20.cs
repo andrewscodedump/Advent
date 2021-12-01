@@ -10,7 +10,7 @@ public partial class Day20 : Advent.Day
         *  Part 2 -        As above, but each elf stops after fifty houses, and delivers 11 times their number each time.
     */
 
-    public Day20(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day20(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         BatchStatus = DayBatchStatus.Performance;
         switch (WhichPart, TestMode)
@@ -20,7 +20,7 @@ public partial class Day20 : Advent.Day
                 Expecteds = new List<string> { "8", "4", "4" };
                 break;
             case (1, false):
-                Inputs.Add("33100000");
+                AddInput("33100000");
                 Expecteds.Add("776160");
                 break;
             case (2, true):
@@ -28,7 +28,7 @@ public partial class Day20 : Advent.Day
                 Expecteds = new List<string> { "8", "4", "4" };
                 break;
             case (2, false):
-                Inputs.Add("33100000");
+                AddInput("33100000");
                 Expecteds.Add("786240");
                 break;
         }

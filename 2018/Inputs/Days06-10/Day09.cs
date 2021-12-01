@@ -11,26 +11,26 @@ public partial class Day09 : Advent.Day
         *  Part 1 -        After all marbles have been played, what is the highest score?
         *  Part 2 -        As above, but using 100 times as many marbles.
     */
-    public Day09(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day09(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
             case (1, true):
-                Inputs.Add("9 players; last marble is worth 32 points");
-                Inputs.Add("30 players; last marble is worth 5807 points");
+                AddInput("9 players; last marble is worth 32 points");
+                AddInput("30 players; last marble is worth 5807 points");
                 Expecteds.Add("32");
                 Expecteds.Add("37305");
                 break;
             case (1, false):
-                Inputs.Add("473 players; last marble is worth 70904 points");
+                AddInput("473 players; last marble is worth 70904 points");
                 Expecteds.Add("371284");
                 break;
             case (2, true):
-                Inputs.Add("30 players; last marble is worth 5807 points");
+                AddInput("30 players; last marble is worth 5807 points");
                 Expecteds.Add("320997431");
                 break;
             case (2, false):
-                Inputs.Add("473 players; last marble is worth 70904 points");
+                AddInput("473 players; last marble is worth 70904 points");
                 Expecteds.Add("3038972494");
                 break;
         }

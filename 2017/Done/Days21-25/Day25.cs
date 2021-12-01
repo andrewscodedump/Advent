@@ -21,7 +21,7 @@ public partial class Day25 : Advent.Day
             if (ruleText.Length < 5) continue;
             switch (ruleText[..5])
             {
-                case "Begin": curState = ruleText[12..]; break;
+                case "Begin": curState = ruleText[^1..]; break;
                 case "Perfo": steps = int.Parse(ruleText[31..^5]); break;
                 case "Insta":
                     if (!string.IsNullOrEmpty(state))

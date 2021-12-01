@@ -10,7 +10,7 @@ public partial class Day11 : Advent.Day
         *  Part 2 -        What is the next one after the one we've just found?
     */
 
-    public Day11(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day11(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
@@ -19,14 +19,14 @@ public partial class Day11 : Advent.Day
                 Expecteds = new List<string> { "abcdffaa", "ghjaabcc" };
                 break;
             case (1, false):
-                Inputs.Add("hepxcrrq");
+                AddInput("hepxcrrq");
                 Expecteds.Add("hepxxyzz");
                 break;
             case (2, true):
                 BatchStatus = DayBatchStatus.NoTestData;
                 break;
             case (2, false):
-                Inputs.Add("hepxxyzz");
+                AddInput("hepxxyzz");
                 Expecteds.Add("heqaabcc");
                 break;
         }

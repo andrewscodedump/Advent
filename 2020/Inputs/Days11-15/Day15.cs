@@ -8,7 +8,7 @@ public partial class Day15 : Advent.Day
         *  Part 1 -        What is the last number after 2020 turns?
         *  Part 2 -        Ditto, but for 30000000 turns.
     */
-    public Day15(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day15(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
@@ -17,7 +17,7 @@ public partial class Day15 : Advent.Day
                 Expecteds = new() { "436", "1", "10", "27", "78", "438", "1836" };
                 break;
             case (1, false):
-                Inputs.Add("8,0,17,4,1,12");
+                AddInput("8,0,17,4,1,12");
                 Expecteds.Add("981");
                 break;
             case (2, true):
@@ -25,7 +25,7 @@ public partial class Day15 : Advent.Day
                 Expecteds = new() { "175594", "2578", "3544142", "261214", "6895259", "18", "362" };
                 break;
             case (2, false):
-                Inputs.Add("8,0,17,4,1,12");
+                AddInput("8,0,17,4,1,12");
                 Expecteds.Add("164878");
                 break;
         }

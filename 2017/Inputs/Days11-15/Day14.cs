@@ -8,24 +8,24 @@ public partial class Day14 : Advent.Day
         *  Part 1 -        How many 1s are there in the results?
         *  Part 2 -        Placing the 128 results in an array, how many contiguous blocks of 1s are there (no diagonals)?
     */
-    public Day14(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
+    public Day14(bool testMode, int whichPart) : base(testMode, whichPart)
     {
         switch (WhichPart, TestMode)
         {
             case (1, true):
-                Inputs.Add("");
+                AddInput("");
                 Expecteds.Add("8198");
                 break;
             case (1, false):
-                Inputs.Add("stpzcrnm");
+                AddInput("stpzcrnm");
                 Expecteds.Add("8250");
                 break;
             case (2, true):
-                Inputs.Add("flqrgnkx");
+                AddInput("flqrgnkx");
                 Expecteds.Add("1242");
                 break;
             case (2, false):
-                Inputs.Add("stpzcrnm");
+                AddInput("stpzcrnm");
                 Expecteds.Add("`1113");
                 break;
         }
