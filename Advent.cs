@@ -32,16 +32,24 @@ public partial class AdventOfCode : Form
     private void ResetScreen()
     {
         if (noReset) return;
-        theDay = (Day)Activator.CreateInstance(Type.GetType("Advent" + (int)updYear.Value + ".Day" + ((int)updDay.Value).ToString("D2")), new object[] { chkTestMode.Checked, (int)updPuzzle.Value });
+        try
+        {
+            theDay = (Day)Activator.CreateInstance(Type.GetType("Advent" + (int)updYear.Value + ".Day" + ((int)updDay.Value).ToString("D2")), new object[] { chkTestMode.Checked, (int)updPuzzle.Value });
+        }
+        catch
+        {
+            theDay = (Day)Activator.CreateInstance(Type.GetType("Advent" + (int)updYear.Value + ".Day" + ((int)updDay.Value).ToString("D2")));
+            theDay.SetMode(chkTestMode.Checked, (int)updPuzzle.Value);
+        }
         List<string> Inputs = GetInputs();
         List<string> Expecteds = GetExpecteds();
         if (Inputs.Count != Expecteds.Count)
         {
             MessageBox.Show("Mismatch between Inputs and Expected Outputs", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             Inputs = Inputs.GetRange(0, 1);
-#pragma warning disable IDE0059 // Unnecessary assignment of a value
+            #pragma warning disable IDE0059 // Unnecessary assignment of a value
             Expecteds = Expecteds.GetRange(0, 1);
-#pragma warning restore IDE0059 // Unnecessary assignment of a value
+            #pragma warning restore IDE0059 // Unnecessary assignment of a value
         }
         inputNumber.Text = "0";
         prevInput.Visible = Inputs.Count > 1;
@@ -51,7 +59,7 @@ public partial class AdventOfCode : Form
 
     private void ResetInputs()
     {
-        if (string.IsNullOrEmpty(inputNumber.Text))
+        if (inputNumber.Text == "0")
         {
             txtInput.Text = GetInput();
             txtExpected.Text = GetExpected();
@@ -59,8 +67,8 @@ public partial class AdventOfCode : Form
         else
         {
             int counter = int.Parse(inputNumber.Text);
-            txtInput.Text = GetInputs()[counter];
-            txtExpected.Text = GetExpecteds()[counter];
+            txtInput.Text = GetInput();
+            txtExpected.Text = GetExpected();
             prevInput.Enabled = counter > 0;
             nextInput.Enabled = counter < GetInputs().Count - 1;
         }
@@ -80,7 +88,7 @@ public partial class AdventOfCode : Form
 
     private string GetInput()
     {
-        theDay.CurrentInput = int.Parse(txtInput.Text);
+        theDay.CurrentInput = int.Parse(inputNumber.Text);
         return CheckStatus(theDay.BatchStatus, out string result) ? result : theDay.Input;
     }
 
@@ -118,6 +126,12 @@ public partial class AdventOfCode : Form
                 break;
             case Day.DayBatchStatus.NoPart2:
                 result = "There is no part 2 for this puzzle";
+                break;
+            case Day.DayBatchStatus.Future:
+                result = "Task is in the future - no inputs available";
+                break;
+            case Day.DayBatchStatus.NoInputs:
+                result = "No inputs available";
                 break;
             default:
                 result = string.Empty;
@@ -165,9 +179,17 @@ public partial class AdventOfCode : Form
                     return output.ToString();
                 worker.ReportProgress(((day - 1) * 2) + puzzle, $"{day}/{puzzle}");
                 DateTime start = DateTime.Now;
-                Day theDay = (Day)Activator.CreateInstance(Type.GetType("Advent" + year + ".Day" + day.ToString("D2")), new object[] { chkTestMode.Checked, puzzle });
+                try
+                {
+                    theDay = (Day)Activator.CreateInstance(Type.GetType("Advent" + year + ".Day" + day.ToString("D2")), new object[] { chkTestMode.Checked, puzzle });
+                }
+                catch
+                {
+                    theDay = (Day)Activator.CreateInstance(Type.GetType("Advent" + year + ".Day" + day.ToString("D2")));
+                    theDay.SetMode(chkTestMode.Checked, (int)updPuzzle.Value);
+                }
 
-                if (theDay.BatchStatus == Day.DayBatchStatus.NotDoneYet) continue;
+                if (theDay.BatchStatus == Day.DayBatchStatus.NotDoneYet || theDay.BatchStatus == Day.DayBatchStatus.Future || theDay.BatchStatus == Day.DayBatchStatus.NoInputs) continue;
                 if (puzzle == 1)
                 {
                     output.AppendLine();
@@ -270,14 +292,20 @@ public partial class AdventOfCode : Form
     private void PrevInput_Click(object sender, EventArgs e)
     {
         if (int.TryParse(inputNumber.Text, out int counter) && counter > 0)
+        {
             inputNumber.Text = (--counter).ToString();
+            theDay.CurrentInput = counter;
+        }
         ResetInputs();
     }
 
     private void NextInput_Click(object sender, EventArgs e)
     {
         if (int.TryParse(inputNumber.Text, out int counter) && counter < GetInputs().Count - 1)
+        {
             inputNumber.Text = (++counter).ToString();
+            theDay.CurrentInput = counter;
+        }
         ResetInputs();
     }
 

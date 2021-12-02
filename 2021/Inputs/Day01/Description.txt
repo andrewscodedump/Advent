@@ -1,0 +1,5 @@
+﻿You're in a submarine.  Input is a scan of the depth of the ocean below you.
+
+How many times does the depth increase between one reading and the next?
+
+As part 1, but comparing the sums of batches of three readings.

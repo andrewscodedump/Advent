@@ -1,6 +1,6 @@
 ﻿namespace Advent2021;
 
-public partial class Day01 : Advent.Day
+public class Day01 : Advent.Day
 {
     public override void DoWork()
     {

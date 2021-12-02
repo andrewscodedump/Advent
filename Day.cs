@@ -1,27 +1,18 @@
-﻿using System.Security.Cryptography;
-
-namespace Advent;
+﻿namespace Advent;
 
 public abstract class Day
 {
     #region Constructors and Declarations
 
-    protected Day() : this(false, 1) { }
-    protected Day(bool testMode, int whichPart) : this(testMode, whichPart, 0, DayBatchStatus.Available) { }
-    protected Day(bool testMode, int whichPart, int input, DayBatchStatus batchStatus)
-    {
-        Inputs = new List<string>();
-        Expecteds = new List<string>();
-        Output = string.Empty;
-        TestMode = testMode;
-        WhichPart = whichPart;
-        CurrentInput = input;
-        Rand = new Random();
-        MD5 = MD5.Create();
-        BatchStatus = batchStatus;
-    }
+    private int year;
+    private int day;
+
+    protected Day() { }
+    protected Day(bool testMode, int whichPart) : this(testMode, whichPart, DayBatchStatus.Available) { }
+    protected Day(bool testMode, int whichPart, DayBatchStatus batchStatus) => SetMode(testMode, whichPart, batchStatus);
+
     public DayStatus Status { get; set; }
-    protected MD5 MD5 { get; private set; }
+    protected System.Security.Cryptography.MD5 MD5 { get; private set; }
     public bool TestMode { get; set; }
     public int WhichPart { get; set; }
     public abstract void DoWork();
@@ -29,7 +20,7 @@ public abstract class Day
     public bool BatchRun { get; set; }
     public string Output { get; set; }
     private int currentInput;
-    public int CurrentInput 
+    public int CurrentInput
     {
         get { return currentInput; }
         set
@@ -46,9 +37,179 @@ public abstract class Day
     protected long[] InputSplitCLong;
     protected string[] InputSplitter(char delimiter) => InputSplitter(new char[] { delimiter });
     protected string[] InputSplitter(char[] delimiters) => Input.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+    public string Input
+    {
+        get => Inputs[CurrentInput];
+        set
+        {
+            Inputs[CurrentInput] = value;
+            SetInputs();
+        }
+    }
+
+    private List<string> inputs;
+
+    public List<string> Inputs
+    {
+        get { return inputs; }
+        set 
+        {
+            inputs = value;
+            SetInputs();
+        }
+    }
+
+    public string Expected { get => Expecteds[CurrentInput]; }
+    public List<string> Expecteds { get; set; }
+
+    #pragma warning disable IDE0044 // Add readonly modifier
+    private Dictionary<string, DateTime> logs = new();
+    #pragma warning restore IDE0044 // Add readonly modifier
+
+    #endregion Constructors
+
+    #region Public Methods
+    public void SetMode(bool testMode, int whichPart) => SetMode(testMode, whichPart, DayBatchStatus.Available);
+
+    public void SetMode(bool testMode, int whichPart, DayBatchStatus batchStatus)
+    {
+        year = int.Parse(this.GetType().Namespace[^4..]);
+        day = int.Parse(this.GetType().Name[^2..]);
+        WhichPart = whichPart;
+        TestMode = testMode;
+        BatchStatus = batchStatus;
+        Inputs = GetInputs();
+        SetInputs();
+        Expecteds = GetExpecteds();
+        Output = string.Empty;
+        Rand = new Random();
+        MD5 = System.Security.Cryptography.MD5.Create();
+    }
+
+    public void AddInput(string newInput)
+    {
+        Inputs.Add(newInput);
+        SetInputs();
+    }
+
+    #endregion Public Methods
+
+    #region Private Methods
+
+    private List<string> GetInputs()
+    {
+        List<string> inputs = new();
+        if (new DateTime(year, 12, day, 05, 00, 00) > DateTime.Now)
+        {
+            BatchStatus = DayBatchStatus.Future;
+            return inputs;
+        }
+        bool fileExists = false;
+        //TODO this needs to be changed to use a config file
+        string path = $@"D:\Hobbies\Computer\Sources\Advent\{year}\Inputs\Day{day:D2}";
+        string mode = TestMode ? "Test" : "Live";
+        string fileName = $"{mode}Both.txt";
+
+        if (File.Exists(path + "\\" + fileName))
+        {
+            fileExists = true;
+        }
+        else
+        {
+            fileName = $"{mode}Part{WhichPart}.txt";
+            if (File.Exists(path + "\\" + fileName))
+                fileExists = true;
+        }
+
+        if (!fileExists)
+        {
+            if (!TestMode && WhichPart == 1 && BatchStatus == DayBatchStatus.Available)
+            {
+                // Get input from AoC website and save to file
+                if (!GetInputFromAoC())
+                {
+                    BatchStatus = DayBatchStatus.NoInputs;
+                    return inputs;
+                }
+            }
+            else
+            {
+                BatchStatus = DayBatchStatus.NoInputs;
+                return inputs;
+            }
+        }
+        else if (File.ReadAllLines(path + "\\" + fileName).Length == 0)
+        {
+            BatchStatus = DayBatchStatus.NoInputs;
+            return inputs;
+        }
+
+        StringBuilder input = new();
+        foreach (string line in File.ReadAllLines(path + "\\" + fileName))
+        {
+            if (line == "***AdditionalInput***")
+            {
+                inputs.Add(input.ToString());
+                input.Clear();
+                continue;
+            }
+            if (input.Length > 0)
+                input.Append(';');
+            input.Append(line);
+        }
+        inputs.Add(input.ToString());
+        return inputs;
+    }
+
+    private bool GetInputFromAoC()
+    {
+        return false;
+        /*if (!File.Exists(filename))
+        {
+            var uri = new Uri("https://adventofcode.com");
+            var cookies = new CookieContainer();
+            cookies.Add(uri, new System.Net.Cookie("session", cookie));
+            using var file = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None);
+            using var handler = new HttpClientHandler() { CookieContainer = cookies };
+            using var client = new HttpClient(handler) { BaseAddress = uri };
+            using var response = await client.GetAsync($"/{year}/day/{day}/input");
+            using var stream = await response.Content.ReadAsStreamAsync();
+            await stream.CopyToAsync(file);
+        }*/
+    }
+
+    private List<string> GetExpecteds()
+    {
+        List<string> expecteds = new();
+        if (new DateTime(year, 12, day, 05, 00, 00) > DateTime.Now) return expecteds;
+        bool reading = false;
+        string mode = TestMode ? "Test" : "Live";
+
+        //TODO this needs to be changed to use a config file
+        string path = $@"D:\Hobbies\Computer\Sources\Advent\{year}\Inputs\Day{day:D2}\Expected.txt";
+
+        if (!File.Exists(path) || File.ReadAllLines(path).Length == 0) return expecteds;
+
+        foreach (string line in File.ReadAllLines(path))
+        {
+            if (line == $"{mode}{WhichPart}")
+            {
+                reading = true;
+                continue;
+            }
+            if (line.StartsWith("Test") || line.StartsWith("Live"))
+                reading = false;
+            if (reading)
+            {
+                expecteds.Add(line);
+            }
+        }
+        return expecteds;
+    }
+
     private void SetInputs()
     {
-        if (inputs.Count == 0  || BatchStatus == DayBatchStatus.NotDoneYet) return;
+        if (inputs == null || inputs.Count == 0 || BatchStatus == DayBatchStatus.NotDoneYet) return;
         InputSplit = Inputs[CurrentInput].Split(';', StringSplitOptions.RemoveEmptyEntries);
         InputSplitC = Inputs[CurrentInput].Split(',');
         try
@@ -77,47 +238,14 @@ public abstract class Day
         }
     }
 
-    public string Input
-    {
-        get => Inputs[CurrentInput];
-        set
-        {
-            Inputs[CurrentInput] = value;
-            SetInputs();
-        }
-    }
-
-    public void AddInput(string newInput)
-    {
-        Inputs.Add(newInput);
-        SetInputs();
-    }
-    private List<string> inputs;
-    public List<string> Inputs
-    {
-        get { return inputs; }
-        set 
-        {
-            inputs = value;
-            SetInputs();
-        }
-    }
-
-    public string Expected { get => Expecteds[CurrentInput]; }
-    public List<string> Expecteds { get; set; }
-
-#pragma warning disable IDE0044 // Add readonly modifier
-    private Dictionary<string, DateTime> logs = new();
-#pragma warning restore IDE0044 // Add readonly modifier
-
-    #endregion Constructors
+    #endregion Private Methods
 
     #region Common Objects
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2211:NonConstantFieldsShouldNotBeVisible")]
     protected static Random Rand;
     public enum DayStatus { NotStarted, Running, Successful, Failed, Unknown };
-    public enum DayBatchStatus { Available, NotDoneYet, Performance, NonCoded, NotWorking, NoTestData, NoPart2, ManualIntervention };
+    public enum DayBatchStatus { Available, NotDoneYet, Performance, NonCoded, NotWorking, NoTestData, NoPart2, ManualIntervention, Future, NoInputs };
 
     protected readonly Dictionary<char, (int, int)> Directions = new() { { 'N', (0, 1) }, { 'S', (0, -1) }, { 'E', (1, 0) }, { 'W', (-1, 0) }, { 'U', (0, 1) }, { 'D', (0, -1) }, { 'L', (-1, 0) }, { 'R', (1, 0) }, { '^', (0, 1) }, { 'v', (0, -1) }, { '>', (1, 0) }, { '<', (-1, 0) } };
     protected readonly Dictionary<char, (int x, int y)> DirectionsYDown = new() { { 'N', (0, -1) }, { 'S', (0, 1) }, { 'E', (1, 0) }, { 'W', (-1, 0) }, { 'U', (0, -1) }, { 'D', (0, 1) }, { 'L', (-1, 0) }, { 'R', (1, 0) }, { '^', (0, -1) }, { 'v', (0, 1) }, { '>', (1, 0) }, { '<', (-1, 0) } };
@@ -190,7 +318,7 @@ public abstract class Day
         return inputBox.Result == DialogResult.Cancel || inputBox.Result == DialogResult.Ignore ? DefaultValue : inputBox.Input;
     }
 
-    protected static string GetMD5Hash(HashAlgorithm md5Hash, string input)
+    protected static string GetMD5Hash(System.Security.Cryptography.HashAlgorithm md5Hash, string input)
     {
         // Convert the input string to a byte array and compute the hash.
         byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
