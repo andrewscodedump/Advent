@@ -211,6 +211,7 @@ public void AddInput(string newInput)
     private void SetInputs()
     {
         if (inputs == null || inputs.Count == 0 || BatchStatus == DayBatchStatus.NotDoneYet) return;
+        if (BatchStatus == DayBatchStatus.NoInputs) BatchStatus = DayBatchStatus.Available;
         InputSplit = Inputs[CurrentInput].Split(';', StringSplitOptions.RemoveEmptyEntries);
         InputSplitC = Inputs[CurrentInput].Split(',');
         try
