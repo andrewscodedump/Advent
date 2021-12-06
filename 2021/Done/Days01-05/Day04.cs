@@ -8,7 +8,7 @@ public partial class Day04 : Advent.Day
         int score = 0, lineNumber = 0;
         Board board = new();
 
-        foreach (List<int> line in InputSplit[1..].Select(l => l.Replace("  ", " ").Trim().Split().Select(int.Parse).ToList()))
+        foreach (List<int> line in InputSplit[1..].Select(l => l.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList()))
         {
             board.AddLine(line);
             if (++lineNumber % 5 == 0)
@@ -21,11 +21,11 @@ public partial class Day04 : Advent.Day
         foreach (int ball in InputSplit[0].Split(',').Select(int.Parse).ToList())
         {
             for (int boardNumber = boards.Count - 1; boardNumber >= 0; boardNumber--)
-            {
-                score = boards[boardNumber].CheckNumber(ball);
-                if (WhichPart == 1 && score != 0) break;
-                if (score != 0) boards.RemoveAt(boardNumber);
-            }
+                if ((score = boards[boardNumber].CheckNumber(ball)) != 0)
+                {
+                    if (WhichPart == 1) break;
+                    boards.RemoveAt(boardNumber);
+                }
             if (WhichPart == 1 && score != 0) break;
         }
 
@@ -68,11 +68,6 @@ public class Board
     private void AddCols()
     {
         for (int colNum = 0; colNum < 5; colNum++)
-        {
-            List<int> col = new();
-            for (int row=0; row<5; row++)
-                col.Add(lines[row][colNum]);
-            lines.Add(col);
-        }
+            lines.Add(lines.GetRange(0,5).Select(l=>l[colNum]).ToList());
     }
 }
