@@ -3,31 +3,33 @@
 public partial class Day06 : Advent.Day
 {
     /*
-     *  Description -   
+     *  Description -   Input is the stage in the lifecycle of a shoal of fish.  Each fish's state decrements daily, and when it
+     *                  reaches zero, it resets to 6 and it produces a new fish with a state of 8.
      *  
-     *  Part 1 -        
+     *  Part 1 -        How many fish are in the shoal after 80 days?
      *  Part 2 -        
     */
     public Day06(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
     {
-        BatchStatus = DayBatchStatus.NotDoneYet;
         switch (WhichPart, TestMode)
         {
             case (1, true):
-                Inputs.Add("Part One, Test");
-                Expecteds.Add("Part One, Test");
+                Inputs.Add("3,4,3,1,2");
+                Expecteds.Add("26");
+                Inputs.Add("3,4,3,1,2");
+                Expecteds.Add("5934");
                 break;
             case (1, false):
-                Inputs.Add("Part One, Live");
-                Expecteds.Add("Part One, Live");
+                Inputs.Add("1,4,1,1,1,1,5,1,1,5,1,4,2,5,1,2,3,1,1,1,1,5,4,2,1,1,3,1,1,1,1,1,1,1,2,1,1,1,1,1,5,1,1,1,1,1,1,1,1,1,4,1,1,1,1,5,1,4,1,1,4,1,1,1,1,4,1,1,5,5,1,1,1,4,1,1,1,1,1,3,2,1,1,1,1,1,2,3,1,1,2,1,1,1,3,1,1,1,2,1,2,1,1,2,1,1,3,1,1,1,3,3,5,1,4,1,1,5,1,1,4,1,5,3,3,5,1,1,1,4,1,1,1,1,1,1,5,5,1,1,4,1,2,1,1,1,1,2,2,2,1,1,2,2,4,1,1,1,1,3,1,2,3,4,1,1,1,4,4,1,1,1,1,1,1,1,4,2,5,2,1,1,4,1,1,5,1,1,5,1,5,5,1,3,5,1,1,5,1,1,2,2,1,1,1,1,1,1,1,4,3,1,1,4,1,4,1,1,1,1,4,1,4,4,4,3,1,1,3,2,1,1,1,1,1,1,1,4,1,3,1,1,1,1,1,1,1,5,2,4,2,1,4,4,1,5,1,1,3,1,3,1,1,1,1,1,4,2,3,2,1,1,2,1,5,2,1,1,4,1,4,1,1,1,4,4,1,1,1,1,1,1,4,1,1,1,2,1,1,2");
+                Expecteds.Add("385391");
                 break;
             case (2, true):
-                Inputs.Add("Part Two, Test");
-                Expecteds.Add("Part Two, Test");
+                Inputs.Add("3,4,3,1,2");
+                Expecteds.Add("26984457539");
                 break;
             case (2, false):
-                Inputs.Add("Part Two, Live");
-                Expecteds.Add("Part Two, Live");
+                Inputs.Add("1,4,1,1,1,1,5,1,1,5,1,4,2,5,1,2,3,1,1,1,1,5,4,2,1,1,3,1,1,1,1,1,1,1,2,1,1,1,1,1,5,1,1,1,1,1,1,1,1,1,4,1,1,1,1,5,1,4,1,1,4,1,1,1,1,4,1,1,5,5,1,1,1,4,1,1,1,1,1,3,2,1,1,1,1,1,2,3,1,1,2,1,1,1,3,1,1,1,2,1,2,1,1,2,1,1,3,1,1,1,3,3,5,1,4,1,1,5,1,1,4,1,5,3,3,5,1,1,1,4,1,1,1,1,1,1,5,5,1,1,4,1,2,1,1,1,1,2,2,2,1,1,2,2,4,1,1,1,1,3,1,2,3,4,1,1,1,4,4,1,1,1,1,1,1,1,4,2,5,2,1,1,4,1,1,5,1,1,5,1,5,5,1,3,5,1,1,5,1,1,2,2,1,1,1,1,1,1,1,4,3,1,1,4,1,4,1,1,1,1,4,1,4,4,4,3,1,1,3,2,1,1,1,1,1,1,1,4,1,3,1,1,1,1,1,1,1,5,2,4,2,1,4,4,1,5,1,1,3,1,3,1,1,1,1,1,4,2,3,2,1,1,2,1,5,2,1,1,4,1,4,1,1,1,4,4,1,1,1,1,1,1,4,1,1,1,2,1,1,2");
+                Expecteds.Add("1728611055389");
                 break;
         }
     }
