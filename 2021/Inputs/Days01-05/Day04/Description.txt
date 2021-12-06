@@ -1,1 +1,5 @@
-﻿
+﻿Input is a set of bingo balls and a series of boards
+
+What is the score (sum of unselected numbers times the last ball called) of the first winning board?
+
+What is the score of the last winning board?

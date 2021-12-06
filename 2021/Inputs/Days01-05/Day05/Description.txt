@@ -1,1 +1,5 @@
-﻿
+﻿Input is a series of start and end coordinates for lines of underwater vents
+
+How many points do one or more lines cross (horizontal and vertical lines only).
+
+As above, but including diagonals too.

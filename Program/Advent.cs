@@ -34,11 +34,11 @@ public partial class AdventOfCode : Form
         if (noReset) return;
         try
         {
-            theDay = (Day)Activator.CreateInstance(Type.GetType("Advent" + (int)updYear.Value + ".Day" + ((int)updDay.Value).ToString("D2")), new object[] { chkTestMode.Checked, (int)updPuzzle.Value });
+            theDay = (Day)Activator.CreateInstance(Type.GetType($"Advent{updYear.Value}.Day{(int)updDay.Value:D2}"), new object[] { chkTestMode.Checked, (int)updPuzzle.Value });
         }
         catch
         {
-            theDay = (Day)Activator.CreateInstance(Type.GetType("Advent" + (int)updYear.Value + ".Day" + ((int)updDay.Value).ToString("D2")));
+            theDay = (Day)Activator.CreateInstance(Type.GetType($"Advent{updYear.Value}.Day{(int)updDay.Value:D2}"));
             theDay.SetMode(chkTestMode.Checked, (int)updPuzzle.Value);
         }
         List<string> Inputs = GetInputs();
@@ -181,11 +181,11 @@ public partial class AdventOfCode : Form
                 DateTime start = DateTime.Now;
                 try
                 {
-                    theDay = (Day)Activator.CreateInstance(Type.GetType("Advent" + year + ".Day" + day.ToString("D2")), new object[] { chkTestMode.Checked, puzzle });
+                    theDay = (Day)Activator.CreateInstance(Type.GetType($"Advent{year}.Day{day:D2})"), new object[] { chkTestMode.Checked, puzzle });
                 }
                 catch
                 {
-                    theDay = (Day)Activator.CreateInstance(Type.GetType("Advent" + year + ".Day" + day.ToString("D2")));
+                    theDay = (Day)Activator.CreateInstance(Type.GetType($"Advent{year}.Day{day:D2}"));
                     theDay.SetMode(chkTestMode.Checked, (int)updPuzzle.Value);
                 }
 
@@ -200,27 +200,27 @@ public partial class AdventOfCode : Form
                 {
                     case Day.DayBatchStatus.NonCoded:
                         output.Append(" skipped (non-coded).");
-                        Debug.WriteLine("Day: " + day.ToString() + " skipped (non-coded.");
+                        Debug.WriteLine($"Day: {day} skipped (non-coded.");
                         break;
                     case Day.DayBatchStatus.NotDoneYet:
                         output.Append(" not done yet.");
-                        Debug.WriteLine("Day: " + day.ToString() + " not done yet.");
+                        Debug.WriteLine($"Day: {day} not done yet.");
                         break;
                     case Day.DayBatchStatus.NoTestData:
                         output.Append(" no test data.");
-                        Debug.WriteLine("Day: " + day.ToString() + " no test data.");
+                        Debug.WriteLine($"Day: {day} no test data.");
                         break;
                     case Day.DayBatchStatus.NotWorking:
                         output.Append(" not currently working.");
-                        Debug.WriteLine("Day: " + day.ToString() + " not currently working.");
+                        Debug.WriteLine($"Day: {day} not currently working.");
                         break;
                     case Day.DayBatchStatus.Performance:
                         output.Append(" skipped (performance).");
-                        Debug.WriteLine("Day: " + day.ToString() + " skipped (performance).");
+                        Debug.WriteLine($"Day: {day} skipped (performance).");
                         break;
                     case Day.DayBatchStatus.NoPart2:
                         output.Append(" has no part 2.");
-                        Debug.WriteLine("Day: " + day.ToString() + " has no part 2.");
+                        Debug.WriteLine($"Day: {day} has no part 2.");
                         break;
                     case Day.DayBatchStatus.Available:
                     case Day.DayBatchStatus.ManualIntervention:
@@ -236,12 +236,12 @@ public partial class AdventOfCode : Form
                         if (theDay.Output != theDay.Expecteds[0] && theDay.BatchStatus != Day.DayBatchStatus.ManualIntervention)
                         {
                             output.Append(" Test Failed");
-                            Debug.WriteLine("Day: " + day.ToString() + ", part " + puzzle.ToString() + " Test Failed");
+                            Debug.WriteLine($"Day: {day}, part {puzzle} Test Failed");
                         }
                         else
                         {
-                            output.Append(" = " + (totalTime / reps).ToString("0.000") + " secs");
-                            Debug.WriteLine("Day: " + day.ToString() + ", part " + puzzle.ToString() + " = " + (totalTime / reps).ToString("0.000") + " secs");
+                            output.Append($" = {totalTime / reps:0.000000} secs");
+                            Debug.WriteLine($"Day: {day}, part {puzzle} = {totalTime / reps:0.000000} secs");
                         }
                         break;
                     default:
@@ -253,8 +253,8 @@ public partial class AdventOfCode : Form
         output.AppendLine().AppendLine();
         output.AppendLine("Batch Run Completed");
         Debug.WriteLine("Batch Run Completed");
-        output.AppendLine("Total Time = " + ((DateTime.Now - overallStart).TotalSeconds / reps).ToString("0.000") + " secs");
-        Debug.WriteLine("Total Time = " + ((DateTime.Now - overallStart).TotalSeconds / reps).ToString("0.000") + " secs");
+        output.AppendLine($"Total Time = {(DateTime.Now - overallStart).TotalSeconds / reps:0.000000} secs");
+        Debug.WriteLine($"Total Time = {(DateTime.Now - overallStart).TotalSeconds / reps:0.000000} secs");
         //Clipboard.SetText(output.ToString());
         return output.ToString();
     }
