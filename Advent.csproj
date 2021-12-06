@@ -9,8 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="2021\ToDo\Days01-05\**" />
     <Compile Remove="XXXX\**" />
+    <EmbeddedResource Remove="2021\ToDo\Days01-05\**" />
     <EmbeddedResource Remove="XXXX\**" />
+    <None Remove="2021\ToDo\Days01-05\**" />
     <None Remove="XXXX\**" />
   </ItemGroup>
 
@@ -30,7 +33,7 @@
     <Folder Include="2020\Refactor\" />
     <Folder Include="2020\ToDo\" />
     <Folder Include="2020\WIP\" />
-    <Folder Include="2021\WIP\" />
+    <Folder Include="2021\ToDo\WIP\" />
   </ItemGroup>
 
 	<ItemGroup>

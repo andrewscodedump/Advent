@@ -8,7 +8,7 @@ namespace Advent;
 public partial class AdventOfCode : Form
 {
     #endregion Preamble
-    private readonly int defaultDay = 4;
+    private readonly int defaultDay = 6;
     private readonly int defaultPuzzle = 1;
     private readonly bool defaultTestMode = true;
     private readonly int defaultYear = 2021;
@@ -164,7 +164,7 @@ public partial class AdventOfCode : Form
         BatchWorker.RunWorkerAsync(reps);
     }
 
-    private string DoBatch(int reps, BackgroundWorker worker, DoWorkEventArgs e)
+    private string DoBatch(int reps, BackgroundWorker worker)
     {
         int year = (int)updYear.Value;
         StringBuilder output = new();
@@ -312,7 +312,7 @@ public partial class AdventOfCode : Form
     private void BatchWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
     {
         BackgroundWorker worker = sender as BackgroundWorker;
-        e.Result = DoBatch((int)e.Argument, worker, e);
+        e.Result = DoBatch((int)e.Argument, worker);
     }
 
     private void BatchWorker_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
