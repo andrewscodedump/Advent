@@ -3,10 +3,10 @@
 public partial class Day05 : Advent.Day
 {
     /*
-     *  Description -   
+     *  Description -   Input is a series of start and end coordinates for lines of underwater vents
      *  
-     *  Part 1 -        
-     *  Part 2 -        
+     *  Part 1 -        How many points do one or more lines cross (horizontal and vertical lines only).
+     *  Part 2 -        As above, but including diagonals too.
     */
     public Day05(bool testMode, int whichPart, string input) : base(testMode, whichPart, input)
     {
