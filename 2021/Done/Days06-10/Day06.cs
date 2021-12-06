@@ -12,18 +12,11 @@ public partial class Day06 : Advent.Day
         for(int day = 0; day < targetDays; day++)
         {
             // Every day: 8s=0s; 6s=0s+7s;others=other+1s
-            long[] newCounts = new long[9];
-
-            for (int i =0;i <= 8; i++)
-            {
-                if (i == 0)
-                {
-                    newCounts[8] = counts[i];
-                    newCounts[6] = counts[i];
-                }
-                else newCounts[i - 1] += counts[i];
-            }
-            counts = newCounts;
+            long zeroes = counts[0];
+            for (int i = 1; i <= 8; i++)
+                counts[i - 1] = counts[i];
+            counts[6] += zeroes;
+            counts[8] = zeroes;
         }
         Output = counts.Sum().ToString();
     }
