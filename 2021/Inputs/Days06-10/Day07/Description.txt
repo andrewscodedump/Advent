@@ -1,1 +1,5 @@
-﻿
+﻿Input is a set of positions of submarines (in a single plane)
+
+What is the least number of moves to have them all line up?
+
+As above, but each move takes one more unit of fuel than the previous one.

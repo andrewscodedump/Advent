@@ -79,7 +79,7 @@ public abstract partial class Day
         WhichPart = whichPart;
         TestMode = testMode;
         BatchStatus = batchStatus;
-        inputPath = $@"D:\Hobbies\Computer\Sources\Advent\{year}\Inputs\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}";
+        inputPath = $@"C:\Userfiles\Hobbies\Computer\Sources\Advent\{year}\Inputs\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}";
         Inputs = GetInputs();
         SetInputs();
         Expecteds = GetExpecteds();
