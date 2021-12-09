@@ -27,7 +27,7 @@ public partial class Day11 : Advent.Day
                 for (int x = 0; x < cols; x++)
                 {
                     // Empty (L) with no occ neighb => occ; occ (#) with 4+ occ => empty; else stays same
-                    int neighbours = WhichPart == 1 ? GetNeighbours(plan, x, y, '#') : GetVisible(plan, x, y);
+                    int neighbours = WhichPart == 1 ? CountNeighbours(plan, x, y, '#') : GetVisible(plan, x, y);
                     switch (plan[(x, y)])
                     {
                         case 'L':

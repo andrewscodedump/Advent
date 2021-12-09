@@ -1,1 +1,5 @@
-﻿
+﻿Input is an elevation map of the surrounding area
+
+What is the sum of the heights of all spots which are lower than all their neighbours?
+
+Find all the basins which drain into these low spots.  What is the product of their sizes?

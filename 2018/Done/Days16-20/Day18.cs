@@ -32,14 +32,14 @@ public partial class Day18 : Advent.Day
                     switch (area[(x, y)])
                     {
                         case '.':   // Tree if 3+ trees
-                            if (GetNeighbours(area, x, y, '|') >= 3)
+                            if (CountNeighbours(area, x, y, '|') >= 3)
                             {
                                 work[(x, y)] = '|';
                                 empty--; trees++;
                             }
                             break;
                         case '#':   // Yard if 1+ yard and 1+ tree else empty
-                            if (GetNeighbours(area, x, y, '#') >= 1 && GetNeighbours(area, x, y, '|') >= 1)
+                            if (CountNeighbours(area, x, y, '#') >= 1 && CountNeighbours(area, x, y, '|') >= 1)
                                 work[(x, y)] = '#';
                             else
                             {
@@ -48,7 +48,7 @@ public partial class Day18 : Advent.Day
                             }
                             break;
                         case '|':   // Yard if 3+ yards
-                            if (GetNeighbours(area, x, y, '#') >= 3)
+                            if (CountNeighbours(area, x, y, '#') >= 3)
                             {
                                 work[(x, y)] = '#';
                                 trees--; yards++;
