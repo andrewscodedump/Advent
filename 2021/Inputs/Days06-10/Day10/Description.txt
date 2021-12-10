@@ -1,1 +1,5 @@
-﻿
+﻿Input is a series of sets of bracketes of various kinds.
+
+For each line, find the first unmatched bracket and lookup its score.  Result is the sum of these.
+
+Calculating the score to complete each incomplete line, what is the median score?
