@@ -1,1 +1,6 @@
-﻿
+﻿Input is the energy level of a shoal of octopuses.  An octopus's energy level increases every round
+or when a neighbour flashes.  An octopus flashes when it's energy level hits 9, but only once per round.
+
+How many flashes have there been after 100 rounds?
+
+How many rounds until they all flash at once?
