@@ -1,1 +1,5 @@
-﻿
+﻿Input is a series of paths through a cave system.  Lowercase caves may only be visited once.
+
+How many paths are there through the caves?
+
+As above, but one (and only one) lowercase cave may be visited twice (but no more).
