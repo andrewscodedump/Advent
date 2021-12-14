@@ -1,1 +1,5 @@
-﻿
+﻿Input is a starting molecule and a set of instructions for creating a polymer from it.
+
+What is the difference between the number of atoms of the most and least common elements after 10 rounds of polymerisation?
+
+As above, but after 40 rounds?
