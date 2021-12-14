@@ -1,7 +1,8 @@
 ﻿Test1
-
+17
 Live1
-
+618
 Test2
-
+Result is in debug window (square)
 Live2
+Result is in debug window (ALREKFKU)

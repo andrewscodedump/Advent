@@ -1,1 +1,5 @@
-﻿
+﻿Input is the location of a bunch of dots on a sheet of transparent paper and instructions for how to fold it.
+
+How many dots are visible after the first fold?
+
+What letters to the dots spell out after performing all the folds?
