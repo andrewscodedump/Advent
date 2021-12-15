@@ -1,1 +1,6 @@
-﻿
+﻿Input is a map of risk scores for locations in a cave.
+
+What is the lowest total score from the top left to the bottom right of the cave?
+
+As above, but the cave is 5 times bigger on each dimension, with each expansion adding 1 (modulo 9) to the corresponding
+scores in the previous section.
