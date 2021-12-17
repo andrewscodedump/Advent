@@ -35,7 +35,7 @@ public partial class Day15 : Advent.Day
                 int newScore = score + map[newPos];
                 if (newScore > finalScore || (shortestPaths.ContainsKey(newPos) && newScore >= shortestPaths[newPos])) continue;
                 shortestPaths[newPos] = newScore;
-                explore.Enqueue((newPos, newVisited, newScore), (endPos.x - newPos.x + endPos.y - newPos.y) + newScore);
+                explore.Enqueue((newPos, newVisited, newScore), endPos.x - newPos.x + endPos.y - newPos.y + newScore);
             }
         } while (explore.Count > 0);
 

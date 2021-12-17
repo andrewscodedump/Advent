@@ -1,1 +1,5 @@
-﻿
+﻿Input is an area in a cave.  You have a probe which can be fired on a ballistic trajectory.
+
+What initial velocity ending up in the target area has the highest y displacement?
+
+How many different initial velocities end up in the target?

@@ -1,1 +1,5 @@
-﻿
+﻿target area: x=20..30, y=-10..-5
+***AdditionalInput***
+target area: x=352..377, y=-49..-30
+***AdditionalInput***
+target area: x=819..820, y=-11..-5

@@ -8,7 +8,7 @@ namespace Advent;
 public partial class AdventOfCode : Form
 {
     #endregion Preamble
-    private readonly int defaultDay = 15;
+    private readonly int defaultDay = 17;
     private readonly int defaultPuzzle = 1;
     private readonly bool defaultTestMode = true;
     private readonly int defaultYear = 2021;
@@ -271,7 +271,7 @@ public partial class AdventOfCode : Form
         Update();
         txtOutput.Text = DoPuzzle();
         txtOutput.BackColor = txtOutput.Text == txtExpected.Text || txtExpected.Text == "NotDoneYet" ? Color.White : Color.Pink;
-        txtTimeTaken.Text = (DateTime.Now - startTime).ToString();
+        txtTimeTaken.Text = $"{(DateTime.Now - startTime).TotalSeconds:0.000000} secs";
         Cursor = Cursors.Default;
     }
 
