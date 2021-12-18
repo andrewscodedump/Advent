@@ -1,1 +1,5 @@
-﻿
+﻿Input is a set of numbers in a (really) weird numbering system
+
+What is the magnitude (also weird) of the sum of all the numbers?
+
+Adding each possible pair (not commutative!), what is the maximum possible magnitude?
