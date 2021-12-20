@@ -240,6 +240,25 @@ public void AddInput(string newInput)
         }
     }
 
+    protected List<List<string>> GetInputsByBlankLine()
+    {
+        List<List<string>> inputs = new();
+        List<string> block = new();
+        foreach (string line in Inputs[CurrentInput].Split(';'))
+        {
+            if (line == string.Empty)
+            {
+                inputs.Add(block);
+                block = new();
+            }
+            else
+            {
+                block.Add(line);
+            }
+        }
+        return inputs;
+    }
+
     #endregion Private Methods
 
     #region Common Objects
