@@ -8,7 +8,7 @@ namespace Advent;
 public partial class AdventOfCode : Form
 {
     #endregion Preamble
-    private readonly int defaultDay = 18;
+    private readonly int defaultDay = 20;
     private readonly int defaultPuzzle = 1;
     private readonly bool defaultTestMode = true;
     private readonly int defaultYear = 2021;
