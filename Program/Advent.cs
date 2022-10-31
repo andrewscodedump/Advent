@@ -8,10 +8,10 @@ namespace Advent;
 public partial class AdventOfCode : Form
 {
     #endregion Preamble
-    private readonly int defaultDay = 21;
+    private readonly int defaultDay = 1;
     private readonly int defaultPuzzle = 1;
     private readonly bool defaultTestMode = true;
-    private readonly int defaultYear = 2021;
+    private readonly int defaultYear = 2022;
 
     #region Constructors and Declarations
 
@@ -240,8 +240,22 @@ public partial class AdventOfCode : Form
                         }
                         else
                         {
-                            output.Append($" = {totalTime / reps:0.000000} secs");
-                            Debug.WriteLine($"Day: {day}, part {puzzle} = {totalTime / reps:0.000000} secs");
+                            double avgTime = totalTime / reps;
+                            if (avgTime >= 1)
+                            {
+                                output.Append($" = {avgTime:0.000000} secs");
+                                Debug.WriteLine($"Day: {day}, part {puzzle} = {avgTime:0.000000} secs");
+                            }
+                            else if (avgTime >= 0.001)
+                            {
+                                output.Append($" = {avgTime:0.000} ms");
+                                Debug.WriteLine($"Day: {day}, part {puzzle} = {avgTime:0.000} ms");
+                            }
+                            else
+                            {
+                                output.Append($" = {avgTime:0} µs");
+                                Debug.WriteLine($"Day: {day}, part {puzzle} = {avgTime:0} µs");
+                            }
                         }
                         break;
                     default:
@@ -271,7 +285,13 @@ public partial class AdventOfCode : Form
         Update();
         txtOutput.Text = DoPuzzle();
         txtOutput.BackColor = txtOutput.Text == txtExpected.Text || txtExpected.Text == "NotDoneYet" ? Color.White : Color.Pink;
-        txtTimeTaken.Text = $"{(DateTime.Now - startTime).TotalSeconds:0.000000} secs";
+        double timeTaken = (DateTime.Now - startTime).TotalSeconds;
+        if (timeTaken >= 1)
+            txtTimeTaken.Text = $"{timeTaken:0.000000} secs";
+        else if (timeTaken >= 0.001)
+            txtTimeTaken.Text = $"{timeTaken * 1000:0.000} ms";
+        else
+            txtTimeTaken.Text = $"{timeTaken * 1000000:0} µs";
         Cursor = Cursors.Default;
     }
 

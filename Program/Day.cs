@@ -162,7 +162,7 @@ public void AddInput(string newInput)
         return inputs;
     }
 
-    private bool GetInputFromAoC()
+    private static bool GetInputFromAoC()
     {
         return false;
         /*if (!File.Exists(filename))
