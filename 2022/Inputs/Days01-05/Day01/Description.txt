@@ -1,1 +1,5 @@
-﻿
+﻿The input is a list of the calories in the food held by a bunch of elves.
+Each item is on a separate line, and the elves are separated by a blank line.
+
+Which elf's food has the most calories?
+For part 2, what is the total of the three elves with the most calories?
