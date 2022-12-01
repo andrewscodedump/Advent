@@ -4,11 +4,7 @@ public partial class Day01 : Advent.Day
 {
     public override void DoWork()
     {
-        #region Setup Variables and Parse Inputs
-
-        #endregion Setup Variables and Parse Inputs
-
-        // Add code here
-        Output = "OutputVariable".ToString();
+        List<long> elfTotals = Input.Split(";;").Select(elf => elf.Split(';').Select(item => long.Parse(item)).Sum()).ToList();
+        Output = elfTotals.OrderByDescending(total => total).Take(WhichPart == 1 ? 1 : 3).Sum().ToString();
     }
 }
