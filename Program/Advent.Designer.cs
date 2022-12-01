@@ -61,8 +61,8 @@
             // 
             // updDay
             // 
-            this.updDay.Location = new System.Drawing.Point(238, 33);
-            this.updDay.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.updDay.Location = new System.Drawing.Point(578, 90);
+            this.updDay.Margin = new System.Windows.Forms.Padding(22, 27, 22, 27);
             this.updDay.Maximum = new decimal(new int[] {
             25,
             0,
@@ -74,7 +74,7 @@
             0,
             0});
             this.updDay.Name = "updDay";
-            this.updDay.Size = new System.Drawing.Size(51, 23);
+            this.updDay.Size = new System.Drawing.Size(124, 47);
             this.updDay.TabIndex = 3;
             this.updDay.Value = new decimal(new int[] {
             1,
@@ -85,8 +85,8 @@
             // 
             // updPuzzle
             // 
-            this.updPuzzle.Location = new System.Drawing.Point(370, 33);
-            this.updPuzzle.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.updPuzzle.Location = new System.Drawing.Point(899, 90);
+            this.updPuzzle.Margin = new System.Windows.Forms.Padding(22, 27, 22, 27);
             this.updPuzzle.Maximum = new decimal(new int[] {
             2,
             0,
@@ -98,7 +98,7 @@
             0,
             0});
             this.updPuzzle.Name = "updPuzzle";
-            this.updPuzzle.Size = new System.Drawing.Size(51, 23);
+            this.updPuzzle.Size = new System.Drawing.Size(124, 47);
             this.updPuzzle.TabIndex = 5;
             this.updPuzzle.Value = new decimal(new int[] {
             1,
@@ -110,18 +110,18 @@
             // txtInput
             // 
             this.txtInput.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtInput.Location = new System.Drawing.Point(132, 95);
-            this.txtInput.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.txtInput.Location = new System.Drawing.Point(321, 260);
+            this.txtInput.Margin = new System.Windows.Forms.Padding(22, 27, 22, 27);
             this.txtInput.Name = "txtInput";
-            this.txtInput.Size = new System.Drawing.Size(455, 23);
+            this.txtInput.Size = new System.Drawing.Size(1099, 47);
             this.txtInput.TabIndex = 8;
             // 
             // btnProcess
             // 
-            this.btnProcess.Location = new System.Drawing.Point(132, 193);
-            this.btnProcess.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.btnProcess.Location = new System.Drawing.Point(321, 528);
+            this.btnProcess.Margin = new System.Windows.Forms.Padding(22, 27, 22, 27);
             this.btnProcess.Name = "btnProcess";
-            this.btnProcess.Size = new System.Drawing.Size(88, 27);
+            this.btnProcess.Size = new System.Drawing.Size(214, 74);
             this.btnProcess.TabIndex = 11;
             this.btnProcess.Text = "&Process";
             this.btnProcess.UseVisualStyleBackColor = true;
@@ -129,59 +129,59 @@
             // 
             // txtOutput
             // 
-            this.txtOutput.Location = new System.Drawing.Point(132, 279);
-            this.txtOutput.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.txtOutput.Location = new System.Drawing.Point(321, 763);
+            this.txtOutput.Margin = new System.Windows.Forms.Padding(22, 27, 22, 27);
             this.txtOutput.Name = "txtOutput";
-            this.txtOutput.Size = new System.Drawing.Size(455, 23);
+            this.txtOutput.Size = new System.Drawing.Size(1099, 47);
             this.txtOutput.TabIndex = 15;
             // 
             // lblOutput
             // 
             this.lblOutput.AutoSize = true;
-            this.lblOutput.Location = new System.Drawing.Point(75, 278);
-            this.lblOutput.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblOutput.Location = new System.Drawing.Point(182, 760);
+            this.lblOutput.Margin = new System.Windows.Forms.Padding(22, 0, 22, 0);
             this.lblOutput.Name = "lblOutput";
-            this.lblOutput.Size = new System.Drawing.Size(45, 15);
+            this.lblOutput.Size = new System.Drawing.Size(113, 41);
             this.lblOutput.TabIndex = 14;
             this.lblOutput.Text = "Output";
             // 
             // lblInput
             // 
             this.lblInput.AutoSize = true;
-            this.lblInput.Location = new System.Drawing.Point(85, 95);
-            this.lblInput.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblInput.Location = new System.Drawing.Point(206, 260);
+            this.lblInput.Margin = new System.Windows.Forms.Padding(22, 0, 22, 0);
             this.lblInput.Name = "lblInput";
-            this.lblInput.Size = new System.Drawing.Size(35, 15);
+            this.lblInput.Size = new System.Drawing.Size(88, 41);
             this.lblInput.TabIndex = 7;
             this.lblInput.Text = "Input";
             // 
             // lblDay
             // 
             this.lblDay.AutoSize = true;
-            this.lblDay.Location = new System.Drawing.Point(197, 33);
-            this.lblDay.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblDay.Location = new System.Drawing.Point(478, 90);
+            this.lblDay.Margin = new System.Windows.Forms.Padding(22, 0, 22, 0);
             this.lblDay.Name = "lblDay";
-            this.lblDay.Size = new System.Drawing.Size(27, 15);
+            this.lblDay.Size = new System.Drawing.Size(69, 41);
             this.lblDay.TabIndex = 2;
             this.lblDay.Text = "Day";
             // 
             // lblPuzzle
             // 
             this.lblPuzzle.AutoSize = true;
-            this.lblPuzzle.Location = new System.Drawing.Point(318, 33);
-            this.lblPuzzle.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblPuzzle.Location = new System.Drawing.Point(772, 90);
+            this.lblPuzzle.Margin = new System.Windows.Forms.Padding(22, 0, 22, 0);
             this.lblPuzzle.Name = "lblPuzzle";
-            this.lblPuzzle.Size = new System.Drawing.Size(40, 15);
+            this.lblPuzzle.Size = new System.Drawing.Size(103, 41);
             this.lblPuzzle.TabIndex = 4;
             this.lblPuzzle.Text = "Puzzle";
             // 
             // btnExit
             // 
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExit.Location = new System.Drawing.Point(416, 193);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.btnExit.Location = new System.Drawing.Point(1010, 528);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(22, 27, 22, 27);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(88, 27);
+            this.btnExit.Size = new System.Drawing.Size(214, 74);
             this.btnExit.TabIndex = 13;
             this.btnExit.Text = "E&xit";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -190,10 +190,10 @@
             // chkTestMode
             // 
             this.chkTestMode.AutoSize = true;
-            this.chkTestMode.Location = new System.Drawing.Point(454, 37);
-            this.chkTestMode.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.chkTestMode.Location = new System.Drawing.Point(1103, 101);
+            this.chkTestMode.Margin = new System.Windows.Forms.Padding(22, 27, 22, 27);
             this.chkTestMode.Name = "chkTestMode";
-            this.chkTestMode.Size = new System.Drawing.Size(80, 19);
+            this.chkTestMode.Size = new System.Drawing.Size(195, 45);
             this.chkTestMode.TabIndex = 6;
             this.chkTestMode.Text = "Test Mode";
             this.chkTestMode.UseVisualStyleBackColor = true;
@@ -201,10 +201,10 @@
             // 
             // btnBatch
             // 
-            this.btnBatch.Location = new System.Drawing.Point(227, 193);
-            this.btnBatch.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.btnBatch.Location = new System.Drawing.Point(551, 528);
+            this.btnBatch.Margin = new System.Windows.Forms.Padding(22, 27, 22, 27);
             this.btnBatch.Name = "btnBatch";
-            this.btnBatch.Size = new System.Drawing.Size(88, 27);
+            this.btnBatch.Size = new System.Drawing.Size(214, 74);
             this.btnBatch.TabIndex = 12;
             this.btnBatch.Text = "&Batch";
             this.btnBatch.UseVisualStyleBackColor = true;
@@ -212,10 +212,10 @@
             // 
             // btnSuperBatch
             // 
-            this.btnSuperBatch.Location = new System.Drawing.Point(322, 193);
-            this.btnSuperBatch.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.btnSuperBatch.Location = new System.Drawing.Point(782, 528);
+            this.btnSuperBatch.Margin = new System.Windows.Forms.Padding(22, 27, 22, 27);
             this.btnSuperBatch.Name = "btnSuperBatch";
-            this.btnSuperBatch.Size = new System.Drawing.Size(88, 27);
+            this.btnSuperBatch.Size = new System.Drawing.Size(214, 74);
             this.btnSuperBatch.TabIndex = 12;
             this.btnSuperBatch.Text = "&SuperBatch";
             this.btnSuperBatch.UseVisualStyleBackColor = true;
@@ -224,38 +224,38 @@
             // lblExpected
             // 
             this.lblExpected.AutoSize = true;
-            this.lblExpected.Location = new System.Drawing.Point(65, 142);
-            this.lblExpected.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblExpected.Location = new System.Drawing.Point(158, 388);
+            this.lblExpected.Margin = new System.Windows.Forms.Padding(22, 0, 22, 0);
             this.lblExpected.Name = "lblExpected";
-            this.lblExpected.Size = new System.Drawing.Size(55, 15);
+            this.lblExpected.Size = new System.Drawing.Size(139, 41);
             this.lblExpected.TabIndex = 9;
             this.lblExpected.Text = "Expected";
             // 
             // txtExpected
             // 
             this.txtExpected.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtExpected.Location = new System.Drawing.Point(133, 142);
-            this.txtExpected.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.txtExpected.Location = new System.Drawing.Point(323, 388);
+            this.txtExpected.Margin = new System.Windows.Forms.Padding(22, 27, 22, 27);
             this.txtExpected.Name = "txtExpected";
-            this.txtExpected.Size = new System.Drawing.Size(455, 23);
+            this.txtExpected.Size = new System.Drawing.Size(1099, 47);
             this.txtExpected.TabIndex = 10;
             // 
             // lblYear
             // 
             this.lblYear.AutoSize = true;
-            this.lblYear.Location = new System.Drawing.Point(91, 33);
-            this.lblYear.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblYear.Location = new System.Drawing.Point(221, 90);
+            this.lblYear.Margin = new System.Windows.Forms.Padding(22, 0, 22, 0);
             this.lblYear.Name = "lblYear";
-            this.lblYear.Size = new System.Drawing.Size(29, 15);
+            this.lblYear.Size = new System.Drawing.Size(73, 41);
             this.lblYear.TabIndex = 0;
             this.lblYear.Text = "Year";
             // 
             // updYear
             // 
-            this.updYear.Location = new System.Drawing.Point(133, 33);
-            this.updYear.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.updYear.Location = new System.Drawing.Point(323, 90);
+            this.updYear.Margin = new System.Windows.Forms.Padding(22, 27, 22, 27);
             this.updYear.Maximum = new decimal(new int[] {
-            2021,
+            2022,
             0,
             0,
             0});
@@ -265,10 +265,10 @@
             0,
             0});
             this.updYear.Name = "updYear";
-            this.updYear.Size = new System.Drawing.Size(51, 23);
+            this.updYear.Size = new System.Drawing.Size(124, 47);
             this.updYear.TabIndex = 1;
             this.updYear.Value = new decimal(new int[] {
-            2019,
+            2022,
             0,
             0,
             0});
@@ -277,27 +277,27 @@
             // lblTimeTaken
             // 
             this.lblTimeTaken.AutoSize = true;
-            this.lblTimeTaken.Location = new System.Drawing.Point(54, 319);
-            this.lblTimeTaken.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblTimeTaken.Location = new System.Drawing.Point(131, 872);
+            this.lblTimeTaken.Margin = new System.Windows.Forms.Padding(22, 0, 22, 0);
             this.lblTimeTaken.Name = "lblTimeTaken";
-            this.lblTimeTaken.Size = new System.Drawing.Size(66, 15);
+            this.lblTimeTaken.Size = new System.Drawing.Size(167, 41);
             this.lblTimeTaken.TabIndex = 16;
             this.lblTimeTaken.Text = "Time Taken";
             // 
             // txtTimeTaken
             // 
-            this.txtTimeTaken.Location = new System.Drawing.Point(132, 319);
-            this.txtTimeTaken.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.txtTimeTaken.Location = new System.Drawing.Point(321, 872);
+            this.txtTimeTaken.Margin = new System.Windows.Forms.Padding(22, 27, 22, 27);
             this.txtTimeTaken.Name = "txtTimeTaken";
-            this.txtTimeTaken.Size = new System.Drawing.Size(455, 23);
+            this.txtTimeTaken.Size = new System.Drawing.Size(1099, 47);
             this.txtTimeTaken.TabIndex = 17;
             // 
             // prevInput
             // 
-            this.prevInput.Location = new System.Drawing.Point(596, 95);
-            this.prevInput.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.prevInput.Location = new System.Drawing.Point(1447, 260);
+            this.prevInput.Margin = new System.Windows.Forms.Padding(22, 27, 22, 27);
             this.prevInput.Name = "prevInput";
-            this.prevInput.Size = new System.Drawing.Size(24, 27);
+            this.prevInput.Size = new System.Drawing.Size(58, 74);
             this.prevInput.TabIndex = 18;
             this.prevInput.Text = "<";
             this.prevInput.UseVisualStyleBackColor = true;
@@ -305,10 +305,10 @@
             // 
             // nextInput
             // 
-            this.nextInput.Location = new System.Drawing.Point(628, 95);
-            this.nextInput.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.nextInput.Location = new System.Drawing.Point(1525, 260);
+            this.nextInput.Margin = new System.Windows.Forms.Padding(22, 27, 22, 27);
             this.nextInput.Name = "nextInput";
-            this.nextInput.Size = new System.Drawing.Size(24, 27);
+            this.nextInput.Size = new System.Drawing.Size(58, 74);
             this.nextInput.TabIndex = 19;
             this.nextInput.Text = ">";
             this.nextInput.UseVisualStyleBackColor = true;
@@ -316,38 +316,41 @@
             // 
             // inputNumber
             // 
-            this.inputNumber.Location = new System.Drawing.Point(596, 142);
-            this.inputNumber.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.inputNumber.Location = new System.Drawing.Point(1447, 388);
+            this.inputNumber.Margin = new System.Windows.Forms.Padding(22, 27, 22, 27);
             this.inputNumber.Name = "inputNumber";
-            this.inputNumber.Size = new System.Drawing.Size(55, 23);
+            this.inputNumber.Size = new System.Drawing.Size(128, 47);
             this.inputNumber.TabIndex = 20;
             this.inputNumber.Visible = false;
             // 
             // Progress
             // 
-            this.Progress.Location = new System.Drawing.Point(132, 243);
+            this.Progress.Location = new System.Drawing.Point(321, 664);
+            this.Progress.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.Progress.MarqueeAnimationSpeed = 10;
             this.Progress.Maximum = 50;
             this.Progress.Name = "Progress";
-            this.Progress.Size = new System.Drawing.Size(396, 23);
+            this.Progress.Size = new System.Drawing.Size(962, 63);
             this.Progress.Step = 1;
             this.Progress.TabIndex = 21;
             // 
             // lblProgress
             // 
             this.lblProgress.AutoSize = true;
-            this.lblProgress.Location = new System.Drawing.Point(68, 243);
+            this.lblProgress.Location = new System.Drawing.Point(165, 664);
+            this.lblProgress.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblProgress.Name = "lblProgress";
-            this.lblProgress.Size = new System.Drawing.Size(52, 15);
+            this.lblProgress.Size = new System.Drawing.Size(133, 41);
             this.lblProgress.TabIndex = 22;
             this.lblProgress.Text = "Progress";
             // 
             // ProgressText
             // 
             this.ProgressText.Enabled = false;
-            this.ProgressText.Location = new System.Drawing.Point(534, 243);
+            this.ProgressText.Location = new System.Drawing.Point(1297, 664);
+            this.ProgressText.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.ProgressText.Name = "ProgressText";
-            this.ProgressText.Size = new System.Drawing.Size(53, 23);
+            this.ProgressText.Size = new System.Drawing.Size(123, 47);
             this.ProgressText.TabIndex = 23;
             this.ProgressText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -362,9 +365,9 @@
             // AdventOfCode
             // 
             this.AcceptButton = this.btnProcess;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(748, 410);
+            this.ClientSize = new System.Drawing.Size(1817, 1121);
             this.Controls.Add(this.ProgressText);
             this.Controls.Add(this.lblProgress);
             this.Controls.Add(this.Progress);
@@ -390,7 +393,7 @@
             this.Controls.Add(this.txtInput);
             this.Controls.Add(this.updPuzzle);
             this.Controls.Add(this.updDay);
-            this.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.Margin = new System.Windows.Forms.Padding(22, 27, 22, 27);
             this.Name = "AdventOfCode";
             this.Text = "Advent Of Code";
             ((System.ComponentModel.ISupportInitialize)(this.updDay)).EndInit();
