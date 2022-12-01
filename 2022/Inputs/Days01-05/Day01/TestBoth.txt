@@ -1,2 +1,14 @@
-﻿Player 1 starting position: 4
-Player 2 starting position: 8
+﻿1000
+2000
+3000
+
+4000
+
+5000
+6000
+
+7000
+8000
+9000
+
+10000
