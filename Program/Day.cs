@@ -15,6 +15,7 @@ public abstract partial class Day
     protected System.Security.Cryptography.MD5 MD5 { get; private set; }
     public bool TestMode { get; set; }
     public int WhichPart { get; set; }
+    public bool Part1 { get; set; }
     public abstract void DoWork();
     public DayBatchStatus BatchStatus { get; set; }
     public bool BatchRun { get; set; }
@@ -77,6 +78,7 @@ public abstract partial class Day
         year = int.Parse(this.GetType().Namespace[^4..]);
         day = int.Parse(this.GetType().Name[^2..]);
         WhichPart = whichPart;
+        Part1 = whichPart == 1;
         TestMode = testMode;
         BatchStatus = batchStatus;
         inputPath = $@"C:\Userfiles\Hobbies\Computer\Sources\Advent\{year}\Inputs\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}";

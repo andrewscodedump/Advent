@@ -1,1 +1,7 @@
-﻿
+﻿Input is a strategy guide for a game of rock,paper,scissors.
+First letter is what your opponent will play, second what you should play
+(a,x=rock, b,y=paper, c,z=scissors)
+
+What will the score be at the end of the game?
+
+Second part = same, except the second letter is the result you should aim for (X=lose, y=draw, z=win)
