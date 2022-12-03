@@ -1,1 +1,6 @@
-﻿
+﻿Input is a list of the contents of a set of rucksacks
+Each rucksack is split into two equal halves, and there is one item shared between the two halves.
+
+What is the sum of the shared items? (a=1, A=27...)
+
+For part two, split the rucksacks into sets of three, get the item shared between each triplet and give the sum.
