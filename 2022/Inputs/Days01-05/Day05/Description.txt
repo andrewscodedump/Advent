@@ -1,1 +1,6 @@
-﻿
+﻿Input is a diagram of a set of stack of crates, followed by a set of instructions for moving crates
+from one stack to another.
+
+After the instructions have been followed, what are the crates at the top of each stack?
+
+For part 2, the crane can move multiple crates as a stack at the same time.
