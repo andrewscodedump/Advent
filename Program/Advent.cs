@@ -244,12 +244,12 @@ public partial class AdventOfCode : Form
                             }
                             else if (avgTime >= 0.001)
                             {
-                                output.Append($" = {avgTime:0.000} ms");
+                                output.Append($" = {avgTime*1000:0.000} ms");
                                 Debug.WriteLine($"Day: {day}, part {puzzle} = {avgTime:0.000} ms");
                             }
                             else
                             {
-                                output.Append($" = {avgTime:0} µs");
+                                output.Append($" = {avgTime*1000000:0} µs");
                                 Debug.WriteLine($"Day: {day}, part {puzzle} = {avgTime:0} µs");
                             }
                         }

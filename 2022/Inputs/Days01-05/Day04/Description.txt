@@ -1,1 +1,5 @@
-﻿
+﻿Input is a list of assignments for pairs of elves.
+Start and end items for each elf (a-b,c-d)
+
+How many pairs are there where one elf's tasks completely overlap the other's?
+How many pairs are there where there is any overlap between them at all?
