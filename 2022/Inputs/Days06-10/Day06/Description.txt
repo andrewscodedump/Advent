@@ -1,1 +1,4 @@
-﻿
+﻿Input is a series of characters representing a data stream.
+
+What is the first position in the stream where the preceding 4 characters are all different?
+Part 2 - same, but for 14 characters.
