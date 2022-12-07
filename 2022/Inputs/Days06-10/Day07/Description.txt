@@ -1,1 +1,4 @@
-﻿
+﻿Input is a set of commands for traversing a directory structure and the results of those commands
+
+Part 1 - What is the total size of all directories with a size of at most 100,000?
+Part 2 - What is the smallest directory that can be deleted to give free space of 3,000,000?
