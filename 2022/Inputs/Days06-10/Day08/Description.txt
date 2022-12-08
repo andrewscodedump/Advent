@@ -1,1 +1,4 @@
-﻿
+﻿Input is a map of a forest, with each point giving the height of the tree at that point.
+
+Part 1: How many trees are visible from outside the forest?
+Part 2: Which tree has the highest score, where score is the multiple of the number of other trees visible from it?

@@ -265,6 +265,17 @@ public void AddInput(string newInput)
 
     #region Common Methods
 
+    public void PopulateMapFromInput()
+    {
+        for (int y = 0; y < InputSplit.Length; y++)
+        {
+            string work = InputSplit[y];
+            for (int x = 0; x < work.Length; x++)
+            {
+                SimpleMap[(x, y)] = work[x];
+            }
+        }
+    }
     public void DrawMap() => DrawMap(true, false);
 
     public void DrawMap(bool yUp, bool showCoords)
