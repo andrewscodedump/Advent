@@ -1,1 +1,6 @@
-﻿
+﻿Input is a series of movements of a knot in a rope.
+When the knot moves, another knot (which starts in the same position)
+also moves to be at most 1 move away from it (including diagonal.)
+For part 2, the rope has 10 knots, each of which follows the one before it.
+
+Both Parts - How many different positions does the final knot visit?
