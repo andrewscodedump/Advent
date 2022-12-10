@@ -1,1 +1,8 @@
-﻿
+﻿Input is a series of instructions for a CPU, which has only two instructions
+    addx n - adds n to the single register, taking 2 cycles
+    noop - does nothing, taking one cycle
+
+Part 1 - What is the sum of the values in the register on every 40th cycle, starting at 20?
+Part 2 - The inputs generate a 40*6 raster.  If any of the three positions centered on the register match the
+current position of the raster, then the pixel is drawn.
+What 8 characters are shown on the screen?

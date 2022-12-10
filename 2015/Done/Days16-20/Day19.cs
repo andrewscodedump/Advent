@@ -2,16 +2,9 @@
 
 public partial class Day19 : Advent.Day
 {
-    public override void DoWork()
-    {
-        // Methods for this one are completely different
-        if (WhichPart == 1)
-            Part1();
-        else
-            Part2();
-    }
+    public override void DoWork() => Output = Part1 ? DoPart1() : DoPart2();
 
-    private void Part1()
+    private string DoPart1()
     {
         Input = Input.Replace(" => ", ">");
         string[] inputs = Input.Split(';');
@@ -46,10 +39,10 @@ public partial class Day19 : Advent.Day
                 }
             }
         }
-        Output = outputs.Count.ToString();
+        return outputs.Count.ToString();
     }
 
-    private void Part2()
+    private string DoPart2()
     {
         string molecule;
         Input = Input.Replace(" => ", ">");
@@ -130,7 +123,7 @@ public partial class Day19 : Advent.Day
                 randomTries *= 2;
             }
         } while (!endLoop);
-        Output = bestMoves.ToString();
+        return bestMoves.ToString();
     }
     protected static void RandomizeList<T>(List<T> listIn)
     {
