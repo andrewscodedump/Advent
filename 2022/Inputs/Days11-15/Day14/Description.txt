@@ -1,1 +1,7 @@
-﻿
+﻿Input is a series of paths of rock in a cave.
+Sand is falling into the cave from 500,0.  It falls vertically down until it hits rock.
+If it hits sand, it goes diagonally left if possible otherwise right.
+
+Part 1 - How many units of sand come to rest before it starts leaving the mapped area?
+Part 2 - There's an infinitely wide floor below the bottom of the scan.  How many units of sand come to rest
+before there's one at our starting point?
