@@ -1,1 +1,5 @@
-﻿
+﻿The input is an elevation map with heights represented by the letters a-z.
+You start at S and end at E, going up at most 1 letter at a time (you can go down any amount).
+
+Part 1 - What is the shortest route from S to E?
+Part 2 - What is the shortest route from *any* a to E?

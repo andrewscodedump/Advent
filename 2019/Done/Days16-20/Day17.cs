@@ -69,7 +69,7 @@ public partial class Day17 : Advent.Day
     {
         if (map[(pos.x, pos.y)] != '#') return false;
         int neighbours = 0;
-        foreach ((int, int) offset in Offsets)
+        foreach ((int, int) offset in DirectNeighbours)
             neighbours += map[(pos.x + offset.Item1, pos.y + offset.Item2)] == '#' ? 1 : 0;
         return neighbours == 4;
     }

@@ -102,7 +102,7 @@ public partial class Day20 : Advent.Day
             if (beenThere.Contains(pos)) continue;
             if (dist < map[pos].dist)
                 map[pos] = (map[pos].state, dist);
-            foreach ((int x, int y) in Offsets)
+            foreach ((int x, int y) in DirectNeighbours)
                 if (map[(pos.x + x, pos.y + y)].state != '#')
                     bfs.Enqueue(((pos.x + (2 * x), pos.y + (2 * y)), dist + 1, new(beenThere) { pos }));
         } while (bfs.Count > 0);

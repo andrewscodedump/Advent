@@ -27,7 +27,7 @@ public partial class Day18 : Advent.Day
         Queue<((int, int), (int, int), int, string, Dictionary<(int, int), char>)> bfs = new();
 
 
-        foreach ((int x, int y) in Offsets)
+        foreach ((int x, int y) in DirectNeighbours)
         {
             (int x, int y) newPos = (startPos.x + x, startPos.y + y);
             if (SimpleMap[newPos] == '#') continue;
@@ -68,7 +68,7 @@ public partial class Day18 : Advent.Day
             }
             // If it's a dead end and we haven't picked up a key, stop
             int walls = 0;
-            foreach ((int x, int y) in Offsets)
+            foreach ((int x, int y) in DirectNeighbours)
             {
                 walls += map[(pos.x + x, pos.y + y)] == '#' ? 1 : 0;
             }
@@ -76,7 +76,7 @@ public partial class Day18 : Advent.Day
             if (steps >= fewestSteps) continue;
 
             // queue the next set (after checking)
-            foreach ((int x, int y) in Offsets)
+            foreach ((int x, int y) in DirectNeighbours)
             {
                 (int x, int y) newPos = (pos.x + x, pos.y + y);
                 // If we're trying to move into a wall, don't bother
