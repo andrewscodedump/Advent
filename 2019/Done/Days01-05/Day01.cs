@@ -12,7 +12,7 @@ public partial class Day01 : Advent.Day
             {
                 totalFuel += fuel;
                 fuel = (fuel / 3) - 2;
-            } while (WhichPart == 2 && fuel > 0);
+            } while (Part2 && fuel > 0);
         }
         Output = totalFuel.ToString();
     }

@@ -5,13 +5,13 @@ public partial class Day10 : Advent.Day
     public override void DoWork()
     {
         string denseHash = "";
-        int skip = 0, pos = 0, len = TestMode && WhichPart == 1 ? 5 : 256, repeats = WhichPart == 1 ? 1 : 64;
+        int skip = 0, pos = 0, len = TestMode && Part1 ? 5 : 256, repeats = Part1 ? 1 : 64;
         List<int> work = new(len);
         for (int i = 0; i < len; i++)
             work.Add(i);
 
         byte[] input = new byte[Input.Length];
-        input = WhichPart == 1
+        input = Part1
             ? Array.ConvertAll(Input.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries), byte.Parse)
             : Encoding.ASCII.GetBytes(Input + (char)17 + (char)31 + (char)73 + (char)47 + (char)23);
 
@@ -19,7 +19,7 @@ public partial class Day10 : Advent.Day
             for (int i = 0; i < input.Length; i++)
                 Manipulate(work, input[i], ref pos, ref skip);
 
-        if (WhichPart == 2)
+        if (Part2)
             for (int i = 0; i < 16; i++)
             {
                 int hash = 0;
@@ -28,7 +28,7 @@ public partial class Day10 : Advent.Day
                 denseHash += hash.ToString("x2");
             }
 
-        Output = WhichPart == 1 ? (work[0] * work[1]).ToString() : denseHash;
+        Output = Part1 ? (work[0] * work[1]).ToString() : denseHash;
     }
 
     private static void Manipulate(List<int> work, int length, ref int pos, ref int skip)

@@ -8,7 +8,7 @@ public partial class Day07 : Advent.Day
         StringBuilder order = new();
         int timeTaken = 0;
         int secondsPerStep = TestMode ? 0 : 60;
-        int numWorkers = WhichPart == 1 ? 1 : TestMode ? 2 : 5;
+        int numWorkers = Part1 ? 1 : TestMode ? 2 : 5;
         Dictionary<char, List<char>> allSteps = new();
         SortedSet<char> availSteps = new();
         Dictionary<char, int> inProgress = new();
@@ -62,6 +62,6 @@ public partial class Day07 : Advent.Day
             }
         } while (availSteps.Count > 0 || inProgress.Count > 0);
 
-        Output = WhichPart == 1 ? order.ToString() : timeTaken.ToString();
+        Output = Part1 ? order.ToString() : timeTaken.ToString();
     }
 }

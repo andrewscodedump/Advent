@@ -18,13 +18,13 @@ public partial class Day09 : Advent.Day
         }
         long target = numbers[pos];
 
-        if (WhichPart == 2)
+        if (Part2)
             while ((sum = numbers[start..end].Sum()) != target)
             {
                 if (sum > target) start++;
                 if (sum < target) end++;
             }
 
-        Output = (WhichPart == 1 ? target : numbers[start..end].Min() + numbers[start..end].Max()).ToString();
+        Output = (Part1 ? target : numbers[start..end].Min() + numbers[start..end].Max()).ToString();
     }
 }

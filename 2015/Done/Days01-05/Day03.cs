@@ -10,7 +10,7 @@ public partial class Day03 : Advent.Day
 
         for (int i = 0; i < Input.Length; i++)
         {
-            if (WhichPart == 1 || i % 2 == 1)
+            if (Part1 || i % 2 == 1)
             {
                 currentSanta.Y += Input[i] == '^' ? 1 : Input[i] == 'v' ? -1 : 0;
                 currentSanta.X += Input[i] == '>' ? 1 : Input[i] == '<' ? -1 : 0;

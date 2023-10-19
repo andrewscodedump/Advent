@@ -24,10 +24,10 @@ public partial class Day16 : Advent.Day
             {
                 if (!aunt.Any(a => a.item == item)) continue;
                 int auntVal = aunt.Find(a => a.item == item).number;
-                if ((WhichPart == 2 && (item == "trees" || item == "cats") && auntVal <= number)
-                    || (WhichPart == 2 && (item == "pomeranians" || item == "goldfish") && auntVal >= number)
-                    || (WhichPart == 2 && item != "trees" && item != "cats" && item != "pomeranians" && item != "goldfish" && auntVal != number)
-                    || (WhichPart == 1 && auntVal != number))
+                if ((Part2 && (item == "trees" || item == "cats") && auntVal <= number)
+                    || (Part2 && (item == "pomeranians" || item == "goldfish") && auntVal >= number)
+                    || (Part2 && item != "trees" && item != "cats" && item != "pomeranians" && item != "goldfish" && auntVal != number)
+                    || (Part1 && auntVal != number))
                 {
                     foundHer = false;
                     break;

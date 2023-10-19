@@ -9,7 +9,7 @@ public partial class Day17 : Advent.Day
         int currPos = 0;
         int secondValue = 0;
 
-        if (WhichPart == 1)
+        if (Part1)
             for (int i = 1; i <= 2017; i++)
             {
                 currPos = ((currPos + step) % i) + 1;
@@ -23,6 +23,6 @@ public partial class Day17 : Advent.Day
                     secondValue = i;
             }
 
-        Output = (WhichPart == 1 ? buffer[currPos + 1] : secondValue).ToString();
+        Output = (Part1 ? buffer[currPos + 1] : secondValue).ToString();
     }
 }

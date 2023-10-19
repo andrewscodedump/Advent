@@ -32,16 +32,16 @@ public partial class Day06 : Advent.Day
                 switch (action.Operation)
                 {
                     case "turn on":
-                        grid[x, y] = WhichPart == 1 ? 1 : currentSetting + 1;
-                        change += WhichPart == 1 && isLit ? 0 : 1;
+                        grid[x, y] = Part1 ? 1 : currentSetting + 1;
+                        change += Part1 && isLit ? 0 : 1;
                         break;
                     case "turn off":
-                        grid[x, y] = WhichPart == 1 ? 0 : Math.Max(currentSetting - 1, 0);
+                        grid[x, y] = Part1 ? 0 : Math.Max(currentSetting - 1, 0);
                         change -= isLit ? 1 : 0;
                         break;
                     case "toggle":
-                        grid[x, y] = WhichPart == 1 ? isLit ? 0 : 1 : currentSetting + 2;
-                        change += WhichPart == 1 ? isLit ? -1 : 1 : 2;
+                        grid[x, y] = Part1 ? isLit ? 0 : 1 : currentSetting + 2;
+                        change += Part1 ? isLit ? -1 : 1 : 2;
                         break;
                     default:
                         break;

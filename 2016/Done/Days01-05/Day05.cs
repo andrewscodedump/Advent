@@ -13,7 +13,7 @@ public partial class Day05 : Advent.Day
             string test = Input + currentNumber.ToString();
             string hash = GetMD5Hash(MD5, test);
             if (hash.StartsWith("00000"))
-                if (WhichPart == 1)
+                if (Part1)
                 {
                     password += hash.Substring(5, 1);
                     found++;
@@ -31,6 +31,6 @@ public partial class Day05 : Advent.Day
             currentNumber++;
         } while (found < 8);
 
-        Output = WhichPart == 1 ? password.ToString() : new string(password2);
+        Output = Part1 ? password.ToString() : new string(password2);
     }
 }

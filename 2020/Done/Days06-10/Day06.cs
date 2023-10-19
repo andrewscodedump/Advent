@@ -12,7 +12,7 @@ public partial class Day06 : Advent.Day
             foreach (string set in group.Split(','))
                 foreach (char q in set)
                     questions[q] = questions.GetValueOrDefault(q) + 1;
-            result += WhichPart == 1 ? questions.Count : questions.Values.Count(v => v == group.Split(',').Length);
+            result += Part1 ? questions.Count : questions.Values.Count(v => v == group.Split(',').Length);
         }
 
         Output = result.ToString();

@@ -6,7 +6,7 @@ public partial class Day03 : Advent.Day
     {
         int valid = 0, a, b, c;
 
-        if (WhichPart == 1)
+        if (Part1)
             foreach (string triangle in InputSplit)
             {
                 a = int.Parse(triangle.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[0]);

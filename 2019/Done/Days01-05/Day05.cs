@@ -4,7 +4,7 @@ public partial class Day05 : Advent.Day
 {
     public override void DoWork()
     {
-        int input = WhichPart == 1 ? 1 : TestMode ? 8 : 5;
+        int input = Part1 ? 1 : TestMode ? 8 : 5;
         IntCode code = new(Input, input);
         code.RunCode();
         Output = code.Output.ToString();

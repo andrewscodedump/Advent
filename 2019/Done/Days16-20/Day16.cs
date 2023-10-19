@@ -8,12 +8,12 @@ public partial class Day16 : Advent.Day
 
         int phases = TestMode && Input == "12345678" ? 4 : 100;
         int[] baseMultipliers = new int[4] { 0, 1, 0, -1 };
-        string work = WhichPart == 1 ? Input : string.Concat(string.Concat(Enumerable.Repeat(ReverseString(Input), ((Input.Length * 10000) - int.Parse(Input[..7])) / Input.Length)), ReverseString(Input).AsSpan(0, ((Input.Length * 10000) - int.Parse(Input[..7])) % Input.Length));
+        string work = Part1 ? Input : string.Concat(string.Concat(Enumerable.Repeat(ReverseString(Input), ((Input.Length * 10000) - int.Parse(Input[..7])) / Input.Length)), ReverseString(Input).AsSpan(0, ((Input.Length * 10000) - int.Parse(Input[..7])) % Input.Length));
         int digits = work.Length;
 
         #endregion Setup Variables and Parse Inputs
 
-        if (WhichPart == 1)
+        if (Part1)
             for (int p = 0; p < phases; p++)
             {
                 StringBuilder sb = new();
@@ -39,6 +39,6 @@ public partial class Day16 : Advent.Day
                 }
                 work = sb.ToString();
             }
-        Output = WhichPart == 1 ? work[..8] : ReverseString(work[(digits - 8)..]);
+        Output = Part1 ? work[..8] : ReverseString(work[(digits - 8)..]);
     }
 }

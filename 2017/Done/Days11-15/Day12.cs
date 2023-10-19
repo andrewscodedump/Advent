@@ -27,7 +27,7 @@ public partial class Day12 : Advent.Day
                     break;
                 }
         }
-        Output = WhichPart == 1 ? numberInZeroGroup.ToString() : numberOfGroups.ToString();
+        Output = Part1 ? numberInZeroGroup.ToString() : numberOfGroups.ToString();
     }
 
     private void AddProgs(string key, Dictionary<string, string[]> pipes, List<string> found)

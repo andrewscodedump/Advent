@@ -17,7 +17,7 @@ public partial class Day20 : Advent.Day
             Particle particle = new(i, new Vector3(float.Parse(digits[0]), float.Parse(digits[1]), float.Parse(digits[2])), new Vector3(float.Parse(digits[3]), float.Parse(digits[4]), float.Parse(digits[5])), new Vector3(float.Parse(digits[6]), float.Parse(digits[7]), float.Parse(digits[8])));
             particles.Add(i, particle);
         }
-        if (WhichPart == 1)
+        if (Part1)
         {
             foreach (Particle particle in particles.Values)
                 if (particle.DistanceAtTime(time) < particles[closest].DistanceAtTime(time))
@@ -45,7 +45,7 @@ public partial class Day20 : Advent.Day
                 if (toDelete.Count == 0) iterations++;
             } while (particles.Count > 1 && iterations < maxIterations);
 
-        Output = (WhichPart == 1 ? closest : particles.Count).ToString();
+        Output = (Part1 ? closest : particles.Count).ToString();
     }
 
     private class Particle

@@ -108,34 +108,18 @@ public partial class AdventOfCode : Form
     private static bool CheckStatus(Day.DayBatchStatus status, out List<string> results) => CheckStatus(status, out string _, out results);
     private static bool CheckStatus(Day.DayBatchStatus status, out string result, out List<string> results)
     {
-        bool handled = true;
-        switch (status)
+        result = status switch
         {
-            case Day.DayBatchStatus.NotDoneYet:
-                result = "Not Done Yet";
-                break;
-            case Day.DayBatchStatus.NonCoded:
-                result = "Solved by non-code method";
-                break;
-            case Day.DayBatchStatus.NoTestData:
-                result = "No Test Data";
-                break;
-            case Day.DayBatchStatus.NoPart2:
-                result = "There is no part 2 for this puzzle";
-                break;
-            case Day.DayBatchStatus.Future:
-                result = "Task is in the future - no inputs available";
-                break;
-            case Day.DayBatchStatus.NoInputs:
-                result = "No inputs available";
-                break;
-            default:
-                result = string.Empty;
-                handled = false;
-                break;
-        }
+            Day.DayBatchStatus.NotDoneYet => "Not Done Yet",
+            Day.DayBatchStatus.NonCoded => "Solved by non-code method",
+            Day.DayBatchStatus.NoTestData => "No Test Data",
+            Day.DayBatchStatus.NoPart2 => "There is no part 2 for this puzzle",
+            Day.DayBatchStatus.Future => "Task is in the future - no inputs available",
+            Day.DayBatchStatus.NoInputs => "No inputs available",
+            _ => string.Empty,
+        };
         results = new List<string> { result };
-        return handled;
+        return result != string.Empty;
     }
 
     private void SetupForm()

@@ -31,6 +31,6 @@ public partial class Day21 : Advent.Day
             ingredients[ingredient] = (allergen, ingredients[ingredient].number);
         }
 
-        Output = WhichPart == 1 ? ingredients.Where(i => i.Value.allergen == "").Sum(i => i.Value.number).ToString() : string.Join(',', ingredients.Where(i => i.Value.allergen != "").OrderBy(i => i.Value.allergen).Select(i => i.Key));
+        Output = Part1 ? ingredients.Where(i => i.Value.allergen == "").Sum(i => i.Value.number).ToString() : string.Join(',', ingredients.Where(i => i.Value.allergen != "").OrderBy(i => i.Value.allergen).Select(i => i.Key));
     }
 }

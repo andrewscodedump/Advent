@@ -37,6 +37,6 @@ public partial class Day03 : Advent.Day
                 break;
         }
 
-        Output = (WhichPart == 1 ? overlaps : independent).ToString();
+        Output = (Part1 ? overlaps : independent).ToString();
     }
 }

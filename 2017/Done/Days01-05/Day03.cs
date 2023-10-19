@@ -47,7 +47,7 @@ public partial class Day03 : Advent.Day
             step++;
         } while (true);
 
-        Output = WhichPart == 1 ? (Math.Abs(pos.X) + Math.Abs(pos.Y)).ToString() : num.ToString();
+        Output = Part1 ? (Math.Abs(pos.X) + Math.Abs(pos.Y)).ToString() : num.ToString();
     }
 
     private static int GetNum(int whichPart, int num, (int X, int Y) pos, Dictionary<(int, int), int> grid)

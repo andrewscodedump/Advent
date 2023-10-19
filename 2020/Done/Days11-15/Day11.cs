@@ -7,7 +7,7 @@ public partial class Day11 : Advent.Day
         #region Setup Variables and Parse Inputs
 
         int rows = InputSplit.Length, cols = InputSplit[0].Length;
-        int tolerance = WhichPart == 1 ? 4 : 5;
+        int tolerance = Part1 ? 4 : 5;
         Dictionary<(int, int), char> plan = new();
         for (int y = -1; y <= rows; y++)
         {
@@ -27,7 +27,7 @@ public partial class Day11 : Advent.Day
                 for (int x = 0; x < cols; x++)
                 {
                     // Empty (L) with no occ neighb => occ; occ (#) with 4+ occ => empty; else stays same
-                    int neighbours = WhichPart == 1 ? CountNeighbours(plan, x, y, '#') : GetVisible(plan, x, y);
+                    int neighbours = Part1 ? CountNeighbours(plan, x, y, '#') : GetVisible(plan, x, y);
                     switch (plan[(x, y)])
                     {
                         case 'L':

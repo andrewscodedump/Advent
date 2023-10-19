@@ -53,6 +53,6 @@ public partial class Day17 : Advent.Day
             v0++;
         } while (!overshoot);
 
-        Output = (WhichPart == 1 ? bestHeight : validVelocities.Count).ToString();
+        Output = (Part1 ? bestHeight : validVelocities.Count).ToString();
     }
 }

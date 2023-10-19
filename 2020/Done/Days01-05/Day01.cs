@@ -8,10 +8,10 @@ public partial class Day01 : Advent.Day
 
         for (int i = 0; i < numbers.Length; i++)
             for (int j = i + 1; j < numbers.Length; j++)
-                for (int k = j + 1; k < (WhichPart == 1 ? j + 2 : numbers.Length); k++)
-                    if (numbers[i] + numbers[j] + (WhichPart == 1 ? 0 : numbers[k]) == 2020)
+                for (int k = j + 1; k < (Part1 ? j + 2 : numbers.Length); k++)
+                    if (numbers[i] + numbers[j] + (Part1 ? 0 : numbers[k]) == 2020)
                     {
-                        result = numbers[i] * numbers[j] * (WhichPart == 1 ? 1 : numbers[k]);
+                        result = numbers[i] * numbers[j] * (Part1 ? 1 : numbers[k]);
                         goto foundOne;
                     }
                 foundOne:

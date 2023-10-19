@@ -30,9 +30,9 @@ public partial class Day11 : Advent.Day
                     map[(x, y)].Reset();
             round++;
             allFlash = map.Where(o=>o.Value.Energy==0).Count() == map.Count;
-        } while ((WhichPart == 1 && round < rounds) || (WhichPart == 2 && !allFlash));
+        } while ((Part1 && round < rounds) || (Part2 && !allFlash));
 
-        Output = (WhichPart == 1 ? flashes : round).ToString();
+        Output = (Part1 ? flashes : round).ToString();
     }
      
     private class Octopus
@@ -74,7 +74,7 @@ public partial class Day11 : Advent.Day
         int height = inputs.Length, width = inputs[0].Length;
         for (int y = -1; y <= height; y++)
             for (int x = -1; x <= width; x++)
-                map[(x, y)] = y == -1 || x == -1 || y == height || x == width ? (new(0, false, true)) : (new(int.Parse(inputs[y][x].ToString()), false, false));
+                map[(x, y)] = y == -1 || x == -1 || y == height || x == width ? new(0, false, true) : new(int.Parse(inputs[y][x].ToString()), false, false);
         return map;
     }
 

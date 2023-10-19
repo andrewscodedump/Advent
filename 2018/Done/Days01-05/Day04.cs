@@ -52,9 +52,9 @@ public partial class Day04 : Advent.Day
 
         maxMins = 0;
         foreach (KeyValuePair<(int, int), int> kvp in guardMinutes)
-            if ((WhichPart == 2 || kvp.Key.Item1 == maxGuard) && kvp.Value > maxMins)
+            if ((Part2 || kvp.Key.Item1 == maxGuard) && kvp.Value > maxMins)
             {
-                if (WhichPart == 2) maxGuard = kvp.Key.Item1;
+                if (Part2) maxGuard = kvp.Key.Item1;
                 maxMins = kvp.Value;
                 maxMin = kvp.Key.Item2;
             }

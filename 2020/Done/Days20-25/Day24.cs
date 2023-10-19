@@ -24,7 +24,7 @@ public partial class Day24 : Advent.Day
             floor[pos] = floor.TryGetValue(pos, out int curValue) ? Math.Abs(curValue - 1) : 1;
         }
 
-        if (WhichPart == 2)
+        if (Part2)
         {
             for (int day = 1; day <= 100; day++)
             {

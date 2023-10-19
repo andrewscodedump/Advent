@@ -16,10 +16,10 @@ public partial class Day05 : Advent.Day
         bool pair = false;
         bool doublePair = false;
 
-        if (WhichPart == 1 && (testString.Contains("ab") || testString.Contains("cd") || testString.Contains("pq") || testString.Contains("xy")))
+        if (Part1 && (testString.Contains("ab") || testString.Contains("cd") || testString.Contains("pq") || testString.Contains("xy")))
             return false;
 
-        if (WhichPart == 1)
+        if (Part1)
         {
             for (int i = 0; i < testString.Length; i++)
             {

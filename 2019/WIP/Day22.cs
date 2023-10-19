@@ -6,10 +6,10 @@ public partial class Day22 : Advent.Day
     {
         #region Setup Variables and Parse Inputs
 
-        long bigCards = TestMode ? 10 : WhichPart == 1 ? 10007 : 119315717514047;
+        long bigCards = TestMode ? 10 : Part1 ? 10007 : 119315717514047;
         List<(string, int)> shuffles = new();
-        long testCard = TestMode ? 9 : WhichPart == 1 ? 2019 : 2020;
-        long testPos, numShuffles = WhichPart == 1 ? 1 : 101741582076661;
+        long testCard = TestMode ? 9 : Part1 ? 2019 : 2020;
+        long testPos, numShuffles = Part1 ? 1 : 101741582076661;
         long targetCardPos = testCard;
         int shufflesDone = 0;
 
@@ -109,7 +109,7 @@ public partial class Day22 : Advent.Day
         } while (shufflesDone < numShuffles && targetCardPos != testCard);
         testPos = targetCardPos;
 
-        Output = WhichPart == 1 ? testPos.ToString() : "";
+        Output = Part1 ? testPos.ToString() : "";
 
         #region Private Classes and Methods
 

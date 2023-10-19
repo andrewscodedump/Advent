@@ -9,14 +9,14 @@ public partial class Day13 : Advent.Day
         Dictionary<(string,string), int> differences = new();
         int maxHappiness = 0;
         Input = Input.Replace(".", "").Replace("would gain ", "+").Replace("would lose ", "-").Replace("happiness units by sitting next to ", "");
-        if (WhichPart == 2) people.Add("Me");
+        if (Part2) people.Add("Me");
         foreach (string couple in InputSplit)
         {
             string[] parts = couple.Split(' ');
             if (!people.Contains(parts[0]))
                 people.Add(parts[0]);
             differences[(parts[0], parts[2])] = int.Parse(parts[1]);
-            if (WhichPart == 2)
+            if (Part2)
             {
                 differences[(parts[0], "Me")] = 0;
                 differences[("Me", parts[0])] = 0;

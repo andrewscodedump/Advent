@@ -35,6 +35,6 @@ public partial class Day17 : Advent.Day
             for (int i = move.NextIndex + 1; i < sizes.Count; i++)
                 bfs.Enqueue(new Move { NextIndex = i, VolumeSoFar = move.VolumeSoFar + sizes[move.NextIndex], NumberUsed = move.NumberUsed + 1 });
         } while (bfs.Count > 0);
-        Output = (WhichPart == 1 ? numCombos : numberAtBest).ToString();
+        Output = (Part1 ? numCombos : numberAtBest).ToString();
     }
 }

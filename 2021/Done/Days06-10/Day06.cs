@@ -4,7 +4,7 @@ public partial class Day06 : Advent.Day
 {
     public override void DoWork()
     {
-        int targetDays = WhichPart == 2 ? 256 : TestMode && CurrentInput == 0 ? 18 : 80;
+        int targetDays = Part2 ? 256 : TestMode && CurrentInput == 0 ? 18 : 80;
         long[] counts = new long[9];
         foreach (int fish in InputSplitCInt.ToList())
             counts[fish]++;

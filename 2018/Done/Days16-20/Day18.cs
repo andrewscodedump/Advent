@@ -9,7 +9,7 @@ public partial class Day18 : Advent.Day
         Dictionary<(int, int), char> area = new();
         Dictionary<int, List<(int gen, Dictionary<(int, int), char> dict)>> history = new();
         int trees = 0, yards = 0, empty = 0;
-        int limit = WhichPart == 1 ? 10 : 1000000000;
+        int limit = Part1 ? 10 : 1000000000;
         int result, generation = 0;
         char newChar;
         bool repeatFound = false;
@@ -61,7 +61,7 @@ public partial class Day18 : Advent.Day
             area = new Dictionary<(int, int), char>(work);
             result = trees * yards;
 
-            if (WhichPart == 2 & history.ContainsKey(result) && !repeatFound)
+            if (Part2 & history.ContainsKey(result) && !repeatFound)
             {
                 // The result's the same - do a deep compare
                 for (int i = 0; i < history[result].Count; i++)

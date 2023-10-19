@@ -6,7 +6,7 @@ public partial class Day19 : Advent.Day
     {
         int output, sum = 1;
         List<(string op, int[] args)> code = new();
-        int[] regs = new int[] { WhichPart == 1 ? 0 : 1, 0, 0, 0, 0, 0 };
+        int[] regs = new int[] { Part1 ? 0 : 1, 0, 0, 0, 0, 0 };
         int ipVal = 0, ipReg = 0;
 
         for (int i = 0; i < InputSplit.Length; i++)

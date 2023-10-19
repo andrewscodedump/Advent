@@ -7,7 +7,7 @@ public partial class Day07 : Advent.Day
         Dictionary<string, string> instructions = new();
         Dictionary<string, ushort> values = new();
 
-        if (WhichPart == 2) values.Add("b", 16076);
+        if (Part2) values.Add("b", 16076);
         foreach (string op in InputSplit)
             instructions.Add(op.Split(new string[] { " -> " },StringSplitOptions.RemoveEmptyEntries)[1], op.Split(new string[] { " -> " }, StringSplitOptions.RemoveEmptyEntries)[0]);
 

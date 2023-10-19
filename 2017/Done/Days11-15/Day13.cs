@@ -22,13 +22,13 @@ public partial class Day13 : Advent.Day
                 if (caught)
                 {
                     score += X * Y;
-                    if (WhichPart == 2) break;
+                    if (Part2) break;
                 }
             }
             delay++;
-        } while (caught && WhichPart != 1);
+        } while (caught && Part2);
 
-        Output = (WhichPart == 1 ? score : delay - 1).ToString();
+        Output = (Part1 ? score : delay - 1).ToString();
     }
 
 }

@@ -45,7 +45,7 @@ public partial class Day13 : Advent.Day
                     (int x, int y) nextPos = (x + (dirn == '>' ? 1 : dirn == '<' ? -1 : 0), y + (dirn == '^' ? -1 : dirn == 'v' ? 1 : 0));
                     if (tracks[nextPos].cart != 0)
                     {
-                        if (WhichPart == 1)
+                        if (Part1)
                         {
                             finalLocation = nextPos;
                             break;

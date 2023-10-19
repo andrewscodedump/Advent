@@ -210,7 +210,7 @@ public partial class Day17 : Advent.Day
                 }
         }
 
-        Output = (pooled + (WhichPart == 1 ? water : 0)).ToString();
+        Output = (pooled + (Part1 ? water : 0)).ToString();
     }
 
     #region Private Classes and Methods

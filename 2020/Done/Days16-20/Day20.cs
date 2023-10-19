@@ -50,7 +50,7 @@ public partial class Day20 : Advent.Day
             if (matches==2) result *= tile1.Id;
         }
 
-        if (WhichPart == 2)
+        if (Part2)
         {
             Queue queue = new();
             queue.Enqueue((FindTopLeftCorner(), 0, 0));
@@ -67,8 +67,10 @@ public partial class Day20 : Advent.Day
                 if (nextTile != null)
                     queue.Enqueue(((nextTile, nextCombo), x, y + 1));
             }
-            Tile bigPicture = new();
-            bigPicture.Raw = bigGrid;
+            Tile bigPicture = new()
+            {
+                Raw = bigGrid
+            };
             bigPicture.BuildCombos();
             foreach (Combo combo in bigPicture.Combos)
             {
@@ -222,8 +224,10 @@ public partial class Day20 : Advent.Day
         public bool IsPlaced { get; set; }
         public void BuildCombos()
         {
-            Combo combo = new();
-            combo.Raw = Raw;
+            Combo combo = new()
+            {
+                Raw = Raw
+            };
             Combos[0] = combo;
             Combos[1] = Combos[0].Rotate();
             Combos[2] = Combos[1].Rotate();

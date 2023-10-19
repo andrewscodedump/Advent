@@ -20,15 +20,15 @@ public partial class Day11 : Advent.Day
             hull[curPos] = (int)code.Output;
             code.RunCodeWithNoReset(); if (code.CodeComplete) break;
             curDir = turns[(curDir, code.Output == 0 ? 'L' : 'R')];
-            curPos = (curPos.x + Directions[curDir].Item1, curPos.y + Directions[curDir].Item2);
+            curPos = (curPos.x + Directions[curDir].x, curPos.y + Directions[curDir].y);
             min = (Math.Min(min.x, curPos.x), Math.Min(min.y, curPos.y)); max = (Math.Max(max.x, curPos.x), Math.Max(max.y, curPos.y));
             curColour = hull.ContainsKey(curPos) ? hull[curPos] : 0;
         } while (true);
 
         PrintDictionary(hull, min, max);
-        string outputString = WhichPart == 2 && !BatchRun ? GetOutput() : string.Empty;
+        string outputString = Part2 && !BatchRun ? GetOutput() : string.Empty;
 
-        Output = WhichPart == 1 ? hull.Count.ToString() : outputString;
+        Output = Part1 ? hull.Count.ToString() : outputString;
     }
 
     #region Private Classes and Methods

@@ -11,17 +11,17 @@ public partial class Day01 : Advent.Day
 
         foreach (string numString in InputSplit)
         {
-            if ((doubleFound = found.Contains(doubleValue = total += int.Parse(numString))) && WhichPart == 2) break;
+            if ((doubleFound = found.Contains(doubleValue = total += int.Parse(numString))) && Part2) break;
             totals.Add(total);
             found.Add(total);
         }
 
-        if (WhichPart == 2)
+        if (Part2)
             do
                 for (int pos = 0; !doubleFound && pos < totals.Count; pos++)
                     if (!(doubleFound = found.Contains(doubleValue = totals[pos] += total)))
                         found.Add(totals[pos]);
             while (!doubleFound);
-        Output = (WhichPart == 1 ? total : doubleValue).ToString();
+        Output = (Part1 ? total : doubleValue).ToString();
     }
 }

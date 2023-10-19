@@ -75,6 +75,6 @@ public partial class Day10 : Advent.Day
             }
         } while (somethingsChanged);
 
-        Output = WhichPart == 1 ? requiredRobot.ToString() : (outputs[0] * outputs[1] * outputs[2]).ToString();
+        Output = Part1 ? requiredRobot.ToString() : (outputs[0] * outputs[1] * outputs[2]).ToString();
     }
 }

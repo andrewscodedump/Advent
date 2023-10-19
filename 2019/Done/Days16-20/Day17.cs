@@ -12,7 +12,7 @@ public partial class Day17 : Advent.Day
 
         #endregion Setup Variables and Parse Inputs
 
-        if (WhichPart == 1)
+        if (Part1)
         {
             int x = 0, y = 0;
             do

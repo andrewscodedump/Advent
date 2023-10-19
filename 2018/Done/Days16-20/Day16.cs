@@ -39,7 +39,7 @@ public partial class Day16 : Advent.Day
             }
             result += valid >= 3 ? 1 : 0;
         }
-        if (WhichPart == 2)
+        if (Part2)
         {
             do
                 for (int i = 0; i < 16; i++)

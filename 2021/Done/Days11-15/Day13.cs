@@ -25,11 +25,11 @@ public partial class Day13 : Advent.Day
                         afterFold.Remove((x, y));
                     }
                 SimpleMap = new(afterFold);
-                if (WhichPart == 1) break;
+                if (Part1) break;
             }
         }
-        if (WhichPart==2) DrawMap(false, false);
+        if (Part2) DrawMap(false, false);
 
-        Output = WhichPart == 1 ? SimpleMap.Count.ToString() : "Result is in debug window";
+        Output = Part1 ? SimpleMap.Count.ToString() : "Result is in debug window";
     }
 }

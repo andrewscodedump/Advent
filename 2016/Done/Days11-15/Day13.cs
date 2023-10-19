@@ -4,7 +4,7 @@ public partial class Day13 : Advent.Day
 {
     public override void DoWork()
     {
-        if (TestMode && WhichPart == 2) return;
+        if (TestMode && Part2) return;
         int bestSteps = int.MaxValue;
         Location currentRoom = new(1, 1, 0);
         Point target = TestMode ? new Point(7, 4) : new Point(31, 39);
@@ -19,7 +19,7 @@ public partial class Day13 : Advent.Day
             if (!IsRoom(currentRoom, int.Parse(Input)) || alreadyVisited.Contains(currentRoom.Position))
                 continue;
 
-            if (WhichPart == 1)
+            if (Part1)
             {
                 // If we're already past the best one, don't do any more
                 if (currentRoom.Steps >= bestSteps)
@@ -32,7 +32,7 @@ public partial class Day13 : Advent.Day
                 }
             }
 
-            if (WhichPart == 2 && currentRoom.Steps > 50)
+            if (Part2 && currentRoom.Steps > 50)
                 continue;
 
             alreadyVisited.Add(currentRoom.Position);
@@ -44,7 +44,7 @@ public partial class Day13 : Advent.Day
 
         } while (bfs.Count > 0);
 
-        Output = WhichPart == 1 ? bestSteps.ToString() : alreadyVisited.Count.ToString();
+        Output = Part1 ? bestSteps.ToString() : alreadyVisited.Count.ToString();
     }
 
     private class Location

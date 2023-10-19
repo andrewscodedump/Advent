@@ -27,6 +27,6 @@ public partial class Day24 : Advent.Day
                 }
         } while (bfs.Count > 0);
 
-        Output = (WhichPart == 1 ? strongest : strengthOfLongest).ToString();
+        Output = (Part1 ? strongest : strengthOfLongest).ToString();
     }
 }

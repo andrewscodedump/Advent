@@ -15,7 +15,7 @@ public partial class Day06 : Advent.Day
         Dictionary<string, int>[] paths = new Dictionary<string, int>[2] { GetPaths(new Dictionary<string, int>(), "SAN", 0, orbits), GetPaths(new Dictionary<string, int>(), "YOU", 0, orbits) };
         List<string> commonPaths = paths[0].Keys.Intersect(paths[1].Keys).ToList();
 
-        Output = (WhichPart == 1 ? GetChildren("COM", 0, orbits) : commonPaths.Count > 0 ? commonPaths.Min(d => paths[0][d] + paths[1][d]) : 0).ToString();
+        Output = (Part1 ? GetChildren("COM", 0, orbits) : commonPaths.Count > 0 ? commonPaths.Min(d => paths[0][d] + paths[1][d]) : 0).ToString();
     }
 
     #region Private Classes and Methods

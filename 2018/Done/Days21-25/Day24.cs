@@ -120,7 +120,7 @@ public partial class Day24 : Advent.Day
 
             } while (immuneScore > 0 && infectionScore > 0 && (immuneScore != prevIImmuneScore || infectionScore != prevInfectionScore));
 
-            immuneWins = WhichPart == 1 || infectionScore == 0;
+            immuneWins = Part1 || infectionScore == 0;
             foreach (Group group in groups.Values)
             {
                 group.Number = group.OriginalNumber;

@@ -4,7 +4,7 @@ public partial class Day13 : Advent.Day
 {
     public override void DoWork()
     {
-        if (WhichPart == 1)
+        if (Part1)
         {
             List<int> ids = InputSplit[1].Split(',').Where(id => id != "x").Select(int.Parse).ToList();
             // next time for bus is bus id - (current time mod bus id)

@@ -9,7 +9,7 @@ public partial class Day07 : Advent.Day
             foreach (string inner in rule.Split(" bags contain")[1].Replace("bags", " ").Replace("bag", " ").Replace(".", "").Replace("no ", "0 ").Split(','))
                 combinations.Add((int.Parse(inner.Trim().Split(' ')[0]), inner.Replace(int.Parse(inner.Trim().Split(' ')[0]).ToString(), "").Trim(), rule.Split(" bags contain ")[0]));
 
-        Output = (WhichPart == 1 ? GetNumber("shiny gold", combinations, new()) : GetNumber2("shiny gold", combinations) - 1).ToString();
+        Output = (Part1 ? GetNumber("shiny gold", combinations, new()) : GetNumber2("shiny gold", combinations) - 1).ToString();
     }
 
     private int GetNumber(string colour, List<(int n, string inner, string)> combinations, List<string> coloursUsed)

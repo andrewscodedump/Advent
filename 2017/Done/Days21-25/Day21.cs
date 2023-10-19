@@ -6,7 +6,7 @@ public partial class Day21 : Advent.Day
 {
     public override void DoWork()
     {
-        int iterations = TestMode ? 2 : WhichPart == 2 ? 18 : 5;
+        int iterations = TestMode ? 2 : Part2 ? 18 : 5;
         List<string> pattern = new();
         Dictionary<string, string> rules = new();
 

@@ -28,7 +28,7 @@ public partial class Day21 : Advent.Day
                     {
                         if (rightRing.Name == leftRing.Name) continue;
                         int cost = weapon.Cost + armour.Cost + leftRing.Cost + rightRing.Cost;
-                        if ((WhichPart == 1 && cost < cheapest) || (WhichPart == 2 && cost > dearest))
+                        if ((Part1 && cost < cheapest) || (Part2 && cost > dearest))
                         {
                             int playerRounds = playerPoints / Math.Max(bossDamage - (weapon.Armour + armour.Armour + leftRing.Armour + rightRing.Armour), 1);
                             int bossRounds = bossPoints / Math.Max(weapon.Damage + armour.Damage + leftRing.Damage + rightRing.Damage - bossArmour, 1);
@@ -38,6 +38,6 @@ public partial class Day21 : Advent.Day
                         }
                     }
 
-        Output = (WhichPart == 1 ? cheapest : dearest).ToString();
+        Output = (Part1 ? cheapest : dearest).ToString();
     }
 }

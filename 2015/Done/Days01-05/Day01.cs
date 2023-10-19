@@ -4,7 +4,7 @@ public partial class Day01 : Advent.Day
 {
     public override void DoWork()
     {
-        if (TestMode && WhichPart == 2) return;
+        if (TestMode && Part2) return;
         int result = 0;
         char[] chars = Input.ToCharArray();
         for (int i = 0; i < chars.Length; i++)
@@ -13,7 +13,7 @@ public partial class Day01 : Advent.Day
                 result++;
             else if (chars[i] == ')')
                 result--;
-            if (WhichPart == 2 && result == -1)
+            if (Part2 && result == -1)
             {
                 result = i + 1;
                 break;

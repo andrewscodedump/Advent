@@ -4,7 +4,7 @@ public partial class Day05 : Advent.Day
 {
     public override void DoWork()
     {
-        string letters = WhichPart == 1 ? "!" : "qwertyuiopasdfghjklzxcvbnm";
+        string letters = Part1 ? "!" : "qwertyuiopasdfghjklzxcvbnm";
         int bestLen = int.MaxValue;
 
         foreach (char letter in letters)

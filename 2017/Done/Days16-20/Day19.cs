@@ -15,7 +15,7 @@ public partial class Day19 : Advent.Day
             steps++;
         } while (direction != ' ');
 
-        Output = WhichPart == 1 ? letters : steps.ToString();
+        Output = Part1 ? letters : steps.ToString();
     }
 
     private char Move(ref int row, ref int col, char direction, ref string letters, string[] lines)

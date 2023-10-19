@@ -19,7 +19,7 @@ public partial class Day15 : Advent.Day
     {
         int best = 0;
         if (spoonsLeft == 0)
-            return (capacity < 1 || durability < 1 || flavour < 1 || texture < 1 || (WhichPart == 2 && calories != 500)) ? 0 : capacity * durability * flavour * texture;
+            return (capacity < 1 || durability < 1 || flavour < 1 || texture < 1 || (Part2 && calories != 500)) ? 0 : capacity * durability * flavour * texture;
 
         if (current == ingredients.Count - 1)
             return GetMax(ingredients, 0, current, capacity + (ingredients[current].Capacity * spoonsLeft), durability + (ingredients[current].Durability * spoonsLeft),

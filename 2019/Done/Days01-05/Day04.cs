@@ -23,7 +23,7 @@ public partial class Day04 : Advent.Day
             prevNum = curNum;
         }
         for (int i = 48; i <= 57; i++)
-            if (numberString.Contains(new string((char)i, 2)) && (WhichPart == 1 || !numberString.Contains(new string((char)i, 3))))
+            if (numberString.Contains(new string((char)i, 2)) && (Part1 || !numberString.Contains(new string((char)i, 3))))
                 return 1;
         return 0;
     }

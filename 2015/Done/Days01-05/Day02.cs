@@ -17,6 +17,6 @@ public partial class Day02 : Advent.Day
             totalArea += (2 * areas[0]) + (2 * areas[1]) + (2 * areas[2]) + areas.Min();
             totalLength += perimeters.Min() + (sides[0] * sides[1] * sides[2]);
         }
-        Output = (WhichPart == 1 ? totalArea : totalLength).ToString();
+        Output = (Part1 ? totalArea : totalLength).ToString();
     }
 }

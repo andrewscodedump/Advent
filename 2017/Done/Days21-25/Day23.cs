@@ -11,7 +11,7 @@ public partial class Day23 : Advent.Day
         string[] instructions = InputSplit;
         Dictionary<string, long> registers = new() { { "a", WhichPart - 1 }, { "b", 0 }, { "c", 0 }, { "d", 0 }, { "e", 0 }, { "f", 0 }, { "g", 0 }, { "h", 0 } };
 
-        if (WhichPart == 1)
+        if (Part1)
             do
             {
                 instruction = instructions[currPos[0]];
@@ -69,7 +69,7 @@ public partial class Day23 : Advent.Day
             #endregion C# Interpretation of assembly code 
         }
 
-        Output = (WhichPart == 1 ? numMul : registers["h"]).ToString();
+        Output = (Part1 ? numMul : registers["h"]).ToString();
     }
 
     private static void DoOperation(Dictionary<string, long> registers, string instruction, ref int position)

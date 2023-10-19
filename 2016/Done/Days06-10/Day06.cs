@@ -21,16 +21,16 @@ public partial class Day06 : Advent.Day
         {
             string currentLetter = "|";
             string bestLetter = "|";
-            int currentCount = WhichPart == 1 ? 0 : int.MaxValue;
-            int bestCount = WhichPart == 1 ? 0 : int.MaxValue;
+            int currentCount = Part1 ? 0 : int.MaxValue;
+            int bestCount = Part1 ? 0 : int.MaxValue;
             Array.Sort(test[pos]);
             for (int i = 0; i < numberOfMessages; i++)
             {
                 string newLetter = test[pos][i];
                 if (newLetter != currentLetter)
                 {
-                    if ((WhichPart == 1 && currentCount > bestCount)
-                        || (WhichPart == 2 && currentCount < bestCount))
+                    if ((Part1 && currentCount > bestCount)
+                        || (Part2 && currentCount < bestCount))
                     {
                         bestLetter = currentLetter;
                         bestCount = currentCount;
@@ -42,8 +42,8 @@ public partial class Day06 : Advent.Day
                     currentCount++;
 
                 if (i == numberOfMessages - 1 &&
-                    ((WhichPart == 1 && currentCount > bestCount)
-                    ||  (WhichPart == 2 && currentCount < bestCount)))
+                    ((Part1 && currentCount > bestCount)
+                    ||  (Part2 && currentCount < bestCount)))
                 {
                     bestLetter = currentLetter;
                     bestCount = currentCount;

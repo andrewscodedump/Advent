@@ -59,7 +59,7 @@ public partial class Day07 : Advent.Day
 
         }
 
-        Output = WhichPart == 1 ? name.ToString() : correctWeight.ToString();
+        Output = Part1 ? name.ToString() : correctWeight.ToString();
     }
 
     private void GetTotalWeight(Dictionary<string, Program> programs, string name)

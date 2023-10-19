@@ -24,7 +24,7 @@ public partial class Day14 : Advent.Day
 
         oreNeeded = GetRequired("FUEL", 1, reactions, ref leftovers);
 
-        if (WhichPart == 2)
+        if (Part2)
         {
             lowerBound = target / oreNeeded; upperBound = lowerBound * 2; guess = lowerBound + ((upperBound - lowerBound) / 2);
             do
@@ -40,7 +40,7 @@ public partial class Day14 : Advent.Day
             fuelProduced = lowerBound;
         }
 
-        Output = (WhichPart == 1 ? oreNeeded : fuelProduced).ToString();
+        Output = (Part1 ? oreNeeded : fuelProduced).ToString();
     }
 
     #region Private Classes and Methods

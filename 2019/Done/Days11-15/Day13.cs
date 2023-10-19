@@ -38,7 +38,7 @@ public partial class Day13 : Advent.Day
 
         // printScreen(screen);
 
-        Output = (WhichPart == 1 ? screen.Values.Count(x => x == 2) : score).ToString();
+        Output = (Part1 ? screen.Values.Count(x => x == 2) : score).ToString();
     }
 
     #region Private Classes and Methods

@@ -5,7 +5,7 @@ public partial class Day23 : Advent.Day
     public override void DoWork()
     {
         int pos = 0;
-        Dictionary<string, int> registers = new() { { "a", 0 }, { "b", 0 }, { "c", WhichPart == 2 ? 1 : 0 }, { "d", 0 } };
+        Dictionary<string, int> registers = new() { { "a", 0 }, { "b", 0 }, { "c", Part2 ? 1 : 0 }, { "d", 0 } };
         do
         {
             string instr = InputSplit[pos];

@@ -4,7 +4,7 @@ public partial class Day25 : Advent.Day
 {
     public override void DoWork()
     {
-        if (WhichPart == 2) return;
+        if (Part2) return;
 
         Point target = new(int.Parse(Input.Split(',')[0]), int.Parse(Input.Split(',')[1]));
         Point currentPos = new(1, 1);

@@ -25,13 +25,13 @@ public partial class Day14 : Advent.Day
                         pos++;
                     }
                     foundIt = testString == Input;
-                    if (WhichPart == 2 && foundIt) break;
+                    if (Part2 && foundIt) break;
                 }
-            if (WhichPart == 2 && foundIt) break;
+            if (Part2 && foundIt) break;
             elf1Pos = (elf1Pos + scores[elf1Pos] + 1) % scores.Count;
             elf2Pos = (elf2Pos + scores[elf2Pos] + 1) % scores.Count;
-        } while ((WhichPart == 2 && !foundIt) || (WhichPart == 1 && scores.Count < limit + 11));
+        } while ((Part2 && !foundIt) || (Part1 && scores.Count < limit + 11));
 
-        Output = WhichPart == 1 ? string.Join("", scores).Substring(limit, 10) : pos.ToString();
+        Output = Part1 ? string.Join("", scores).Substring(limit, 10) : pos.ToString();
     }
 }

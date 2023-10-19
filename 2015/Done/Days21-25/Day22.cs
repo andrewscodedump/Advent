@@ -41,7 +41,7 @@ public partial class Day22 : Advent.Day
                 Result result;
                 do
                 {
-                    if (WhichPart == 2)
+                    if (Part2)
                     {
                         player.Points--;
                         if (player.Points <= 0)

@@ -5,7 +5,7 @@ public partial class Day24 : Advent.Day
     public override void DoWork()
     {
         List<int> parcels = new();
-        int totalWeight = 0, required, compartments = WhichPart == 1 ? 3 : 4, bestWeight = int.MaxValue;
+        int totalWeight = 0, required, compartments = Part1 ? 3 : 4, bestWeight = int.MaxValue;
         Queue bfs = new();
         foreach (string parcel in Input.Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries))
         {

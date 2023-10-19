@@ -4,7 +4,7 @@ public partial class Day04 : Advent.Day
 {
     public override void DoWork() => Output = InputSplit.Sum(k => PassportValid(k)).ToString();
 
-    int PassportValid(string kvps) => (kvps.Contains("cid:") ? 0 : 1) + (WhichPart == 1 ? kvps.Split(',').Length : kvps.Split(',').Sum(k => EntryValid(k))) == 8 ? 1 : 0;
+    int PassportValid(string kvps) => (kvps.Contains("cid:") ? 0 : 1) + (Part1 ? kvps.Split(',').Length : kvps.Split(',').Sum(k => EntryValid(k))) == 8 ? 1 : 0;
 
     static int EntryValid(string kvp)
     {
@@ -17,7 +17,7 @@ public partial class Day04 : Advent.Day
         if (key == "hcl" && value.StartsWith("#") && value.Length == 7
             && int.TryParse(value[1..], System.Globalization.NumberStyles.HexNumber, default, out intTest) && intTest <= 0xFFFFFF) return 1;
         if (key == "ecl" && new List<string> { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" }.Contains(value)) return 1;
-        if (key == "pid" && value.Length == 9 && int.TryParse(value, out intTest)) return 1;
+        if (key == "pid" && value.Length == 9 && int.TryParse(value, out _)) return 1;
         if (key == "cid") return 1;
         return 0;
     }

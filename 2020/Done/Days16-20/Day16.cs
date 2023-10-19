@@ -10,7 +10,7 @@ public partial class Day16 : Advent.Day
         List<int> mine = new();
         List<List<int>> others = new();
         string parseMode = "rules";
-        long result = WhichPart == 1 ? 0 : 1;
+        long result = Part1 ? 0 : 1;
 
         foreach (string line in InputSplit)
         {
@@ -53,12 +53,12 @@ public partial class Day16 : Advent.Day
                 if (!foundIt)
                 {
                     others.Remove(numbers);
-                    if (WhichPart == 2) break;
+                    if (Part2) break;
                     result += number;
                 }
             }
 
-        if (WhichPart == 2)
+        if (Part2)
         {
             List<int>[] positions = new List<int>[rules.Count];
             foreach (List<int> numbers in others)

@@ -33,7 +33,7 @@ public partial class Day10 : Advent.Day
             }
         } while (output == "None found");
 
-        Output = WhichPart == 1 ? output : seconds.ToString();
+        Output = Part1 ? output : seconds.ToString();
     }
 
     #region Private Classes and Methods

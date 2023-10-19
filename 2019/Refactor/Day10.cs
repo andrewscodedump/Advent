@@ -78,7 +78,7 @@ public partial class Day10 : Advent.Day
             }
         } while (numberKilled < 200);
 
-        Output = (WhichPart == 1 ? maxCount : (nextTarget.loc.x * 100) + nextTarget.loc.y).ToString();
+        Output = (Part1 ? maxCount : (nextTarget.loc.x * 100) + nextTarget.loc.y).ToString();
     }
 
     #region Private Classes and Methods

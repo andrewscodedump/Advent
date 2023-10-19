@@ -118,7 +118,7 @@ public partial class Day20 : Advent.Day
             }
         }
 
-        Output = (WhichPart == 1 ? maxLen : longRoutes).ToString();
+        Output = (Part1 ? maxLen : longRoutes).ToString();
     }
 
     #region Private Classes and Methods

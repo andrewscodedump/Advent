@@ -25,13 +25,13 @@ public partial class Day22 : Advent.Day
             int[] nextCards = new int[2];
             for (int player = 0; player <= 1; player++)
                 nextCards[player] = hands[player].Dequeue();
-            winner = WhichPart == 2 && nextCards[0] <= hands[0].Count && nextCards[1] <= hands[1].Count
+            winner = Part2 && nextCards[0] <= hands[0].Count && nextCards[1] <= hands[1].Count
                 ? PlayGame(new Queue<int>[] { new(hands[0].ToArray()[0..nextCards[0]]), new(hands[1].ToArray()[0..nextCards[1]]) })
                 : nextCards[0] > nextCards[1] ? 0 : 1;
             hands[winner].Enqueue(nextCards[winner]);
             hands[winner].Enqueue(nextCards[Math.Abs(winner - 1)]);
             cardString = string.Join(',', hands[0]) + '|' + string.Join(',', hands[1]);
-            if (WhichPart == 2 && handsPlayed.Contains(cardString))
+            if (Part2 && handsPlayed.Contains(cardString))
                 return 0;
             else
                 handsPlayed.Add(cardString);

@@ -10,7 +10,7 @@ public partial class Day08 : Advent.Day
         foreach (string instruction in InputSplit)
             maxRunVal = Math.Max(DoOperation(registers, instruction), maxRunVal);
 
-        Output = (WhichPart == 1 ? registers.Values.Max() : maxRunVal).ToString();
+        Output = (Part1 ? registers.Values.Max() : maxRunVal).ToString();
     }
 
     private static int DoOperation(Dictionary<string, int> registers, string instruction)

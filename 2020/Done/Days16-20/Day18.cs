@@ -27,7 +27,7 @@ public partial class Day18 : Advent.Day
 
     private string ProcessPluses(string sum)
     {
-        if (WhichPart == 1) return sum;
+        if (Part1) return sum;
         while (sum.Contains('+'))
         {
             Match match = Regex.Match(sum, @"(\d* \+ \d*)");

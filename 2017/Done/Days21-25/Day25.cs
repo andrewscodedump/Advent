@@ -5,7 +5,7 @@ public partial class Day25 : Advent.Day
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
     public override void DoWork()
     {
-        if (WhichPart == 2) return;
+        if (Part2) return;
 
         Input = Regex.Replace(Input, @"[ :\-\.]", "")  + ";Stophere";
         Dictionary<string, Dictionary<int, (int, int, string)>> rules = new();

@@ -4,7 +4,7 @@ public partial class Day16 : Advent.Day
 {
     public override void DoWork()
     {
-        if (TestMode && WhichPart == 2) return;
+        if (TestMode && Part2) return;
         Output = CheckSumify(Dragonify(InputSplit[1], int.Parse(InputSplit[0]))).ToString();
     }
 

@@ -41,11 +41,11 @@ public partial class Day12 : Advent.Day
             if (yLoop == 0 && states[1] == originalStates[1]) yLoop = iterations;
             if (zLoop == 0 && states[2] == originalStates[2]) zLoop = iterations;
             if (xLoop != 0 && yLoop != 0 && zLoop != 0) break;
-        } while (WhichPart == 2 || iterations < limit);
+        } while (Part2 || iterations < limit);
 
-        long repeatTime = WhichPart == 1 ? 0 : Lcm(Lcm(xLoop, yLoop), zLoop);
+        long repeatTime = Part1 ? 0 : Lcm(Lcm(xLoop, yLoop), zLoop);
 
-        Output = (WhichPart == 1 ? totalEnergy : repeatTime).ToString();
+        Output = (Part1 ? totalEnergy : repeatTime).ToString();
     }
 
     #region Private Classes and Methods

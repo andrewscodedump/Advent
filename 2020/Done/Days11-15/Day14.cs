@@ -28,7 +28,7 @@ public partial class Day14 : Advent.Day
                     }
                 }
             }
-            else if (WhichPart == 1)
+            else if (Part1)
             {
                 long reg = long.Parse(line.Split('=')[0]), val = long.Parse(line.Split('=')[1]);
                 foreach ((long bit, char operation) in mask)

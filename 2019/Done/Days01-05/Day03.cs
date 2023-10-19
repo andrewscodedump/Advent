@@ -24,6 +24,6 @@ public partial class Day03 : Advent.Day
             }
         }
         List<(int x, int y)> intersects = wirePaths[0].Keys.Intersect(wirePaths[1].Keys).ToList();
-        Output = (WhichPart == 1 ? intersects.Min(p => Math.Abs(p.x) + Math.Abs(p.y)) : intersects.Min(p => wirePaths[0][p] + wirePaths[1][p])).ToString();
+        Output = (Part1 ? intersects.Min(p => Math.Abs(p.x) + Math.Abs(p.y)) : intersects.Min(p => wirePaths[0][p] + wirePaths[1][p])).ToString();
     }
 }

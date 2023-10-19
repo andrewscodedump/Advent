@@ -23,10 +23,10 @@ public partial class Day04 : Advent.Day
             for (int boardNumber = boards.Count - 1; boardNumber >= 0; boardNumber--)
                 if ((score = boards[boardNumber].CheckNumber(ball)) != 0)
                 {
-                    if (WhichPart == 1) break;
+                    if (Part1) break;
                     boards.RemoveAt(boardNumber);
                 }
-            if (WhichPart == 1 && score != 0) break;
+            if (Part1 && score != 0) break;
         }
 
         Output = score.ToString();

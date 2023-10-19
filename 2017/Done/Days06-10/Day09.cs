@@ -29,7 +29,7 @@ public partial class Day09 : Advent.Day
                 level--;
             }
         }
-        Output = (WhichPart == 1 ? sum : removals).ToString();
+        Output = (Part1 ? sum : removals).ToString();
     }
 
 }

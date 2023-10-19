@@ -13,7 +13,7 @@ public partial class Day08 : Advent.Day
             string[] outputs = io[1].Split(" ", StringSplitOptions.RemoveEmptyEntries);
             Dictionary<char,char> translations = new();
 
-            if (WhichPart == 1)
+            if (Part1)
             {
                 result += outputs.Where(o => o.Length == 2 || o.Length == 3 || o.Length == 4 || o.Length == 7).Count();
             }

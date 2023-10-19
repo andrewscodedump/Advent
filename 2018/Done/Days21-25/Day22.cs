@@ -29,7 +29,7 @@ public partial class Day22 : Advent.Day
 
         Queue<((int, int) pos, int time, string kit)> bfs = new();
         Dictionary<((int, int), string), int> alreadyBeen = new();
-        if (WhichPart == 2) bfs.Enqueue(((0, 0), 0, "Torch"));
+        if (Part2) bfs.Enqueue(((0, 0), 0, "Torch"));
 
         while (bfs.Count > 0)
         {
@@ -90,6 +90,6 @@ public partial class Day22 : Advent.Day
             }
 
         }
-        Output = (WhichPart == 1 ? totalScore : bestTime).ToString();
+        Output = (Part1 ? totalScore : bestTime).ToString();
     }
 }

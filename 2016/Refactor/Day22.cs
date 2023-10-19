@@ -101,7 +101,7 @@ public partial class Day22 : Advent.Day
             grid.Add(new Point(newNode.X, newNode.Y), newNode.Used);
         }
 
-        if (WhichPart == 2)
+        if (Part2)
         {
             for (int y = 0; y < maxY; y++)
             {

@@ -26,6 +26,6 @@ public partial class Day10 : Advent.Day
             }
         }
 
-        Output = (WhichPart == 1 ? (ones * threes) : combinations[device]).ToString();
+        Output = (Part1 ? (ones * threes) : combinations[device]).ToString();
     }
 }

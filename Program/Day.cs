@@ -83,14 +83,16 @@ public abstract partial class Day
         Part2 = !Part1;
         TestMode = testMode;
         BatchStatus = batchStatus;
-        inputPath = $@"C:\Userfiles\Hobbies\Computer\Sources\Advent\{year}\Inputs\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}";
+        //TODO this needs to be changed to use a config file
+        string rootFolder = @"D:\Hobbies\Computer\Sources\Advent"; // Main PC
+        // string rootFolder = @"C:\Userfiles\Hobbies\Computer\Sources\Advent"; // Laptop
+        inputPath = $@"{rootFolder}\{year}\Inputs\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}";
         Inputs = GetInputs();
         SetInputs();
         Expecteds = GetExpecteds();
         Output = string.Empty;
         Rand = new Random();
         MD5 = System.Security.Cryptography.MD5.Create();
-        //TODO this needs to be changed to use a config file
     }
 
 public void AddInput(string newInput)
@@ -115,20 +117,20 @@ public void AddInput(string newInput)
         string mode = TestMode ? "Test" : "Live";
         string fileName = $"{mode}Both.txt";
 
-        if (File.Exists(inputPath + "\\" + fileName))
+        if (File.Exists($@"{inputPath}\{fileName}"))
         {
             fileExists = true;
         }
         else
         {
             fileName = $"{mode}Part{WhichPart}.txt";
-            if (File.Exists(inputPath + "\\" + fileName))
+            if (File.Exists($@"{inputPath}\{fileName}"))
                 fileExists = true;
         }
 
         if (!fileExists)
         {
-            if (!TestMode && WhichPart == 1 && BatchStatus == DayBatchStatus.Available)
+            if (!TestMode && Part1 && BatchStatus == DayBatchStatus.Available)
             {
                 // Get input from AoC website and save to file
                 if (!GetInputFromAoC())
@@ -143,14 +145,14 @@ public void AddInput(string newInput)
                 return inputs;
             }
         }
-        else if (File.ReadAllLines(inputPath + "\\" + fileName).Length == 0)
+        else if (File.ReadAllLines($@"{inputPath}\{fileName}").Length == 0)
         {
             BatchStatus = DayBatchStatus.NoInputs;
             return inputs;
         }
 
         StringBuilder input = new();
-        foreach (string line in File.ReadAllLines(inputPath + "\\" + fileName))
+        foreach (string line in File.ReadAllLines($@"{inputPath}\{fileName}"))
         {
             if (line == "***AdditionalInput***")
             {
@@ -168,6 +170,8 @@ public void AddInput(string newInput)
 
     private static bool GetInputFromAoC()
     {
+        // This will go to the AoC website to fetch the day's input and save it to file
+        // (but I'm not actually sure it's needed anymore, since the new input files are so easy to use)
         return false;
         /*if (!File.Exists(filename))
         {
@@ -218,30 +222,12 @@ public void AddInput(string newInput)
         if (BatchStatus == DayBatchStatus.NoInputs) BatchStatus = DayBatchStatus.Available;
         InputSplit = Inputs[CurrentInput].Split(';', StringSplitOptions.RemoveEmptyEntries);
         InputSplitC = Inputs[CurrentInput].Split(',');
-        try
-        {
-            InputSplitInt = Array.ConvertAll(InputSplit, int.Parse);
-        }
-        catch
-        {
-            InputSplitInt = null;
-        }
-        try
-        {
-            InputSplitCInt = Array.ConvertAll(InputSplitC, int.Parse);
-        }
-        catch
-        {
-            InputSplitCInt = null;
-        }
-        try
-        {
-            InputSplitCLong = Array.ConvertAll(InputSplitC, long.Parse);
-        }
-        catch
-        {
-            InputSplitCLong = null;
-        }
+        try { InputSplitInt = Array.ConvertAll(InputSplit, int.Parse); }
+        catch { InputSplitInt = null; }
+        try { InputSplitCInt = Array.ConvertAll(InputSplitC, int.Parse); }
+        catch { InputSplitCInt = null; }
+        try { InputSplitCLong = Array.ConvertAll(InputSplitC, long.Parse); }
+        catch { InputSplitCLong = null; }
     }
 
     #endregion Private Methods

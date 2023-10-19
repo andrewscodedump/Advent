@@ -16,6 +16,6 @@ public partial class Day11 : Advent.Day
             dist = Math.Abs(x) >= Math.Abs(y) ? Math.Abs(x) : (Math.Abs(x) + Math.Abs(y)) / 2;
             maxDist = Math.Max(maxDist, dist);
         }
-        Output = WhichPart == 1 ? dist.ToString() : maxDist.ToString();
+        Output = Part1 ? dist.ToString() : maxDist.ToString();
     }
 }

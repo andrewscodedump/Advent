@@ -8,7 +8,7 @@ public partial class Day07 : Advent.Day
         bool inside = false;
         int okNumber = 0;
 
-        if (WhichPart == 1)
+        if (Part1)
         {
             foreach (string address in InputSplit)
             {

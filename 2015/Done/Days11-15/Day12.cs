@@ -7,7 +7,7 @@ public partial class Day12 : Advent.Day
         int sum = 0;
         string work = Input.Replace(';', ',').Replace("\"", "");
 
-        if (WhichPart == 2)
+        if (Part2)
         {
             while (work.IndexOf("red") > 0)
             {

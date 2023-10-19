@@ -16,7 +16,7 @@ public partial class Day18 : Advent.Day
             before.Add(row);
         }
 
-        if (WhichPart == 2) before[1][1] = before[1][dimension] = before[dimension][1] = before[dimension][dimension] = 1;
+        if (Part2) before[1][1] = before[1][dimension] = before[dimension][1] = before[dimension][dimension] = 1;
         foreach (List<int> row in before) after.Add(new List<int>(row));
 
         for (int iter = 0; iter < iterations; iter++)
@@ -32,7 +32,7 @@ public partial class Day18 : Advent.Day
             before.Clear();
             foreach (List<int> row in after) before.Add(new List<int>(row));
 
-            if (WhichPart == 2) before[1][1] = before[1][dimension] = before[dimension][1] = before[dimension][dimension] = 1;
+            if (Part2) before[1][1] = before[1][dimension] = before[dimension][1] = before[dimension][dimension] = 1;
         }
 
         Output = before.Sum(x => x.Sum()).ToString();

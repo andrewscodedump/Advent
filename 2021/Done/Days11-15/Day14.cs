@@ -4,7 +4,7 @@ public partial class Day14 : Advent.Day
 {
     public override void DoWork()
     {
-        int steps = WhichPart == 1 ? 10 : 40;
+        int steps = Part1 ? 10 : 40;
 
         Dictionary<(char, char), ((char, char) first, (char, char) second)> translations = new();
         Dictionary<(char, char), long> basePairs = new(), pairs;
@@ -45,7 +45,7 @@ public partial class Day14 : Advent.Day
         List<char> polymer = InputSplit[0].ToCharArray().ToList();
         Dictionary<(char, char), char> formulae = new();
         Dictionary<char, long> counts = new();
-        int steps = WhichPart == 1 ? 10 : 40;
+        int steps = Part1 ? 10 : 40;
 
         foreach (string formula in InputSplit[1..])
             formulae[(formula[0], formula[1])] = formula[6];

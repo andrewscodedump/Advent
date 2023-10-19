@@ -4,7 +4,7 @@ public partial class Day20 : Advent.Day
 {
     public override void DoWork()
     {
-        if (TestMode && WhichPart == 2) return;
+        if (TestMode && Part2) return;
 
         List<uint[]> exclusions = new();
         uint firstOne = uint.MaxValue;
@@ -51,6 +51,6 @@ public partial class Day20 : Advent.Day
         if (exclusions[^1][1] < uint.MaxValue)
             count += uint.MaxValue - exclusions[^1][1] - 1;
 
-        Output = WhichPart == 1 ? firstOne.ToString() : count.ToString();
+        Output = Part1 ? firstOne.ToString() : count.ToString();
     }
 }

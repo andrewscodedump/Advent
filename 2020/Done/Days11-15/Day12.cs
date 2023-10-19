@@ -18,7 +18,7 @@ public partial class Day12 : Advent.Day
         {
             char cmd = instr[0];
             int num = int.Parse(instr[1..^0]);
-            if (WhichPart == 1)
+            if (Part1)
             {
                 if (dirns.ContainsKey(cmd))
                     (px, py) = (px + (dirns[cmd].x * num), py + (dirns[cmd].y * num));

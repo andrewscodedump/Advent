@@ -35,7 +35,7 @@ public partial class Day12 : Advent.Day
                 bool nextSmall = nextPos[0] > 96, nextTwo = twoVisits;
                 if (visited.Contains(nextPos) && nextSmall)
                 {
-                    if (WhichPart == 1 || twoVisits) continue;
+                    if (Part1 || twoVisits) continue;
                     nextTwo = true;
                 }
                 explore.Enqueue((nextPos, new(path), new(visited), nextTwo));

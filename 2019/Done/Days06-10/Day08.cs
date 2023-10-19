@@ -7,7 +7,7 @@ public partial class Day08 : Advent.Day
         #region Setup Variables and Parse Inputs
 
         int product = 0;
-        int width = TestMode ? WhichPart == 1 ? 3 : 2 : 25, height = TestMode ? 2 : 6, layerSize = width * height;
+        int width = TestMode ? Part1 ? 3 : 2 : 25, height = TestMode ? 2 : 6, layerSize = width * height;
         int minZeros = Int32.MaxValue;
         char[] image = new string('2', layerSize).ToCharArray();
 
@@ -35,7 +35,7 @@ public partial class Day08 : Advent.Day
             Debug.Print(line.ToString());
         }
 
-        string outputString = WhichPart == 2 && !BatchRun ? AWInputBox("Get Output", "Enter string value displayed in output window", "") : string.Empty;
-        Output = WhichPart == 1 ? product.ToString() : outputString;
+        string outputString = Part2 && !BatchRun ? AWInputBox("Get Output", "Enter string value displayed in output window", "") : string.Empty;
+        Output = Part1 ? product.ToString() : outputString;
     }
 }

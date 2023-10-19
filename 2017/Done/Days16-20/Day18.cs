@@ -14,7 +14,7 @@ public partial class Day18 : Advent.Day
         bool[] waiting = new bool[] { false, false };
         Dictionary<string, long>[] registers = new Dictionary<string, long>[2] { new() { { "p", 0 } }, new() { { "p", 1 } } };
 
-        if (WhichPart == 1)
+        if (Part1)
         {
             do
             {
@@ -43,7 +43,7 @@ public partial class Day18 : Advent.Day
             } while (currPos[0] < instructions.Length && currPos[1] < instructions.Length && !(waiting[0] && waiting[1]));
         }
 
-        Output = (WhichPart == 1 ? received : numSends).ToString();
+        Output = (Part1 ? received : numSends).ToString();
     }
 
     private static long DoOperation(Dictionary<string, long> registers, string instruction, ref int position, Queue<long> myQueue, Queue<long> otherQueue, ref bool waiting, int whichPart)

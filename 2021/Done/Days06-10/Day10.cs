@@ -23,7 +23,7 @@ public partial class Day10 : Advent.Day
                 }
 
             if (interimResult != 0) result += interimResult;
-            else if (WhichPart == 2)
+            else if (Part2)
             {
                 do
                     interimResult = (interimResult * 5) + scores[pairs[openBrackets.Pop()]].part2;
@@ -32,6 +32,6 @@ public partial class Day10 : Advent.Day
             }
         }
 
-        Output = (WhichPart == 1 ? result : results.OrderBy(x => x).ElementAt(results.Count / 2)).ToString();
+        Output = (Part1 ? result : results.OrderBy(x => x).ElementAt(results.Count / 2)).ToString();
     }
 }

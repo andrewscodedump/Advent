@@ -151,7 +151,7 @@ public partial class Day24 : Advent.Day
             if (!foundOne)
             {
                 // We're at the end
-                if (WhichPart == 2)
+                if (Part2)
                 {
                     // Add the leg to return us back to the start from where we've ended up
                     Pair returnLeg = new() { from = currentCell, to = start };

@@ -12,10 +12,10 @@ public partial class Day12 : Advent.Day
             rules.Add(InputSplit[i].Split(new char[] { ' ', '=', '>' }, StringSplitOptions.RemoveEmptyEntries)[0], InputSplit[i].Split(new char[] { ' ', '=', '>' }, StringSplitOptions.RemoveEmptyEntries)[1]);
 
         string currGen = InputSplit[0][15..];
-        long maxGens = WhichPart == 1 ? 20 : 50000000000;
+        long maxGens = Part1 ? 20 : 50000000000;
         int currLeft = 0;
         long score = 0, lastScore = 0;
-        long diff = 0, prevDiff = 0;
+        long diff, prevDiff = 0;
         #endregion Setup Variables and Parse Inputs
 
         for (int gen = 1; gen <= maxGens; gen++)
@@ -23,7 +23,7 @@ public partial class Day12 : Advent.Day
             StringBuilder nextGen = new();
             for (int pos = -2; pos < currGen.Length + 2; pos++)
             {
-                string state = string.Empty;
+                string state;
                 int distFromEnd = currGen.Length - pos;
                 state = pos <= 1
                     ? new string('.', 2 - pos) + currGen[..(3 + pos)]

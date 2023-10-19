@@ -4,7 +4,7 @@ public partial class Day08 : Advent.Day
 {
     public override void DoWork()
     {
-        if (WhichPart == 2 && TestMode) return;
+        if (Part2 && TestMode) return;
         int totalLit = 0, totalCols = 50, totalRows = 6;
         int[,] grid = new int[totalCols, totalRows];
         foreach (string instr in InputSplit)
@@ -53,6 +53,6 @@ public partial class Day08 : Advent.Day
             for (int col = 0; col < 50; col++)
                 outputRow += grid[col, row] == 1 ? "*" : " ";
         }
-        Output = WhichPart == 1 ? totalLit.ToString() : "Answer (AFBUPZBJPS) in Debug Output";
+        Output = Part1 ? totalLit.ToString() : "Answer (AFBUPZBJPS) in Debug Output";
     }
 }

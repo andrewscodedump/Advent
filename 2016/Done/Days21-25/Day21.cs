@@ -6,13 +6,13 @@ public partial class Day21 : Advent.Day
 {
     public override void DoWork()
     {
-        if (WhichPart == 2)
+        if (Part2)
             Array.Reverse(InputSplit);
 
         string work = InputSplit[0];
-        bool descramble = WhichPart == 2;
+        bool descramble = Part2;
         /*
-			* if (WhichPart == 1)
+			* if (Part1)
 			stk.Push(work);
 		else
 			stk.Pop();
@@ -117,7 +117,7 @@ public partial class Day21 : Advent.Day
     {
         int len = input.Length;
 
-        int temp = 0;
+        int temp;
         temp = Math.Min(start, end);
         end = Math.Max(start, end);
         start = temp;

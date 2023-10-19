@@ -4,7 +4,7 @@ public partial class Day19 : Advent.Day
 {
     public override void DoWork()
     {
-        if (WhichPart == 1)
+        if (Part1)
         {
             Queue q = new();
 

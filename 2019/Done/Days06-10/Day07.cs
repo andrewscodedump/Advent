@@ -8,7 +8,7 @@ public partial class Day07 : Advent.Day
 
         List<int[]> combinations = new();
         int[] combination = new int[5] { 99, 99, 99, 99, 99 };
-        int offset = WhichPart == 1 ? 0 : 5;
+        int offset = Part1 ? 0 : 5;
         long maxPower = 0;
         for (int i = 0; i < 5; i++)
             for (int j = 0; j < 5; j++)
@@ -36,7 +36,7 @@ public partial class Day07 : Advent.Day
                     power = codes[i].Output;
                 }
                 firstTime = false;
-            } while (WhichPart == 2 && !codes[4].CodeComplete);
+            } while (Part2 && !codes[4].CodeComplete);
             maxPower = Math.Max(power, maxPower);
         }
         Output = maxPower.ToString();

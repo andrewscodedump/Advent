@@ -10,7 +10,7 @@ public partial class Day08 : Advent.Day
         #endregion Setup Variables and Parse Inputs
 
         total2 = ProcessNode(ref pointer, ref total1, nodes);
-        Output = (WhichPart == 1 ? total1 : total2).ToString();
+        Output = (Part1 ? total1 : total2).ToString();
     }
 
     #region Private Classes and Methods

@@ -23,6 +23,6 @@ public partial class Day05 : Advent.Day
             allSeats.Remove(currentSeat);
         }
         allSeats.RemoveWhere(seat => seat < minSeat || seat > maxSeat);
-        Output = (WhichPart == 1 ? maxSeat : allSeats.First()).ToString();
+        Output = (Part1 ? maxSeat : allSeats.First()).ToString();
     }
 }

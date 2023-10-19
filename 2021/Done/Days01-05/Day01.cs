@@ -8,8 +8,8 @@ public class Day01 : Advent.Day
 
         for (int i=0; i<InputSplitInt.Length; i++)
         {
-            if (WhichPart == 2 && i > InputSplitInt.Length - 3) break;
-            curr = WhichPart == 1 ? InputSplitInt[i] : InputSplitInt[i] + InputSplitInt[i + 1] + InputSplitInt[i + 2];
+            if (Part2 && i > InputSplitInt.Length - 3) break;
+            curr = Part1 ? InputSplitInt[i] : InputSplitInt[i] + InputSplitInt[i + 1] + InputSplitInt[i + 2];
             if (curr > prev) increases++;
             prev = curr;
         }

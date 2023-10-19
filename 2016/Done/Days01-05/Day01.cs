@@ -16,7 +16,7 @@ public partial class Day01 : Advent.Day
         {
             direction = (direction + (step.StartsWith("R") ? 1 : 3)) % 4;
 
-            if (WhichPart == 1)
+            if (Part1)
             {
                 position.x += int.Parse(step[1..]) * hSteps[direction];
                 position.y += int.Parse(step[1..]) * vSteps[direction];

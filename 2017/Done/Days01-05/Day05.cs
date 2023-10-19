@@ -11,7 +11,7 @@ public partial class Day05 : Advent.Day
             steps++;
             int oldVal = input[curPos], newPos = curPos + oldVal;
             if (newPos >= input.Length || newPos < 0) break;
-            input[curPos] += WhichPart == 1 ? 1 : (oldVal >= 3 ? -1 : 1);
+            input[curPos] += Part1 ? 1 : (oldVal >= 3 ? -1 : 1);
             curPos += oldVal;
         } while (true);
 

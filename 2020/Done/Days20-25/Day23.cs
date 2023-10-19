@@ -14,7 +14,7 @@ public partial class Day23 : Advent.Day
 
         for (int i = 0; i < cupString.Length; i++)
             cups[int.Parse(cupString[i].ToString())] = int.Parse(cupString[(i + 1) % cupString.Length].ToString());
-        if (WhichPart == 2)
+        if (Part2)
         {
             cups[int.Parse(cupString[^1].ToString())] = 10;
             for (int i = 10; i < 1000000; i++)
@@ -47,7 +47,7 @@ public partial class Day23 : Advent.Day
 
         }
         string result = string.Empty;
-        if (WhichPart == 1)
+        if (Part1)
         {
             current = 1;
             while (cups[current] != 1)

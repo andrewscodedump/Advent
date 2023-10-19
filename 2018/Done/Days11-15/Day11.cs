@@ -15,7 +15,7 @@ public partial class Day11 : Advent.Day
             {
                 int score = ((((x + 10) * y) + gridID) * (x + 10) / 100 % 10) - 5;
                 int[] squares = new int[300], rows = new int[300], cols = new int[300];
-                for (int size = 0; size < (WhichPart == 1 ? 3 : 300); size++)
+                for (int size = 0; size < (Part1 ? 3 : 300); size++)
                 {
                     if (x - 1 + size < 300)
                         rows[size] = size == 0 ? score : grid[x, y - 1].rows[size - 1] + score;
@@ -29,6 +29,6 @@ public partial class Day11 : Advent.Day
                 }
             }
 
-        Output = string.Format("{0},{1}" + (WhichPart == 2 ? ",{2}" : ""), maxSquare.x, maxSquare.y, maxSquare.size);
+        Output = string.Format("{0},{1}" + (Part2 ? ",{2}" : ""), maxSquare.x, maxSquare.y, maxSquare.size);
     }
 }

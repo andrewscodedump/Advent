@@ -48,7 +48,7 @@ public partial class Day04 : Advent.Day
                 letters.Remove(bestLetter);
             }
             if (check == checkSum)
-                if (WhichPart == 1)
+                if (Part1)
                     sectorTotal += sector;
                 else
                 {

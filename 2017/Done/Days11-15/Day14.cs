@@ -25,7 +25,7 @@ public partial class Day14 : Advent.Day
                     SetNeighbours(rows, row, col);
                 }
 
-        Output = (WhichPart == 1 ? used : regions).ToString();
+        Output = (Part1 ? used : regions).ToString();
     }
 
     private void SetNeighbours(Collection<char[]> rows, int row, int col)

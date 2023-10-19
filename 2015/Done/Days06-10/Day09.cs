@@ -37,10 +37,10 @@ public partial class Day09 : Advent.Day
                 {
                     if (town == move.Town) continue;
                     if (visited.Contains(town)) continue;
-                    if (WhichPart == 1 && move.DistanceSoFar + distances[(move.Town, town)] > shortestDistance) continue;
+                    if (Part1 && move.DistanceSoFar + distances[(move.Town, town)] > shortestDistance) continue;
                     dfs.Push(new Move { Town = town, DistanceSoFar = move.DistanceSoFar + distances[(move.Town, town)], Visited = visited });
                 }
         } while (dfs.Count > 0);
-        Output = (WhichPart == 1 ? shortestDistance : longestDistance).ToString();
+        Output = (Part1 ? shortestDistance : longestDistance).ToString();
     }
 }

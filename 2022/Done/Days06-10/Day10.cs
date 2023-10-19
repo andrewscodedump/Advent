@@ -30,7 +30,7 @@ public partial class Day10 : Advent.Day
         }
         Debug.Print(screen.ToString() );
 
-        string outputString = WhichPart == 2 && !BatchRun && !TestMode ? AWInputBox("Get Output", "Enter string value displayed in output window", "") : string.Empty;
+        string outputString = Part2 && !BatchRun && !TestMode ? AWInputBox("Get Output", "Enter string value displayed in output window", "") : string.Empty;
         Output = Part1 ? sum.ToString() : outputString;
     }
 }

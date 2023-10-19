@@ -6,7 +6,7 @@ public partial class Day18 : Advent.Day
     {
         string work = InputSplit[0];
         int result = 0;
-        if (WhichPart == 1)
+        if (Part1)
         {
             for (int i = 1; i < InputSplit.Length; i++)
                 work = Add(work, InputSplit[i]);

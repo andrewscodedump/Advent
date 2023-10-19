@@ -5,8 +5,8 @@ public partial class Day02 : Advent.Day
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
     public override void DoWork()
     {
-        int row = WhichPart == 1 ? 1 : 2;
-        int col = WhichPart == 1 ? 1 : 0;
+        int row = Part1 ? 1 : 2;
+        int col = Part1 ? 1 : 0;
         string code = string.Empty;
 
         foreach (string sequence in InputSplit)
@@ -16,23 +16,23 @@ public partial class Day02 : Advent.Day
                 switch (sequence.Substring(letter, 1))
                 {
                     case "U":
-                        if ((WhichPart == 1 && row > 0)
-                            || (WhichPart == 2 && !((row == 0 && col == 2) || (row == 1 && col == 1) || (row == 2 && col == 0) || (row == 1 && col == 3) || (row == 2 && col == 4))))
+                        if ((Part1 && row > 0)
+                            || (Part2 && !((row == 0 && col == 2) || (row == 1 && col == 1) || (row == 2 && col == 0) || (row == 1 && col == 3) || (row == 2 && col == 4))))
                             row--;
                         break;
                     case "D":
-                        if ((WhichPart == 1 && row < 2)
-                            || (WhichPart == 2 && !((row == 2 && col == 0) || (row == 3 && col == 1) || (row == 4 && col == 2) || (row == 3 && col == 3) || (row == 2 && col == 4))))
+                        if ((Part1 && row < 2)
+                            || (Part2 && !((row == 2 && col == 0) || (row == 3 && col == 1) || (row == 4 && col == 2) || (row == 3 && col == 3) || (row == 2 && col == 4))))
                             row++;
                         break;
                     case "L":
-                        if ((WhichPart == 1 && col > 0)
-                            || (WhichPart == 2 && !((row == 0 && col == 2) || (row == 1 && col == 1) || (row == 2 && col == 0) || (row == 3 && col == 1) || (row == 4 && col == 2))))
+                        if ((Part1 && col > 0)
+                            || (Part2 && !((row == 0 && col == 2) || (row == 1 && col == 1) || (row == 2 && col == 0) || (row == 3 && col == 1) || (row == 4 && col == 2))))
                             col--;
                         break;
                     case "R":
-                        if ((WhichPart == 1 && col < 2)
-                            || (WhichPart == 2 && !((row == 0 && col == 2) || (row == 1 && col == 3) || (row == 2 && col == 4) || (row == 3 && col == 3) || (row == 4 && col == 2))))
+                        if ((Part1 && col < 2)
+                            || (Part2 && !((row == 0 && col == 2) || (row == 1 && col == 3) || (row == 2 && col == 4) || (row == 3 && col == 3) || (row == 4 && col == 2))))
                             col++;
                         break;
                     default:
@@ -40,7 +40,7 @@ public partial class Day02 : Advent.Day
                 }
             }
 
-            if (WhichPart == 1)
+            if (Part1)
                 code += ((row * 3) + col + 1).ToString();
             else
                 switch (row)

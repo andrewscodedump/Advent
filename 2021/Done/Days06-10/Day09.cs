@@ -24,7 +24,7 @@ public partial class Day09 : Advent.Day
                 }
             }
 
-        if (WhichPart == 2)
+        if (Part2)
         {
             Dictionary<(int x, int y), (int mx, int my)> processed = new();
             for (int y = 0; y < height; y++)

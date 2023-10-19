@@ -17,6 +17,6 @@ public partial class Day06 : Advent.Day
                 input[(curPos + pos) % input.Length]++;
         } while (!combos.Any(combo => combo.SequenceEqual(input)));
 
-        Output = (combos.Count - (WhichPart == 1 ? 0 : combos.IndexOf(combos.First(combo => combo.SequenceEqual(input))))).ToString();
+        Output = (combos.Count - (Part1 ? 0 : combos.IndexOf(combos.First(combo => combo.SequenceEqual(input))))).ToString();
     }
 }

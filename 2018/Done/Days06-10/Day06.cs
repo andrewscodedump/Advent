@@ -24,7 +24,7 @@ public partial class Day06 : Advent.Day
         for (int x = minX - 1; x <= maxX + 1; x++)
             for (int y = minY - 1; y <= maxY + 1; y++)
             {
-                if (WhichPart == 1)
+                if (Part1)
                 {
                     grid.Add((x, y), (int.MaxValue, (-1, -1)));
                     foreach ((int ptx, int pty) p in points.Keys)
@@ -46,7 +46,7 @@ public partial class Day06 : Advent.Day
                 }
             }
 
-        if (WhichPart == 1)
+        if (Part1)
             foreach (KeyValuePair<(int x, int y), (int, (int, int) point)> kvp in grid)
             {
                 if (kvp.Value.point == (-1, -1) || points[kvp.Value.point] == -1) continue;

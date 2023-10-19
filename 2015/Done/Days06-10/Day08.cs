@@ -16,6 +16,6 @@ public partial class Day08 : Advent.Day
                 i += Input[i + 1] == 'x' ? 3 : 1;
             }
         }
-        Output = (WhichPart == 1 ? shrinkLen : expandLen).ToString();
+        Output = (Part1 ? shrinkLen : expandLen).ToString();
     }
 }

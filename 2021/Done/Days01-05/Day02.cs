@@ -9,7 +9,7 @@ public partial class Day02 : Advent.Day
         foreach (string instr in InputSplit)
         {
             string dirn = instr.Split(' ')[0]; int dist = int.Parse(instr.Split(' ')[1]); aim += dirns[dirn].y * dist;
-            (x, y) = (x + (dirns[dirn].x * dist), y + (WhichPart == 1 ? (dirns[dirn].y * dist) : (dirns[dirn].x * dist * aim)));
+            (x, y) = (x + (dirns[dirn].x * dist), y + (Part1 ? (dirns[dirn].y * dist) : (dirns[dirn].x * dist * aim)));
         }
         Output = (x * y).ToString();
     }

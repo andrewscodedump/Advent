@@ -14,7 +14,7 @@ public partial class Day08 : Advent.Day
 
         #endregion Setup Variables and Parse Inputs
 
-        if (WhichPart == 1) FindLoop(program, out result); else result = FixProgram(program);
+        if (Part1) FindLoop(program, out result); else result = FixProgram(program);
         Output = result.ToString();
     }
 

@@ -14,12 +14,12 @@ public partial class Day17 : Advent.Day
             State check = (State)theQueue.Dequeue();
             if (check.Position == new Point(3, 3))
             {
-                if (WhichPart == 1 && (check.Path.Length < shortestPath.Length || string.IsNullOrEmpty(shortestPath)))
+                if (Part1 && (check.Path.Length < shortestPath.Length || string.IsNullOrEmpty(shortestPath)))
                 {
                     shortestPath = check.Path;
                     break;
                 }
-                else if (WhichPart == 2)
+                else if (Part2)
                     if (check.Path.Length > longest)
                         longest = check.Path.Length;
                 continue;
@@ -36,7 +36,7 @@ public partial class Day17 : Advent.Day
                 theQueue.Enqueue(new State(check.Path + "R", check.Position.X + 1, check.Position.Y));
         } while (theQueue.Count > 0);
 
-        Output = WhichPart == 1 ? shortestPath.ToString() : longest.ToString();
+        Output = Part1 ? shortestPath.ToString() : longest.ToString();
     }
 
     private class State

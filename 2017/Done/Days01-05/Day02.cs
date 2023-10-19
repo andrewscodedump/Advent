@@ -8,7 +8,7 @@ public partial class Day02 : Advent.Day
         foreach (string line in InputSplit)
         {
             int[] numbers = line.Split(' ').Select(int.Parse).ToArray();
-            if (WhichPart == 1)
+            if (Part1)
             {
                 foreach (int number in numbers)
                     (min, max) = (Math.Min(min, number), Math.Max(max, number));

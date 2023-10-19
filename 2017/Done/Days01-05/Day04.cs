@@ -11,7 +11,7 @@ public partial class Day04 : Advent.Day
             bool matchFound = false;
             foreach (string word in line.Split(' '))
             {
-                string testWord = WhichPart == 1 ? word : Sort(word);
+                string testWord = Part1 ? word : Sort(word);
                 matchFound = words.Contains(testWord);
                 if (matchFound) break;
                 words.Add(testWord);

@@ -34,16 +34,16 @@ public partial class Day15 : Advent.Day
                         {
                             int power = grid[(x, y)].state == 'G' ? goblinPower : elfPower;
                             elfKilled = TakeTurn(ref grid, (x, y), round, power);
-                            if (WhichPart == 2 && elfKilled) break;
+                            if (Part2 && elfKilled) break;
                         }
-                        if (WhichPart == 2 && elfKilled) break;
+                        if (Part2 && elfKilled) break;
                     }
-                    if (WhichPart == 2 && elfKilled) break;
+                    if (Part2 && elfKilled) break;
                 }
                 state = GetScore(grid.Values.ToArray(), round);
                 round++;
-            } while (!(state.finished || (WhichPart == 2 && elfKilled)));
-        } while (WhichPart == 2 && elfKilled);
+            } while (!(state.finished || (Part2 && elfKilled)));
+        } while (Part2 && elfKilled);
 
         Output = state.score.ToString();
     }
@@ -149,7 +149,7 @@ public partial class Day15 : Advent.Day
             elves += type == 'E' ? score : 0;
         }
         //BUG - for some reason in a couple of cases, but no others, it's miscounting the rounds
-        if (WhichPart == 1 && !TestMode) round++;
+        if (Part1 && !TestMode) round++;
         return ((goblins + elves) * round, goblins == 0 || elves == 0);
     }
 

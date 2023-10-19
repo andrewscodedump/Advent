@@ -24,7 +24,7 @@ public partial class Day03 : Advent.Day
             for (int j = co2List.Count - 1; j >= 0 && co2List.Count > 1; j--)
                 if ((co2One && co2List[j][i] == '1') || (!co2One && co2List[j][i] == '0')) co2List.RemoveAt(j); ;
         }
-        Output = (WhichPart == 1 ? gamma * epsilon : Convert.ToInt32(oxyList[0], 2) * Convert.ToInt32(co2List[0], 2)).ToString();
+        Output = (Part1 ? gamma * epsilon : Convert.ToInt32(oxyList[0], 2) * Convert.ToInt32(co2List[0], 2)).ToString();
     }
 
     private static bool OnesCommonest(List<string> numbers, int bitPos)

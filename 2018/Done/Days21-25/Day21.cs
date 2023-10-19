@@ -38,7 +38,7 @@ public partial class Day21 : Advent.Day
                 if (validKeys.Contains(foundValue)) break;
                 validKeys.Add(foundValue);
                 prevValue = foundValue;
-                if (WhichPart == 1) break;
+                if (Part1) break;
             }
         }
         while (true);
@@ -72,13 +72,13 @@ public partial class Day21 : Advent.Day
         l26: regs[3] = regs[2];
             goto l8;
         l28: foundValue = regs[1];
-            if (WhichPart == 1) break;
+            if (Part1) break;
             if (validKeys.Contains(foundValue)) break;
             validKeys.Add(foundValue);
             prevValue = foundValue;
             goto l6;
         } while (true);
 
-        Output = (WhichPart == 1 ? foundValue : prevValue).ToString();
+        Output = (Part1 ? foundValue : prevValue).ToString();
     }
 }

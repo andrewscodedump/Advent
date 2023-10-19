@@ -77,7 +77,7 @@ public partial class Day19 : Advent.Day
             }
             unresolved.RemoveAll(t => t.Item2.Count == 0);
         }
-        Output = messages.Count(m => IsValid(m, c42, c31, WhichPart == 1)).ToString();
+        Output = messages.Count(m => IsValid(m, c42, c31, Part1)).ToString();
     }
 
     private static bool IsValid(string message, List<string> c42, List<string> c31, bool isPart1)

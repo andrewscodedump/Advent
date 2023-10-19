@@ -49,6 +49,6 @@ public partial class Day19 : Advent.Day
         } while (!foundIt);
         result = (x * 10000) + y;
 
-        Output = (WhichPart == 1 ? counter : result).ToString();
+        Output = (Part1 ? counter : result).ToString();
     }
 }

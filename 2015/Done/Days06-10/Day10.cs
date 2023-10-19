@@ -6,7 +6,7 @@ public partial class Day10 : Advent.Day
     {
         string work = Input;
         StringBuilder workOut = new();
-        int iterations = TestMode ? 5 : WhichPart == 1 ? 40 : 50;
+        int iterations = TestMode ? 5 : Part1 ? 40 : 50;
         for (int round = 1; round <= iterations; round++)
         {
             char num;

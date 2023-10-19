@@ -23,7 +23,7 @@ public partial class Day23 : Advent.Day
 
         int inRangeOfBiggest = bots.Count(bot => bots.OrderByDescending(b => b.Radius).FirstOrDefault().InRange(bot));
 
-        if (WhichPart == 2)
+        if (Part2)
             do
             {
                 maxInRange = 0;
@@ -42,7 +42,7 @@ public partial class Day23 : Advent.Day
                 limits = (bestLocation.x - (xRange / 2), bestLocation.y - (yRange / 2), bestLocation.z - (zRange / 2), bestLocation.x + (xRange / 2), bestLocation.y + (yRange / 2), bestLocation.z + (zRange / 2));
             } while (grain >= 1);
 
-        Output = (WhichPart == 1 ? inRangeOfBiggest : bestSum).ToString();
+        Output = (Part1 ? inRangeOfBiggest : bestSum).ToString();
     }
 
     #region Private Classes and Methods

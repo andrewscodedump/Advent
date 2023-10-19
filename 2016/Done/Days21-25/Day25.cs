@@ -5,10 +5,10 @@ public partial class Day25 : Advent.Day
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
     public override void DoWork()
     {
-        if (WhichPart == 2 || TestMode) return;
+        if (Part2 || TestMode) return;
 
         int pos = 0;
-        int output = 0;
+        int output;
         int currentNumber = 0;
         bool notValid = false;
         int currDigit = int.MaxValue;
@@ -20,13 +20,13 @@ public partial class Day25 : Advent.Day
         {
             string instr = InputSplit[pos];
             string[] parts = instr.Split(' ');
-            int test = 0;
+            int test;
 
             bool isNumber;
             switch (parts[0])
             {
                 case "cpy":
-                    registers[parts[2]] = int.TryParse(parts[1], out test) ? int.Parse(parts[1]) : registers[parts[1]];
+                    registers[parts[2]] = int.TryParse(parts[1], out _) ? int.Parse(parts[1]) : registers[parts[1]];
                     break;
                 case "inc":
                     registers[parts[1]]++;
@@ -37,10 +37,10 @@ public partial class Day25 : Advent.Day
                 case "jnz":
                     isNumber = int.TryParse(parts[1], out test);
                     if ((isNumber && test != 0) || (!isNumber && registers[parts[1]] != 0))
-                        pos += (int.TryParse(parts[2], out test) ? int.Parse(parts[2]) : registers[parts[2]]) - 1;
+                        pos += (int.TryParse(parts[2], out _) ? int.Parse(parts[2]) : registers[parts[2]]) - 1;
                     break;
                 case "out":
-                    output = int.TryParse(parts[1], out test) ? int.Parse(parts[1]) : registers[parts[1]];
+                    output = int.TryParse(parts[1], out _) ? int.Parse(parts[1]) : registers[parts[1]];
                     if (currDigit != int.MaxValue && (output == currDigit || (output != 0 && output != 1)))
                         notValid = true;
                     else

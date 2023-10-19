@@ -30,6 +30,6 @@ public partial class Day14 : Advent.Day
                 if (distances[deer] == maxDist)
                     points[deer]++;
         }
-        Output = (WhichPart == 1 ? distances.Values.Max() : points.Values.Max()).ToString();
+        Output = (Part1 ? distances.Values.Max() : points.Values.Max()).ToString();
     }
 }

@@ -28,7 +28,7 @@ public partial class Day02 : Advent.Day
                 break;
             }
         }
-        Output = WhichPart == 1 ? (numbers.twos * numbers.threes).ToString() : common;
+        Output = Part1 ? (numbers.twos * numbers.threes).ToString() : common;
     }
 
     private static int HasN(string boxID, int n)
