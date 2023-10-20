@@ -1,0 +1,6 @@
+﻿Input is the starting order for a game of cups.  Starting at position 1, move the 3 clockwise from it to the cup with value one less than it
+(subtract 1 if the target isn't still on the table).
+
+Starting from cup 1 (but not including it), what is the order of the cups after 10 rounds?
+Start with 1M cups (all but the seed just consecutive numbers).
+What is the multiple of the two cups to the left of cup 1 after 10M rounds?

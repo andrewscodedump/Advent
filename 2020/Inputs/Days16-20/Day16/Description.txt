@@ -1,0 +1,4 @@
+﻿Input is a set of rules for numbers on tickets, the numbers on your ticket and the numbers on a bunch of tickets you can see.
+
+What is the sum of the numbers on all the tickets that do not fit any range in any rule?
+After working out which rule must match which field, what is the product of the departure fields on your ticket?

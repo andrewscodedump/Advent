@@ -1,0 +1,4 @@
+﻿Input is a time and a list of bus IDs.  Each bus leaves at time 0 and then at each multiple of it's ID.
+
+What is the earliest bus to leave after the given time?  (Return id * how long after the time it is).
+What is the earliest time on which bus 1 leaves at that time, bus 2 at that time + 1 etc?

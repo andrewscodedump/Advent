@@ -1,0 +1,4 @@
+﻿Input is a list of passports, with kvps of fields
+
+How many passports have all fields present (cid missing is OK)
+How many have valid values for all fields (again, cid can be ignored)

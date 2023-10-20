@@ -1,0 +1,4 @@
+﻿Input is a list of directions for moving a ship.
+
+After applying all moves, what is the Manhattan distance of the ship from its starting point?
+As before, but some of the instructions relate to the movement of a waypoint relative to the ship towards which it will move.

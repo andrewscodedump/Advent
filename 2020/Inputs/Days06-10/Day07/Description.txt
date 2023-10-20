@@ -1,0 +1,4 @@
+﻿Input is a list of what bags are inside what bags in a nested set.
+
+How many different coloured bags can contain a shiny gold bag (either directly or indirectly)?
+How many bags in total does a shiny gold bag contain (including itself)?

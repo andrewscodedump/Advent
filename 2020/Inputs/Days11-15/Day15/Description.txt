@@ -1,0 +1,4 @@
+﻿Input is a list of starting numbers for a game.  Next number is 0 if the last number hasn't appeared before, otherwise how long ago it did.
+
+What is the last number after 2020 turns?
+Ditto, but for 30000000 turns.

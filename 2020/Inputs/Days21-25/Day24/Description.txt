@@ -1,0 +1,4 @@
+﻿Input is a set of instructions for laying a hexagonal tiled floor.  Follow each set of directions and flip the tile you end up on (all start white side up).
+
+How many tiles are black side up after following all instructions?
+The tiles are flipped every day by game of life rules.  How many black are showing after 100 days?

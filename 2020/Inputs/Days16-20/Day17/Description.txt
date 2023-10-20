@@ -1,0 +1,4 @@
+﻿Input is a starting 2-D seed for a 3-D game of life (RIP John Conway).
+
+How many cells are active after 6 cycles?
+As above, but in 4-D!

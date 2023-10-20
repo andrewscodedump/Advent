@@ -1,0 +1,4 @@
+﻿Input is a set of binary masks (X = ignore, 0/1 = change bit to 0/1) and a set of instructions for populating memory registers.
+
+Modifying each value by the mask active at that time, what is the sum of the registers after the code executes?
+As above, but now the mask operates on the register address, not the value.  0=ignore, 1=set bit, X=set all possible values for that bit.

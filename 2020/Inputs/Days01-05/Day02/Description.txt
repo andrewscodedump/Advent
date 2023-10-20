@@ -1,0 +1,4 @@
+﻿The input gives a list of password rules and passwords.
+
+The numbers are the minimum and maximum number of times the letter must appear in the password.  How many passwords are valid?
+The numbers are positions in the password (1 relative); one and only one of these may contain the letter.  How many are valid?

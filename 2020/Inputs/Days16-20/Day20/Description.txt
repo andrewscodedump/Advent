@@ -1,0 +1,4 @@
+﻿Input is a set of tiles from a satellite photo
+
+After stitching all the tiles (they may need to be rotated or flipped), what is the multiple of the 4 corner tiles?
+After building the full picture, look for a specific pattern, representing sea monsters.  How many #s are not part of a monster?

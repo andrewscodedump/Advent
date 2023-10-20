@@ -166,7 +166,7 @@ public partial class AdventOfCode : Form
                 catch
                 {
                     theDay = (Day)Activator.CreateInstance(Type.GetType($"Advent{year}.Day{day:D2}"));
-                    theDay.SetMode(chkTestMode.Checked, (int)updPuzzle.Value);
+                    theDay.SetMode(chkTestMode.Checked, puzzle);
                 }
 
                 if (theDay.BatchStatus == Day.DayBatchStatus.NotDoneYet || theDay.BatchStatus == Day.DayBatchStatus.Future || theDay.BatchStatus == Day.DayBatchStatus.NoInputs) continue;

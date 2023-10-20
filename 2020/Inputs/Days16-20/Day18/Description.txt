@@ -1,0 +1,4 @@
+﻿Input is a set of maths problems, using a non-standard method.  Brackets are still done first, but everything else is done strictly left to right.
+
+What is the sum of the answers to all the problems>
+As above, but BODMAS has been changed to BOASDM.

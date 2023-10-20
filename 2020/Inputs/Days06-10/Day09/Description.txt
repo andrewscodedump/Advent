@@ -1,0 +1,4 @@
+﻿Input is a list of encrypted numbers
+
+What is the first number in the list that cannot be created as a sum of the previous 25 numbers?
+What is the sum of the maximum and minimum values in the first contiguous range of numbers that add up to the number found in part 1?

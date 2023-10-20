@@ -1,0 +1,5 @@
+﻿Input is a layout of seats.  L is empty, # is occupied, . is not a seat.
+Seats are filled or occupied by a cellular automaton based on the number of neighbouring seats occupied.
+
+Once the seat changes settle down to a steady state, how many are occupied?
+As above, but rather than immediate neighbours, uses the first seats visible in a straight line.

@@ -1,0 +1,4 @@
+﻿Input is an assembly code program
+
+The program has an infinite loop.  What is the value in the accumulator before the first time an instruction is called twice?
+Changing one of the jmps to a nop or vice versa will fix the program.  What is the value in the accumulator when it ends?

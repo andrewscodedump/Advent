@@ -1,0 +1,4 @@
+﻿Input is the public keys for a door and a card.  Apply a looping hash to a starting value of 1.
+
+Find the number of loops to produce the PK for one of them and then apply this number of loops to the other one's PK to get the encryption key.
+Complete both parts of all proceeding problems!!

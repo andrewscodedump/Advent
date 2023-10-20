@@ -1,0 +1,4 @@
+﻿Input is a list of foods, giving their ingredients and what allergens they contain.  Ingredients > Allergens one to zero or one.
+
+How many ingredients have no allergens?
+What is the list of ingredients containing allergens, sorted by allergen name?

@@ -1,0 +1,4 @@
+﻿Input is a set of instructions for finding seats on a plane.  There are 128 rows and 8 columns.  F binary chops to the front half of the rows, B to the back,
+
+What is the largest seat number (column*8+row)?
+Excluding the missing rows at the beginning and end, what is the only seat left unoccupied?

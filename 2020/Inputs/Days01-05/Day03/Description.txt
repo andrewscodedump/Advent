@@ -1,0 +1,4 @@
+﻿Input is a map of a forest (which repeats indefinitely horizontally)
+
+Going 3 forward and one down, how many trees (#) do you hit?
+As above, but summing over several different moves.

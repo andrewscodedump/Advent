@@ -1,0 +1,4 @@
+﻿Input is a set of sets of questions answered, bunched into groups
+
+Summing across all groups, how many questions have been answered by anyone in the group?
+As above, but for everyone.

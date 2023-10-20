@@ -1,0 +1,4 @@
+﻿Input is a list of partial rules and a set of possible messages
+
+After fully expanding rule 0, how many messages match it?
+As before, but with changes to a couple of the rules (expansion now contains loops!)

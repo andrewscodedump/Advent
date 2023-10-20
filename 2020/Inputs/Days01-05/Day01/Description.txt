@@ -1,0 +1,4 @@
+﻿Inputs are a list of expense sheet values. 
+
+For the pair which sum to 2020, what is their product?
+As part 1, but a trio rather than a pair.

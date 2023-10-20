@@ -1,0 +1,4 @@
+﻿Input is a list of outputs of a set of converter cables.  The starting power is 0, and each cable can increase it's input by up to 3.  Final output is largest cable +3.
+
+If you use every adapter what is the number of +1 steps multiplied by the number of +3 steps?
+How many different ways are there of arranging the cables to match the final output?

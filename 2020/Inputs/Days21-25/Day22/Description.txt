@@ -1,0 +1,4 @@
+﻿Input is the starting position for a game of cards.  Each player plays their top card and the winner adds the two to the bottom of their pile.
+
+What is the sum of (position * card) after someone has all cards?
+As above, but with recursive mini games under certain circumstances.
