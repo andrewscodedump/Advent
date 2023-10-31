@@ -1,0 +1,4 @@
+﻿Input is a set of programs, with their weights and what programs they have above them?
+
+Which program is at the bottom of the stack?
+The stack is unbalanced - one of the weights is wrong.  What should it be to balance the stack?

@@ -1,0 +1,4 @@
+﻿You need to calculate the fuel required for a rocket
+
+The fuel for each module in the input is calculated by dividing the mass of the module by three, subtracting two and rounding down
+As above, but every load of fuel needs more fuel for itself, using the same formula.

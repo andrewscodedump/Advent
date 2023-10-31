@@ -5,8 +5,8 @@ public partial class Day18 : Advent.Day
     public override void DoWork()
     {
         int dimension = TestMode ? 6 : 100;
-        int iterations = TestMode ? 4 : 100;
-        Input = new string(',', dimension + 2) + ";." + Input.Replace(";", ",;,") + ".;" + new string('.', dimension + 2);
+        int iterations = TestMode ? Part1 ? 4 : 5 : 100;
+        Input = new string('.', dimension + 2) + "¶." + Input.Replace("¶", ".¶.") + ".¶" + new string('.', dimension + 2);
         List<List<int>> before = new(), after = new();
         foreach (string lineInput in InputSplit)
         {

@@ -1,0 +1,4 @@
+﻿Input is a list of instructions for a Turing machine which can be in a number of states, the action to take at any point depending on the current state.
+
+How many 1s are there on the machine's tape after the number of steps given in the instructions
+(There is no part 2 for day 25)

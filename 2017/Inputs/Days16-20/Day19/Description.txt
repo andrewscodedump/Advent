@@ -1,0 +1,4 @@
+﻿Input is a series of lines forming a grid.  Follow the lines starting from the one in the top row, picking up letters as you go
+
+What letters are picked up (in order)?
+How many steps until the end of the path?

@@ -1,0 +1,4 @@
+﻿The input gives a set of instructions for what a set of robots can do.  Each robot carries out its instructions when it holds 2 chips.
+
+Which bot compares chips 17 and 61?
+What is the productio of the single chip values in outputs 0, 1 and 2?

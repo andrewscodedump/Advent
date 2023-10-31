@@ -1,0 +1,5 @@
+﻿The input gives the starting position of each disk and its rotation speed in a kinetic sculpture.
+Each disk takes 1 second to move between positions and a ball takes 1 second to drop between disks.  The ball can only pass if the disk is at position 0.
+
+What time should be ball be released to fall through a hole in every disk?
+As above, but a new disk with 11 positions has been added at the end.

@@ -1,0 +1,5 @@
+﻿Input is an IntCode program.  Running it will generate a map of a convoluted path.
+
+What is the sum of the products of the x and y coordinates of all the points where the path crosses itself.
+Set memory pos 0 of the code to 2, and run again.  The inputs need to be a series of turns and distances to traverse the path
+(encoded in a weird ascii format).  What is the final output?

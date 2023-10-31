@@ -1,0 +1,7 @@
+﻿The input is a map of an area.  The area will evolve over time: each minute, an open area (.) will grow trees if three or more adjacent areas contain trees;
+trees (|) will become a yard if three or more adjacent areas are yards; a yard (#) will stay a yard if it is adjacent to at least one other yard, and
+at least one stand of trees, otherwise it becomes open.
+The resource value of the area is the number of yards times the number of trees.
+
+What is the value of the area after 10 minutes?
+What will its value be after 1,000,000,000 minutes?

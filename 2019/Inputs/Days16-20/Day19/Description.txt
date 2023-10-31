@@ -1,0 +1,4 @@
+﻿Input is an IntCode program to control a probe.  The two inputs to the code give the position the probe is to move to.  The output gives 0 or 1
+
+Checking in a 50 x 50 square, how many points are affected by the tractor beam?
+What is the top left corner of the first 100 x 100 square all of which is in range?

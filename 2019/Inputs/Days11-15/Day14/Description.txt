@@ -1,0 +1,4 @@
+﻿Input is a series of reactions needed to make fuel from ore.
+
+What is the minimum amount of ore needed to make 1 unit of fuel?
+You have a trillion units of ore available.  What is the maximum amount of fuel you can make?

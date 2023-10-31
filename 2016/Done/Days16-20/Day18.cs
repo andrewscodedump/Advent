@@ -6,15 +6,16 @@ public partial class Day18 : Advent.Day
     {
         int numberSafe = 0;
         List<List<bool>> floor = new();
-
-        for (int row = 0; row < int.Parse(InputSplit[1]); row++)
+        string firstRow = Input;
+        int numRows = Part2 ? 40_000 : Part1 ? firstRow == "..^^." ? 3 : 10 : 5;
+        for (int row = 0; row < numRows; row++)
         {
             floor.Add(new List<bool>());
             floor[row].Add(true);
-            for (int col = 1; col <= InputSplit[0].Length; col++)
+            for (int col = 1; col <= firstRow.Length; col++)
             {
                 if (row == 0)
-                    floor[row].Add(InputSplit[0][col - 1] == '.');
+                    floor[row].Add(firstRow[col - 1] == '.');
                 else
                     floor[row].Add(floor[row - 1][col - 1] == floor[row - 1][col + 1]);
                 numberSafe += floor[row][col] ? 1 : 0;

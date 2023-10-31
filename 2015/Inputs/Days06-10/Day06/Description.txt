@@ -1,0 +1,5 @@
+﻿The input is a set of instructions to be carried out on a 1000x1000 grid of lights, all initially off.
+For part 2, "On" means increase brightness by 1; "Off" means decrease brightness by 1 (minimum 0) and "Toggle" means increase brightness by 2.
+
+How many lights are lit after all instructions have been carried out?
+What is the total brightness of the lights at the end?

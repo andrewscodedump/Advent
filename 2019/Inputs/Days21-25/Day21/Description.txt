@@ -1,0 +1,4 @@
+﻿Input is an IntCode program for controlling a droid.  The droid can detect (and report) where there are holes ahead of it.
+You can tell it when and how far to jump.
+
+How much damage does the droid detect?

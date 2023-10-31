@@ -4,15 +4,13 @@ public partial class Day02 : Advent.Day
 {
     public override void DoWork()
     {
-        int total = 0, min = int.MaxValue, max = 0;
+        int total = 0;
         foreach (string line in InputSplit)
         {
             int[] numbers = line.Split(' ').Select(int.Parse).ToArray();
             if (Part1)
             {
-                foreach (int number in numbers)
-                    (min, max) = (Math.Min(min, number), Math.Max(max, number));
-                total += max - min;
+                total += numbers.Max() - numbers.Min();
             }
             else
                 for (int i = 0; i < numbers.Length; i++)

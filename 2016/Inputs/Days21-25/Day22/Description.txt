@@ -1,0 +1,7 @@
+﻿You have a massive disk array.  Sizes of each disk are given in the input.  An adjacent pair of nodes A,B is viable if 
+the data on A (used) is not zero, and would fit on B (Avail)
+In part 2, you need to move the data in the top right hand corner into the top left one.  Data can only be moved from a non-full
+(ie less data than the avail of the empty one) disk to the empty one.
+
+How many valid nodes are there?
+How many steps are needed?

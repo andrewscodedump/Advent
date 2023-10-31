@@ -1,0 +1,6 @@
+﻿Input is a set of lines defining the layout of train tracks and the current locations and directions of the carts on them.
+Carts move in turn top to bottom one step at a time.  On reaching intersections, a cart turns left first time, straight ahead the second,
+right the third and so on.
+
+What is the location of the first crash to happen?
+Removing both carts involved in a crash, what is the location of the last one left unscathed?

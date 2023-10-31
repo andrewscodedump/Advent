@@ -5,7 +5,7 @@ public partial class Day12 : Advent.Day
     public override void DoWork()
     {
         #region Setup Variables and Parse Inputs
-        string[] temp = Input.Replace("x=", "").Replace("y=", "").Replace("z=", "").Replace(" ", "").Replace("<", "").Replace(">", "").Split(';');
+        string[] temp = Input.Replace("x=", "").Replace("y=", "").Replace("z=", "").Replace(" ", "").Replace("<", "").Replace(">", "").Split('¶');
         ((int x, int y, int z) position, (int x, int y, int z) velocity)[] planets = new ((int, int, int), (int, int, int))[4];
         int iterations = 0, totalEnergy;
         int limit = TestMode ? 100 : 1000;
@@ -19,6 +19,7 @@ public partial class Day12 : Advent.Day
             (planets[0].position.z, planets[1].position.z, planets[2].position.z, planets[3].position.z, 0, 0, 0, 0)};
         (int, int, int, int, int, int, int, int)[] states = { (0, 0, 0, 0, 0, 0, 0, 0), (0, 0, 0, 0, 0, 0, 0, 0), (0, 0, 0, 0, 0, 0, 0, 0) };
         int xLoop = 0, yLoop = 0, zLoop = 0;
+        if (TestMode && Part1 && planets[0].position.x == -1) limit = 10;
         #endregion Setup Variables and Parse Inputs
 
         do

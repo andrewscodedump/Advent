@@ -1,0 +1,4 @@
+﻿Input is a list of IP addresses
+
+How many addresses are valid (have the pattern "abba" outside the brackets but not inside)?
+How many addresses are valid (have an "aba" pattern outside the brackets and a matching "bab" inside)?

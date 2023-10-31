@@ -7,7 +7,7 @@ public partial class Day23 : Advent.Day
         Dictionary<string, int> registers = new() { { "a", Math.Abs(1 - WhichPart) }, { "b", 0 } };
 
         int curPos = 0;
-        string[] instructions = Input.Replace(",", "").Split(';');
+        string[] instructions = Input.Replace(",", "").Split('¶');
 
         do
         {

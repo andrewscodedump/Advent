@@ -1,0 +1,4 @@
+﻿Input is a series of moves on a hexagonal grid
+
+What is the minimum number of moves to return from the final position back to the origin?
+What is the furthest distance (in minimum moves to return) from the origin reached during the trip?

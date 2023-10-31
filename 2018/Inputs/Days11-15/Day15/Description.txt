@@ -1,0 +1,7 @@
+﻿Input is a map of a cave full of Elves and Goblins (# are walls, . spaces).  Each turn, all the goblins and elves (starting in the top left) move towards the nearest creature of the other kind.
+If they are next to an enemy at the start (or after they move), they attack it, reducing the enemy's health by their hit power.  When someone's health hits zero, they are removed.
+
+After all elves or goblins have been killed, what is the score (the number of survivors times the number of rounds taken).
+If the elves' hit points were increased to the minimum amount so that none of them would be killed, what would the score be?
+
+There's a bug in here where for the first test on part 1 and live part 1 it's counting one round too few.

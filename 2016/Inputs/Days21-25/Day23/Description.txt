@@ -1,0 +1,7 @@
+﻿Input is an Assembunny (see day 12) program, but with a new instruction
+	tgl changes the operator of the instruction at a given offset
+	inc->dec, other one arg instructions->inc
+	jnz->cpy, other two arg instructions->jnz
+
+Starting with 7 in register a, what value is in it after running?
+As above, but starting with 12.

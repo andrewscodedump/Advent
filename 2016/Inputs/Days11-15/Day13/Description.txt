@@ -1,0 +1,5 @@
+﻿Generate a maze from the input:
+Calculate x2 + 3x + 2xy + y + y2; convert to binary; count the 1s.  If the result is even, it's a space otherwise it's a wall.
+
+What is the fewest steps to reach 31, 39
+How many locations (including your start) can you reach in 50 steps?

@@ -1,0 +1,4 @@
+﻿Input gives the paths of two wires, both starting at the same point.
+
+What is the closest point to the origin (by Manhattan distance) where the wires cross?
+What is the point where the two wires cross with the shortest total distance travelled?

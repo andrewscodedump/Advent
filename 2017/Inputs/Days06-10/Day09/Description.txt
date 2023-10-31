@@ -1,0 +1,4 @@
+﻿Input is a series of nested groups delimited by {}.  Garbage strings are delimited by <>, with ! as an escape character
+
+What is the total of the nesting level of all groups, where the outer level is 1?
+How many characters of garbage are there (excluding the delimiters and any escape sequences)?

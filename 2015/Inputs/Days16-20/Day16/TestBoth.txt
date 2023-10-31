@@ -1,0 +1,3 @@
+﻿Sue 1, children: 1, cats: 2, samoyeds: 3
+Sue 2, children: 3, cats: 7, pomeranians: 3, goldfish: 5, trees: 3, cars: 2, perfumes: 1
+Sue 3, children: 3, cats: 8, pomeranians: 2, goldfish: 4, trees: 4, cars: 2, perfumes: 1

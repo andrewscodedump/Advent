@@ -1,0 +1,6 @@
+﻿Input is a list of times when guards come on duty and when they fall asleep/wake up (all sleep times are between 00:00 and 00:59)
+
+Find the guard who is asleep for the greatest total time, then which minute they're asleep during most often.
+Find the guard who is asleep most often during a given minute
+
+(The result in both cases is the guard's number multiplied by the minute)

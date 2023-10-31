@@ -1,0 +1,4 @@
+﻿Input is (another) IntCode program (see day 7 et al), with a new addressing mode and a new operator added
+
+What is the output if the input is 1 (if there is more than one output, there's been an error)
+Ditto, but with an input of 2

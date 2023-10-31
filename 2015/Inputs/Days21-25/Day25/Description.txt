@@ -1,0 +1,5 @@
+﻿Array of codes is generated on an infinite array, diagonally up and to the right.  When you reach row 1, loop back down to column 1 in the next empty slot.
+You start with 20151125 at 1,1, and generate the next number each time by multiplying by 252533 and getting the remainder after dividing by 33554393
+
+What is the code at the coordinates given in the input?
+There is no part 2 for today

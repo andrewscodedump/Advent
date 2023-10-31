@@ -1,0 +1,4 @@
+﻿Input is a set of machine code instructions operating on an (undisclosed) set of registers
+
+Running the instructions in order, what is the maximum register value at the end?
+What is the maximum register value used during operation?

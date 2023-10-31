@@ -1,0 +1,5 @@
+﻿Input is a password that needs changed.  It is changed by incrementing the rightmost letters, wrapping round at z and then checking it's valid.
+A password is valid if it includes one increasing straight of at least three letters; does not contain the letters i, o, or l; contains at least two different, non-overlapping pairs of letters.
+
+What is the next valid password?
+What is the next one after the one we've just found?

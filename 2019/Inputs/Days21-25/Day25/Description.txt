@@ -1,0 +1,4 @@
+﻿Input is an IntCode program for communicating with a droid.  You need to give it instructions for navigating through a ship, and receive descriptions
+of what it encounters.
+
+What is the password for the ship's airlock?

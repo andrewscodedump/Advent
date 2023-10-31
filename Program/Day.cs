@@ -1,4 +1,6 @@
-﻿namespace Advent;
+﻿using System.Windows.Forms;
+
+namespace Advent;
 
 public abstract partial class Day
 {
@@ -90,12 +92,13 @@ public abstract partial class Day
         Inputs = GetInputs();
         SetInputs();
         Expecteds = GetExpecteds();
+        BatchStatus = CheckStatus(BatchStatus);
         Output = string.Empty;
         Rand = new Random();
         MD5 = System.Security.Cryptography.MD5.Create();
     }
 
-public void AddInput(string newInput)
+    public void AddInput(string newInput)
     {
         Inputs.Add(newInput);
         SetInputs();
@@ -161,7 +164,7 @@ public void AddInput(string newInput)
                 continue;
             }
             if (input.Length > 0)
-                input.Append(';');
+                input.Append('¶');
             input.Append(line);
         }
         inputs.Add(input.ToString());
@@ -206,21 +209,66 @@ public void AddInput(string newInput)
                 reading = true;
                 continue;
             }
-            if (line.StartsWith("Test") || line.StartsWith("Live"))
-                reading = false;
             if (reading)
             {
-                expecteds.Add(line);
+                if (line.StartsWith("Test") || line.StartsWith("Live"))
+                    reading = false;
+                else if (new string[] { "***NotDoneYet***", "***Performance***", "***NoTestData***", "***NonCoded***", "***NotWorking***", "***ManualIntervention***" }.Contains(line))
+                    continue;
+                else
+                    expecteds.Add(line);
             }
         }
         return expecteds;
+    }
+
+    private DayBatchStatus CheckStatus(DayBatchStatus current)
+    {
+        //NotDoneYet, Performance, NonCoded, NotWorking, ManualIntervention
+        if (new DateTime(year, 12, day, 05, 00, 00) > DateTime.Now) return DayBatchStatus.Future;
+        bool reading = false;
+        string mode = TestMode ? "Test" : "Live";
+        bool firstLine = true;
+        //TODO this needs to be changed to use a config file
+        string filePath = $@"{inputPath}\Expected.txt";
+
+        if (!File.Exists(filePath) || File.ReadAllLines(filePath).Length == 0) return current;
+
+        foreach (string line in File.ReadAllLines(filePath))
+        {
+            if (line == $"{mode}{WhichPart}")
+            {
+                reading = true;
+                firstLine = false;
+                continue;
+            }
+            if (line.StartsWith("Test") || line.StartsWith("Live"))
+                reading = false;
+            if (reading || firstLine)
+            {
+                DayBatchStatus test = line switch
+                {
+                    "***NotDoneYet***" => DayBatchStatus.NotDoneYet,
+                    "***NoTestData***" => DayBatchStatus.NoTestData,
+                    "***Performance***" => DayBatchStatus.Performance,
+                    "***NonCoded***" => DayBatchStatus.NonCoded,
+                    "***NotWorking***" => DayBatchStatus.NotWorking,
+                    "***ManualIntervention***" => DayBatchStatus.ManualIntervention,
+                    _ => current,
+                };
+                if (test != current)
+                        return test;
+            }
+            firstLine = false;
+        }
+        return current;
     }
 
     private void SetInputs()
     {
         if (inputs == null || inputs.Count == 0 || BatchStatus == DayBatchStatus.NotDoneYet) return;
         if (BatchStatus == DayBatchStatus.NoInputs) BatchStatus = DayBatchStatus.Available;
-        InputSplit = Inputs[CurrentInput].Split(';', StringSplitOptions.RemoveEmptyEntries);
+        InputSplit = Inputs[CurrentInput].Split('¶', StringSplitOptions.RemoveEmptyEntries);
         InputSplitC = Inputs[CurrentInput].Split(',');
         try { InputSplitInt = Array.ConvertAll(InputSplit, int.Parse); }
         catch { InputSplitInt = null; }

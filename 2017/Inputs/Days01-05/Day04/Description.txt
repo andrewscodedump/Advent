@@ -1,0 +1,4 @@
+﻿Input is a list of potential passphrases, phrase is valid if no word is repeated
+
+Give the number of valid passphrases in the list
+As part 1, but phrase is invalid if any word is an anagram of any other

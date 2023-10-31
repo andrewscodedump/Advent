@@ -9,6 +9,7 @@ public partial class Day03 : Advent.Day
         Dictionary<(int X, int Y), int> grid = new() { { pos, 1 } };
         do
         {
+            if (num >= target) break;
             for (int i = 0; i < step; i++)
             {
                 pos.X++;

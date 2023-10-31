@@ -1,0 +1,4 @@
+﻿Input is a JSON string.
+
+What is the sum of all the numbers in the string?
+As above, but ignore any {objects} with a "red" in them.  [Arrays] containing "red" are OK (unless it's in an object in the array).

@@ -1,0 +1,10 @@
+﻿Input is a series of instructions for scrambling a string.
+	Swap - swap the characters at the position given
+	Rotate left/right - rotates the string left/right the given number of positions
+	Rotate based - get the index of the given character, and rotate right that number of positions,
+			plus 1, plus another one if the index is 4 or more.
+	Reverse - reverse the substring between the positions given
+	Move - move the character at the first position to end up at the second position
+
+What is the result of scrambling abcdefgh?
+What is the result of unscrambling fbgdceah?

@@ -1,0 +1,6 @@
+﻿The input gives the positions of bands of clay in a 2D cross section of the earth, with a spring at 500,0.
+Water from the spring will flow down until it hits clay, at which point it will flow left and right until it hits a wall or flows off an edge.
+If clay is found on both sides, then the water will fill up the container until an edge is hit again.
+
+How many points does the water reach?  (Ignoring any below the lowest and above the highest clay).
+If the spring stopped running, only the water in "basins" will be retained.  How much of this is there?

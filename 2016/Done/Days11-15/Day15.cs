@@ -9,7 +9,7 @@ public partial class Day15 : Advent.Day
         List<Disk> disks = new();
 
         // Populate list of disks
-        foreach (string input in Input.Split('|'))
+        foreach (string input in InputSplit)
         {
             string[] words = input.Split(new char[] { ',', ' ', '.' });
             disks.Add(new Disk(int.Parse(words[1][1..]), int.Parse(words[3]), int.Parse(words[12]) - (int.Parse(words[6][5..]) % int.Parse(words[3]))));

@@ -1,0 +1,9 @@
+﻿10 players; last marble is worth 1618 points
+***AdditionalInput***
+13 players; last marble is worth 7999 points
+***AdditionalInput***
+17 players; last marble is worth 1104 points
+***AdditionalInput***
+21 players; last marble is worth 6111 points
+***AdditionalInput***
+30 players; last marble is worth 5807 points

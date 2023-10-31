@@ -1,0 +1,4 @@
+﻿Input is a set of machine code instructions.  (See also day 18).  All registers start at zero.
+
+After the program completes, how many times has the MUL operator been called?
+Register a now starts at one.  What is the value in register h when the program (eventually) ends?

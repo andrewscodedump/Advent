@@ -1,0 +1,4 @@
+﻿Input gives the upper and lower bounds of a numeric password, whose digits must be in ascending (or equal) order
+
+The password must have a consecutive pair of digits.  How many in the range meet this criterion?
+As above, but the pair must not be part of a larger set of the same digit.

@@ -1,0 +1,4 @@
+﻿The input is a list of methods for cutting rectangles from a sheet of fabric; (#claim @ left,top: widthxheight)
+
+Applying all the methods, how many square inches overlap two or more of them?
+What is the ID of the only method which does not overlap at all with any of the others?

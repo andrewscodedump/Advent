@@ -1,0 +1,9 @@
+﻿Input is a set of machine code instructions.
+	hlf r - half the value in register r; tpl r - triple it
+	inc r - increment register r;
+	jmp n - jump forward or back n steps
+	jie r,n - jump if r is even; jio r,n - jump if r is odd
+Program exits when it tries to access an instruction that doesn't exist
+
+What is the final value in register b?
+As above, but set register a to 1 before starting.

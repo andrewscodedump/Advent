@@ -1,0 +1,5 @@
+﻿The Game of Life on a 100x100 grid (6x6 in test mode).
+An active light stays on if it has 2 or 3 lit neighbours, an inactive one turns on if it has 3 lit neighbours.
+
+How many lights are lit after 100 iterations (6 in test mode)
+As above, but the four corner lights are stuck on.

@@ -1,0 +1,4 @@
+﻿Input is a list of values.  Find the largest, clear it and distribute it among the others one at a time, starting at the next position and looping back at the end
+
+How many iterations until a pattern is repeated?
+After finding a repeat, how many iterations until it's repeated again?

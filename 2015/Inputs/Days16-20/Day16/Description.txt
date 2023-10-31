@@ -1,0 +1,5 @@
+﻿You've received a present from one of your many Aunts Sue, but don't know from which one.
+The input gives you what you know about each of them and the array of results gives you details of the sender, extracted from the present.
+
+From which Aunt number has the present come?
+As above, but the cats/trees results give a minimum number, and the pomeranians/goldfish give a maximum value.

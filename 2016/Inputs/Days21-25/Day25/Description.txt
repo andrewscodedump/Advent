@@ -1,0 +1,4 @@
+﻿Assembunny code (again! - see days 12 & 23).  New instruction added - "out x" - outputs x (value or register)
+
+What is the lowest positive integer that will generate an infinite repeating sequence of 0s and 1s?
+There is no part 2 (it's Christmas Day - get a life!)

@@ -7,7 +7,7 @@ public partial class Day25 : Advent.Day
     {
         if (Part2) return;
 
-        Input = Regex.Replace(Input, @"[ :\-\.]", "")  + ";Stophere";
+        Input = Regex.Replace(Input, @"[ :\-\.]", "")  + "¶Stophere";
         Dictionary<string, Dictionary<int, (int, int, string)>> rules = new();
         Dictionary<int, int> tape = new() { { 0, 0 } };
         int steps = 0, curPos = 0, ones = 0;

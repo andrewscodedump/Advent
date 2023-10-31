@@ -1,0 +1,5 @@
+﻿Input is a list of ingredients and what they contribute to a cookie recipe (each cookie has 100 teaspoons of ingredients).
+The total value of a cookie is given by multiplying the values of each attribute exept calories (negative values round up to zero).
+
+What is the highest value cookie possible?
+What is the highest value cookie possible that has exactly 500 calories?

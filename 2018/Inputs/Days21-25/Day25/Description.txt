@@ -1,0 +1,4 @@
+﻿Input is a list of fixed points in a four dimensional spacetime.  Distances between the points are given as Manhattan distances.
+
+How many distinct sets are there where all points are no more than 3 units from at least one other in the set?
+Part two in this final challenge is gained by solving part two in all other challenges.

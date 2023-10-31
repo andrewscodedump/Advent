@@ -1,0 +1,4 @@
+﻿The input is a series of possible routes through a maze.  Brackets give branching possibilies, with the separate branches delimited by vertical strokes.
+
+Counting number of doors, what is the greatest minimum distance you can travel to reach a given room?
+How many rooms have a shortest possible route of 1000 or more?

@@ -1,0 +1,4 @@
+﻿The input is a series of strings containing escape sequences (for simplicity, opening and closing quotes have been removed from each individual string).
+
+What is the difference in length between the input strings before and after escape sequences have been resolved?
+Taking the original input, escape all the characters that need it (even if they are in an escape sequence themselves).  Again, what is the difference between the original and processed lengths?

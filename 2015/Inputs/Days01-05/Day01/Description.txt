@@ -1,0 +1,4 @@
+﻿Input is a set of instructions for a lift.  ) means go up and ( means go down.
+
+What floor do the instructions take you to?
+What is the position of the first instruction that takes you to the basement?

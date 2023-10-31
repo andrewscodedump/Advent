@@ -1,0 +1,4 @@
+﻿Input is a set of instructions for navigating a Manhattan grid
+
+How many blocks away are you after following all instructions?
+How many blocks away is the first location you visit twice?

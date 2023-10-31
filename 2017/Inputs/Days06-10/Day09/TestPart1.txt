@@ -1,0 +1,15 @@
+﻿{}
+***AdditionalInput***
+{{{}}}
+***AdditionalInput***
+{{},{}}
+***AdditionalInput***
+{{{},{},{{}}}}
+***AdditionalInput***
+{<a>,<a>,<a>,<a>}
+***AdditionalInput***
+{{<ab>},{<ab>},{<ab>},{<ab>}}
+***AdditionalInput***
+{{<!!>},{<!!>},{<!!>},{<!!>}}
+***AdditionalInput***
+{{<a!>},{<a!>},{<a!>},{<ab>}}

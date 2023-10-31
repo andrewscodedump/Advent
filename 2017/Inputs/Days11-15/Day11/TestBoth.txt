@@ -1,0 +1,9 @@
+﻿ne,ne,ne
+***AdditionalInput***
+ne,ne,sw,sw
+***AdditionalInput***
+ne,ne,s,s
+***AdditionalInput***
+se,sw,se,sw,sw
+***AdditionalInput***
+ne,se

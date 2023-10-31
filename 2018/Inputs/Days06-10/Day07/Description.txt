@@ -1,0 +1,6 @@
+﻿Input is a set of instructions for building a sleigh
+
+Given all the dependencies, in which order should it be build (if two steps are available, do them in alpha order)
+
+A bunch of elves are helping with the build (each can only work on one thing at a time).  How long will it take to complete?
+A step takes 60 secs (0 in test) plus the alpha position of the step's letter (A=1 etc).

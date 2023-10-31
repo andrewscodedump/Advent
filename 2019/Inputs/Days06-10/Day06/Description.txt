@@ -1,0 +1,4 @@
+﻿Input is a list of orbits, where the first item is the planet and the second the satellite.
+
+How many total orbits are there (including indirect orbits, where the planet is in turn orbitting another planet)?
+The SAN input gives Santa's location, and the YOU one yours.  What is the minimum number of orbital transfers to get to him?

@@ -1,0 +1,4 @@
+﻿List of numbers - find all which match the following one (end wraps back to beginning)
+
+Sum of all numbers found
+As part 1, but match number halfway round rather than next one

@@ -1,0 +1,6 @@
+﻿The input is a description of the make up of the two sides in an attack on an immune system.
+Groups attack in order of effective power (number of units * unit power).  Each group selects the enemy group to which it would do the most damage.
+The attacks then proceed in order of Initiative of the attacker.
+
+After one side has been wiped out, what are the total number of units left in the surviving side?
+Using the smallest possible boost to the immune system's attack points which allows it to win, how many units would it have left at the end?

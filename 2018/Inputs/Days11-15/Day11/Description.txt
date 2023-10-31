@@ -1,0 +1,5 @@
+﻿Input is the ID of a battery grid
+Each cell in the grid has its power calculated by a convoluted formula based on its location in the grad and the grid ID.
+
+What is the top left corner of the 3x3 square with the highest total power?
+As above, but for a square of any size (also include the size).

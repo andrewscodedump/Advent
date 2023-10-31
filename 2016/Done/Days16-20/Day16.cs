@@ -4,8 +4,8 @@ public partial class Day16 : Advent.Day
 {
     public override void DoWork()
     {
-        if (TestMode && Part2) return;
-        Output = CheckSumify(Dragonify(InputSplit[1], int.Parse(InputSplit[0]))).ToString();
+        int diskSize = TestMode ? 20 : Part1 ? 272 : 35651584;
+        Output = CheckSumify(Dragonify(Input, diskSize)).ToString();
     }
 
     private string Dragonify(string input, int requiredLength)

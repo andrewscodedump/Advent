@@ -1,0 +1,7 @@
+﻿Input is a list of rooms.
+Letters and dashes at the start give the room name (encrypted); numbers give the sector number and letters in brackets give the checksum.
+Checksum is valid if it contains the 5 commonest letters in the room name in order of commonness (ties are in alphabetical order).
+Room names are decrypted by rotating forward the letters by the number of characters in the sector name (wrapping at z).
+
+Give the sum of the sector numbers for all rooms with valid checksums.
+What is the sector ID of the room in which the North Pole Objects are stored?

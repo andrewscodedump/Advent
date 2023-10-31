@@ -1,0 +1,4 @@
+﻿Input is IntCode for a Network Controller.  There are 50 computers talking to each other using this code.  You start each computer by sending it its address.
+They will then send packets to send to other computers.
+
+What is the Y value of the first packet sent to address 255?

@@ -1,0 +1,7 @@
+﻿Input is a series of coordinates of locations in a plane
+
+For every point in the plane, find the Manhattan distance of the nearest listed location (if there is a draw, ignore it)
+What is the largest non-infinite area belonging to a single location
+
+For every point in the plane, add up the Manhattan distance of every listed location
+What is the largest area where the total distance is less than 10000 (32 for test).

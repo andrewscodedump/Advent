@@ -1,0 +1,4 @@
+﻿The input is the formula for a molecule.  If two adjacent elements are the same type but opposite polarity (upper and lower case), they annihilate.
+
+What length of molecule is left after all annihilations take place?
+What is the shortest possible length of the remaining molecule if all of one given letter (both cases) is removed before processing?

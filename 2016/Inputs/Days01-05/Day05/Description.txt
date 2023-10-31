@@ -1,0 +1,5 @@
+﻿Get MD5 hash of input plus increasing integer.  Only consider hashes wher first five characters are zero.
+For part 1 the required output is 6th character of hash; for part 2, the 6th character gives the position in the password to fill (ignore any >7), 7th gives the character to use
+
+Get password build from first 8 valid hashes
+Get password, using only first valid entry for each position

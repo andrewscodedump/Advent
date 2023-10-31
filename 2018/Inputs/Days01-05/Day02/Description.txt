@@ -1,0 +1,4 @@
+﻿Input is a list of box IDs
+
+Multiply the number of boxes with exacly two of any letter by the number with exactly three of any letter
+Find the two boxes whose IDs differ by only one letter in only one position and return the letters that they have in common

@@ -1,0 +1,8 @@
+﻿Start with a list of bytes.  Input is a list of seeds for an obfuscation routine.
+Start at the beginning, and for each seed in turn, take that number of characters (wrapping at the end) and reverse them.
+After each reversal, move to the end of the reversed bit and then a bit more (the bit more starting at 0 and increasing by one every time).
+
+After all the manipulations, what is the result of multiplying the first and second numbers.
+
+Instead of treating the input as a list of numbers, treat it as a string and the seeds will be the ASCII values of each character (including the spaces and the commas).
+After applying all the manipulations, hash the result by XORing the output in blocks of 16 bytes and output the results as hex.

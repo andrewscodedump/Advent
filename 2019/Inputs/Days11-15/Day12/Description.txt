@@ -1,0 +1,7 @@
+﻿Input is the starting location of 4 moons.  Their velocities start off at zero and change based on the positions of the other moons
+For each pair, x velocity increases by 1 for the one with the highest x, same for y and z
+After all velocities have been calculated new position is calculated based on the speed.
+Energy of a moon is sum of absolute of position coordinates times sum of absolute of velocity coordinates
+
+What is the energy of the system after 1000 steps?
+After how many steps does the system return to its initial state (could be very, very big).

@@ -1,0 +1,4 @@
+﻿Series of lists of numbers.  For each list get the sum of the max and min numbers
+
+Sum of differences between min and max found for each line
+As part 1, but find pairs of numbers which divide exactly for each line, and sum up results of each division

@@ -1,0 +1,4 @@
+﻿Maze runner.  Input describes a maze: #=wall, .=corridor, 0=start point, n=target points
+
+What is the least number of steps needed to visit every target point at least once?
+Ditto, but returning back to the start point

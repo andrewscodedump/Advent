@@ -7,7 +7,7 @@ public partial class Day19 : Advent.Day
     private string DoPart1()
     {
         Input = Input.Replace(" => ", ">");
-        string[] inputs = Input.Split(';');
+        string[] inputs = Input.Split('¶');
         string startMolecule = inputs[^1];
         string[,] convs = new string[inputs.Length - 1, 2];
         Dictionary<string, int> outputs = new();
@@ -46,7 +46,7 @@ public partial class Day19 : Advent.Day
     {
         string molecule;
         Input = Input.Replace(" => ", ">");
-        List<string> inputs = Input.Split(';').ToList();
+        List<string> inputs = Input.Split('¶').ToList();
         string finalMolecule = inputs[^1];
         inputs.RemoveAt(inputs.Count - 1);
         int moves = 0;

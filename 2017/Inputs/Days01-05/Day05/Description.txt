@@ -1,0 +1,4 @@
+﻿Input is a list of jump instructions - output is number of steps until a jump takes us outside the inputs
+
+After each jump increment the value we've just left
+As 1, but if old value is 3 or more, decrement it instead

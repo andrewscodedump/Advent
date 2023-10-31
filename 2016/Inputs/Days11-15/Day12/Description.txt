@@ -1,0 +1,7 @@
+﻿The input is a program written in Assembunny code.  Valid instructions are:
+	cpy x,y - copy integer or register x to register y
+        inc x - increment register x; dec x - decrement register x
+        jnz x,y - jump y steps if x is non-zero
+
+What is the ending value in register a?
+As above, but setting register c to 1 before starting.

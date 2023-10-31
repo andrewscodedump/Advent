@@ -1,0 +1,7 @@
+﻿Input is a set of code which seems to loop infinitely.
+
+What is the lowest value that can be put into register zero at the beginning
+that will allow the code to complete in the lowest possible number of operations?
+
+What is the lowest value that will allow the code to complete in the highest possible
+number of operations?

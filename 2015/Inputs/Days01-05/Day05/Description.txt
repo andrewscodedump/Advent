@@ -1,0 +1,7 @@
+﻿The input gives a list of words.  Santa needs to know if they are naughty or nice.
+A word is nice if:
+It contains at least three vowels; it contains at least one letter that appears twice in a row; it does not contain the strings ab, cd, pq, or xy
+For part 2:
+It contains a pair of any two letters that appears at least twice in the string without overlapping; it contains at least one letter which repeats with exactly one letter between them.
+
+How many nice words are there in the list?

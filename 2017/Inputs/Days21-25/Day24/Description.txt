@@ -1,0 +1,5 @@
+﻿Input is a list of parts to build a bridge with.  The bridge is built domino-wise, starting with 0 on this end.
+A bridge's length is the number of parts it is made from, and its strength is the sum of the numbers in the parts it is made from.
+
+What is the strongest bridge that can be made from the parts given?
+What is the strength of the longest bridge that can be made (if there's a draw for length, take the strongest one)?

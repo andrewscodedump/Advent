@@ -1,0 +1,5 @@
+﻿Input is a corrupted repeated message.
+The original message is assumed to have the most commonly used letter at each position from the repetitions.
+
+What is the original message?
+As above, but taking the least common letter instead of the most.

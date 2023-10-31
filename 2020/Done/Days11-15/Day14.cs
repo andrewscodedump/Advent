@@ -9,7 +9,7 @@ public partial class Day14 : Advent.Day
         List<long> floaters = new();
         long addressBase = 0;
 
-        foreach (string line in Regex.Replace(Input, @"[mask e[\]]", "").Split(';'))
+        foreach (string line in Regex.Replace(Input, @"[mask e[\]]", "").Split('¶'))
         {
             if (line.StartsWith('='))
             {

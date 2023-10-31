@@ -9,7 +9,7 @@ public partial class Day11 : Advent.Day
         foreach (string move in Input.Split(','))
         {
             if (move.Length == 2)
-                (x, y) = (x + move[1] == 'e' ? 1 : -1, y + move[0] == 'n' ? 1 : -1);
+                (x, y) = (x + (move[1] == 'e' ? 1 : -1), y + (move[0] == 'n' ? 1 : -1));
             else
                 y += move[0] == 'n' ? 2 : -2;
 

@@ -1,0 +1,5 @@
+﻿The input is a set of inputs, operations and outputs to a machine code interpreter.
+Inputs and outputs give the contents of 4 registers, and the operation gives an op number and inputs to an operation.
+
+How many of the states in the input could be produced by three or more different opcodes?
+Work out which ID number represents which opcode, run the code (given in the second half of the input), and return the result in register 0 at the end.

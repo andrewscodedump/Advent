@@ -1,0 +1,5 @@
+﻿Loading Santa's sleigh.  Input gives all the parcels to load.  You have to split these into 3 bundles of the same total weight.
+One group should have fewest possible packages.  If more than one with same (fewest) number, take the one with the lowest product of weights.
+
+What is the product of weights in the restricted bundle
+Same, but with four groups instead of three.

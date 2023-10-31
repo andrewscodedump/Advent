@@ -1,0 +1,5 @@
+﻿Input is a seed for an error checking routine
+
+Applying an obscure algorithm to the input, repeating 1000 times, what are the first eight digits of the resulting string?
+Using the same algorithm, but starting with the original input repeated 10000 times, what are the eight characters starting
+at the offset position given by the first seven characters of the input?

@@ -1,0 +1,5 @@
+﻿Room full of traps.  Input gives first row of tiles, subsequent rows are calculated from this.
+Tile is trap if previous row has: L&C trap, R not; C&R trap, L not; only L trap; only R trap.
+
+Part 1 - how many safe tiles are there if there are 40 rows?
+Part 2 - same, but 40,000 rows

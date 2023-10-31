@@ -1,0 +1,4 @@
+﻿Input is a list of frequency changes to be applied, starting at zero.
+
+What is the resulting frequency after all changes have been applied?
+Applying the changes in the list as many times as needed, what is the first frequency that appears twice?

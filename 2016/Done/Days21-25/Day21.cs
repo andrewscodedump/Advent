@@ -9,7 +9,14 @@ public partial class Day21 : Advent.Day
         if (Part2)
             Array.Reverse(InputSplit);
 
-        string work = InputSplit[0];
+        string work = (WhichPart, TestMode) switch
+        {
+            (1, true) => "abcde",
+            (2, true) => "decab",
+            (1, false) => "abcdefgh",
+            (2, false) => "egcdahbf",
+            _ => "",
+        };
         bool descramble = Part2;
         /*
 			* if (Part1)
@@ -17,7 +24,7 @@ public partial class Day21 : Advent.Day
 		else
 			stk.Pop();
 			*/
-        for (int i = 1; i < InputSplit.Length; i++)
+        for (int i = 0; i < InputSplit.Length; i++)
         {
             string[] words = InputSplit[i].Split(' ');
             switch (words[0])

@@ -1,6 +1,7 @@
 ﻿#region Preamble
 
 using System.ComponentModel;
+using System.Windows.Forms;
 
 [assembly: CLSCompliant(true)]
 namespace Advent;
@@ -221,21 +222,8 @@ public partial class AdventOfCode : Form
                         else
                         {
                             double avgTime = totalTime / reps;
-                            if (avgTime >= 1)
-                            {
-                                output.Append($" = {avgTime:0.000000} secs");
-                                Debug.WriteLine($"Day: {day}, part {puzzle} = {avgTime:0.000000} secs");
-                            }
-                            else if (avgTime >= 0.001)
-                            {
-                                output.Append($" = {avgTime*1000:0.000} ms");
-                                Debug.WriteLine($"Day: {day}, part {puzzle} = {avgTime:0.000} ms");
-                            }
-                            else
-                            {
-                                output.Append($" = {avgTime*1000000:0} µs");
-                                Debug.WriteLine($"Day: {day}, part {puzzle} = {avgTime:0} µs");
-                            }
+                            output.Append(FormatTime(avgTime));
+                            Debug.WriteLine($"Day: {day}, part {puzzle}{FormatTime(avgTime)}");
                         }
                         break;
                     default:
@@ -251,6 +239,22 @@ public partial class AdventOfCode : Form
         Debug.WriteLine($"Total Time = {(DateTime.Now - overallStart).TotalSeconds / reps:0.000000} secs");
         //Clipboard.SetText(output.ToString());
         return output.ToString();
+    }
+
+    private static string FormatTime(double time)
+    {
+        if (time >= 1)
+        {
+            return $" = {time:0.000} secs";
+        }
+        else if (time >= 0.001)
+        {
+            return $" = {time * 1000:0.000} ms";
+        }
+        else
+        {
+            return $" = {time * 1000000:0} µs";
+        }
     }
 
     #endregion Private Methods

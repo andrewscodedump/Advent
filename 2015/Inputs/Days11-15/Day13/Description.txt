@@ -1,0 +1,4 @@
+﻿You have a circlar table to populate.  The input gives the happiness that each person would gain by sitting next to someone else.
+
+What is the maximum amount of happiness that could be achieved?
+As above, but find a seat for yourself (you are ambivalent towards everyone and vice-versa).

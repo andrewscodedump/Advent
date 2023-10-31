@@ -1,0 +1,4 @@
+﻿This is a molecular manipulation machine.  The last part of the input gives the target molecule and the remainder give all of the available manipulations.
+
+How many distinct molecules can be built from the starting molecule by applying one only of the manipulations?
+Starting from a single "e", what is the minimum number of manipulations that will give the target molecule?

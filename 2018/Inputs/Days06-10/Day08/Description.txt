@@ -1,0 +1,9 @@
+﻿Input represents a series of nodes in a tree
+First number is the number of children the node has, second is the number of bits of metadata,
+Then all of its children, and finally the actual metadata
+
+What is the sum of the metadata for all nodes
+
+If a node has no children, its value is the sum of it's metadata.  If it does have children, its metadata is a
+series of pointers to those children, and its value is the sum of the values of those children.
+What is the value of the top-level node?

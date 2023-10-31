@@ -1,0 +1,4 @@
+﻿The Input is a list of capabilities of the reindeer in the Reindeer Olympics.
+
+How far has the wining reindeer travelled after 2503 seconds (1000 seconds for the test data)?
+Each reindeer is awarded a point for each second he is in the lead.  How many points does the winning reindeer have?

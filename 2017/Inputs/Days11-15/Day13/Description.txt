@@ -1,0 +1,5 @@
+﻿Input is a list of scanners which move up and down a column (first number is the column position, second is the height), once a tick. 
+You move along the first row once a tick, being caught if the scanner is in a square when you enter it.
+
+Every time you are caught, you get a score equal to the column number times its height.  What is your total score?
+By how many ticks do you have to delay your departure before you can get all the way through without being caught?

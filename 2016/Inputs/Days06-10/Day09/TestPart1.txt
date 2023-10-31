@@ -1,0 +1,11 @@
+﻿ADVENT
+***AdditionalInput***
+A(1x5)BC
+***AdditionalInput***
+(3x3)XYZ
+***AdditionalInput***
+A(2x2)BCD(2x2)EFG
+***AdditionalInput***
+(6x1)(1x3)A
+***AdditionalInput***
+X(8x2)(3x3)ABCY

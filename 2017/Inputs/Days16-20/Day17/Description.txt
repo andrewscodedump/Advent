@@ -1,0 +1,4 @@
+﻿Input is a step length which a process will take.  It starts at position 0, inserts 0 then steps (wrapping at the end), inserts 1 and so on.
+
+What is the value in the position after that in which 2017 is inserted?
+What value is after 0 after 50,000,000 steps?

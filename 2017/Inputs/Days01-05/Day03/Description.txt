@@ -1,0 +1,4 @@
+﻿Form a grid by doing a spiral starting at 0,0 with 1 and then right, up, left, down, etc.
+
+Give Manhattan distance from 0,0 to the square where the input is found
+As 1, but grid is populated from sum of all neighbours of the square.  Distance is to first square where value is greater than the input

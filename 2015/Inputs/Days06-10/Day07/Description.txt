@@ -1,0 +1,4 @@
+﻿The input is a series of operations to be carried out on a set of logic gates. The output of a gate is not fired until both inputs are.
+
+What is the ultimate output of wire a?
+Clear all the wires, feed the output from part 1 into wire b and repeat.

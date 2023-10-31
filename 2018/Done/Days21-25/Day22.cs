@@ -5,7 +5,7 @@ public partial class Day22 : Advent.Day
     public override void DoWork()
     {
         #region Setup Variables and Parse Inputs
-        string[] bits = Input.Split(new char[] { ' ', ':', ';', ',' }, StringSplitOptions.RemoveEmptyEntries);
+        string[] bits = Input.Split(new char[] { ' ', ':', '¶', ',' }, StringSplitOptions.RemoveEmptyEntries);
         int depth = int.Parse(bits[1]);
         (int x, int y) target = (int.Parse(bits[3]), int.Parse(bits[4]));
         Dictionary<(int x, int y), (int gi, int el, string type, int bestTime)> map = new();

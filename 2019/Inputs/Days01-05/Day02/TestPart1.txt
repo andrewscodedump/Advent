@@ -1,0 +1,9 @@
+﻿1,9,10,3,2,3,11,0,99,30,40,50
+***AdditionalInput***
+1,0,0,0,99
+***AdditionalInput***
+2,3,0,3,99
+***AdditionalInput***
+2,4,4,5,99,0
+***AdditionalInput***
+1,1,1,4,99,5,6,0,99

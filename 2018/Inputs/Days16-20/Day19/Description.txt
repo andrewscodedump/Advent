@@ -1,0 +1,4 @@
+﻿Input is a program in machine code.
+
+What is the result of running the code?
+As above, but with register zero starting off with a value of 1 instead of 0.

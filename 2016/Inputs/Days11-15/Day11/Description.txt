@@ -1,0 +1,5 @@
+﻿Input gives the layout of a building with four floors connected by a lift.  The lift can only hold you plus one or two (but not none) items.
+If a chip is in a room (including stops between floors) with an unmatched generator, and without its own generator, it is fried.
+
+What is the minimum number of steps to move everything to the top floor?
+As above, but with extra parts to move.

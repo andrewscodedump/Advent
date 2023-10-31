@@ -1,0 +1,4 @@
+﻿The input gives a route for Santa to deliver presents ^ = North, v = South, < = West, > = East
+In the second part, alternate instructions are directed to Santa and his Robo-Santa helper.
+
+How many houses (including the starting one) recieve at least one present?

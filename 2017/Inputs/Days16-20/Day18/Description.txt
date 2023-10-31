@@ -1,0 +1,8 @@
+﻿Input is a set of instructions to act on a collection of registers (all start at 0).
+Step through the instructions until the requirement is met or a program steps out of the list of instructions.
+
+What was is the first value rcv'd?
+
+Two programs running simultaneously on the same instructions (register p starts at 0 for the first, 1 for the second).
+snd queues a value for the other program, rcv dequeues a previously queued value.
+End if both programs are waiting on a rcv or both step out of bounds.  How many snd's does program 1 do?

@@ -1,0 +1,4 @@
+﻿Input is a string that has to be hashed 128 times using the algorithm from day 10 part 2.  The hex results should be converted to binary.
+
+How many 1s are there in the results?
+Placing the 128 results in an array, how many contiguous blocks of 1s are there (no diagonals)?

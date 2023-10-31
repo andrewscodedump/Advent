@@ -1,0 +1,4 @@
+﻿Input is a piece of IntCode (see day 2).  A few new instructions and a new addressing mode have been added to the interpreter.
+
+Given an input of 1, what is the output?
+As above, but with an input of 5.

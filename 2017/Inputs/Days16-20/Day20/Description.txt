@@ -1,0 +1,4 @@
+﻿Input is the starting positions, speeds and accelerations of a bunch of particles (all measures act in the 3 planes independently).
+
+In the long term, which particle will never get farther from the origin than any other?
+If two (or more) particles coincide at any point in time, they are removed.  How many are left at the end?

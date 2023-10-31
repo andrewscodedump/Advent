@@ -1,0 +1,6 @@
+﻿The input gives the dimensions of all the presents to be delivered.
+The paper required to wrap a present is the total surface area plus the area of the smallest side.
+The ribbon required to wrap a present is the perimiter of the smallest side plus the cubic volume of the present.
+
+How much paper is needed to wrap all the presents?
+How much ribbon is needed to wrap all the presents?

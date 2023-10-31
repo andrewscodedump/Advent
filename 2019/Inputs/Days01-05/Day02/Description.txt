@@ -1,0 +1,10 @@
+﻿Input is the code for a computer program
+	Each quartet of integers is an instruction.
+        First number gives the operation (1=add, 2=multiply)
+        Second and third give the addresses of the values to be operated on
+        Fourth gives the address to write the result to
+        Execution ends when the operation is 99
+
+(Test Mode) - What are the contents of register 0 after the program is run
+(Live Mode) - As above, but set register 1 to 12 and register 2 to 2 before running.
+What values of registers 1 and 2 give an output of 19690720?

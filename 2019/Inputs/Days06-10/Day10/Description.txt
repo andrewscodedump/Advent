@@ -1,0 +1,4 @@
+﻿Input is a map of the asteroid belt, with # representing the location of an asteroid
+
+From which of the asteroids can you see the most others?
+The asteroid located in part one has a big laser, which sweeps round clockwise, destroying everything it sees (but only one  at a time).

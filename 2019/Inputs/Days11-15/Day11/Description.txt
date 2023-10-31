@@ -1,0 +1,4 @@
+﻿Input is an IntCode program, which tells a painting robot how to move and when to paint on a completely black hull.
+
+After running the program, how many squares have been painted (count each only once).
+As above, but starting on a single white square (all the rest are still black).  What number is painted when it's finished?

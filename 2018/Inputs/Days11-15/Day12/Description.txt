@@ -1,0 +1,4 @@
+﻿Input is the initial state of an infinite line of plant pots, and a set of rules for propogation (game of life stylee).
+
+What is the sum of the pot numbers containing plants after 20 generations?
+As above, but for 50,000,000,000 generations!!!

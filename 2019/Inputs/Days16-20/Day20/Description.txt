@@ -1,0 +1,3 @@
+﻿Input is the plan of a maze with teleportation portals.
+
+What is the shortest path through the maze?

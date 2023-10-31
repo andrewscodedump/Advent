@@ -1,0 +1,4 @@
+﻿Input is an IntCode program for a game of breakout
+
+After running the program, how many blocks are there on the screen?
+Changing memory register 2 to 2, and using inputs to move the paddle, what is your score when all blocks have been cleared?

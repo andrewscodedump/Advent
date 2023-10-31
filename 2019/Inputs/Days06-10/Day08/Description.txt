@@ -1,0 +1,4 @@
+﻿Input is an image of a set size, sent as a series of layers
+
+For the layer with the lowest number of zeros, what is the number of ones multiplied by the number of twos?
+Where 0 is black, 1 is white and 2 is transparent, what is the resulting message when the layers are piled up?

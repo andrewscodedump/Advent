@@ -1,0 +1,4 @@
+﻿The input gives a secret key used as the basis for a hashing algorithm.  The MD5 hash of the key plus an increasing integer is taken.
+
+What is the first hash to start with five zeros?
+As part one but with six zeros?

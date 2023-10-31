@@ -1,0 +1,6 @@
+﻿Input is a compressed file.  It is decompressed as follows:
+Figures in brackets give a number of characters to copy and how many times to copy them.
+If a string being decompressed itself contains decompression instructions, these are just treated as ordinary strings.
+
+What is the decompressed length?
+As above, but any embedded decompression strings are handled before themselves being decompressed.

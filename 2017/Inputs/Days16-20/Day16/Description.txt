@@ -1,0 +1,6 @@
+﻿Input is a list of steps for a dance, the participants of which are the first 16 letters.
+A step starting s moves a number of dancers from the end to the beginning of the line;
+x exchanges those in the two positions given, and p exchanges the two dancers given.
+
+What are the positions of the dancers after the dance is over?
+What are the positions of the dancers after a billion rounds of the dance?

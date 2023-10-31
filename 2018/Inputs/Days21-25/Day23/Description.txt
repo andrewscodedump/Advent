@@ -1,0 +1,4 @@
+﻿Input is the locations of a swarm of nanobots, together with their spheres of influence.
+
+Taking the bot with the greatest influence, how many other bots are in range of it?
+What is the manhattan distance from the origin of the point which is under the influence of the maximum number of bots?

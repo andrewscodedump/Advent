@@ -1,0 +1,4 @@
+﻿The input is the start point for a "look and say" game.  1 becomes 11 (one one), 11 becomes 21 (two ones) etc.
+
+What is the length of the result after applying the rules 40 times?
+What is the length of the result after applying the rules 50 times?

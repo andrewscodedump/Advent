@@ -1,0 +1,4 @@
+﻿Input is an IntCode program (see days 2 and 5).  The code runs in five modules, with the output from one module being the input to the next.
+
+What is the output from the final element?
+As above, but the code loops back from the final element to the first one until the final one terminates.

@@ -1,0 +1,4 @@
+﻿Input is a set of distances between pairs of planets.  You need to visit each one once and once only.
+
+What is the length of the shortest route?
+What is length the of the longest route?

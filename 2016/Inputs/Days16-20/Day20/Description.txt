@@ -1,0 +1,4 @@
+﻿Rules for valid IP addresses.  Input gives ranges of IPs (given as single integers) that are not allowed
+
+What is the lowest IP that is not blocked?
+How many IPs are allowed?

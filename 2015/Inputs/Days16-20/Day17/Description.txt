@@ -1,0 +1,4 @@
+﻿The Input gives various sizes of container that you need to fit into a 150l fridge (25l in the test data).
+
+How many different ways are there of reaching capacity?
+How many different ways are there of filling it using the minimum possible number of containers?

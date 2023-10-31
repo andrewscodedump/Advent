@@ -8,3 +8,5 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Style", "IDE0045:Convert to conditional expression", Justification = "<Pending>", Scope = "member", Target = "~M:Advent.AdventOfCode.Process_Click(System.Object,System.EventArgs)")]
 [assembly: SuppressMessage("Style", "IDE0045:Convert to conditional expression", Justification = "<Pending>", Scope = "member", Target = "~M:Advent2021.Day18.DoWork")]
 [assembly: SuppressMessage("Style", "IDE0180:Use tuple to swap values", Justification = "<Pending>", Scope = "member", Target = "~M:Advent2017.Day10.Manipulate(System.Collections.Generic.List{System.Int32},System.Int32,System.Int32@,System.Int32@)")]
+[assembly: SuppressMessage("Style", "IDE0046:Convert to conditional expression", Justification = "<Pending>", Scope = "member", Target = "~M:Advent.AdventOfCode.FormatTime(System.Double)~System.String")]
+[assembly: SuppressMessage("Style", "IDE0180:Use tuple to swap values", Justification = "<Pending>", Scope = "member", Target = "~M:Advent.Day.TieKnot(System.Collections.Generic.List{System.Int32},System.Int32,System.Int32@,System.Int32@)")]

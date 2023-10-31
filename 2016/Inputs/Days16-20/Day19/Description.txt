@@ -1,0 +1,5 @@
+﻿Ring of elves, with presents.  Starting from 1, each elf takes the present from the elf to their left, who then leaves the ring.
+Input gives the number of elves at the start
+
+Which elf ends up with all the presents.
+As above, but instead of taking from the left, take from the elf directly opposite (the leftmost if there are two).

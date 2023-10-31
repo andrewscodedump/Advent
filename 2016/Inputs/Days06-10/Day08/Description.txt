@@ -1,0 +1,5 @@
+﻿The input is a set of instructions for manipulating the lights on a 50x6 grid.
+Rect turns on all the lights in the given rectangle; rotate shifts all the pixels in a given row/column right/down.
+
+How many pixels are lit after the instructions are run?
+The screen is producing capital letters, each 5x6.  What is the message?

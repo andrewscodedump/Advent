@@ -1,0 +1,5 @@
+﻿A role playing game, playing as a wizard.  You start with 50 HP and 500 mana, the boss's stats are given in the input.
+Each turn, you cast one of your spells, which costs mana; no mana left, you're dead.  Some spells last for a number of turns.
+
+What is the least mana you can spend and win the fight?
+As above, but at the start of every player round you lost 1 HP;

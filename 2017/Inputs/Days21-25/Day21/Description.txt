@@ -1,0 +1,5 @@
+﻿Input is a set of transformations.  You have a sqaure grid; if its size is divisible by 2 then split it into 2x2 squares, otherwise 3x3 squares.
+Apply the appropriate transformation to each square in turn to create a bigger grid.
+
+How many #'s are in the grid after 5 transformations?
+As part 1, but for 18 transformations.

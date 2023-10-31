@@ -1,0 +1,5 @@
+﻿You're in a 4x4 grid of rooms.  At each stage of your path through the grid, the state of the doors is given by the MD5 hash of the passkey (input) plus a LRUD string giving your path so far.
+The first 4 characters of hash give the state of the UDLR doors; open if the character is b-f, closed otherwise.
+
+What is the shortest path to reach the bottom right room?
+What is the length of the longest path that will take you to that room?

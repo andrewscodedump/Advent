@@ -1,0 +1,4 @@
+﻿Input is a series of "pipes" linking one number to a series of others
+
+How many numbers are linked to 0, either directly or indirectly?
+How many distinct groups of linked numbers are there?

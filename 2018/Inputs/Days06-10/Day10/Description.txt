@@ -1,0 +1,5 @@
+﻿Input gives the starting positions and speeds of moving stars.
+
+At some point the stars will form a message in the sky.  What is the message?
+
+How long does it take to appear?

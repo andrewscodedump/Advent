@@ -1,0 +1,4 @@
+﻿Input is a map of a vault with locked doors and the keys for those doors.
+
+What is the shortest path which allows you to pick up all the keys?
+

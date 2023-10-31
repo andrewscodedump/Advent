@@ -1,0 +1,4 @@
+﻿Input is a set of "triangles".  The triangle is valid if the sum of any two sides is greater than the third side.
+
+How many valid triangles are there?
+Same, but triplets are grouped vertically rather than horizontally.

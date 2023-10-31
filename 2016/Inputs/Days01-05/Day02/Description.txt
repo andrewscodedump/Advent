@@ -1,0 +1,4 @@
+﻿Start on the middle button of a 3x3 keypad, following the instructions given in the input (ignoring any that lead to invalid locations) and press the button at the end of each block.
+
+What is the password?
+As part 1, but the keypad is a rhombus with length/height 5.

@@ -1,0 +1,6 @@
+﻿Input is a pair of seed values for a series of manipulations.  Multiply this by a given value then take modulo 7FFFFFFF.
+Repeat, taking the output of the previous round as the input of the next.
+After each round, compare the 16 LSBs of the two machines - pass if they are equal.
+
+How many matches after 40M iterations?
+As part 1, but 5M iterations, and machine only passes value for comparison if it is a multiple of 4 for machine 1 and 8 for machine 2. 
