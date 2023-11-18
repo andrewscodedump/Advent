@@ -5,7 +5,7 @@ public partial class Day12 : Advent.Day
     public override void DoWork()
     {
         int sum = 0;
-        string work = Input.Replace('¶', ',').Replace("\"", "");
+        string work = string.Join(',', Inputs).Replace("\"", "");
 
         if (Part2)
         {

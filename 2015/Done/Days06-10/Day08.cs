@@ -4,16 +4,17 @@ public partial class Day08 : Advent.Day
 {
     public override void DoWork()
     {
-        int shrinkLen = InputSplit.Length * 2;
-        int expandLen = InputSplit.Length * 4;
+        string joined = string.Join("",Inputs);
+        int shrinkLen = Inputs.Length * 2;
+        int expandLen = Inputs.Length * 4;
 
-        for (int i = 0; i < Input.Length - 1; i++)
+        for (int i = 0; i < joined.Length - 1; i++)
         {
-            if (Input[i] == '\\')
+            if (joined[i] == '\\')
             {
-                shrinkLen += Input[i + 1] == 'x' ? 3 : 1;
-                expandLen += Input[i + 1] == 'x' ? 1 : 2;
-                i += Input[i + 1] == 'x' ? 3 : 1;
+                shrinkLen += joined[i + 1] == 'x' ? 3 : 1;
+                expandLen += joined[i + 1] == 'x' ? 1 : 2;
+                i += joined[i + 1] == 'x' ? 3 : 1;
             }
         }
         Output = (Part1 ? shrinkLen : expandLen).ToString();

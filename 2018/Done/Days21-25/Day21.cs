@@ -11,9 +11,9 @@ public partial class Day21 : Advent.Day
         int ipVal, ipReg;
 #pragma warning restore CS0168 // Variable is declared but never used
 
-        for (int i = 0; i < InputSplit.Length; i++)
+        for (int i = 0; i < Inputs.Length; i++)
         {
-            string[] bits = InputSplit[i].Split(new char[] { ' ', '[', ']', ',', '|' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] bits = Inputs[i].Split(new char[] { ' ', '[', ']', ',', '|' }, StringSplitOptions.RemoveEmptyEntries);
             if (bits[0] == "#ip")
 #pragma warning disable IDE0059 // Unnecessary assignment of a value
                 ipReg = int.Parse(bits[1]);

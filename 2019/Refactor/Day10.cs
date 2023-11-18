@@ -14,11 +14,11 @@ public partial class Day10 : Advent.Day
         List<((int x, int y) pos, double angle, int distance)> targets = new();
         double currentAngle = -1;
         Dictionary<((int, int), (int, int)), double> angles = new();
-        int height = InputSplit.Length, width = InputSplit[0].Length;
+        int height = Inputs.Length, width = Input.Length;
         for (int y = 0; y < height; y++)
             for (int x = 0; x < width; x++)
             {
-                if (InputSplit[y][x] == '#')
+                if (Inputs[y][x] == '#')
                 {
                     asteroids.Add((x, y));
                     counts.Add((x, y), 0);
@@ -76,7 +76,7 @@ public partial class Day10 : Advent.Day
                 targets.Remove(nextTarget);
                 numberKilled++;
             }
-        } while (numberKilled < 200);
+        } while (numberKilled < 200 && targets.Count > 0);
 
         Output = (Part1 ? maxCount : (nextTarget.loc.x * 100) + nextTarget.loc.y).ToString();
     }

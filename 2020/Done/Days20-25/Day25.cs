@@ -4,7 +4,7 @@ public partial class Day25 : Advent.Day
 {
     public override void DoWork()
     {
-        (long pk, long loop)[] values = InputSplit.Select(i => long.Parse(i)).Select(p => (p, FindLoop(p))).ToArray();
+        (long pk, long loop)[] values = Inputs.Select(i => long.Parse(i)).Select(p => (p, FindLoop(p))).ToArray();
         long[] keys = values.Zip(values.Reverse(), ((long pk, long loop) first, (long pk, long loop) second) => GetEK(first.pk, second.loop)).ToArray();
         Output = keys[0] != keys[1] ? "Oops - something went  wrong" : keys[0].ToString();
     }

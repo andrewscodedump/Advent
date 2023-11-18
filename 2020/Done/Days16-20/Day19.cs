@@ -10,8 +10,9 @@ public partial class Day19 : Advent.Day
         List<string> messages = new(), validMessages = new(), c42 = new(), c31 = new();
         Queue<(int, List<string>)> resolved = new();
 
-        foreach (string input in InputSplit)
+        foreach (string input in Inputs)
         {
+            if (string.IsNullOrEmpty(input)) continue;
             string[] bits = input.Split(new char[] { ':', '|' });
             if (bits.Length == 1)
                 messages.Add(bits[0]);

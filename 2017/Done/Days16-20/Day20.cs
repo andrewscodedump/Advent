@@ -11,9 +11,9 @@ public partial class Day20 : Advent.Day
         // This is a bodge - run the simulation until we haven't had any collisions for a while and hope it's long enough to represent the final state.  (But turns out it only actually needed 10!)
         int maxIterations = 1000;
         Dictionary<int, Particle> particles = new();
-        for (int i = 0; i < InputSplit.Length; i++)
+        for (int i = 0; i < Inputs.Length; i++)
         {
-            string[] digits = InputSplit[i].Split(new char[] { 'p', 'v', 'a', ' ', '<', '>', '=', ',' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] digits = Inputs[i].Split(new char[] { 'p', 'v', 'a', ' ', '<', '>', '=', ',' }, StringSplitOptions.RemoveEmptyEntries);
             Particle particle = new(i, new Vector3(float.Parse(digits[0]), float.Parse(digits[1]), float.Parse(digits[2])), new Vector3(float.Parse(digits[3]), float.Parse(digits[4]), float.Parse(digits[5])), new Vector3(float.Parse(digits[6]), float.Parse(digits[7]), float.Parse(digits[8])));
             particles.Add(i, particle);
         }

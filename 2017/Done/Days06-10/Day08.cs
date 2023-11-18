@@ -7,7 +7,7 @@ public partial class Day08 : Advent.Day
         Dictionary<string, int> registers = new();
         int maxRunVal = 0;
 
-        foreach (string instruction in InputSplit)
+        foreach (string instruction in Inputs)
             maxRunVal = Math.Max(DoOperation(registers, instruction), maxRunVal);
 
         Output = (Part1 ? registers.Values.Max() : maxRunVal).ToString();

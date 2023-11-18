@@ -7,7 +7,7 @@ public partial class Day11 : Advent.Day
         #region Setup Variables and Parse Inputs
 
         Dictionary<(int, int), int> hull = new();
-        IntCode code = new(Input);
+        IntCode code = new(InputNumbersSingle);
         (int x, int y) curPos = (0, 0), min = (0, 0), max = (0, 0);
         char curDir = '^';
         int curColour = WhichPart - 1;
@@ -25,7 +25,7 @@ public partial class Day11 : Advent.Day
             curColour = hull.ContainsKey(curPos) ? hull[curPos] : 0;
         } while (true);
 
-        PrintDictionary(hull, min, max);
+        if (Part2) PrintDictionary(hull, min, max);
         string outputString = Part2 && !BatchRun ? GetOutput() : string.Empty;
 
         Output = Part1 ? hull.Count.ToString() : outputString;

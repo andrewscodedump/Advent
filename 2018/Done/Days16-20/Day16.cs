@@ -13,9 +13,9 @@ public partial class Day16 : Advent.Day
         int[] regs = new int[] { 0, 0, 0, 0 };
         int result = 0;
 
-        for (int i = 0; i < InputSplit.Length; i++)
+        for (int i = 0; i < Inputs.Length; i++)
         {
-            string[] bits = InputSplit[i].Split(new char[] { ' ', '[', ']', ',', '|' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] bits = Inputs[i].Split(new char[] { ' ', '[', ']', ',', '|' }, StringSplitOptions.RemoveEmptyEntries);
             if (bits[0] == "Before:")
                 tests.Add((new int[] { int.Parse(bits[1]), int.Parse(bits[2]), int.Parse(bits[3]), int.Parse(bits[4]) }, int.Parse(bits[5]), new int[] { int.Parse(bits[6]), int.Parse(bits[7]), int.Parse(bits[8]) }, new int[] { int.Parse(bits[10]), int.Parse(bits[11]), int.Parse(bits[12]), int.Parse(bits[13]) }));
             else

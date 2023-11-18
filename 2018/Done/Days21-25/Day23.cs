@@ -11,7 +11,7 @@ public partial class Day23 : Advent.Day
         (int minX, int minY, int minZ, int maxX, int maxY, int maxZ) limits;
         int grain = TestMode ? 1 : (int)Math.Pow(2, 26);
 
-        foreach (string input in InputSplit)
+        foreach (string input in Inputs)
         {
             string[] bits = input.Split(new char[] { '=', '<', '>', ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
             bots.Add(new Bot((int.Parse(bits[1]), int.Parse(bits[2]), int.Parse(bits[3])), int.Parse(bits[5])));

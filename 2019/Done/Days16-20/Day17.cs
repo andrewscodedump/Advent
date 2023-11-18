@@ -4,13 +4,11 @@ public partial class Day17 : Advent.Day
 {
     public override void DoWork()
     {
-        #region Setup Variables and Parse Inputs
-
-        IntCode code = new(Input);
+        IntCode code = new(InputNumbersSingle);
+        if (Part2) code.Poke(0, 2);
         Dictionary<(int x, int y), char> map = new();
         long result = 0;
-
-        #endregion Setup Variables and Parse Inputs
+        bool debug = false;
 
         if (Part1)
         {
@@ -28,7 +26,7 @@ public partial class Day17 : Advent.Day
                 else
                     map[(x++, y)] = (char)asc;
             } while (!code.CodeComplete);
-            DrawMap(map);
+            if (debug) DrawMap(map);
 
             int maxX = map.Keys.Max(x => x.x), maxY = map.Keys.Max(x => x.y);
             for (int x1 = 1; x1 < maxX - 1; x1++)

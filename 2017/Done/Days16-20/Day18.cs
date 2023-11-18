@@ -9,7 +9,7 @@ public partial class Day18 : Advent.Day
         long result, received = 0;
         Queue<long>[] queues = new Queue<long>[2] { new(), new() };
         string instruction;
-        string[] instructions = InputSplit;
+        string[] instructions = Inputs;
         int numSends = 0;
         bool[] waiting = new bool[] { false, false };
         Dictionary<string, long>[] registers = new Dictionary<string, long>[2] { new() { { "p", 0 } }, new() { { "p", 1 } } };

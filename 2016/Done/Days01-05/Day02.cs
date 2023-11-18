@@ -9,7 +9,7 @@ public partial class Day02 : Advent.Day
         int col = Part1 ? 1 : 0;
         string code = string.Empty;
 
-        foreach (string sequence in InputSplit)
+        foreach (string sequence in Inputs)
         {
             for (int letter = 0; letter < sequence.Length; letter++)
             {

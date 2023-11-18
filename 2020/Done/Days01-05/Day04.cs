@@ -2,7 +2,7 @@
 
 public partial class Day04 : Advent.Day
 {
-    public override void DoWork() => Output = InputSplit.Sum(k => PassportValid(k)).ToString();
+    public override void DoWork() => Output = Inputs.Sum(k => PassportValid(k)).ToString();
 
     int PassportValid(string kvps) => (kvps.Contains("cid:") ? 0 : 1) + (Part1 ? kvps.Split(',').Length : kvps.Split(',').Sum(k => EntryValid(k))) == 8 ? 1 : 0;
 

@@ -7,7 +7,7 @@ public partial class Day08 : Advent.Day
     public override void DoWork()
     {
         int result = 0;
-        foreach (string line in InputSplit)
+        foreach (string line in Inputs)
         {
             string[] io = line.Split('|', StringSplitOptions.RemoveEmptyEntries);
             string[] outputs = io[1].Split(" ", StringSplitOptions.RemoveEmptyEntries);

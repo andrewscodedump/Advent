@@ -7,12 +7,12 @@ public partial class Day13 : Advent.Day
         #region Setup Variables and Parse Inputs
         Dictionary<(int, int), (char track, int cart)> tracks = new();
         Dictionary<int, (char, char, int)> carts = new();
-        int gridWidth = 0, gridHeight = InputSplit.Length, time = 0;
+        int gridWidth = 0, gridHeight = Inputs.Length, time = 0;
         (int x, int y) finalLocation = (-1, -1);
 
-        for (int y = 0; y < InputSplit.Length; y++)
+        for (int y = 0; y < Inputs.Length; y++)
         {
-            string line = InputSplit[y];
+            string line = Inputs[y];
             gridWidth = Math.Max(gridWidth, line.Length);
             for (int x = 0; x < line.Length; x++)
             {

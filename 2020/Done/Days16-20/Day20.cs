@@ -13,9 +13,10 @@ public partial class Day20 : Advent.Day
         long result = 1;
         Tile tile = new();
 
-        for (int i = 0; i < InputSplit.Length; i++)
+        for (int i = 0; i < Inputs.Length; i++)
         {
-            string line = InputSplit[i];
+            string line = Inputs[i];
+            if (string.IsNullOrEmpty(line)) continue;
             if (line.StartsWith("Tile"))
             {
                 if (i != 0)

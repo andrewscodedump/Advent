@@ -9,7 +9,7 @@ public partial class Day01 : Advent.Day
         List<int> totals = new();
         HashSet<int> found = new();
 
-        foreach (string numString in InputSplit)
+        foreach (string numString in Inputs)
         {
             if ((doubleFound = found.Contains(doubleValue = total += int.Parse(numString))) && Part2) break;
             totals.Add(total);

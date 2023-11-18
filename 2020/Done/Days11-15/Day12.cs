@@ -14,7 +14,7 @@ public partial class Day12 : Advent.Day
 
         #endregion Setup Variables and Parse Inputs
 
-        foreach (string instr in InputSplit)
+        foreach (string instr in Inputs)
         {
             char cmd = instr[0];
             int num = int.Parse(instr[1..^0]);

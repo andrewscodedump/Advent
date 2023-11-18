@@ -4,14 +4,14 @@ public partial class Day09 : Advent.Day
 {
     public override void DoWork()
     {
-        int height = InputSplit.Length, width = InputSplit[0].Length, result = 0;
+        int height = Inputs.Length, width = Input.Length, result = 0;
         List<(int, int)> Offsets = new() { (0, 1), (1, 0), (0, -1), (-1, 0) };
         Dictionary<(int, int), char> map = new();
         Dictionary<(int, int), int> minima = new();
 
         for (int y = -1; y <= height; y++)
             for (int x = -1; x <= width; x++)
-                map[(x, y)] = y == -1 || x == -1 || y == height || x == width ? '9' : InputSplit[y][x];
+                map[(x, y)] = y == -1 || x == -1 || y == height || x == width ? '9' : Inputs[y][x];
 
         for (int y = 0; y < height; y++)
             for (int x = 0; x < width; x++)

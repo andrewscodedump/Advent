@@ -7,7 +7,6 @@ public partial class Day25 : Advent.Day
     {
         if (Part2) return;
 
-        Input = Regex.Replace(Input, @"[ :\-\.]", "")  + "¶Stophere";
         Dictionary<string, Dictionary<int, (int, int, string)>> rules = new();
         Dictionary<int, int> tape = new() { { 0, 0 } };
         int steps = 0, curPos = 0, ones = 0;
@@ -16,8 +15,9 @@ public partial class Day25 : Advent.Day
         string state = string.Empty;
         int curValue = 0, newValue = 0, move = 0;
         Dictionary<int, (int, int, string)> stateRules = new();
-        foreach (string ruleText in InputSplit)
+        foreach (string ruleBase in Inputs)
         {
+            string ruleText = Regex.Replace(ruleBase, @"[ :\-\.]", "");
             if (ruleText.Length < 5) continue;
             switch (ruleText[..5])
             {
@@ -33,11 +33,11 @@ public partial class Day25 : Advent.Day
                 case "Write": newValue = int.Parse(ruleText[13..]); break;
                 case "Moveo": move = ruleText.Substring(16, 1) == "r" ? 1 : -1; ; break;
                 case "Conti": stateRules.Add(curValue, (newValue, move, ruleText[17..])); break;
-                case "Stoph": rules.Add(state, stateRules); break;
                 default:
                     break;
             }
         }
+        rules.Add(state, stateRules);
 
         for (int step = 0; step < steps; step++)
         {

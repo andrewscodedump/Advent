@@ -18,7 +18,7 @@ public partial class Day25 : Advent.Day
         Dictionary<string, int> registers = new() { { "a", 0 }, { "b", 0 }, { "c", 0 }, { "d", 0 } };
         do
         {
-            string instr = InputSplit[pos];
+            string instr = Inputs[pos];
             string[] parts = instr.Split(' ');
             int test;
 
@@ -56,23 +56,23 @@ public partial class Day25 : Advent.Day
                     if (!isNumber)
                         test = registers[parts[1]];
 
-                    if (pos + test < InputSplit.Length)
+                    if (pos + test < Inputs.Length)
                     {
-                        switch (InputSplit[pos + test][..3])
+                        switch (Inputs[pos + test][..3])
                         {
                             case "cpy":
-                                InputSplit[pos + test] = "jnz" + InputSplit[pos + test][3..];
+                                Inputs[pos + test] = "jnz" + Inputs[pos + test][3..];
                                 break;
                             case "inc":
-                                InputSplit[pos + test] = "dec" + InputSplit[pos + test][3..];
+                                Inputs[pos + test] = "dec" + Inputs[pos + test][3..];
                                 break;
                             case "jnz":
-                                InputSplit[pos + test] = "cpy" + InputSplit[pos + test][3..];
+                                Inputs[pos + test] = "cpy" + Inputs[pos + test][3..];
                                 break;
                             case "dec":
                             case "tgl":
                             case "out":
-                                InputSplit[pos + test] = "inc" + InputSplit[pos + test][3..];
+                                Inputs[pos + test] = "inc" + Inputs[pos + test][3..];
                                 break;
                             default:
                                 break;
@@ -98,7 +98,7 @@ public partial class Day25 : Advent.Day
                 break;
             pos++;
 
-        } while (pos < InputSplit.Length);
+        } while (pos < Inputs.Length);
 
         Output = currentNumber.ToString();
     }

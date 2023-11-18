@@ -7,7 +7,7 @@ public partial class Day02 : Advent.Day
         int numOK = 0, min, max;
         string letter, password;
 
-        foreach (string test in InputSplit)
+        foreach (string test in Inputs)
         {
             string[] bits = test.Split(new char[] { ' ', ':', '-' }, StringSplitOptions.RemoveEmptyEntries);
             min = int.Parse(bits[0]); max = int.Parse(bits[1]); letter = bits[2]; password = bits[3];

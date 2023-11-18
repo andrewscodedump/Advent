@@ -4,17 +4,15 @@ public partial class Day11 : Advent.Day
 {
     public override void DoWork()
     {
-        #region Setup Variables and Parse Inputs
-        int gridID = int.Parse(Input);
-        (int x, int y, int size, int power) maxSquare = (0, 0, 0, 0);
-        (int[] squares, int[] rows, int[] cols)[,] grid = new(int[], int[], int[])[300, 300];
-        #endregion Setup Variables and Parse Inputs
+        long gridID = InputNumbersSingle[0];
+        (long x, long y, long size, long power) maxSquare = (0, 0, 0, 0);
+        (long[] squares, long[] rows, long[] cols)[,] grid = new(long[], long[], long[])[300, 300];
 
         for (int x = 300; x > 0; x--)
             for (int y = 300; y > 0; y--)
             {
-                int score = ((((x + 10) * y) + gridID) * (x + 10) / 100 % 10) - 5;
-                int[] squares = new int[300], rows = new int[300], cols = new int[300];
+                long score = ((((x + 10) * y) + gridID) * (x + 10) / 100 % 10) - 5;
+                long[] squares = new long[300], rows = new long[300], cols = new long[300];
                 for (int size = 0; size < (Part1 ? 3 : 300); size++)
                 {
                     if (x - 1 + size < 300)

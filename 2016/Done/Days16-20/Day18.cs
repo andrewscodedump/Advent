@@ -7,7 +7,7 @@ public partial class Day18 : Advent.Day
         int numberSafe = 0;
         List<List<bool>> floor = new();
         string firstRow = Input;
-        int numRows = Part2 ? 40_000 : Part1 ? firstRow == "..^^." ? 3 : 10 : 5;
+        int numRows = Part2 ? 400_000 : !TestMode ? 40 : Part1 ? firstRow == "..^^." ? 3 : 10 : 40;
         for (int row = 0; row < numRows; row++)
         {
             floor.Add(new List<bool>());

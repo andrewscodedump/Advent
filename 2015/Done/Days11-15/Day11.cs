@@ -4,11 +4,18 @@ public partial class Day11 : Advent.Day
 {
     public override void DoWork()
     {
-        byte[] word = Encoding.ASCII.GetBytes(Input);
+        string word = GetNext(Input);
+        if (Part2) word = GetNext(word);
+        Output = word;
+    }
+
+    private string GetNext(string input)
+    {
+        byte[] word = Encoding.ASCII.GetBytes(input);
         do
             IncLetter(word, 7);
         while (!CheckWord(word));
-        Output = Encoding.ASCII.GetString(word);
+        return Encoding.ASCII.GetString(word);
     }
 
     private static bool CheckWord(byte[] word)

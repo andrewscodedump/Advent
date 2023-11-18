@@ -7,7 +7,7 @@ public partial class Day08 : Advent.Day
         if (Part2 && TestMode) return;
         int totalLit = 0, totalCols = 50, totalRows = 6;
         int[,] grid = new int[totalCols, totalRows];
-        foreach (string instr in InputSplit)
+        foreach (string instr in Inputs)
         {
             string[] words = instr.Split(' ');
             if (words[0] == "rect")
@@ -51,7 +51,7 @@ public partial class Day08 : Advent.Day
         {
             string outputRow = "";
             for (int col = 0; col < 50; col++)
-                outputRow += grid[col, row] == 1 ? "*" : " ";
+                outputRow += grid[col, row] == 1 ? "█" : " ";
         }
         Output = Part1 ? totalLit.ToString() : "Answer (AFBUPZBJPS) in Debug Output";
     }

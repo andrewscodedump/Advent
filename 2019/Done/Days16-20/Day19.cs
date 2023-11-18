@@ -6,7 +6,7 @@ public partial class Day19 : Advent.Day
     {
         #region Setup Variables and Parse Inputs
 
-        IntCode code = new(Input);
+        IntCode code = new(InputNumbersSingle);
         int counter = 0, result;
         int targetSize = 100, gridSize = 50; //50
         int x, y = 0;

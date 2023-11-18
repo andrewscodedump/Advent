@@ -5,19 +5,20 @@ public partial class Day12 : Advent.Day
     public override void DoWork()
     {
         #region Setup Variables and Parse Inputs
-        string[] temp = Input.Replace("x=", "").Replace("y=", "").Replace("z=", "").Replace(" ", "").Replace("<", "").Replace(">", "").Split('¶');
-        ((int x, int y, int z) position, (int x, int y, int z) velocity)[] planets = new ((int, int, int), (int, int, int))[4];
-        int iterations = 0, totalEnergy;
-        int limit = TestMode ? 100 : 1000;
-        for (int p = 0; p < temp.Length; p++)
+        ((long x, long y, long z) position, (long x, long y, long z) velocity)[] planets = new ((long, long, long), (long, long, long))[4];
+        long totalEnergy;
+        int iterations = 0, limit = TestMode ? 100 : 1000;
+        for (int p = 0; p < InputNumbers.Count; p++)
+        //for (int p = 0; p < InputSplit.Length; p++)
         {
-            string[] coords = temp[p].Split(',');
-            planets[p] = ((int.Parse(coords[0]), int.Parse(coords[1]), int.Parse(coords[2])), (0, 0, 0));
+            //string[] coords = InputSplit[p].Split(new char[] { ',', 'x', 'y', 'z', '=', ' ', '<', '>' }, StringSplitOptions.RemoveEmptyEntries);
+            //planets[p] = ((int.Parse(coords[0]), int.Parse(coords[1]), int.Parse(coords[2])), (0, 0, 0));
+            planets[p] = ((InputNumbers[p][0], InputNumbers[p][1], InputNumbers[p][2]), (0, 0, 0));
         }
-        (int, int, int, int, int, int, int, int)[] originalStates = { (planets[0].position.x, planets[1].position.x, planets[2].position.x, planets[3].position.x, 0, 0, 0, 0) ,
+        (long, long, long, long, long, long, long, long)[] originalStates = { (planets[0].position.x, planets[1].position.x, planets[2].position.x, planets[3].position.x, 0, 0, 0, 0) ,
             (planets[0].position.y, planets[1].position.y, planets[2].position.y, planets[3].position.y, 0, 0, 0, 0),
             (planets[0].position.z, planets[1].position.z, planets[2].position.z, planets[3].position.z, 0, 0, 0, 0)};
-        (int, int, int, int, int, int, int, int)[] states = { (0, 0, 0, 0, 0, 0, 0, 0), (0, 0, 0, 0, 0, 0, 0, 0), (0, 0, 0, 0, 0, 0, 0, 0) };
+        (long, long, long, long, long, long, long, long)[] states = { (0, 0, 0, 0, 0, 0, 0, 0), (0, 0, 0, 0, 0, 0, 0, 0), (0, 0, 0, 0, 0, 0, 0, 0) };
         int xLoop = 0, yLoop = 0, zLoop = 0;
         if (TestMode && Part1 && planets[0].position.x == -1) limit = 10;
         #endregion Setup Variables and Parse Inputs
@@ -67,7 +68,7 @@ public partial class Day12 : Advent.Day
         return a / Gcf(a, b) * b;
     }
 
-    private static void GetSpeeds(ref ((int x, int y, int z) pos, (int x, int y, int z) vel) a, ref ((int x, int y, int z) pos, (int x, int y, int z) vel) b)
+    private static void GetSpeeds(ref ((long x, long y, long z) pos, (long x, long y, long z) vel) a, ref ((long x, long y, long z) pos, (long x, long y, long z) vel) b)
     {
         int xDiff = a.pos.x == b.pos.x ? 0 : a.pos.x > b.pos.x ? 1 : -1;
         int yDiff = a.pos.y == b.pos.y ? 0 : a.pos.y > b.pos.y ? 1 : -1;

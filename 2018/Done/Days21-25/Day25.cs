@@ -6,7 +6,7 @@ public partial class Day25 : Advent.Day
     {
         List<MyPoint> points = new();
         int nextSetNumber = 0;
-        foreach (string coord in InputSplit)
+        foreach (string coord in Inputs)
         {
             string[] coords = coord.Split(new char[] { ',' });
             points.Add(new MyPoint(int.Parse(coords[0]), int.Parse(coords[1]), int.Parse(coords[2]), int.Parse(coords[3]), -1));

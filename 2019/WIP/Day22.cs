@@ -13,7 +13,7 @@ public partial class Day22 : Advent.Day
         long targetCardPos = testCard;
         int shufflesDone = 0;
 
-        foreach (string input in InputSplit)
+        foreach (string input in Inputs)
         {
             string shuffle = input.Replace("deal with increment", "inc");
             shuffle = shuffle.Replace("deal into new stack", "new 0");

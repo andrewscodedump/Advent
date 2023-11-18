@@ -4,16 +4,16 @@ public partial class Day17 : Advent.Day
 {
     public override void DoWork()
     {
-        int step = int.Parse(Input);
-        List<int> buffer = new() { 0 };
-        int currPos = 0;
+        long step = InputNumbersSingle[0];
+        List<long> buffer = new() { 0 };
+        long currPos = 0;
         int secondValue = 0;
 
         if (Part1)
             for (int i = 1; i <= 2017; i++)
             {
                 currPos = ((currPos + step) % i) + 1;
-                buffer.Insert(currPos, i);
+                buffer.Insert((int)currPos, i);
             }
         else
             for (int i = 1; i <= 50000000; i++)
@@ -23,6 +23,6 @@ public partial class Day17 : Advent.Day
                     secondValue = i;
             }
 
-        Output = (Part1 ? buffer[currPos + 1] : secondValue).ToString();
+        Output = (Part1 ? buffer[(int)currPos + 1] : secondValue).ToString();
     }
 }

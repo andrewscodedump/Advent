@@ -7,7 +7,7 @@ public partial class Day21 : Advent.Day
     public override void DoWork()
     {
         if (Part2)
-            Array.Reverse(InputSplit);
+            Array.Reverse(Inputs);
 
         string work = (WhichPart, TestMode) switch
         {
@@ -24,9 +24,9 @@ public partial class Day21 : Advent.Day
 		else
 			stk.Pop();
 			*/
-        for (int i = 0; i < InputSplit.Length; i++)
+        for (int i = 0; i < Inputs.Length; i++)
         {
-            string[] words = InputSplit[i].Split(' ');
+            string[] words = Inputs[i].Split(' ');
             switch (words[0])
             {
                 case "swap": // Reversible

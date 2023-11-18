@@ -6,9 +6,9 @@ public partial class Day02 : Advent.Day
     {
         (int twos, int threes) numbers = (0, 0);
         string common = string.Empty;
-        string[] sorted = InputSplit.OrderBy(s=>s).ToArray();
+        string[] sorted = Inputs.OrderBy(s=>s).ToArray();
 
-        foreach (string boxID in InputSplit)
+        foreach (string boxID in Inputs)
             numbers = (numbers.twos += HasN(boxID, 2), numbers.threes += HasN(boxID, 3));
 
         for (int id = 0; id < sorted.Length - 1 && string.IsNullOrEmpty(common); id++)

@@ -7,7 +7,7 @@ public partial class Day06 : Advent.Day
         int lighting = 0;
         int[,] grid = new int[1000, 1000];
 
-        foreach (string instruction in InputSplit)
+        foreach (string instruction in Inputs)
             SwitchLights(grid, ref lighting, ParseInstruction(instruction));
 
         Output = lighting.ToString();

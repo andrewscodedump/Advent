@@ -6,9 +6,9 @@ public partial class Day20 : Advent.Day
     {
         #region Setup Variables and Parse Inputs
 
-        for (int y = 0; y < InputSplit.Length; y++)
+        for (int y = 0; y < Inputs.Length; y++)
         {
-            string work = InputSplit[y];
+            string work = Inputs[y];
             for (int x = 0; x < work.Length; x++)
             {
                 SimpleMap[(x, y)] = work[x];

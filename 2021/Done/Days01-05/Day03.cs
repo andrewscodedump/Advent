@@ -4,8 +4,8 @@ public partial class Day03 : Advent.Day
 {
     public override void DoWork()
     {
-        int digits = InputSplit[0].Length, gamma = 0, epsilon = 0;
-        List<string> oxyList = new(InputSplit), co2List = new(InputSplit);
+        int digits = Input.Length, gamma = 0, epsilon = 0;
+        List<string> oxyList = new(Inputs), co2List = new(Inputs);
 
         for (int i = 0; i < digits; i++)
         {

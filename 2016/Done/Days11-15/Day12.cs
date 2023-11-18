@@ -8,7 +8,7 @@ public partial class Day12 : Advent.Day
         Dictionary<string, int> registers = new() { { "a", 0 }, { "b", 0 }, { "c", Part2 ? 1 : 0 }, { "d", 0 } };
         do
         {
-            string instr = InputSplit[pos];
+            string instr = Inputs[pos];
             string[] parts = instr.Split(' ');
             int test;
             switch (parts[0])
@@ -24,7 +24,7 @@ public partial class Day12 : Advent.Day
                 default: break;
             }
             pos++;
-        } while (pos < InputSplit.Length);
+        } while (pos < Inputs.Length);
 
         Output = registers["a"].ToString();
     }

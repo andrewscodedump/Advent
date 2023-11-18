@@ -4,12 +4,12 @@ public partial class Day05 : Advent.Day
 {
     public override void DoWork()
     {
-        int numStacks = (InputSplit[0].Length / 4) + 1;
+        int numStacks = (Input.Length / 4) + 1;
         Stack<char>[] stacks = new Stack<char>[numStacks];
 
-        for(int rowNum=InputSplit.Length-1; rowNum>=0; rowNum--)
+        for(int rowNum=Inputs.Length-1; rowNum>=0; rowNum--)
         {
-            string row = InputSplit[rowNum];
+            string row = Inputs[rowNum];
             if (!row.Contains('[')) continue;
             for(int stack = 0;stack<numStacks; stack++)
             {
@@ -19,7 +19,7 @@ public partial class Day05 : Advent.Day
             }
         }
 
-        foreach(string line in InputSplit)
+        foreach(string line in Inputs)
         {
             if (!line.StartsWith("move")) continue;
             string[] words=line.Split(' ');

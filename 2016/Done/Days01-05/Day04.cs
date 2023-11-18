@@ -6,7 +6,7 @@ public partial class Day04 : Advent.Day
     {
         int sectorTotal = 0;
 
-        foreach (string code in InputSplit)
+        foreach (string code in Inputs)
         {
             string totalCode = "", checkSum = "", check = "";
             int sector = 0;

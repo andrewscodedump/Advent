@@ -43,11 +43,11 @@ public partial class Day11 : Advent.Day
 
     private Monkey[] GetDetails()
     {
-        long numMonkeys = InputSplit.Where(l=>l.StartsWith("Monkey")).Count();
+        long numMonkeys = Inputs.Where(l=>l.StartsWith("Monkey")).Count();
         Monkey[] monkeys = new Monkey[numMonkeys];
         for (long i = 0; i < numMonkeys; i++) monkeys[i] = new();
         Monkey monkey = new();
-        foreach (string line in InputSplit)
+        foreach (string line in Inputs)
         {
             if (line == "") continue;
             string[] bits = line.Split(" ,:".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);

@@ -8,8 +8,11 @@ public partial class Day07 : Advent.Day
         Dictionary<string, ushort> values = new();
 
         if (Part2) values.Add("b", 16076);
-        foreach (string op in InputSplit)
-            instructions.Add(op.Split(new string[] { " -> " },StringSplitOptions.RemoveEmptyEntries)[1], op.Split(new string[] { " -> " }, StringSplitOptions.RemoveEmptyEntries)[0]);
+        foreach (string op in Inputs)
+        {
+            string[] bits = op.Split(new string[] { " -> " }, StringSplitOptions.RemoveEmptyEntries);
+            instructions.Add(bits[1], bits[0]);
+        }
 
         Output = GetWireValue(values, instructions, "a").ToString();
     }

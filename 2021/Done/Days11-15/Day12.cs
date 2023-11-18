@@ -8,7 +8,7 @@ public partial class Day12 : Advent.Day
         Queue<(string, List<string>, HashSet<string>, bool)> explore = new();
         List<List<string>> paths = new();
 
-        foreach (string input in InputSplit)
+        foreach (string input in Inputs)
         {
             string start = input.Split('-')[0], end = input.Split('-')[1];
             if (start == "start" || start == "end") start = start.ToUpper();

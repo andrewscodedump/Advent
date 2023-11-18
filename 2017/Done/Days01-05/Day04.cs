@@ -5,7 +5,7 @@ public partial class Day04 : Advent.Day
     public override void DoWork()
     {
         int valid = 0;
-        foreach (string line in InputSplit)
+        foreach (string line in Inputs)
         {
             List<string> words = new();
             bool matchFound = false;

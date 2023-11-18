@@ -10,7 +10,7 @@ public partial class Day07 : Advent.Day
 
         if (Part1)
         {
-            foreach (string address in InputSplit)
+            foreach (string address in Inputs)
             {
                 bool isOK = false;
 
@@ -48,7 +48,7 @@ public partial class Day07 : Advent.Day
 
         else
         {
-            foreach (string address in InputSplit)
+            foreach (string address in Inputs)
             {
                 ArrayList inner = new();
                 ArrayList outer = new();

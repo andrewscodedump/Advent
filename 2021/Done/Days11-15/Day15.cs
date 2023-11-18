@@ -6,7 +6,7 @@ public partial class Day15 : Advent.Day
     {
         Dictionary<(int, int), int> map = new(), shortestPaths = new() { { (0, 0), 0 } };
         PriorityQueue<((int, int), HashSet<(int,int)>, int), int> explore = new();
-        int finalScore = int.MaxValue, width = InputSplit.Length;
+        int finalScore = int.MaxValue, width = Inputs.Length;
         int multiplier = Part1 ? 1 : 5;
         (int x, int y) endPos = ((width * multiplier) - 1, (width * multiplier) - 1);
         List<(int, int)> Offsets = new() { (0, 1), (1, 0), (0, -1), (-1, 0) };
@@ -16,7 +16,7 @@ public partial class Day15 : Advent.Day
                 for (int j = 0; j < multiplier; j++)
                     for (int x = 0; x < width; x++)
                     {
-                        int val = int.Parse(InputSplit[y][x].ToString());
+                        int val = int.Parse(Inputs[y][x].ToString());
                         map[(x + (j * width), y + (i * width))] = val + i + j - ((val + i + j - 1) / 9 * 9);
                     }
         explore.Enqueue(((0, 0), new(), 0), 0);

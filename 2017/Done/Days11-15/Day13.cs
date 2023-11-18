@@ -8,7 +8,7 @@ public partial class Day13 : Advent.Day
         int score = 0, delay = 0;
         bool caught = false;
 
-        foreach (string scanner in InputSplit)
+        foreach (string scanner in Inputs)
         {
             string[] bits = scanner.Split(": ");
             scanners.Add((int.Parse(bits[0]), int.Parse(bits[1])));

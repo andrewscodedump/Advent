@@ -7,7 +7,7 @@ public partial class Day06 : Advent.Day
         #region Setup Variables and Parse Inputs
 
         List<(string planet, string satellite)> orbits = new();
-        foreach (string orbit in InputSplit)
+        foreach (string orbit in Inputs)
             orbits.Add((orbit.Split(')')[0], orbit.Split(')')[1]));
 
         #endregion Setup Variables and Parse Inputs

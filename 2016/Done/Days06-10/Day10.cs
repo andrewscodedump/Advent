@@ -11,7 +11,7 @@ public partial class Day10 : Advent.Day
         Dictionary<int, int> outputs = new();
 
         // Do all the gets first
-        foreach (string rule in InputSplit)
+        foreach (string rule in Inputs)
         {
             string[] words = rule.Split(' ');
             if (words[0] == "value")
@@ -30,7 +30,7 @@ public partial class Day10 : Advent.Day
         do
         {
             somethingsChanged = false;
-            foreach (string rule in InputSplit)
+            foreach (string rule in Inputs)
             {
                 string[] words = rule.Split(' ');
                 if (words[0] == "bot")

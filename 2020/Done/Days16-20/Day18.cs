@@ -4,7 +4,7 @@ namespace Advent2020;
 
 public partial class Day18 : Advent.Day
 {
-    public override void DoWork() => Output = InputSplit.Sum(l => Calculate(ProcessPluses(ResolveBrackets(l)))).ToString();
+    public override void DoWork() => Output = Inputs.Sum(l => Calculate(ProcessPluses(ResolveBrackets(l)))).ToString();
 
     private static long Calculate(string sum)
     {

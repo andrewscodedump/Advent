@@ -11,7 +11,7 @@ public partial class Day14 : Advent.Day
         Dictionary<string, long> leftovers = new();
         long target = 1000000000000, lowerBound, upperBound, guess, result;
 
-        foreach (string reaction in InputSplit)
+        foreach (string reaction in Inputs)
         {
             (string inputs, string product) = (reaction.Split(new string[] { "=>" }, StringSplitOptions.RemoveEmptyEntries)[0], reaction.Split(new string[] { "=>" }, StringSplitOptions.RemoveEmptyEntries)[1]);
             (long produced, string chemical) = (long.Parse(product.Split(' ', StringSplitOptions.RemoveEmptyEntries)[0]), product.Split(' ', StringSplitOptions.RemoveEmptyEntries)[1]);

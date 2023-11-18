@@ -8,7 +8,7 @@ public partial class Day11 : Advent.Day
         int steps, bestSteps = 500, attempts = 0, maxAttempts = 1_000_000, currentFloor, numItems = 0;
         Dictionary<int, List<(string, string)>> floors;
 
-        foreach (string desc in InputSplit)
+        foreach (string desc in Inputs)
             foreach (string word in desc.Split(' '))
                 if (word.Contains("generator") || word.Contains("microchip"))
                     numItems++;
@@ -143,7 +143,7 @@ public partial class Day11 : Advent.Day
     {
         Dictionary<int, List<(string, string)>> floors = new();
         // Populate the floor setup
-        foreach (string desc in InputSplit)
+        foreach (string desc in Inputs)
         {
             int floor = 0;
             (string, string) item = ("", "");

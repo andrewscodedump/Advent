@@ -5,13 +5,20 @@ public partial class Day15 : Advent.Day
     private struct Ingredient { public int Capacity; public int Durability; public int Flavour; public int Texture; public int Calories; }
     public override void DoWork()
     {
-        Input = Input.Replace(":", ",").Replace(", ", ",").Replace(" ", ",");
         List<Ingredient> ingredients = new();
 
-        foreach (string ingredient in InputSplit)
-            ingredients.Add(new() { Capacity = int.Parse(ingredient.Split(',')[2]), Durability = int.Parse(ingredient.Split(',')[4]), 
-                Flavour = int.Parse(ingredient.Split(',')[6]), Texture = int.Parse(ingredient.Split(',')[8]), Calories = int.Parse(ingredient.Split(',')[10]) });
-
+        foreach (string ingredientBase in Inputs)
+        {
+            string ingredient = ingredientBase.Replace(":", ",").Replace(", ", ",").Replace(" ", ",");
+            ingredients.Add(new()
+            {
+                Capacity = int.Parse(ingredient.Split(',')[2]),
+                Durability = int.Parse(ingredient.Split(',')[4]),
+                Flavour = int.Parse(ingredient.Split(',')[6]),
+                Texture = int.Parse(ingredient.Split(',')[8]),
+                Calories = int.Parse(ingredient.Split(',')[10])
+            });
+        }
         Output = GetMax(ingredients, 100, 0, 0, 0, 0, 0, 0).ToString();
     }
 

@@ -11,10 +11,10 @@ public partial class Day09 : Advent.Day
             int nextBracket = input.IndexOf(')') - 1;
             string[] numbers = input.Substring(1, nextBracket).Split('x');
             int lettersToMultiply = int.Parse(numbers[0]);
-            int multiplier = int.Parse(numbers[1]);
+            long multiplier = int.Parse(numbers[1]);
             return Part1
-                ? multiplier * (lettersToMultiply + GetLength(input[(nextBracket + 2 + lettersToMultiply)..]))
-                : multiplier * (GetLength(input.Substring(nextBracket + 2, lettersToMultiply)) + GetLength(input[(nextBracket + 2 + lettersToMultiply)..]));
+                ? (multiplier * lettersToMultiply) + GetLength(input[(nextBracket + 2 + lettersToMultiply)..])
+                : (multiplier * GetLength(input.Substring(nextBracket + 2, lettersToMultiply))) + GetLength(input[(nextBracket + 2 + lettersToMultiply)..]);
         }
         else if (input.Contains('('))
         {

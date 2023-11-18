@@ -27,13 +27,14 @@ public partial class Day08 : Advent.Day
                     image[i] = layer[i];
         }
 
-        for (int y = 0; y < height; y++)
-        {
-            StringBuilder line = new();
-            for (int x = 0; x < width; x++)
-                line.Append(image[(y * width) + x] == '0' ? " " : "█");
-            Debug.Print(line.ToString());
-        }
+        if (Part2)
+            for (int y = 0; y < height; y++)
+            {
+                StringBuilder line = new();
+                for (int x = 0; x < width; x++)
+                    line.Append(image[(y * width) + x] == '0' ? " " : "█");
+                Debug.Print(line.ToString());
+            }
 
         string outputString = Part2 && !BatchRun ? AWInputBox("Get Output", "Enter string value displayed in output window", "") : string.Empty;
         Output = Part1 ? product.ToString() : outputString;

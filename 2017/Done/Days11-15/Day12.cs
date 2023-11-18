@@ -9,7 +9,7 @@ public partial class Day12 : Advent.Day
         int numberInZeroGroup = 0, numberOfGroups = 0;
         string groupStart = "0";
 
-        foreach (string pipe in InputSplit)
+        foreach (string pipe in Inputs)
             pipes.Add(pipe.Split(new string[] { " <-> " }, StringSplitOptions.RemoveEmptyEntries)[0], pipe.Split(" <-> ")[1].Split(", "));
 
         while (!string.IsNullOrEmpty(groupStart))

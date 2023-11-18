@@ -5,9 +5,9 @@ public partial class Day09 : Advent.Day
     public override void DoWork()
     {
         #region Setup Variables and Parse Inputs
-        int currPlayer = 1;
-        int numPlayers = int.Parse(Input.Split(' ')[0]);
-        int highestMarble = int.Parse(Input.Split(' ')[6]) * (Part1 ? 1 : 100);
+        long currPlayer = 1;
+        long numPlayers = InputNumbersSingle[0];
+        long highestMarble = InputNumbersSingle[1] * (Part1 ? 1 : 100);
         long[] scores = new long[numPlayers];
         LinkedList<long> marbles = new();
         LinkedListNode<long> currNode = marbles.AddFirst(0);

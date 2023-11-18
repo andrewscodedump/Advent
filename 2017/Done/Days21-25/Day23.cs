@@ -8,7 +8,7 @@ public partial class Day23 : Advent.Day
         int[] currPos = new int[] { 0, 0 };
         long oldB = 0; long oldC = 0; long oldD = 0;
         string instruction;
-        string[] instructions = InputSplit;
+        string[] instructions = Inputs;
         Dictionary<string, long> registers = new() { { "a", WhichPart - 1 }, { "b", 0 }, { "c", 0 }, { "d", 0 }, { "e", 0 }, { "f", 0 }, { "g", 0 }, { "h", 0 } };
 
         if (Part1)

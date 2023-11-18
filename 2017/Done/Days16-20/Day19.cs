@@ -4,7 +4,7 @@ public partial class Day19 : Advent.Day
 {
     public override void DoWork()
     {
-        string[] lines = InputSplit;
+        string[] lines = Inputs;
         int currentRow = 0, currentColumn = lines[0].IndexOf('|'), steps = 0;
         char direction = 'D';
         string letters = string.Empty;

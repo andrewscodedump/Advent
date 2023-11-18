@@ -4,7 +4,7 @@ public partial class Day09 : Advent.Day
 {
     public override void DoWork()
     {
-        long[] numbers = InputSplit.Select(long.Parse).ToArray();
+        long[] numbers = Inputs.Select(long.Parse).ToArray();
         int range = TestMode ? 5 : 25, pos = 0, start = 0, end = 1;
         long sum;
 

@@ -38,7 +38,7 @@ public partial class AdventOfCode : Form
             theDay = (Day)Activator.CreateInstance(Type.GetType($"Advent{updYear.Value}.Day{(int)updDay.Value:D2}"));
             theDay.SetMode(chkTestMode.Checked, (int)updPuzzle.Value);
         }
-        List<string> Inputs = GetInputs();
+        List<List<string>> Inputs = GetInputs();
         List<string> Expecteds = GetExpecteds();
         if (Inputs.Count != Expecteds.Count)
         {
@@ -58,7 +58,7 @@ public partial class AdventOfCode : Form
     {
         if (inputNumber.Text == "0")
         {
-            txtInput.Text = GetInput();
+            txtInput.Text = string.Join('¶', GetInput());
             txtExpected.Text = GetExpected();
         }
         else
@@ -80,18 +80,18 @@ public partial class AdventOfCode : Form
     }
     private List<string> GetExpecteds()
     {
-        return CheckStatus(theDay.BatchStatus, out List<string> results) ? results : theDay.Expecteds;
+        return CheckStatus(theDay.BatchStatus, out string result) ? new() : theDay.Expecteds;
     }
 
     private string GetInput()
     {
         theDay.CurrentInput = int.Parse(inputNumber.Text);
-        return CheckStatus(theDay.BatchStatus, out string result) ? result : theDay.Input;
+        return CheckStatus(theDay.BatchStatus, out string result) ? result : theDay.InputJoined;
     }
 
-    private List<string> GetInputs()
+    private List<List<string>> GetInputs()
     {
-        return CheckStatus(theDay.BatchStatus, out List<string> results) ? results : theDay.Inputs;
+        return CheckStatus(theDay.BatchStatus, out string _) ? new() : theDay.AllInputs;
     }
 
     private string DoPuzzle()
@@ -105,9 +105,7 @@ public partial class AdventOfCode : Form
         }
     }
 
-    private static bool CheckStatus(Day.DayBatchStatus status, out string result) => CheckStatus(status, out result, out List<string> _);
-    private static bool CheckStatus(Day.DayBatchStatus status, out List<string> results) => CheckStatus(status, out string _, out results);
-    private static bool CheckStatus(Day.DayBatchStatus status, out string result, out List<string> results)
+    private static bool CheckStatus(Day.DayBatchStatus status, out string result)
     {
         result = status switch
         {
@@ -119,7 +117,6 @@ public partial class AdventOfCode : Form
             Day.DayBatchStatus.NoInputs => "No inputs available",
             _ => string.Empty,
         };
-        results = new List<string> { result };
         return result != string.Empty;
     }
 
@@ -129,7 +126,7 @@ public partial class AdventOfCode : Form
         updYear.Value = defaultYear;
         updDay.Value = defaultDay;
         updPuzzle.Value = defaultPuzzle;
-        chkTestMode.Checked = defaultTestMode;
+        chkTestMode.Checked = defaultMode == "Test";
         noReset = false;
         ResetScreen();
     }

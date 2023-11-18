@@ -5,15 +5,15 @@ public partial class Day04 : Advent.Day
     public override void DoWork()
     {
         #region Setup Variables and Parse Inputs
-        (DateTime time, int guardNo, string action)[] shifts = new(DateTime, int, string)[InputSplit.Length];
+        (DateTime time, int guardNo, string action)[] shifts = new(DateTime, int, string)[Inputs.Length];
         Dictionary<int, int> guardTotals = new();
         Dictionary<(int, int), int> guardMinutes = new();
         char[] separators = new char[] { '[', ']', ' ', '#' };
         int maxMins = 0, maxGuard = 0, maxMin = 0;
 
-        for (int pos = 0; pos < InputSplit.Length; pos++)
+        for (int pos = 0; pos < Inputs.Length; pos++)
         {
-            string[] bits = InputSplit[pos].Split(separators, StringSplitOptions.RemoveEmptyEntries);
+            string[] bits = Inputs[pos].Split(separators, StringSplitOptions.RemoveEmptyEntries);
             shifts[pos] = (DateTime.Parse(bits[0] + "T" + bits[1]),
                 bits[2] == "Guard" ? int.Parse(bits[3]) : 0,
                 bits[2] == "Guard" ? bits[4] : bits[2]);

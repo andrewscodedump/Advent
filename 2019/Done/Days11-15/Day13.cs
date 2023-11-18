@@ -6,7 +6,7 @@ public partial class Day13 : Advent.Day
     {
         #region Setup Variables and Parse Inputs
 
-        IntCode code = new(Input);
+        IntCode code = new(InputNumbersSingle);
         (int x, int y) pos = (0, 0);
         int id;
         Dictionary<(int x, int y), int> screen = new();

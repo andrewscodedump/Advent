@@ -8,10 +8,10 @@ public partial class Day13 : Advent.Day
         List<string> people = new();
         Dictionary<(string,string), int> differences = new();
         int maxHappiness = 0;
-        Input = Input.Replace(".", "").Replace("would gain ", "+").Replace("would lose ", "-").Replace("happiness units by sitting next to ", "");
         if (Part2) people.Add("Me");
-        foreach (string couple in InputSplit)
+        foreach (string coupleBase in Inputs)
         {
+            string couple = coupleBase.Replace(".", "").Replace("would gain ", "+").Replace("would lose ", "-").Replace("happiness units by sitting next to ", "");
             string[] parts = couple.Split(' ');
             if (!people.Contains(parts[0]))
                 people.Add(parts[0]);

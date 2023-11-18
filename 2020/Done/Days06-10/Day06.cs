@@ -6,7 +6,7 @@ public partial class Day06 : Advent.Day
     {
         int result = 0;
 
-        foreach (string group in InputSplit)
+        foreach (string group in Inputs)
         {
             Dictionary<char, int> questions = new();
             foreach (string set in group.Split(','))

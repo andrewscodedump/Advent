@@ -6,7 +6,7 @@ public partial class Day04 : Advent.Day
     {
         int total1 = 0, total2 = 0;
 
-        foreach (string pair in InputSplit)
+        foreach (string pair in Inputs)
         {
             int[] limits = pair.Split(",-".ToCharArray()).Select(l => Convert.ToInt32(l)).ToArray();
             var elf1 = Enumerable.Range(limits[0], limits[1] - limits[0] + 1);

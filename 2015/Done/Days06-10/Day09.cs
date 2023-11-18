@@ -10,7 +10,7 @@ public partial class Day09 : Advent.Day
         int shortestDistance = int.MaxValue;
         int longestDistance = 0;
 
-        foreach (string set in InputSplit)
+        foreach (string set in Inputs)
         {
             string[] parts = set.Split(' ');
             if (!towns.Contains(parts[0])) towns.Add(parts[0]);

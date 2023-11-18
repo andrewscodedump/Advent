@@ -2,8 +2,8 @@
 
 public partial class AdventOfCode
 {
-    private readonly int defaultDay = 01;
+    private readonly int defaultDay = 5;
     private readonly int defaultPuzzle = 1;
-    private readonly bool defaultTestMode = true;
-    private readonly int defaultYear = 2023;
+    private readonly string defaultMode = "Live";
+    private readonly int defaultYear = 2019;
 }

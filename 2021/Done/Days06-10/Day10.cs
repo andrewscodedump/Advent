@@ -10,7 +10,7 @@ public partial class Day10 : Advent.Day
         long result = 0;
         List<long> results = new();
 
-        foreach (string input in InputSplit)
+        foreach (string input in Inputs)
         {
             long interimResult = 0;
             foreach (char bracket in input)

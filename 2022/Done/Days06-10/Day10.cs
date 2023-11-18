@@ -16,7 +16,7 @@ public partial class Day10 : Advent.Day
             screen.Append((register - 1 == col || register == col || register + 1 == col) ? '█' : ' ');
             if (col == 39)
                 screen.AppendLine("");
-            string instr = InputSplit[pointer];
+            string instr = Inputs[pointer];
             if (instr == "noop")
                 pointer++;
             else if (addRunning)

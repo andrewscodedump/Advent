@@ -5,7 +5,7 @@ public partial class Day05 : Advent.Day
     public override void DoWork()
     {
         int curPos = 0, steps = 0;
-        int[] input = InputSplit.Select(i => int.Parse(i)).ToArray();
+        int[] input = Inputs.Select(i => int.Parse(i)).ToArray();
         do
         {
             steps++;

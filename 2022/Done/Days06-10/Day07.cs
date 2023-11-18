@@ -6,7 +6,7 @@ public partial class Day07 : Advent.Day
     {
         ElfDir root = new("/");
         ElfDir currentDirectory = root;
-        foreach (string command in InputSplit)
+        foreach (string command in Inputs)
         {
             string[] bits = command.Split(' ');
             switch (bits[0])

@@ -10,7 +10,7 @@ public partial class Day20 : Advent.Day
         uint firstOne = uint.MaxValue;
         uint count = 0;
 
-        foreach (string item in InputSplit)
+        foreach (string item in Inputs)
             exclusions.Add(new uint[] { uint.Parse(item.Split('-')[0]), uint.Parse(item.Split('-')[1]) });
 
         // Sort the list into numerical order on first number

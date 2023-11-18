@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace Advent;
+﻿namespace Advent;
 
 public abstract partial class Day
 {
@@ -34,31 +32,19 @@ public abstract partial class Day
         }
     }
 
-    protected string[] InputSplit;
-    protected int[] InputSplitInt;
-    protected string[] InputSplitC;
-    protected int[] InputSplitCInt;
-    protected long[] InputSplitCLong;
-    protected string[] InputSplitter(char delimiter) => InputSplitter(new char[] { delimiter });
-    protected string[] InputSplitter(char[] delimiters) => Input.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
-    public string Input
-    {
-        get => Inputs[CurrentInput];
-        set
-        {
-            Inputs[CurrentInput] = value;
-            SetInputs();
-        }
-    }
+    protected string Input;
+    public string InputJoined { get; private set; }
+    public string[] Inputs { get; private set; }
+    protected List<long[]> InputNumbers { get; private set; }
+    protected long[] InputNumbersSingle { get; private set; }
 
-    private List<string> inputs;
-
-    public List<string> Inputs
+    private List<List<string>> allInputs;
+    public List<List<string>> AllInputs
     {
-        get { return inputs; }
-        set 
+        get { return allInputs; }
+        private set
         {
-            inputs = value;
+            allInputs = value;
             SetInputs();
         }
     }
@@ -89,7 +75,7 @@ public abstract partial class Day
         string rootFolder = @"D:\Hobbies\Computer\Sources\Advent"; // Main PC
         // string rootFolder = @"C:\Userfiles\Hobbies\Computer\Sources\Advent"; // Laptop
         inputPath = $@"{rootFolder}\{year}\Inputs\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}";
-        Inputs = GetInputs();
+        AllInputs = GetInputs();
         SetInputs();
         Expecteds = GetExpecteds();
         BatchStatus = CheckStatus(BatchStatus);
@@ -98,19 +84,13 @@ public abstract partial class Day
         MD5 = System.Security.Cryptography.MD5.Create();
     }
 
-    public void AddInput(string newInput)
-    {
-        Inputs.Add(newInput);
-        SetInputs();
-    }
-
     #endregion Public Methods
 
     #region Private Methods
 
-    private List<string> GetInputs()
+    private List<List<string>> GetInputs()
     {
-        List<string> inputs = new();
+        List<List<string>> inputs = new();
         if (new DateTime(year, 12, day, 05, 00, 00) > DateTime.Now)
         {
             BatchStatus = DayBatchStatus.Future;
@@ -131,63 +111,27 @@ public abstract partial class Day
                 fileExists = true;
         }
 
-        if (!fileExists)
-        {
-            if (!TestMode && Part1 && BatchStatus == DayBatchStatus.Available)
-            {
-                // Get input from AoC website and save to file
-                if (!GetInputFromAoC())
-                {
-                    BatchStatus = DayBatchStatus.NoInputs;
-                    return inputs;
-                }
-            }
-            else
-            {
-                BatchStatus = DayBatchStatus.NoInputs;
-                return inputs;
-            }
-        }
-        else if (File.ReadAllLines($@"{inputPath}\{fileName}").Length == 0)
+        if (!fileExists 
+            || File.ReadAllLines($@"{inputPath}\{fileName}").Length == 0)
+            //|| (!TestMode && Part1 && BatchStatus == DayBatchStatus.Available))
         {
             BatchStatus = DayBatchStatus.NoInputs;
             return inputs;
         }
 
-        StringBuilder input = new();
+        List<string> input = new();
         foreach (string line in File.ReadAllLines($@"{inputPath}\{fileName}"))
         {
             if (line == "***AdditionalInput***")
             {
-                inputs.Add(input.ToString());
-                input.Clear();
+                inputs.Add(input);
+                input = new();
                 continue;
             }
-            if (input.Length > 0)
-                input.Append('¶');
-            input.Append(line);
+            input.Add(line);
         }
-        inputs.Add(input.ToString());
+        inputs.Add(input);
         return inputs;
-    }
-
-    private static bool GetInputFromAoC()
-    {
-        // This will go to the AoC website to fetch the day's input and save it to file
-        // (but I'm not actually sure it's needed anymore, since the new input files are so easy to use)
-        return false;
-        /*if (!File.Exists(filename))
-        {
-            var uri = new Uri("https://adventofcode.com");
-            var cookies = new CookieContainer();
-            cookies.Add(uri, new System.Net.Cookie("session", cookie));
-            using var file = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None);
-            using var handler = new HttpClientHandler() { CookieContainer = cookies };
-            using var client = new HttpClient(handler) { BaseAddress = uri };
-            using var response = await client.GetAsync($"/{year}/day/{day}/input");
-            using var stream = await response.Content.ReadAsStreamAsync();
-            await stream.CopyToAsync(file);
-        }*/
     }
 
     private List<string> GetExpecteds()
@@ -266,16 +210,22 @@ public abstract partial class Day
 
     private void SetInputs()
     {
-        if (inputs == null || inputs.Count == 0 || BatchStatus == DayBatchStatus.NotDoneYet) return;
+        if (allInputs == null || allInputs.Count == 0 || BatchStatus == DayBatchStatus.NotDoneYet) return;
         if (BatchStatus == DayBatchStatus.NoInputs) BatchStatus = DayBatchStatus.Available;
-        InputSplit = Inputs[CurrentInput].Split('¶', StringSplitOptions.RemoveEmptyEntries);
-        InputSplitC = Inputs[CurrentInput].Split(',');
-        try { InputSplitInt = Array.ConvertAll(InputSplit, int.Parse); }
-        catch { InputSplitInt = null; }
-        try { InputSplitCInt = Array.ConvertAll(InputSplitC, int.Parse); }
-        catch { InputSplitCInt = null; }
-        try { InputSplitCLong = Array.ConvertAll(InputSplitC, long.Parse); }
-        catch { InputSplitCLong = null; }
+        Inputs = AllInputs[CurrentInput].ToArray();
+        InputJoined = string.Join('¶', Inputs);
+        Input = Inputs[0];
+        InputNumbers = new();
+        try
+        {
+            InputNumbers.AddRange(from string inp in Inputs
+                                  let m = Regex.Matches(inp, @"[\+-]?[0-9]*")
+                                  let numbers = m.Select(m => m.ToString()).Where(n => long.TryParse(n, out _)).Select(i => long.Parse(i))
+                                  where numbers.Any()
+                                  select numbers.ToArray());
+        }
+        catch { };
+        InputNumbersSingle = InputNumbers.Count == 0 ? Array.Empty<long>() : InputNumbers[0];
     }
 
     #endregion Private Methods
@@ -287,75 +237,9 @@ public abstract partial class Day
     public enum DayStatus { NotStarted, Running, Successful, Failed, Unknown };
     public enum DayBatchStatus { Available, NotDoneYet, Performance, NonCoded, NotWorking, NoTestData, NoPart2, ManualIntervention, Future, NoInputs };
 
-    protected readonly Dictionary<char, (int x, int y)> Directions = new() { { 'N', (0, 1) }, { 'S', (0, -1) }, { 'E', (1, 0) }, { 'W', (-1, 0) }, { 'U', (0, 1) }, { 'D', (0, -1) }, { 'L', (-1, 0) }, { 'R', (1, 0) }, { '^', (0, 1) }, { 'v', (0, -1) }, { '>', (1, 0) }, { '<', (-1, 0) } };
-    protected readonly Dictionary<char, (int x, int y)> DirectionsYDown = new() { { 'N', (0, -1) }, { 'S', (0, 1) }, { 'E', (1, 0) }, { 'W', (-1, 0) }, { 'U', (0, -1) }, { 'D', (0, 1) }, { 'L', (-1, 0) }, { 'R', (1, 0) }, { '^', (0, -1) }, { 'v', (0, 1) }, { '>', (1, 0) }, { '<', (-1, 0) } };
-    protected readonly List<(int, int)> DirectNeighbours = new() { (0, 1), (1, 0), (0, -1), (-1, 0) };
-    protected readonly List<(int, int)> Neighbours = new() { (-1, 1), (0, 1), (1, 1), (-1, 0), (1, 0), (-1, -1), (0, -1), (1, -1) };
-    protected readonly Dictionary<(char, char), char> turns = new() { { ('^', 'L'), '<' }, { ('^', 'R'), '>' }, { ('>', 'L'), '^' }, { ('>', 'R'), 'v' }, { ('v', 'L'), '>' }, { ('v', 'R'), '<' }, { ('<', 'L'), 'v' }, { ('<', 'R'), '^' } };
-    protected Dictionary<(int, int), char> SimpleMap = new();
-    protected int CountNeighbours(Dictionary<(int, int), char> area, int x, int y, char type) => Neighbours.Where(nbr => area[(x + nbr.Item1, y + nbr.Item2)] == type).Count();
-
     #endregion Common Objects
 
     #region Common Methods
-
-    public void PopulateMapFromInput()
-    {
-        for (int y = 0; y < InputSplit.Length; y++)
-        {
-            string work = InputSplit[y];
-            for (int x = 0; x < work.Length; x++)
-            {
-                SimpleMap[(x, y)] = work[x];
-            }
-        }
-    }
-    public void DrawMap() => DrawMap(true, false);
-
-    public void DrawMap(bool yUp, bool showCoords)
-    {
-        StringBuilder s = new();
-        Debug.Print("---------------------------------------------------------------------");
-        int maxX = SimpleMap.Keys.Max(x => x.Item1), maxY = SimpleMap.Keys.Max(x => x.Item2);
-        int minX = this.SimpleMap.Keys.Min(x => x.Item1), minY = this.SimpleMap.Keys.Min(x => x.Item2);
-        if (showCoords)
-        {
-            s.Append("     ");
-            for (int x = minX; x <= maxX; x++)
-                s.Append(x % 10);
-            Debug.Print(s.ToString());
-        }
-
-        if (yUp)
-            for (int y = maxY; y >= minY; y--)
-            {
-                s.Clear();
-                if (showCoords)
-                    s.Append(y.ToString("D4") + " ");
-                for (int x = minX; x <= maxX; x++)
-                    s.Append(SimpleMap.ContainsKey((x, y)) ? SimpleMap[(x, y)] : ' ');
-                Debug.Print(s.ToString());
-            }
-        else
-            for (int y = 0; y <= maxY; y++)
-            {
-                s.Clear();
-                if (showCoords)
-                    s.Append(y.ToString("D4") + " ");
-                for (int x = minX; x <= maxX; x++)
-                    s.Append(SimpleMap.ContainsKey((x, y)) ? SimpleMap[(x, y)] : ' ');
-                Debug.Print(s.ToString());
-            }
-        if (showCoords)
-        {
-            s.Clear();
-            s.Append("     ");
-            for (int x = minX; x <= maxX; x++)
-                s.Append(x % 10);
-            Debug.Print(s.ToString());
-        }
-    }
-
 
     public static string AWInputBox(string Title, string Prompt, string DefaultValue)
     {
@@ -397,24 +281,6 @@ public abstract partial class Day
         Array.Reverse(arr);
         return new string(arr);
     }
-    #region Logging
-    private string CurTime(string message) => (DateTime.Now - logs[message]).TotalSeconds.ToString("N3");
-    protected void LogRelative(string message) => Debug.WriteLine(string.Format("{0}: {1} secs", message, CurTime(message)));
-    protected void LogStartRelative(string message) => LogRelative(message + " started");
-    protected void LogEndRelative(string message) => LogRelative(message + " completed");
-    protected void LogStart(string message)
-    {
-        logs.Add(message, DateTime.Now);
-        Debug.WriteLine(string.Format("{0} started", message));
-    }
-    protected void LogEnd(string message)
-    {
-        if (logs.ContainsKey(message))
-        {
-            Debug.WriteLine(string.Format("{0} completed: {1} secs", message, CurTime(message)));
-        }
-    }
-    #endregion Logging
 
     #endregion Common Methods
 }

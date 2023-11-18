@@ -10,15 +10,15 @@ public partial class Day14 : Advent.Day
         Dictionary<(char, char), long> basePairs = new(), pairs;
         Dictionary<char, long> counts = new();
 
-        foreach (string formula in InputSplit[1..])
+        foreach (string formula in Inputs[2..])
         {
             translations[(formula[0], formula[1])] = ((formula[0], formula[6]), (formula[6], formula[1]));
             basePairs[(formula[0], formula[1])] = 0;
             counts[formula[6]] = 0;
         }
         pairs = new(basePairs);
-        for (int i = 0; i < InputSplit[0].Length - 1; i++)
-            pairs[(InputSplit[0][i], InputSplit[0][i + 1])]++;
+        for (int i = 0; i < Input.Length - 1; i++)
+            pairs[(Input[i], Input[i + 1])]++;
 
         for (int i = 0; i < steps; i++)
         {
@@ -42,12 +42,12 @@ public partial class Day14 : Advent.Day
 
     public void DoWorkNaive()
     {
-        List<char> polymer = InputSplit[0].ToCharArray().ToList();
+        List<char> polymer = Input.ToCharArray().ToList();
         Dictionary<(char, char), char> formulae = new();
         Dictionary<char, long> counts = new();
         int steps = Part1 ? 10 : 40;
 
-        foreach (string formula in InputSplit[1..])
+        foreach (string formula in Inputs[2..])
             formulae[(formula[0], formula[1])] = formula[6];
 
         for (int step = 0; step < steps; step++)

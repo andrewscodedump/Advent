@@ -13,7 +13,7 @@ public partial class Day24 : Advent.Day
 
         #endregion Setup Variables and Parse Inputs
 
-        foreach (string path in InputSplit)
+        foreach (string path in Inputs)
         {
             pos = (0, 0);
             for (int p = 0; p < path.Length; p++)

@@ -8,9 +8,9 @@ public partial class Day18 : Advent.Day
 
         int numKeys = 0;
         (int x, int y) startPos = (0, 0);
-        for (int y = 0; y < InputSplit.Length; y++)
+        for (int y = 0; y < Inputs.Length; y++)
         {
-            string line = InputSplit[y];
+            string line = Inputs[y];
             for (int x = 0; x < line.Length; x++)
             {
                 SimpleMap[(x, y)] = line[x];

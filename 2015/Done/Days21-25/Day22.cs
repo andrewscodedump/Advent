@@ -11,7 +11,7 @@ public partial class Day22 : Advent.Day
         }
 
     };
-    private struct Player { public int ManaLeft; public int ManaSpent; public int Armour; public int Points; public int Damage; }
+    private struct Player { public int ManaLeft; public int ManaSpent; public long Armour; public long Points; public long Damage; }
     private enum Result { PlayerDead, BossDead, Continue, Terminated }
 
     public override void DoWork()
@@ -116,18 +116,9 @@ public partial class Day22 : Advent.Day
             player.Armour = 0;
             player.Damage = 0;
         }
-        Input = Input.Replace("Hit ", "").Replace(" ", "");
-        foreach (string attr in Input.Split('¶'))
-        {
-            string type = attr.Split(':')[0];
-            int val = int.Parse(attr.Split(':')[1]);
-            if (type == "Points")
-                boss.Points = val;
-            else if (type == "Damage")
-                boss.Damage = val;
-            else if (type == "Armor")
-                boss.Armour = val;
-        }
+        boss.Points = InputNumbers[0][0];
+        boss.Damage = InputNumbers[1][0];
+        boss.Armour = InputNumbers[2][0];
         testList.AddRange(new int[] { 4, 2, 1, 3, 0 });
         recurring = new();
     }

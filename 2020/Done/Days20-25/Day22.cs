@@ -6,10 +6,12 @@ public partial class Day22 : Advent.Day
     {
         Queue<int>[] hands = new Queue<int>[2] { new(), new() };
         int player = -1;
-        foreach (string card in InputSplit)
+        foreach (string card in Inputs)
+        {
+            if (string.IsNullOrEmpty(card)) continue;
             if (card.StartsWith("Player")) player++;
             else hands[player].Enqueue(int.Parse(card));
-
+        }
         int winner = PlayGame(hands);
         Output = hands[winner].Select((card, index) => (hands[winner].Count - index) * card).Sum().ToString();
     }

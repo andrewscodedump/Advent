@@ -6,7 +6,7 @@ public partial class Day06 : Advent.Day
     {
         int targetDays = Part2 ? 256 : TestMode && CurrentInput == 0 ? 18 : 80;
         long[] counts = new long[9];
-        foreach (int fish in InputSplitCInt.ToList())
+        foreach (int fish in InputNumbersSingle)
             counts[fish]++;
 
         for(int day = 0; day < targetDays; day++)

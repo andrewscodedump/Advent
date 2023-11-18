@@ -1,5 +1,5 @@
 ﻿The elves are delivering presents.  The first elf delivers to all houses, the second to every second house and so on.
 Each elf delivers 10 times his number of presents to each house.
 
-What is the lowerst house number to get at least the number of presents in the input?
+What is the lowest house number to get at least the number of presents in the input?
 As above, but each elf stops after fifty houses, and delivers 11 times their number each time.

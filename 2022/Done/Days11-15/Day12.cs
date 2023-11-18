@@ -6,7 +6,7 @@ public partial class Day12 : Advent.Day
     {
         Dictionary<(int, int), int> bestSteps = new();
         PopulateMapFromInput();
-        int maxX = InputSplit[0].Length, maxY = InputSplit.Length;
+        int maxX = Input.Length, maxY = Inputs.Length;
         //DrawMap(false, false);
         (int, int) end = SimpleMap.Keys.Where(k => SimpleMap[k] == 'E').First();
         SimpleMap[end] = '{';

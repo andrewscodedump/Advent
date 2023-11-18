@@ -4,12 +4,11 @@ public partial class Day20 : Advent.Day
 {
     public override void DoWork()
     {
-        #region Setup Variables and Parse Inputs
         string route = Input;
         Queue<((int x, int y), int ptr, int len, int nextPos)> q = new();
         Dictionary<(int x, int y), (char state, int dist)> map = new() { { (0, 0), ('X', int.MaxValue) }, { (-1, 1), ('#', 0) }, { (0, 1), ('?', int.MaxValue) }, { (1, 1), ('#', 0) }, { (-1, 0), ('?', int.MaxValue) }, { (1, 0), ('?', int.MaxValue) }, { (-1, -1), ('#', 0) }, { (0, -1), ('?', int.MaxValue) }, { (1, -1), ('#', 0) } };
         q.Enqueue(((0, 0), 0, 0, 0));
-        #endregion Setup Variables and Parse Inputs
+        bool debug = false;
 
         do
         {
@@ -92,7 +91,7 @@ public partial class Day20 : Advent.Day
             map[pos] = (map[pos].state == '?' ? '#' : map[pos].state, map[pos].dist);
         }
 
-        //printIt(map);
+        if(debug) PrintIt(map);
 
         Queue<((int, int) pos, int dist, HashSet<(int, int)> beenThere)> bfs = new();
         bfs.Enqueue(((0, 0), 0, new HashSet<(int, int)>()));
@@ -122,7 +121,6 @@ public partial class Day20 : Advent.Day
     }
 
     #region Private Classes and Methods
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "For Debugging")]
     private static void PrintIt(Dictionary<(int x, int y), (char state, int dist)> map)
     {
         for (int y = map.Keys.Max(n => n.y); y >= map.Keys.Min(n => n.y); y--)

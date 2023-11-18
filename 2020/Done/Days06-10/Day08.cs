@@ -9,8 +9,8 @@ public partial class Day08 : Advent.Day
         int result;
         Dictionary<int, (string, int)> program = new();
 
-        for (int i = 0; i < InputSplit.Length; i++)
-            program.Add(i, (InputSplit[i].Split(' ')[0], int.Parse(InputSplit[i].Split(' ')[1])));
+        for (int i = 0; i < Inputs.Length; i++)
+            program.Add(i, (Inputs[i].Split(' ')[0], int.Parse(Inputs[i].Split(' ')[1])));
 
         #endregion Setup Variables and Parse Inputs
 

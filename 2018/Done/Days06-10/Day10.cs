@@ -5,21 +5,16 @@ public partial class Day10 : Advent.Day
     public override void DoWork()
     {
         #region Setup Variables and Parse Inputs
-        List<(int x, int y, int vx, int vy)> points = new();
+        List<(long x, long y, long vx, long vy)> points = new();
         string output = "None found";
         int seconds = 0;
-
-        foreach (string state in InputSplit)
-        {
-            string[] bits = state.Split(new char[] { '=', '<', '>', ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
-            points.Add((int.Parse(bits[1]), int.Parse(bits[2]), int.Parse(bits[4]), int.Parse(bits[5])));
-        }
+        InputNumbers.ForEach(state => points.Add((state[0], state[1], state[2], state[3])));
         #endregion Setup Variables and Parse Inputs
 
         do
         {
             seconds++;
-            (int minx, int miny, int maxx, int maxy) limits = (int.MaxValue, int.MaxValue, int.MinValue, int.MinValue);
+            (long minx, long miny, long maxx, long maxy) limits = (int.MaxValue, int.MaxValue, int.MinValue, int.MinValue);
             for (int i = 0; i < points.Count; i++)
             {
                 points[i] = (points[i].x + points[i].vx, points[i].y + points[i].vy, points[i].vx, points[i].vy);
@@ -27,9 +22,9 @@ public partial class Day10 : Advent.Day
                 limits.maxx = Math.Max(points[i].x, limits.maxx); limits.maxy = Math.Max(points[i].y, limits.maxy);
             }
             if (limits.maxx - limits.minx > 100 || limits.maxy - limits.miny > 100) continue;
-            if (CheckForLines(points, limits))
+            if (CheckForLines(points, limits, Part1))
             {
-                output = BatchRun ? Expected : AWInputBox("Check output window and enter letters (if any)", "Is it OK?", "None found");
+                output = BatchRun || Part2 ? Expected : AWInputBox("Check output window and enter letters (if any)", "Is it OK?", "None found");
             }
         } while (output == "None found");
 
@@ -37,10 +32,10 @@ public partial class Day10 : Advent.Day
     }
 
     #region Private Classes and Methods
-    private static bool CheckForLines(List<(int x, int y, int vx, int vy)> points, (int minx, int miny, int maxx, int maxy) limits)
+    private static bool CheckForLines(List<(long x, long y, long vx, long vy)> points, (long minx, long miny, long maxx, long maxy) limits, bool part1)
     {
         bool[,] array = new bool[limits.maxx - limits.minx + 1, limits.maxy - limits.miny + 1];
-        foreach ((int x, int y, int _, int _) in points)
+        foreach ((long x, long y, long _, long _) in points)
             array[x - limits.minx, y - limits.miny] = true;
         for (int x = 0; x < array.GetLength(0); x++)
         {
@@ -50,12 +45,15 @@ public partial class Day10 : Advent.Day
                 else len++;
             if (len >= 8)
             {
-                for (int y = 0; y < array.GetLength(1); y++)
+                if (part1)
                 {
-                    StringBuilder line = new();
-                    for (int x2 = 0; x2 < array.GetLength(0); x2++)
-                        line.Append(array[x2, y] ? "*" : " ");
-                    Debug.WriteLine(line);
+                    for (int y = 0; y < array.GetLength(1); y++)
+                    {
+                        StringBuilder line = new();
+                        for (int x2 = 0; x2 < array.GetLength(0); x2++)
+                            line.Append(array[x2, y] ? "█" : " ");
+                        Debug.WriteLine(line);
+                    }
                 }
                 return true;
             }

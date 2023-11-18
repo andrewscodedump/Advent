@@ -12,7 +12,7 @@ public partial class Day21 : Advent.Day
 
         pattern.AddRange(new List<string> { ".#.", "..#", "###" });
 
-        foreach (string rule in InputSplit)
+        foreach (string rule in Inputs)
         {
             string[] bits = rule.Split(new string[] { " => " }, StringSplitOptions.RemoveEmptyEntries);
             (string trigger, string result) = (bits[0], bits[1]);

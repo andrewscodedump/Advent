@@ -4,7 +4,7 @@ public partial class Day06 : Advent.Day
 {
     public override void DoWork()
     {
-        int[] input = Array.ConvertAll(InputSplit, int.Parse);
+        int[] input = Array.ConvertAll(Inputs, int.Parse);
         List<int[]> combos = new();
 
         do

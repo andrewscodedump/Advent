@@ -5,7 +5,7 @@ public partial class Day05 : Advent.Day
     public override void DoWork()
     {
         int niceNumbers = 0;
-        foreach (string word in InputSplitter(','))
+        foreach (string word in Input.Split(','))
             niceNumbers += IsNice(word) ? 1 : 0;
         Output = niceNumbers.ToString();
     }

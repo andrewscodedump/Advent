@@ -12,7 +12,7 @@ public partial class Day17 : Advent.Day
         int water = 0;
         #endregion Setup Variables and Parse Inputs
 
-        foreach (string line in InputSplit)
+        foreach (string line in Inputs)
         {
             string[] bits = line.Split(new char[] { ' ', ',', '=', '.' }, StringSplitOptions.RemoveEmptyEntries);
             if (bits[0] == "x")

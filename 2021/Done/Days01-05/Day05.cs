@@ -6,7 +6,7 @@ public partial class Day05 : Advent.Day
     {
         Dictionary<(int, int),int> map = new();
 
-        foreach (string line in InputSplit)
+        foreach (string line in Inputs)
         {
             int[] coords = Regex.Split(line, @"[^\d]+").Select(int.Parse).ToArray();
             (int x1, int y1, int x2, int y2) = (coords[0], coords[1], coords[2], coords[3]);

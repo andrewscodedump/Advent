@@ -4,8 +4,9 @@ public partial class Day13 : Advent.Day
 {
     public override void DoWork()
     {
-        foreach (string line in InputSplit)
+        foreach (string line in Inputs)
         {
+            if (line.Length == 0) continue;
             if (!line.StartsWith("fold"))
                 SimpleMap[(int.Parse(line.Split(',')[0]), int.Parse(line.Split(',')[1]))] = '█';
             else

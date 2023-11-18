@@ -6,12 +6,12 @@ public partial class Day11 : Advent.Day
     {
         #region Setup Variables and Parse Inputs
 
-        int rows = InputSplit.Length, cols = InputSplit[0].Length;
+        int rows = Inputs.Length, cols = Input.Length;
         int tolerance = Part1 ? 4 : 5;
         Dictionary<(int, int), char> plan = new();
         for (int y = -1; y <= rows; y++)
         {
-            string row = (y == -1 || y == rows) ? new string('*', cols + 2) : "*" + InputSplit[y] + "*";
+            string row = (y == -1 || y == rows) ? new string('*', cols + 2) : "*" + Inputs[y] + "*";
             for (int x = -1; x <= cols; x++)
                 plan.Add((x, y), row[x + 1]);
         }

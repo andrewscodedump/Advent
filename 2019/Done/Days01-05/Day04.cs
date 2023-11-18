@@ -4,8 +4,8 @@ public partial class Day04 : Advent.Day
 {
     public override void DoWork()
     {
-        int from = int.Parse(InputSplitter('-')[0]);
-        int to = int.Parse(InputSplitter('-')[1]);
+        int from = int.Parse(Input.Split('-')[0]);
+        int to = int.Parse(Input.Split('-')[1]);
 
         int number = 0;
         for (int i = from; i <= to; number += CheckNumber(i++))

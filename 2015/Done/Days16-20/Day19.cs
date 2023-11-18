@@ -6,15 +6,14 @@ public partial class Day19 : Advent.Day
 
     private string DoPart1()
     {
-        Input = Input.Replace(" => ", ">");
-        string[] inputs = Input.Split('¶');
+        string[] inputs = Inputs;
         string startMolecule = inputs[^1];
         string[,] convs = new string[inputs.Length - 1, 2];
         Dictionary<string, int> outputs = new();
         for (int pos = 0; pos < inputs.Length - 1; pos++)
         {
-            convs[pos, 0] = inputs[pos].Split('>')[0];
-            convs[pos, 1] = inputs[pos].Split('>')[1];
+            convs[pos, 0] = inputs[pos].Split(" => ")[0];
+            convs[pos, 1] = inputs[pos].Split(" => ")[1];
         }
 
         for (int pos = 0; pos < startMolecule.Length; pos++)
@@ -45,8 +44,7 @@ public partial class Day19 : Advent.Day
     private string DoPart2()
     {
         string molecule;
-        Input = Input.Replace(" => ", ">");
-        List<string> inputs = Input.Split('¶').ToList();
+        List<string> inputs = Inputs.ToList();
         string finalMolecule = inputs[^1];
         inputs.RemoveAt(inputs.Count - 1);
         int moves = 0;
@@ -55,8 +53,8 @@ public partial class Day19 : Advent.Day
         List<(string atom, string after)> convsRev = new();
         foreach (string conv in inputs)
         {
-            string inp = conv.Split('>')[0];
-            string outp = conv.Split('>')[1];
+            string inp = conv.Split(" => ")[0];
+            string outp = conv.Split(" => ")[1];
             convsRev.Add((outp, inp));
         }
 

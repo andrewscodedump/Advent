@@ -131,11 +131,26 @@ public abstract partial class Day
         public long Output { get; private set; }
 
         public IntCode() { }
-        public IntCode(string Code) : this(Code, long.MaxValue) { }
+        public IntCode(long[] Code) : this(Code, long.MaxValue) { }
 
-        public IntCode(string Code, long Input) : this(Code, long.MaxValue, long.MaxValue, Input) { }
+        public IntCode(long[] Code, long Input) : this(Code, long.MaxValue, long.MaxValue, Input) { }
 
-        public IntCode(string Code, long Noun, long Verb) : this(Code, Noun, Verb, long.MaxValue) { }
+        public IntCode(long[] Code, long Noun, long Verb) : this(Code, Noun, Verb, long.MaxValue) { }
+
+        public IntCode(long[] Code, long Noun, long Verb, long Input)
+        {
+            noun = Noun;
+            verb = Verb;
+            haveArgs = Noun != long.MaxValue;
+            if (Input != long.MaxValue)
+                inputs = new long[1] { Input };
+            ResetCode(Code);
+        }
+        private void ResetCode(long[] input)
+        {
+            baseDict = Enumerable.Range(0, input.Length).ToDictionary(x => (long)x, x => input[x]);
+            ResetCode(true);
+        }
 
         public IntCode Clone()
         {
@@ -146,23 +161,6 @@ public abstract partial class Day
                 nextInput = 0
             };
             return newCode;
-        }
-
-        public IntCode(string Code, long Noun, long Verb, long Input)
-        {
-            noun = Noun;
-            verb = Verb;
-            haveArgs = Noun != long.MaxValue;
-            if (Input != long.MaxValue)
-                inputs = new long[1] { Input };
-            ResetCode(Code);
-        }
-
-        private void ResetCode(string input)
-        {
-            long[] array = Array.ConvertAll(input.Split(','), long.Parse);
-            baseDict = Enumerable.Range(0, array.Length).ToDictionary(x => (long)x, x => array[x]);
-            ResetCode(true);
         }
 
         private void ResetCode(bool rebase)
@@ -249,11 +247,11 @@ public abstract partial class Day
                         break;
                     case 3:
                         //input = int.Parse(AWInputBox("Please enter value", "Please enter value", "0"));
+                        //Debug.Print("Input taken");
                         code[argument1.address] = inputs[nextInput];
                         nextInput++;
                         break;
                     case 4:
-                        // MessageBox.Show(argument1.value.ToString());
                         Output = argument1.value;
                         HasOutput = true;
                         break;
@@ -301,6 +299,11 @@ public abstract partial class Day
             return ErrorCode;
         }
 
+        public void Poke(long address, long value)
+        {
+            baseDict[address] = value;
+            ResetCode(true);
+        }
     }
 
     #endregion 2019

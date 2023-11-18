@@ -14,7 +14,7 @@ public partial class Day07 : Advent.Day
         Dictionary<char, int> inProgress = new();
         Queue<int> availWorkers = new(Enumerable.Range(0, numWorkers));
 
-        foreach (string instruction in InputSplit)
+        foreach (string instruction in Inputs)
         {
             char precursor = char.Parse(instruction.Split(' ')[1]), dependent = char.Parse(instruction.Split(' ')[7]);
             if (allSteps.ContainsKey(dependent))

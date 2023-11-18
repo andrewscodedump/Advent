@@ -5,20 +5,24 @@ public partial class Day04 : Advent.Day
     public override void DoWork()
     {
         List<Board> boards = new();
-        int score = 0, lineNumber = 0;
+        int score = 0;
         Board board = new();
 
-        foreach (List<int> line in InputSplit[1..].Select(l => l.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList()))
+        foreach (List<int> line in Inputs[2..].Select(l => l.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList()))
         {
-            board.AddLine(line);
-            if (++lineNumber % 5 == 0)
+            if (line.Count > 0)
+            {
+                board.AddLine(line);
+            }
+            else
             {
                 boards.Add(board);
                 board = new();
             }
         }
+        boards.Add(board);
 
-        foreach (int ball in InputSplit[0].Split(',').Select(int.Parse).ToList())
+        foreach (int ball in Input.Split(',').Select(int.Parse).ToList())
         {
             for (int boardNumber = boards.Count - 1; boardNumber >= 0; boardNumber--)
                 if ((score = boards[boardNumber].CheckNumber(ball)) != 0)

@@ -4,21 +4,21 @@ public partial class Day18 : Advent.Day
 {
     public override void DoWork()
     {
-        string work = InputSplit[0];
+        string work = Input;
         int result = 0;
         if (Part1)
         {
-            for (int i = 1; i < InputSplit.Length; i++)
-                work = Add(work, InputSplit[i]);
+            for (int i = 1; i < Inputs.Length; i++)
+                work = Add(work, Inputs[i]);
             result = Sum(work);
         }
         else
         {
-            for (int i = 0;i< InputSplit.Length; i++)
-                for (int j = 0;j < InputSplit.Length; j++)
+            for (int i = 0;i< Inputs.Length; i++)
+                for (int j = 0;j < Inputs.Length; j++)
                 {
                     if (i == j) continue;
-                    work=Add(InputSplit[i], InputSplit[j]);
+                    work=Add(Inputs[i], Inputs[j]);
                     int sum = Sum(work);
                     result=Math.Max(sum, result);
                 }

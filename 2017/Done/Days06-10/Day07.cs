@@ -10,7 +10,7 @@ public partial class Day07 : Advent.Day
         int size;
         int correctWeight = 0;
 
-        foreach (string line in InputSplit)
+        foreach (string line in Inputs)
         {
             string[] words = line.Split(new string[] { " ", ",", "(", ")", "->" }, StringSplitOptions.RemoveEmptyEntries);
 

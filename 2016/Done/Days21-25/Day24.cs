@@ -17,11 +17,11 @@ public partial class Day24 : Advent.Day
     {
         startPoint = new Point();
         targets = new List<Point>();
-        for (int y = 0; y < InputSplit.Length; y++)
-            for (int x = 0; x < InputSplit[y].Length; x++)
+        for (int y = 0; y < Inputs.Length; y++)
+            for (int x = 0; x < Inputs[y].Length; x++)
             {
                 Point thePoint = new(x, y);
-                char type = InputSplit[y][x];
+                char type = Inputs[y][x];
                 switch (type)
                 {
                     case '#':

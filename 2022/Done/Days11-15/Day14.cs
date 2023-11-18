@@ -4,7 +4,7 @@ public partial class Day14 : Advent.Day
 {
     public override void DoWork()
     {
-        Dictionary<(int x, int y), char> map = DoScan(InputSplit);
+        Dictionary<(int x, int y), char> map = DoScan(Inputs);
         int minX = map.Keys.Select(k => k.x).Min();
         int maxX = map.Keys.Select(k => k.x).Max();
         int maxY = map.Keys.Select(k => k.y).Max() + 2;

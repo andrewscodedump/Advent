@@ -9,9 +9,9 @@ public partial class Day19 : Advent.Day
         int[] regs = new int[] { Part1 ? 0 : 1, 0, 0, 0, 0, 0 };
         int ipVal = 0, ipReg = 0;
 
-        for (int i = 0; i < InputSplit.Length; i++)
+        for (int i = 0; i < Inputs.Length; i++)
         {
-            string[] bits = InputSplit[i].Split( ' ');
+            string[] bits = Inputs[i].Split( ' ');
             if (bits[0] == "#ip")
                 ipReg = int.Parse(bits[1]);
             else

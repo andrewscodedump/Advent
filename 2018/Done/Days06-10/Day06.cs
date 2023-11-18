@@ -11,9 +11,9 @@ public partial class Day06 : Advent.Day
         int distanceLimit = TestMode ? 32 : 10000;
 
         Dictionary<(int x, int y), int> points = new();
-        for (int i = 0; i < InputSplit.Length; i++)
+        for (int i = 0; i < Inputs.Length; i++)
         {
-            string[] coords = InputSplit[i].Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] coords = Inputs[i].Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
             int x = int.Parse(coords[0]), y = int.Parse(coords[1]);
             minX = Math.Min(x, minX); minY = Math.Min(y, minY); maxX = Math.Max(x, maxX); maxY = Math.Max(y, maxY);
             points.Add((x, y), 0);

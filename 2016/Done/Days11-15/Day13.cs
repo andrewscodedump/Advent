@@ -16,7 +16,7 @@ public partial class Day13 : Advent.Day
         {
             currentRoom = (Location)bfs.Dequeue();
             // It's not a room, or it is but we've already been here - skip to the next one
-            if (!IsRoom(currentRoom, int.Parse(Input)) || alreadyVisited.Contains(currentRoom.Position))
+            if (!IsRoom(currentRoom, InputNumbersSingle[0]) || alreadyVisited.Contains(currentRoom.Position))
                 continue;
 
             if (Part1)
@@ -58,14 +58,14 @@ public partial class Day13 : Advent.Day
         public Location Right() => new(Position.X + 1, Position.Y, Steps + 1);
     }
 
-    private static bool IsRoom(Location location, int favNum)
+    private static bool IsRoom(Location location, long favNum)
     {
         int x = location.Position.X;
         int y = location.Position.Y;
         if (x < 0 || y < 0)
             return false;
         int sum = 0;
-        int calc = (x * x) + (3 * x) + (2 * x * y) + y + (y * y) + favNum;
+        long calc = (x * x) + (3 * x) + (2 * x * y) + y + (y * y) + favNum;
         string bin = Convert.ToString(calc, 2);
         foreach (char c in bin)
         {

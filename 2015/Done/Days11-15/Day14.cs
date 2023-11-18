@@ -4,14 +4,13 @@ public partial class Day14 : Advent.Day
 {
     public override void DoWork()
     {
-        Input = Input.Replace(" can fly ", " ").Replace(" km/s for ", " ").Replace(" seconds, but then must rest for ", " ").Replace(" seconds.", "");
-
         int totalTime = TestMode ? 1000 : 2503;
         Dictionary<string, int> distances = new();
         Dictionary<string, int> points = new();
         List<(string, int, int, int)> reindeer = new();
-        foreach (string stats in InputSplit)
+        foreach (string statsBase in Inputs)
         {
+            string stats = statsBase.Replace(" can fly ", " ").Replace(" km/s for ", " ").Replace(" seconds, but then must rest for ", " ").Replace(" seconds.", "");
             reindeer.Add((stats.Split(' ')[0], int.Parse(stats.Split(' ')[1]), int.Parse(stats.Split(' ')[2]), int.Parse(stats.Split(' ')[3])));
             points[stats.Split(' ')[0]] = 0;
         }

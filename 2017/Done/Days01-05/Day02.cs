@@ -5,7 +5,7 @@ public partial class Day02 : Advent.Day
     public override void DoWork()
     {
         int total = 0;
-        foreach (string line in InputSplit)
+        foreach (string line in Inputs)
         {
             int[] numbers = line.Split(' ').Select(int.Parse).ToArray();
             if (Part1)

@@ -12,7 +12,7 @@ public partial class Day16 : Advent.Day
         string parseMode = "rules";
         long result = Part1 ? 0 : 1;
 
-        foreach (string line in InputSplit)
+        foreach (string line in Inputs)
         {
             if (line == string.Empty) continue;
             parseMode = line.StartsWith("your ") ? "mine" : line.StartsWith("nearby") ? "others" : parseMode;

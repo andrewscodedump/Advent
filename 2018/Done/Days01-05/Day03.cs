@@ -11,7 +11,7 @@ public partial class Day03 : Advent.Day
         Dictionary<(int x, int y), int> fabric = new();
         List<(int num, int left, int top, int width, int height)> inputs = new();
 
-        foreach (string input in InputSplit)
+        foreach (string input in Inputs)
         {
             string[] numbers = input.Split(separators, StringSplitOptions.RemoveEmptyEntries);
             inputs.Add ((int.Parse(numbers[0]), int.Parse(numbers[1]), int.Parse(numbers[2]), int.Parse(numbers[3]), int.Parse(numbers[4])));

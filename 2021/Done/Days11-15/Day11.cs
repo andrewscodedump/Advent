@@ -5,7 +5,7 @@ public partial class Day11 : Advent.Day
     public override void DoWork()
     {
         int rounds = 100, flashes = 0;
-        Dictionary<(int, int), Octopus> map = FillMapWithBorders(InputSplit);
+        Dictionary<(int, int), Octopus> map = FillMapWithBorders(Inputs);
 
         int round = 0;
         bool allFlash = false;

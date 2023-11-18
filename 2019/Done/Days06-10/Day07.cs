@@ -24,7 +24,7 @@ public partial class Day07 : Advent.Day
 
         foreach (int[] combo in combinations)
         {
-            IntCode[] codes = new IntCode[5] { new IntCode(Input), new IntCode(Input), new IntCode(Input), new IntCode(Input), new IntCode(Input) };
+            IntCode[] codes = new IntCode[5] { new IntCode(InputNumbersSingle), new IntCode(InputNumbersSingle), new IntCode(InputNumbersSingle), new IntCode(InputNumbersSingle), new IntCode(InputNumbersSingle) };
             long power = 0;
             bool firstTime = true;
             do

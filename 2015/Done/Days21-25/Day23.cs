@@ -7,7 +7,7 @@ public partial class Day23 : Advent.Day
         Dictionary<string, int> registers = new() { { "a", Math.Abs(1 - WhichPart) }, { "b", 0 } };
 
         int curPos = 0;
-        string[] instructions = Input.Replace(",", "").Split('¶');
+        string[] instructions = Inputs;
 
         do
         {
@@ -19,6 +19,7 @@ public partial class Day23 : Advent.Day
 
     private static int RunProgram(string instr, int curPos, ref Dictionary<string, int> registers)
     {
+        instr = instr.Replace(",", "");
         string[] bits = instr.Split(' ');
         string register;
         int offset = 1;

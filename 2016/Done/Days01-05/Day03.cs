@@ -4,23 +4,19 @@ public partial class Day03 : Advent.Day
 {
     public override void DoWork()
     {
-        int valid = 0, a, b, c;
+        long valid = 0, a, b, c;
 
         if (Part1)
-            foreach (string triangle in InputSplit)
+            InputNumbers.ForEach(triangle =>
             {
-                a = int.Parse(triangle.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[0]);
-                b = int.Parse(triangle.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[1]);
-                c = int.Parse(triangle.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[2]);
+                (a, b, c) = (triangle[0], triangle[1], triangle[2]);
                 if (a + b > c && b + c > a && a + c > b) valid++;
-            }
+            });
         else
-            for (int i = 0; i < InputSplit.Length; i += 3)
+            for (int i = 0; i < Inputs.Length; i += 3)
                 for (int j = 0; j < 3; j++)
                 {
-                    a = int.Parse(InputSplit[i].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[j]);
-                    b = int.Parse(InputSplit[i + 1].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[j]);
-                    c = int.Parse(InputSplit[i + 2].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[j]);
+                    (a, b, c) = (InputNumbers[i][j], InputNumbers[i + 1][j], InputNumbers[i + 2][j]);
                     if (a + b > c && b + c > a && a + c > b) valid++;
                 }
         Output = valid.ToString();

@@ -5,7 +5,7 @@ public partial class Day07 : Advent.Day
     public override void DoWork()
     {
         List<(int, string, string)> combinations = new();
-        foreach (string rule in InputSplit)
+        foreach (string rule in Inputs)
             foreach (string inner in rule.Split(" bags contain")[1].Replace("bags", " ").Replace("bag", " ").Replace(".", "").Replace("no ", "0 ").Split(','))
                 combinations.Add((int.Parse(inner.Trim().Split(' ')[0]), inner.Replace(int.Parse(inner.Trim().Split(' ')[0]).ToString(), "").Trim(), rule.Split(" bags contain ")[0]));
 

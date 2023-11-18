@@ -6,15 +6,16 @@ public partial class Day18 : Advent.Day
     {
         int dimension = TestMode ? 6 : 100;
         int iterations = TestMode ? Part1 ? 4 : 5 : 100;
-        Input = new string('.', dimension + 2) + "¶." + Input.Replace("¶", ".¶.") + ".¶" + new string('.', dimension + 2);
-        List<List<int>> before = new(), after = new();
-        foreach (string lineInput in InputSplit)
+        List<List<int>> after = new(), before = new() { Enumerable.Repeat(0, dimension + 2).ToList() };
+        foreach (string lineInput in Inputs)
         {
-            List<int> row = new();
-            for (int col = 0; col < dimension + 2; col++)
+            List<int> row = new() { 0 };
+            for (int col = 0; col < dimension; col++)
                 row.Add(lineInput[col] == '#' ? 1 : 0);
+            row.Add(0);
             before.Add(row);
         }
+        before.Add(Enumerable.Repeat(0, dimension + 2).ToList());
 
         if (Part2) before[1][1] = before[1][dimension] = before[dimension][1] = before[dimension][dimension] = 1;
         foreach (List<int> row in before) after.Add(new List<int>(row));

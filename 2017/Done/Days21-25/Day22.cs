@@ -8,9 +8,9 @@ public partial class Day22 : Advent.Day
         int direction = 0, maxSteps = Part1 ? 10_000 : 10_000_000, infections = 0;
         Dictionary<(int, int), int> grid = new();
 
-        for (int col = 0; col < InputSplit[0].Length; col++)
-            for (int row = 0; row < InputSplit.Length; row++)
-                grid[(row - ((InputSplit.Length - 1) / 2), -col + ((InputSplit[0].Length - 1) / 2))] = InputSplit[col][row] == '#' ? 2 : 0;
+        for (int col = 0; col < Input.Length; col++)
+            for (int row = 0; row < Inputs.Length; row++)
+                grid[(row - ((Inputs.Length - 1) / 2), -col + ((Input.Length - 1) / 2))] = Inputs[col][row] == '#' ? 2 : 0;
 
         for (int step = 0; step < maxSteps; step++)
         {

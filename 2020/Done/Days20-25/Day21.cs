@@ -7,7 +7,7 @@ public partial class Day21 : Advent.Day
         Dictionary<string, (string allergen, int number)> ingredients = new();
         Dictionary<string, List<string>> allergens = new();
 
-        foreach (string food in InputSplit)
+        foreach (string food in Inputs)
         {
             string foodIngredients = food.Split(" (contains ")[0];
             string foodAllergens = food.Replace(")", " ").Split(" (contains ")[1];

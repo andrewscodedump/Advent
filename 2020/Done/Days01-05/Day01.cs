@@ -4,7 +4,7 @@ public partial class Day01 : Advent.Day
     public override void DoWork()
     {
         int result = 0;
-        int[] numbers = InputSplit.Select(n => int.Parse(n)).ToArray();
+        int[] numbers = Inputs.Select(n => int.Parse(n)).ToArray();
 
         for (int i = 0; i < numbers.Length; i++)
             for (int j = i + 1; j < numbers.Length; j++)

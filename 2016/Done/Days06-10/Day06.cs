@@ -5,8 +5,8 @@ public partial class Day06 : Advent.Day
     public override void DoWork()
     {
         string message = string.Empty;
-        int messageLength = InputSplit[0].Length;
-        int numberOfMessages = InputSplit.Length;
+        int messageLength = Input.Length;
+        int numberOfMessages = Inputs.Length;
 
         string[][] test = new string[messageLength][];
 
@@ -15,7 +15,7 @@ public partial class Day06 : Advent.Day
 
         for (int i = 0; i < numberOfMessages; i++)
             for (int pos = 0; pos < messageLength; pos++)
-                test[pos][i] = InputSplit[i].Substring(pos, 1);
+                test[pos][i] = Inputs[i].Substring(pos, 1);
 
         for (int pos = 0; pos < messageLength; pos++)
         {

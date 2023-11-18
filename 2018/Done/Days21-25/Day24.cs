@@ -15,7 +15,7 @@ public partial class Day24 : Advent.Day
         bool immuneWins = default;
         int immuneScore = default, infectionScore = default, prevIImmuneScore = default, prevInfectionScore = default;
 
-        foreach (string input in InputSplit)
+        foreach (string input in Inputs)
         {
             if (input == "Immune System" || input == "Infection")
                 currGroup.Type = input;

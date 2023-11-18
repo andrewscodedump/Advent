@@ -4,7 +4,7 @@ public partial class Day24 : Advent.Day
 {
     public override void DoWork()
     {
-        List<(int, int)> parts = InputSplit.Select(i => (int.Parse(i.Split('/')[0]), int.Parse(i.Split('/')[1]))).ToList();
+        List<(int, int)> parts = Inputs.Select(i => (int.Parse(i.Split('/')[0]), int.Parse(i.Split('/')[1]))).ToList();
         int strongest = 0, longest = 0, strengthOfLongest = 0;
         Queue<(int, int, int, List<(int, int)>)> bfs = new();
 

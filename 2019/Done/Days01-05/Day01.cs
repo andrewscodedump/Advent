@@ -4,10 +4,10 @@ public partial class Day01 : Advent.Day
 {
     public override void DoWork()
     {
-        int totalFuel = 0;
-        foreach (int mass in InputSplitInt)
+        long totalFuel = 0;
+        foreach (long[] mass in InputNumbers)
         {
-            int fuel = (mass / 3) - 2;
+            long fuel = (mass[0] / 3) - 2;
             do
             {
                 totalFuel += fuel;

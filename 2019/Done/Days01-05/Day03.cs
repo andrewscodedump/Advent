@@ -4,7 +4,7 @@ public partial class Day03 : Advent.Day
 {
     public override void DoWork()
     {
-        string[][] wires = new string[2][] { InputSplit[0].Split(',', StringSplitOptions.RemoveEmptyEntries), InputSplit[1].Split(',', StringSplitOptions.RemoveEmptyEntries) };
+        string[][] wires = new string[2][] { Input.Split(',', StringSplitOptions.RemoveEmptyEntries), Inputs[1].Split(',', StringSplitOptions.RemoveEmptyEntries) };
         Dictionary<(int, int), int>[] wirePaths = new Dictionary<(int, int), int>[2] { new(), new() };
 
         for (int wire = 0; wire < wires.Length; wire++)

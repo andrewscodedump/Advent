@@ -7,7 +7,7 @@ public partial class Day05 : Advent.Day
         int maxSeat = 0, minSeat = int.MaxValue;
         HashSet<int> allSeats = Enumerable.Range(0, 1023).ToHashSet();
 
-        foreach (string pass in InputSplit)
+        foreach (string pass in Inputs)
         {
             int minRow = 0, maxRow = 127, minCol = 0, maxCol = 7;
             foreach (char letter in pass)

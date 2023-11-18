@@ -4,14 +4,14 @@ public partial class Day08 : Advent.Day
 {
     public override void DoWork()
     {
-        int width = InputSplit[0].Length, height = InputSplit.Length;
+        int width = Input.Length, height = Inputs.Length;
         Dictionary<(int, int), treeStats> trees = new();
         for (int y = 0; y < height; y++)
         {
-            string line = InputSplit[y];
+            string line = Inputs[y];
             for (int x = 0; x < width; x++)
             {
-                trees[(x, y)] = new treeStats(InputSplit[x][y] - '0');
+                trees[(x, y)] = new treeStats(Inputs[x][y] - '0');
             }
         }
 

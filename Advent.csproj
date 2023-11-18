@@ -18,9 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="Advent.Designer.cs.bak" />
   </ItemGroup>
 
@@ -33,6 +30,10 @@
     <Folder Include="2020\Refactor\" />
     <Folder Include="2020\ToDo\" />
     <Folder Include="2020\WIP\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Interactive" Version="6.0.1" />
   </ItemGroup>
 
 	<ItemGroup>

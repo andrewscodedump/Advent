@@ -6,9 +6,9 @@ public partial class Day16 : Advent.Day
     {
         List<List<(string, int)>> aunts = new();
         List<(string, int)> results = new() { { ("children", 3) }, { ("cats", 7) }, { ("samoyeds", 2) }, { ("pomeranians", 3) }, { ("akitas", 0) }, { ("vizslas", 0) }, { ("goldfish", 5) }, { ("trees", 3) }, { ("cars", 2) }, { ("perfumes", 1) } };
-        Input = Input.Replace("Sue ", "Sue:").Replace(" ", "");
-        foreach (string auntText in InputSplit)
+        foreach (string auntBase in Inputs)
         {
+            string auntText = auntBase.Replace("Sue ", "Sue:").Replace(" ", "");
             Dictionary<string, int> auntOld = new();
             List<(string, int)> aunt = new();
             foreach (string bit in auntText.Split(','))

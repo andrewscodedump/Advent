@@ -9,7 +9,7 @@ public partial class Day09 : Advent.Day
         for (int i = 0; i < numKnots; i++) knots[i] = (0, 0);
         HashSet<(int x, int y)> visits = new() { (0, 0) };
         
-        foreach (string instruction in InputSplit)
+        foreach (string instruction in Inputs)
         {
             char dirn = instruction[0];
             int moves = int.Parse(instruction.Split(' ')[1]);

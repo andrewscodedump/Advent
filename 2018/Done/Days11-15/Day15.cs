@@ -10,11 +10,11 @@ public partial class Day15 : Advent.Day
         (int score, bool finished) state;
         int round;
         int goblinPower = 3; int elfPower = 2;
-        int rows = InputSplit.Length, cols = InputSplit[0].Length;
+        int rows = Inputs.Length, cols = Input.Length;
         bool elfKilled;
         for (int y = 0; y < rows; y++)
             for (int x = 0; x < cols; x++)
-                startGrid.Add((x, y), (InputSplit[y][x], InputSplit[y][x] == 'G' || InputSplit[y][x] == 'E' ? 200 : 0, -1));
+                startGrid.Add((x, y), (Inputs[y][x], Inputs[y][x] == 'G' || Inputs[y][x] == 'E' ? 200 : 0, -1));
         #endregion Setup Variables and Parse Inputs
 
         do

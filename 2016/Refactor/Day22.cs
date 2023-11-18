@@ -13,7 +13,7 @@ public partial class Day22 : Advent.Day
 
         List<Point> numbers = new();
         int currPointer = 0;
-        int currUsed = -1;
+        long currUsed = -1;
         int number = 0;
         do
         {
@@ -23,7 +23,7 @@ public partial class Day22 : Advent.Day
             if (used[currPointer].Used != currUsed || currPointer == used.Count - 1)
             {
                 if (currUsed != -1)
-                    numbers.Add(new Point(currUsed, number + 1));
+                    numbers.Add(new Point((int)currUsed, number + 1));
                 currUsed = used[currPointer].Used;
                 number = 0;
             }
@@ -50,55 +50,34 @@ public partial class Day22 : Advent.Day
 
     private class Node
     {
-        public Node(string address, int avail, int used)
+        public Node(long x, long y, long avail, long used)
         {
-            Address = address;
             Avail = avail;
             Used = used;
+            (X, Y) = (x, y);
         }
 
-        private string address;
-        public string Address
-        {
-            get => address;
-            set
-            {
-                address = value;
-                foreach (string bit in address.Split('-'))
-                {
-                    if (bit.StartsWith("x"))
-                        X = int.Parse(bit[1..]);
-                    else if (bit.StartsWith("y"))
-                        Y = int.Parse(bit[1..]);
-                }
-            }
-        }
-        public int Avail { get; set; }
-        public int Used { get; set; }
-        public int X { get; private set; }
-        public int Y { get; private set; }
+        public long Avail { get; set; }
+        public long Used { get; set; }
+        public long X { get; private set; }
+        public long Y { get; private set; }
 
     }
 
     /// Populate Lists (initially identical)
     private void PopulateLists(List<Node> used, List<Node> avail, Dictionary<Point, int> grid)
     {
-        int maxX = 0;
-        int maxY = 0;
+        long maxX = 0;
+        long maxY = 0;
 
-        foreach (string line in InputSplit)
+        foreach (long[] nums in InputNumbers)
         {
-            if (!line.StartsWith("/dev/grid"))
-                continue;
-
-            string[] cols = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
-            Node newNode = new(cols[0], int.Parse(cols[3][0..^1]), int.Parse(cols[2][0..^1]));
+            Node newNode = new(nums[0], nums[1], nums[4], nums[3]);
             used.Add(newNode);
             avail.Add(newNode);
             maxX = Math.Max(maxX, newNode.X);
             maxY = Math.Max(maxY, newNode.Y);
-            grid.Add(new Point(newNode.X, newNode.Y), newNode.Used);
+            grid.Add(new Point((int)newNode.X, (int)newNode.Y), (int)newNode.Used);
         }
 
         if (Part2)

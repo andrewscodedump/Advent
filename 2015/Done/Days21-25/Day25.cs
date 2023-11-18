@@ -6,7 +6,7 @@ public partial class Day25 : Advent.Day
     {
         if (Part2) return;
 
-        Point target = new(int.Parse(Input.Split(',')[0]), int.Parse(Input.Split(',')[1]));
+        Point target = new((int)InputNumbersSingle[0], (int)InputNumbersSingle[1]);
         Point currentPos = new(1, 1);
         long currentValue = 20151125;
         do
