@@ -1,1 +1,4 @@
-﻿
+﻿Input describes a network of tunnels and pressure release valves.
+It will take you one minute to move from one valve to the next, and one minute to open each valve.
+
+What is the maximum pressure you can release in 30 minutes?
