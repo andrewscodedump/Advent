@@ -32,7 +32,7 @@ public partial class Day17 : Advent.Day
 
         // Get all the ys where it's in the range at the same time as one of the xs.
         overshoot = false;
-        v0 = area[2];
+        v0 = area[2]-1;
         do
         {
             int ypos, time = v0 <= 0 ? 0 : (2 * v0) + 2, height = v0 <= 0 ? 0 : v0 * (v0 + 1) / 2;
@@ -45,7 +45,6 @@ public partial class Day17 : Advent.Day
                         bestHeight = Math.Max(bestHeight, height);
                         foreach (int x in validXTimes[time])
                             validVelocities.Add((x, v0));
-                        break;
                     }
                 if (ypos < area[2] && time == (2*v0)+2) overshoot = true;
                 time++;
