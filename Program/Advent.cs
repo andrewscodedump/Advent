@@ -1,14 +1,12 @@
-﻿#region Preamble
-
+﻿
+using Advent.Controls;
 using System.ComponentModel;
-using System.Windows.Forms;
 
 [assembly: CLSCompliant(true)]
 namespace Advent;
 
 public partial class AdventOfCode : Form
 {
-    #endregion Preamble
 
     #region Constructors and Declarations
 
@@ -38,19 +36,22 @@ public partial class AdventOfCode : Form
             theDay = (Day)Activator.CreateInstance(Type.GetType($"Advent{updYear.Value}.Day{(int)updDay.Value:D2}"));
             theDay.SetMode(chkTestMode.Checked, (int)updPuzzle.Value);
         }
+        Description.Text = theDay.Description;
         List<List<string>> Inputs = GetInputs();
         List<string> Expecteds = GetExpecteds();
         if (Inputs.Count != Expecteds.Count)
         {
             MessageBox.Show("Mismatch between Inputs and Expected Outputs", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             Inputs = Inputs.GetRange(0, 1);
-            #pragma warning disable IDE0059 // Unnecessary assignment of a value
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
             Expecteds = Expecteds.GetRange(0, 1);
-            #pragma warning restore IDE0059 // Unnecessary assignment of a value
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
         }
         inputNumber.Text = "0";
         prevInput.Visible = Inputs.Count > 1;
+        prevInput.Enabled = false;
         nextInput.Visible = Inputs.Count > 1;
+        nextInput.Enabled = true;
         ResetInputs();
     }
 
@@ -72,6 +73,7 @@ public partial class AdventOfCode : Form
         txtOutput.Text = string.Empty;
         txtOutput.BackColor = Color.White;
         txtTimeTaken.Text = string.Empty;
+        FullInput.Enabled = GetInputs().Count != 0;
     }
 
     private string GetExpected()
@@ -86,12 +88,54 @@ public partial class AdventOfCode : Form
     private string GetInput()
     {
         theDay.CurrentInput = int.Parse(inputNumber.Text);
-        return CheckStatus(theDay.BatchStatus, out string result) ? result : theDay.InputJoined;
+        return CheckStatus(theDay.BatchStatus, out string result) ? result : string.Join('¶', theDay.Inputs);
     }
 
     private List<List<string>> GetInputs()
     {
         return CheckStatus(theDay.BatchStatus, out string _) ? new() : theDay.AllInputs;
+    }
+
+    private bool TryGetDefaults(out (int year, int day, int puzzle, bool testMode) defaults, out string errorMessage)
+    {
+        defaults = (2015, 1, 2, true);
+        StringBuilder error = new();
+        string runPath = Application.StartupPath;
+        string filePath = $@"{runPath}\Defaults.txt";
+        if (!File.Exists(filePath) || File.ReadAllLines(filePath).Length == 0)
+        {
+            error.AppendLine("File is missing or empty");
+        }
+        else
+        {
+            foreach (string line in File.ReadAllLines(filePath))
+            {
+                string[] bits = line.Split('=');
+                switch (bits[0])
+                {
+                    case "Day":
+                        if (!int.TryParse(bits[1], out defaults.day))
+                            error.AppendLine("Invalid Day value");
+                        break;
+                    case "Puzzle":
+                        if (!int.TryParse(bits[1], out defaults.puzzle))
+                            error.AppendLine("Invalid Puzzle value");
+                        break;
+                    case "Mode":
+                        if (bits[1] == "Test") defaults.testMode = true;
+                        else if (bits[1] == "Live") defaults.testMode = false;
+                        else error.AppendLine("Invalid Mode value");
+                        break;
+                    case "Year":
+                        if (!int.TryParse(bits[1], out defaults.year))
+                            error.AppendLine("Invalid Year value");
+                        break;
+                }
+
+            }
+        }
+        errorMessage = error.ToString();
+        return string.IsNullOrEmpty(errorMessage);
     }
 
     private string DoPuzzle()
@@ -123,10 +167,17 @@ public partial class AdventOfCode : Form
     private void SetupForm()
     {
         noReset = true;
-        updYear.Value = defaultYear;
-        updDay.Value = defaultDay;
-        updPuzzle.Value = defaultPuzzle;
-        chkTestMode.Checked = defaultMode == "Test";
+        if (!TryGetDefaults(out (int year, int day, int puzzle, bool testMode) defaults, out string errorMessage))
+        {
+            MessageBox.Show($"Error in defaults file\r\n\r\n{errorMessage}");
+        }
+        else
+        {
+            updYear.Value = defaults.year;
+            updDay.Value = defaults.day;
+            updPuzzle.Value = defaults.puzzle;
+            chkTestMode.Checked = defaults.testMode;
+        }
         noReset = false;
         ResetScreen();
     }
@@ -146,8 +197,9 @@ public partial class AdventOfCode : Form
     {
         int year = (int)updYear.Value;
         StringBuilder output = new();
-        Debug.WriteLine("Starting Batch Run for " + year);
-        output.AppendLine("Starting Batch Run for " + year);
+        Debug.WriteLine($"Starting Batch Run for {year}");
+        output.AppendLine($"Starting Batch Run for {year}");
+        output.AppendLine("\r\n    Day          Part1           Part2");
         DateTime overallStart = DateTime.Now;
         for (int day = 1; day <= 25; day++)
         {
@@ -156,7 +208,7 @@ public partial class AdventOfCode : Form
                 if (worker.CancellationPending)
                     return output.ToString();
                 worker.ReportProgress(((day - 1) * 2) + puzzle, $"{day}/{puzzle}");
-                DateTime start = DateTime.Now;
+                Stopwatch sw = Stopwatch.StartNew();
                 try
                 {
                     theDay = (Day)Activator.CreateInstance(Type.GetType($"Advent{year}.Day{day:D2})"), new object[] { chkTestMode.Checked, puzzle });
@@ -171,34 +223,33 @@ public partial class AdventOfCode : Form
                 if (puzzle == 1)
                 {
                     output.AppendLine();
-                    output.Append("Day: " + day.ToString());
+                    output.Append($"    {day}{(day < 10 ? " " : "")}");
                 }
-                output.Append(", part " + puzzle.ToString() + " ");
                 switch (theDay.BatchStatus)
                 {
                     case Day.DayBatchStatus.NonCoded:
-                        output.Append(" skipped (non-coded).");
-                        Debug.WriteLine($"Day: {day} skipped (non-coded.");
+                        output.Append($"     (non-coded)");
+                        Debug.WriteLine($"Day: {day} (non-coded)");
                         break;
                     case Day.DayBatchStatus.NotDoneYet:
-                        output.Append(" not done yet.");
-                        Debug.WriteLine($"Day: {day} not done yet.");
+                        output.Append($"  (not done yet)");
+                        Debug.WriteLine($"Day: {day} not done yet");
                         break;
                     case Day.DayBatchStatus.NoTestData:
-                        output.Append(" no test data.");
-                        Debug.WriteLine($"Day: {day} no test data.");
+                        output.Append($"  (no test data)");
+                        Debug.WriteLine($"Day: {day} no test data");
                         break;
                     case Day.DayBatchStatus.NotWorking:
-                        output.Append(" not currently working.");
-                        Debug.WriteLine($"Day: {day} not currently working.");
+                        output.Append($"   (not working)");
+                        Debug.WriteLine($"Day: {day} not working");
                         break;
                     case Day.DayBatchStatus.Performance:
-                        output.Append(" skipped (performance).");
-                        Debug.WriteLine($"Day: {day} skipped (performance).");
+                        output.Append($"   (performance)");
+                        Debug.WriteLine($"Day: {day} (performance)");
                         break;
                     case Day.DayBatchStatus.NoPart2:
-                        output.Append(" has no part 2.");
-                        Debug.WriteLine($"Day: {day} has no part 2.");
+                        output.Append($"     (no part 2)");
+                        Debug.WriteLine($"Day: {day} (no part 2)");
                         break;
                     case Day.DayBatchStatus.Available:
                     case Day.DayBatchStatus.ManualIntervention:
@@ -208,8 +259,8 @@ public partial class AdventOfCode : Form
                         {
                             if (worker.CancellationPending) break;
                             theDay.DoWork();
-                            totalTime += (DateTime.Now - start).TotalSeconds;
-                            start = DateTime.Now;
+                            totalTime += sw.ElapsedTicks;
+                            sw.Restart();
                         }
                         if (theDay.Output != theDay.Expecteds[0] && theDay.BatchStatus != Day.DayBatchStatus.ManualIntervention)
                         {
@@ -218,9 +269,8 @@ public partial class AdventOfCode : Form
                         }
                         else
                         {
-                            double avgTime = totalTime / reps;
-                            output.Append(FormatTime(avgTime));
-                            Debug.WriteLine($"Day: {day}, part {puzzle}{FormatTime(avgTime)}");
+                            output.Append(FormatTime(totalTime, reps));
+                            Debug.WriteLine($"Day: {day}, part {puzzle}{FormatTime(totalTime, reps)}");
                         }
                         break;
                     default:
@@ -238,22 +288,27 @@ public partial class AdventOfCode : Form
         return output.ToString();
     }
 
-    private static string FormatTime(double time)
+    private static string FormatTime(double ticks, int reps)
     {
-        if (time >= 1)
+        string displayTime;
+        double repSeconds = ticks / Stopwatch.Frequency / reps;
+        displayTime = repSeconds switch
         {
-            return $" = {time:0.000} secs";
-        }
-        else if (time >= 0.001)
-        {
-            return $" = {time * 1000:0.000} ms";
-        }
-        else
-        {
-            return $" = {time * 1000000:0} µs";
-        }
+            >= 60 => $"{repSeconds / 60.0:0.000} mins",
+            >= 1 => $"{repSeconds:0.000} secs",
+            >= 0.001 => $"{repSeconds * 1000:0.000} ms",
+            _ => $"{repSeconds * 1000000:0} µs"
+        };
+        return $"{Pad(displayTime, 16)}";
     }
 
+    private static string Pad(string text, int len)
+    {
+        string spaces = string.Empty;
+        if (text.Length < len)
+            spaces = new(' ', len - text.Length);
+        return $"{spaces}{text}";
+    }
     #endregion Private Methods
 
     #region Control methods
@@ -278,11 +333,11 @@ public partial class AdventOfCode : Form
 
     private void Exit_Click(object sender, EventArgs e)
     {
-        if (btnExit.Text=="&Cancel")
-                BatchWorker.CancelAsync();
-            else
-                Close();
-    } 
+        if (btnExit.Text == "&Cancel")
+            BatchWorker.CancelAsync();
+        else
+            Close();
+    }
 
     private void ResetScreenHandler(object sender, EventArgs e) => ResetScreen();
 
@@ -324,7 +379,7 @@ public partial class AdventOfCode : Form
 
     private void BatchWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
     {
-        MessageBox.Show(e.Result.ToString(), "Batch Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        ShowText(e.Result.ToString());
         btnBatch.Enabled = true;
         btnSuperBatch.Enabled = true;
         btnProcess.Enabled = true;
@@ -333,4 +388,29 @@ public partial class AdventOfCode : Form
         ProgressText.Text = "";
     }
     #endregion Control methods
+
+    private void FullInput_Click(object sender, EventArgs e)
+    {
+        ShowText(string.Join("\r\n", theDay.Inputs));
+    }
+
+    private void ShowText(string text)
+    {
+        ShowMe showMe = new()
+        {
+            Contents = text,
+            Centre = this.Bounds,
+        };
+        showMe.ShowDialog();
+    }
+
+    private void Website_Click(object sender, EventArgs e)
+    {
+        var psi = new ProcessStartInfo
+        {
+            FileName = $"https://adventofcode.com/{updYear.Value}/day/{updDay.Value}",
+            UseShellExecute = true
+        };
+        Process.Start(psi);
+    }
 }

@@ -43,4 +43,10 @@
 		<Using Include="System.Diagnostics" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Update="Defaults.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
 </Project>

@@ -1,0 +1,4 @@
+Day=22
+Puzzle=2
+Mode=Live
+Year=2017

@@ -3,15 +3,14 @@ public partial class Day01 : Advent.Day
 {
     public override void DoWork()
     {
-        int result = 0;
-        int[] numbers = Inputs.Select(n => int.Parse(n)).ToArray();
+        long result = 0;
 
-        for (int i = 0; i < numbers.Length; i++)
-            for (int j = i + 1; j < numbers.Length; j++)
-                for (int k = j + 1; k < (Part1 ? j + 2 : numbers.Length); k++)
-                    if (numbers[i] + numbers[j] + (Part1 ? 0 : numbers[k]) == 2020)
+        for (int i = 0; i < InputNumbers.Count; i++)
+            for (int j = i + 1; j < InputNumbers.Count; j++)
+                for (int k = j + 1; k < (Part1 ? j + 2 : InputNumbers.Count); k++)
+                    if (InputNumbers[i][0] + InputNumbers[j][0] + (Part1 ? 0 : InputNumbers[k][0]) == 2020)
                     {
-                        result = numbers[i] * numbers[j] * (Part1 ? 1 : numbers[k]);
+                        result = InputNumbers[i][0] * InputNumbers[j][0] * (Part1 ? 1 : InputNumbers[k][0]);
                         goto foundOne;
                     }
                 foundOne:

@@ -21,6 +21,7 @@ public abstract partial class Day
     public DayBatchStatus BatchStatus { get; set; }
     public bool BatchRun { get; set; }
     public string Output { get; set; }
+    public string Description { get; private set; }
     private int currentInput;
     public int CurrentInput
     {
@@ -33,7 +34,6 @@ public abstract partial class Day
     }
 
     protected string Input;
-    public string InputJoined { get; private set; }
     public string[] Inputs { get; private set; }
     protected List<long[]> InputNumbers { get; private set; }
     protected long[] InputNumbersSingle { get; private set; }
@@ -52,10 +52,6 @@ public abstract partial class Day
     public string Expected { get => Expecteds[CurrentInput]; }
     public List<string> Expecteds { get; set; }
     private string inputPath;
-
-    #pragma warning disable IDE0044 // Add readonly modifier
-    private Dictionary<string, DateTime> logs = new();
-    #pragma warning restore IDE0044 // Add readonly modifier
 
     #endregion Constructors
 
@@ -78,6 +74,7 @@ public abstract partial class Day
         AllInputs = GetInputs();
         SetInputs();
         Expecteds = GetExpecteds();
+        Description = GetDescription();
         BatchStatus = CheckStatus(BatchStatus);
         Output = string.Empty;
         Rand = new Random();
@@ -166,6 +163,21 @@ public abstract partial class Day
         return expecteds;
     }
 
+    private string GetDescription()
+    {
+        StringBuilder description = new();
+        if (new DateTime(year, 12, day, 05, 00, 00) > DateTime.Now) return string.Empty;
+
+        string filePath = $@"{inputPath}\Description.txt";
+        if (!File.Exists(filePath) || File.ReadAllLines(filePath).Length == 0) return string.Empty;
+
+        foreach (string line in File.ReadAllLines(filePath))
+        {
+            description.AppendLine(line);
+        }
+        return description.ToString();
+    }
+
     private DayBatchStatus CheckStatus(DayBatchStatus current)
     {
         //NotDoneYet, Performance, NonCoded, NotWorking, ManualIntervention
@@ -213,7 +225,6 @@ public abstract partial class Day
         if (allInputs == null || allInputs.Count == 0 || BatchStatus == DayBatchStatus.NotDoneYet) return;
         if (BatchStatus == DayBatchStatus.NoInputs) BatchStatus = DayBatchStatus.Available;
         Inputs = AllInputs[CurrentInput].ToArray();
-        InputJoined = string.Join('¶', Inputs);
         Input = Inputs[0];
         InputNumbers = new();
         try
