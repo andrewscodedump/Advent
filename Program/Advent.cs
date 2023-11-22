@@ -42,10 +42,8 @@ public partial class AdventOfCode : Form
         if (Inputs.Count != Expecteds.Count)
         {
             MessageBox.Show("Mismatch between Inputs and Expected Outputs", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            Inputs = Inputs.GetRange(0, 1);
-#pragma warning disable IDE0059 // Unnecessary assignment of a value
-            Expecteds = Expecteds.GetRange(0, 1);
-#pragma warning restore IDE0059 // Unnecessary assignment of a value
+            if (Inputs.Count > 0)
+                Inputs = Inputs.GetRange(0, 1);
         }
         inputNumber.Text = "0";
         prevInput.Visible = Inputs.Count > 1;
@@ -60,7 +58,7 @@ public partial class AdventOfCode : Form
         if (inputNumber.Text == "0")
         {
             txtInput.Text = string.Join('¶', GetInput());
-            txtExpected.Text = GetExpected();
+            txtExpected.Text = GetExpected() == "" ? theDay.StatusText : GetExpected();
         }
         else
         {
@@ -78,30 +76,43 @@ public partial class AdventOfCode : Form
 
     private string GetExpected()
     {
-        return CheckStatus(theDay.BatchStatus, out string result) ? result : theDay.Expected;
+        return CheckStatus(theDay.BatchStatus) ? theDay.StatusText : theDay.Expected;
     }
     private List<string> GetExpecteds()
     {
-        return CheckStatus(theDay.BatchStatus, out string result) ? new() : theDay.Expecteds;
+        return CheckStatus(theDay.BatchStatus) || !theDay.Expecteds.Any() ? new() { theDay.StatusText } : theDay.Expecteds;
     }
 
     private string GetInput()
     {
         theDay.CurrentInput = int.Parse(inputNumber.Text);
-        return CheckStatus(theDay.BatchStatus, out string result) ? result : string.Join('¶', theDay.Inputs);
+        return CheckStatus(theDay.BatchStatus) ? theDay.StatusText : string.Join('¶', theDay.Inputs);
     }
 
     private List<List<string>> GetInputs()
     {
-        return CheckStatus(theDay.BatchStatus, out string _) ? new() : theDay.AllInputs;
+        return CheckStatus(theDay.BatchStatus) ? new() : theDay.AllInputs;
     }
 
-    private bool TryGetDefaults(out (int year, int day, int puzzle, bool testMode) defaults, out string errorMessage)
+    private static bool CheckStatus(Day.DayBatchStatus status)
+    {
+        return status switch
+        {
+            Day.DayBatchStatus.NotDoneYet
+            or Day.DayBatchStatus.NonCoded
+            or Day.DayBatchStatus.NoTestData
+            or Day.DayBatchStatus.NoPart2
+            or Day.DayBatchStatus.Future
+            or Day.DayBatchStatus.NoInputs => true,
+            _ => false,
+        };
+    }
+
+    private static bool TryGetDefaults(out (int year, int day, int puzzle, bool testMode) defaults, out string errorMessage)
     {
         defaults = (2015, 1, 2, true);
         StringBuilder error = new();
-        string runPath = Application.StartupPath;
-        string filePath = $@"{runPath}\Defaults.txt";
+        string filePath = $@"{Properties.Settings.Default["RootFolder"]}\Defaults.txt";
         if (!File.Exists(filePath) || File.ReadAllLines(filePath).Length == 0)
         {
             error.AppendLine("File is missing or empty");
@@ -140,28 +151,13 @@ public partial class AdventOfCode : Form
 
     private string DoPuzzle()
     {
-        if (CheckStatus(theDay.BatchStatus, out string result))
-            return result;
+        if (CheckStatus(theDay.BatchStatus))
+            return theDay.StatusText;
         else
         {
             theDay.DoWork();
             return theDay.Output;
         }
-    }
-
-    private static bool CheckStatus(Day.DayBatchStatus status, out string result)
-    {
-        result = status switch
-        {
-            Day.DayBatchStatus.NotDoneYet => "Not Done Yet",
-            Day.DayBatchStatus.NonCoded => "Solved by non-code method",
-            Day.DayBatchStatus.NoTestData => "No Test Data",
-            Day.DayBatchStatus.NoPart2 => "There is no part 2 for this puzzle",
-            Day.DayBatchStatus.Future => "Task is in the future - no inputs available",
-            Day.DayBatchStatus.NoInputs => "No inputs available",
-            _ => string.Empty,
-        };
-        return result != string.Empty;
     }
 
     private void SetupForm()
@@ -264,7 +260,7 @@ public partial class AdventOfCode : Form
                         }
                         if (theDay.Output != theDay.Expecteds[0] && theDay.BatchStatus != Day.DayBatchStatus.ManualIntervention)
                         {
-                            output.Append(" Test Failed");
+                            output.Append("     Test Failed)");
                             Debug.WriteLine($"Day: {day}, part {puzzle} Test Failed");
                         }
                         else

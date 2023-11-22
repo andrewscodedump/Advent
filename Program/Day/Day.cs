@@ -1,4 +1,6 @@
-﻿namespace Advent;
+﻿using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
+namespace Advent;
 
 public abstract partial class Day
 {
@@ -11,7 +13,6 @@ public abstract partial class Day
     protected Day(bool testMode, int whichPart) : this(testMode, whichPart, DayBatchStatus.Available) { }
     protected Day(bool testMode, int whichPart, DayBatchStatus batchStatus) => SetMode(testMode, whichPart, batchStatus);
 
-    public DayStatus Status { get; set; }
     protected System.Security.Cryptography.MD5 MD5 { get; private set; }
     public bool TestMode { get; set; }
     public int WhichPart { get; set; }
@@ -19,6 +20,24 @@ public abstract partial class Day
     public bool Part2 { get; set; }
     public abstract void DoWork();
     public DayBatchStatus BatchStatus { get; set; }
+    public string StatusText
+    {
+        get => BatchStatus switch
+        {
+            DayBatchStatus.NotDoneYet => "Not Done Yet",
+            DayBatchStatus.NonCoded => "Solved by non-code method",
+            DayBatchStatus.NoTestData => "No Test Data",
+            DayBatchStatus.NoPart2 => "There is no part 2 for this puzzle",
+            DayBatchStatus.Future => "Task is in the future - no inputs available",
+            DayBatchStatus.NoInputs => "No inputs available",
+            DayBatchStatus.Available => "Available",
+            DayBatchStatus.Performance => "Performance problems",
+            DayBatchStatus.NotWorking => "Not working",
+            DayBatchStatus.ManualIntervention => "Requires manual intervention",
+            _ => string.Empty,
+        };
+    }
+
     public bool BatchRun { get; set; }
     public string Output { get; set; }
     public string Description { get; private set; }
@@ -49,8 +68,15 @@ public abstract partial class Day
         }
     }
 
-    public string Expected { get => Expecteds[CurrentInput]; }
+    public string Expected
+    {
+        get
+        {
+            return Expecteds.Count > currentInput ? Expecteds[CurrentInput] : string.Empty;
+        }
+    }
     public List<string> Expecteds { get; set; }
+    private readonly string rootFolder = Properties.Settings.Default["RootFolder"].ToString();
     private string inputPath;
 
     #endregion Constructors
@@ -60,22 +86,19 @@ public abstract partial class Day
 
     public void SetMode(bool testMode, int whichPart, DayBatchStatus batchStatus)
     {
-        year = int.Parse(this.GetType().Namespace[^4..]);
-        day = int.Parse(this.GetType().Name[^2..]);
+        year = int.Parse(GetType().Namespace[^4..]);
+        day = int.Parse(GetType().Name[^2..]);
         WhichPart = whichPart;
         Part1 = whichPart == 1;
         Part2 = !Part1;
         TestMode = testMode;
         BatchStatus = batchStatus;
-        //TODO this needs to be changed to use a config file
-        string rootFolder = @"D:\Hobbies\Computer\Sources\Advent"; // Main PC
-        // string rootFolder = @"C:\Userfiles\Hobbies\Computer\Sources\Advent"; // Laptop
         inputPath = $@"{rootFolder}\{year}\Inputs\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}";
         AllInputs = GetInputs();
         SetInputs();
+        BatchStatus = CheckStatus(BatchStatus);
         Expecteds = GetExpecteds();
         Description = GetDescription();
-        BatchStatus = CheckStatus(BatchStatus);
         Output = string.Empty;
         Rand = new Random();
         MD5 = System.Security.Cryptography.MD5.Create();
@@ -137,8 +160,7 @@ public abstract partial class Day
         if (new DateTime(year, 12, day, 05, 00, 00) > DateTime.Now) return expecteds;
         bool reading = false;
         string mode = TestMode ? "Test" : "Live";
-
-        //TODO this needs to be changed to use a config file
+        //string 
         string filePath = $@"{inputPath}\Expected.txt";
 
         if (!File.Exists(filePath) || File.ReadAllLines(filePath).Length == 0) return expecteds;
@@ -180,12 +202,10 @@ public abstract partial class Day
 
     private DayBatchStatus CheckStatus(DayBatchStatus current)
     {
-        //NotDoneYet, Performance, NonCoded, NotWorking, ManualIntervention
         if (new DateTime(year, 12, day, 05, 00, 00) > DateTime.Now) return DayBatchStatus.Future;
         bool reading = false;
         string mode = TestMode ? "Test" : "Live";
         bool firstLine = true;
-        //TODO this needs to be changed to use a config file
         string filePath = $@"{inputPath}\Expected.txt";
 
         if (!File.Exists(filePath) || File.ReadAllLines(filePath).Length == 0) return current;
@@ -245,7 +265,6 @@ public abstract partial class Day
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2211:NonConstantFieldsShouldNotBeVisible")]
     protected static Random Rand;
-    public enum DayStatus { NotStarted, Running, Successful, Failed, Unknown };
     public enum DayBatchStatus { Available, NotDoneYet, Performance, NonCoded, NotWorking, NoTestData, NoPart2, ManualIntervention, Future, NoInputs };
 
     #endregion Common Objects
