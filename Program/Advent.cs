@@ -260,7 +260,7 @@ public partial class AdventOfCode : Form
                         }
                         if (theDay.Output != theDay.Expecteds[0] && theDay.BatchStatus != Day.DayBatchStatus.ManualIntervention)
                         {
-                            output.Append("     Test Failed)");
+                            output.Append(" **Test Failed**");
                             Debug.WriteLine($"Day: {day}, part {puzzle} Test Failed");
                         }
                         else
