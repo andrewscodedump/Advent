@@ -8,11 +8,8 @@ public partial class Day12 : Advent.Day
         ((long x, long y, long z) position, (long x, long y, long z) velocity)[] planets = new ((long, long, long), (long, long, long))[4];
         long totalEnergy;
         int iterations = 0, limit = TestMode ? 100 : 1000;
-        for (int p = 0; p < InputNumbers.Count; p++)
-        //for (int p = 0; p < InputSplit.Length; p++)
+        for (int p = 0; p < InputNumbers.Length; p++)
         {
-            //string[] coords = InputSplit[p].Split(new char[] { ',', 'x', 'y', 'z', '=', ' ', '<', '>' }, StringSplitOptions.RemoveEmptyEntries);
-            //planets[p] = ((int.Parse(coords[0]), int.Parse(coords[1]), int.Parse(coords[2])), (0, 0, 0));
             planets[p] = ((InputNumbers[p][0], InputNumbers[p][1], InputNumbers[p][2]), (0, 0, 0));
         }
         (long, long, long, long, long, long, long, long)[] originalStates = { (planets[0].position.x, planets[1].position.x, planets[2].position.x, planets[3].position.x, 0, 0, 0, 0) ,

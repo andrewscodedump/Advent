@@ -1,6 +1,4 @@
-﻿using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
-namespace Advent;
+﻿namespace Advent;
 
 public abstract partial class Day
 {
@@ -53,7 +51,7 @@ public abstract partial class Day
     }
 
     public string[] Inputs { get; private set; }
-    protected List<long[]> InputNumbers { get; private set; }
+    protected long[][] InputNumbers { get; private set; }
 
     private List<List<string>> allInputs;
     public List<List<string>> AllInputs
@@ -243,14 +241,15 @@ public abstract partial class Day
         if (allInputs == null || allInputs.Count == 0 || BatchStatus == DayBatchStatus.NotDoneYet) return;
         if (BatchStatus == DayBatchStatus.NoInputs) BatchStatus = DayBatchStatus.Available;
         Inputs = AllInputs[CurrentInput].ToArray();
-        InputNumbers = new();
+        List<long[]> inputNumbers = new();
         try
         {
-            InputNumbers.AddRange(from string inp in Inputs
+            inputNumbers.AddRange(from string inp in Inputs
                                   let m = Regex.Matches(inp, @"[\+-]?[0-9]*")
                                   let numbers = m.Select(m => m.ToString()).Where(n => long.TryParse(n, out _)).Select(i => long.Parse(i))
                                   where numbers.Any()
                                   select numbers.ToArray());
+            InputNumbers = inputNumbers.ToArray();
         }
         catch { };
     }

@@ -67,6 +67,8 @@ public partial class Day22 : Advent.Day
     /// Populate Lists (initially identical)
     private void PopulateLists(List<Node> used, List<Node> avail, Dictionary<Point, int> grid)
     {
+        bool debug = false;
+
         long maxX = 0;
         long maxY = 0;
 
@@ -91,7 +93,8 @@ public partial class Day22 : Advent.Day
                     int size = grid[sqr];
                     line += size.ToString() + (x == maxX - 1 ? "" : ", ");
                 }
-                Debug.Print(line);
+                if (debug)
+                    Debug.Print(line);
             }
             return;
         }
