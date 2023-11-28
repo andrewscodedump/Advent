@@ -4,7 +4,7 @@ public partial class Day17 : Advent.Day
 {
     public override void DoWork()
     {
-        IntCode code = new(InputNumbersSingle);
+        IntCode code = new(InputNumbers[0]);
         if (Part2) code.Poke(0, 2);
         Dictionary<(int x, int y), char> map = new();
         long result = 0;

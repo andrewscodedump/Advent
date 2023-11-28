@@ -10,7 +10,7 @@ public partial class Day15 : Advent.Day
         (int score, bool finished) state;
         int round;
         int goblinPower = 3; int elfPower = 2;
-        int rows = Inputs.Length, cols = Input.Length;
+        int rows = Inputs.Length, cols = Inputs[0].Length;
         bool elfKilled;
         for (int y = 0; y < rows; y++)
             for (int x = 0; x < cols; x++)

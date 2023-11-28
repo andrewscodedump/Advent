@@ -4,7 +4,7 @@ public partial class Day03 : Advent.Day
 {
     public override void DoWork()
     {
-        int depth = Inputs.Length, width = Input.Length, result = 1;
+        int depth = Inputs.Length, width = Inputs[0].Length, result = 1;
         Dictionary<(int, int), char> map = new();
         List<(int, int)> slopes = Part1 ? new() { (3, 1) } : new() { (1, 1), (3, 1), (5, 1), (7, 1), (1, 2) };
 

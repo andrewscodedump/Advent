@@ -6,7 +6,7 @@ public partial class Day15 : Advent.Day
     {
         int turn, lastNumber = 0;
         int[] lastPositions = new int[Part1 ? 2020 : 30000000];
-        for (turn = 1; turn < InputNumbersSingle.Length + 1; turn++) lastPositions[InputNumbersSingle[turn - 1]] = turn;
+        for (turn = 1; turn < InputNumbers[0].Length + 1; turn++) lastPositions[InputNumbers[0][turn - 1]] = turn;
 
         while (turn < (Part1 ? 2020 : 30000000))
         {

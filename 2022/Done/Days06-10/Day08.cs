@@ -4,14 +4,14 @@ public partial class Day08 : Advent.Day
 {
     public override void DoWork()
     {
-        int width = Input.Length, height = Inputs.Length;
-        Dictionary<(int, int), treeStats> trees = new();
+        int width = Inputs[0].Length, height = Inputs.Length;
+        Dictionary<(int, int), TreeStats> trees = new();
         for (int y = 0; y < height; y++)
         {
             string line = Inputs[y];
             for (int x = 0; x < width; x++)
             {
-                trees[(x, y)] = new treeStats(Inputs[x][y] - '0');
+                trees[(x, y)] = new TreeStats(Inputs[x][y] - '0');
             }
         }
 
@@ -22,16 +22,16 @@ public partial class Day08 : Advent.Day
         int maxScore = trees.Max(t => t.Value.Score);
         Output = (Part1 ? visibleTrees : maxScore).ToString();
     }
-    private class treeStats
+    private class TreeStats
     {
-        public treeStats(int height) => Height = height;
+        public TreeStats(int height) => Height = height;
 
         public int Height { get; set; }
         public bool Visible { get; set; }
         public int Score { get; set; }
     }
 
-    private void GetStats(int x, int y, int height, int width, Dictionary<(int, int), treeStats> trees)
+    private void GetStats(int x, int y, int height, int width, Dictionary<(int, int), TreeStats> trees)
     {
         int up = 0, down = 0, left = 0, right = 0;
         int baseSize = trees[(x,y)].Height;

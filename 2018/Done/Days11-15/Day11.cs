@@ -4,7 +4,7 @@ public partial class Day11 : Advent.Day
 {
     public override void DoWork()
     {
-        long gridID = InputNumbersSingle[0];
+        long gridID = InputNumbers[0][0];
         (long x, long y, long size, long power) maxSquare = (0, 0, 0, 0);
         (long[] squares, long[] rows, long[] cols)[,] grid = new(long[], long[], long[])[300, 300];
 

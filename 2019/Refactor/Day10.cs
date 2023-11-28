@@ -14,7 +14,7 @@ public partial class Day10 : Advent.Day
         List<((int x, int y) pos, double angle, int distance)> targets = new();
         double currentAngle = -1;
         Dictionary<((int, int), (int, int)), double> angles = new();
-        int height = Inputs.Length, width = Input.Length;
+        int height = Inputs.Length, width = Inputs[0].Length;
         for (int y = 0; y < height; y++)
             for (int x = 0; x < width; x++)
             {

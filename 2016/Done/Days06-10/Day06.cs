@@ -5,7 +5,7 @@ public partial class Day06 : Advent.Day
     public override void DoWork()
     {
         string message = string.Empty;
-        int messageLength = Input.Length;
+        int messageLength = Inputs[0].Length;
         int numberOfMessages = Inputs.Length;
 
         string[][] test = new string[messageLength][];

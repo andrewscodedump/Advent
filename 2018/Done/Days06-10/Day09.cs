@@ -6,8 +6,8 @@ public partial class Day09 : Advent.Day
     {
         #region Setup Variables and Parse Inputs
         long currPlayer = 1;
-        long numPlayers = InputNumbersSingle[0];
-        long highestMarble = InputNumbersSingle[1] * (Part1 ? 1 : 100);
+        long numPlayers = InputNumbers[0][0];
+        long highestMarble = InputNumbers[0][1] * (Part1 ? 1 : 100);
         long[] scores = new long[numPlayers];
         LinkedList<long> marbles = new();
         LinkedListNode<long> currNode = marbles.AddFirst(0);

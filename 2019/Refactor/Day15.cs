@@ -6,7 +6,7 @@ public partial class Day15 : Advent.Day
     {
         #region Setup Variables and Parse Inputs
 
-        IntCode baseCode = new(InputNumbersSingle);
+        IntCode baseCode = new(InputNumbers[0]);
         Queue<((int x, int y) pos, int dirn, int dist, IntCode code, HashSet<(int, int)>)> bfs = new();
         Dictionary<(int, int), (bool wall, int dist)> map = new() { { (0, 0), (false, 0) } };
         int bestDist = Int32.MaxValue;

@@ -6,7 +6,7 @@ public partial class Day12 : Advent.Day
     {
         Dictionary<(int, int), int> bestSteps = new();
         PopulateMapFromInput();
-        int maxX = Input.Length, maxY = Inputs.Length;
+        int maxX = Inputs[0].Length, maxY = Inputs.Length;
         //DrawMap(false, false);
         (int, int) end = SimpleMap.Keys.Where(k => SimpleMap[k] == 'E').First();
         SimpleMap[end] = '{';
@@ -33,8 +33,7 @@ public partial class Day12 : Advent.Day
                 if (bestSteps.ContainsKey(newPos) && bestSteps[newPos] <= steps) continue;
                 if (path.Contains(newPos)) continue;
                 bestSteps[newPos] = steps;
-                List<(int, int)> newPath = new(path);
-                newPath.Add(newPos);
+                List<(int, int)> newPath = new(path) { newPos };
                 bfs.Enqueue((newPath, steps));
             }
         } while(bfs.Count > 0);

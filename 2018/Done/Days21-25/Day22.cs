@@ -5,10 +5,10 @@ public partial class Day22 : Advent.Day
     public override void DoWork()
     {
         #region Setup Variables and Parse Inputs
-        int depth = int.Parse(Input[7..]);
-        (int x, int y) target = (int.Parse(Inputs[1][8..].Split(',')[0]), int.Parse(Inputs[1][8..].Split(',')[1]));
-        Dictionary<(int x, int y), (int gi, int el, string type, int bestTime)> map = new();
-        int gi, el, typeScore, totalScore = 0, bestTime = (target.x * 8) + (target.y * 8) + 7;
+        long depth = InputNumbers[0][0];
+        (long x, long y) target = (InputNumbers[1][0], InputNumbers[1][1]);
+        Dictionary<(int x, int y), (long gi, long el, string type, int bestTime)> map = new();
+        long gi, el, typeScore, totalScore = 0, bestTime = (target.x * 8) + (target.y * 8) + 7;
         string type;
 
         for (int y = 0; y < target.y * 2; y++)

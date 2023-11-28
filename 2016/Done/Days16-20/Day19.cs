@@ -8,7 +8,7 @@ public partial class Day19 : Advent.Day
         {
             Queue q = new();
 
-            for (int i = 1; i <= InputNumbersSingle[0]; i++)
+            for (int i = 1; i <= InputNumbers[0][0]; i++)
                 q.Enqueue(i);
 
             do
@@ -25,7 +25,7 @@ public partial class Day19 : Advent.Day
         {
             Queue winners = new(), losers = new();
 
-            long inputNumber = InputNumbersSingle[0];
+            long inputNumber = InputNumbers[0][0];
             for (int i = 1; i <= inputNumber / 2; i++)
                 winners.Enqueue(i);
             for (long i = (inputNumber / 2) + 1; i <= inputNumber; i++)

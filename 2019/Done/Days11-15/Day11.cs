@@ -7,7 +7,7 @@ public partial class Day11 : Advent.Day
         #region Setup Variables and Parse Inputs
 
         Dictionary<(int, int), int> hull = new();
-        IntCode code = new(InputNumbersSingle);
+        IntCode code = new(InputNumbers[0]);
         (int x, int y) curPos = (0, 0), min = (0, 0), max = (0, 0);
         char curDir = '^';
         int curColour = WhichPart - 1;

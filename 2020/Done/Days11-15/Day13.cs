@@ -6,10 +6,10 @@ public partial class Day13 : Advent.Day
     {
         if (Part1)
         {
-            List<int> ids = Inputs[1].Split(',').Where(id => id != "x").Select(int.Parse).ToList();
+            List<long> ids = InputNumbers[1].ToList();
             // next time for bus is bus id - (current time mod bus id)
-            List<(int id, int wait)> waits = ids.Select(id => (id, id - (int.Parse(Input) % id))).ToList();
-            (int id, int wait) = TupleExtensions.ToValueTuple(waits.OrderBy(w => w.wait).First().ToTuple());
+            List<(long id, long wait)> waits = ids.Select(id => (id, id - (InputNumbers[0][0] % id))).ToList();
+            (long id, long wait) = TupleExtensions.ToValueTuple(waits.OrderBy(w => w.wait).First().ToTuple());
             Output = (id * wait).ToString();
         }
         else

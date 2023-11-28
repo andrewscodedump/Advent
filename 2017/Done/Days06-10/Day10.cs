@@ -10,10 +10,10 @@ public partial class Day10 : Advent.Day
         for (int i = 0; i < len; i++)
             work.Add(i);
 
-        byte[] input = new byte[Input.Length];
+        byte[] input = new byte[Inputs[0].Length];
         input = Part1
-            ? Array.ConvertAll(Input.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries), byte.Parse)
-            : Encoding.ASCII.GetBytes(Input + (char)17 + (char)31 + (char)73 + (char)47 + (char)23);
+            ? Array.ConvertAll(Inputs[0].Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries), byte.Parse)
+            : Encoding.ASCII.GetBytes(Inputs[0] + (char)17 + (char)31 + (char)73 + (char)47 + (char)23);
 
         for (int j = 0; j < repeats; j++)
             for (int i = 0; i < input.Length; i++)

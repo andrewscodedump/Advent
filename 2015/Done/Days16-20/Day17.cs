@@ -1,18 +1,18 @@
-﻿namespace Advent2015;
+﻿using System.Linq;
+
+namespace Advent2015;
 
 public partial class Day17 : Advent.Day
 {
-    private struct Move { public int NextIndex; public int VolumeSoFar; public int NumberUsed; }
+    private struct Move { public int NextIndex; public long VolumeSoFar; public int NumberUsed; }
     public override void DoWork()
     {
         int requiredVol = TestMode ? 25 : 150;
         int numCombos = 0;
         int bestNumber = int.MaxValue;
         int numberAtBest = 0;
-        List<int> sizes = new();
-        foreach (string sizeString in Input.Split(','))
-            sizes.Add(int.Parse(sizeString));
-
+        List<long> sizes = new();
+        InputNumbers[0].ForEach(n => sizes.Add(n));
         Queue bfs = new();
         for (int i = 0; i < sizes.Count; i++)
             bfs.Enqueue(new Move { NextIndex = i, VolumeSoFar = 0, NumberUsed = 0 });

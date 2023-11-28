@@ -7,7 +7,7 @@ public partial class Day14 : Advent.Day
         List<long> scores = new() { 3, 7 };
         string testString = "37";
         int elf1Pos = 0, elf2Pos = 1, pos = 0;
-        long limit = InputNumbersSingle[0];
+        long limit = InputNumbers[0][0];
         bool foundIt = false;
         long[] newScores = new long[2];
 
@@ -25,7 +25,7 @@ public partial class Day14 : Advent.Day
                         testString = testString[1..];
                         pos++;
                     }
-                    foundIt = testString == InputNumbersSingle[0].ToString();
+                    foundIt = testString == InputNumbers[0][0].ToString();
                     if (Part2 && foundIt) break;
                 }
             if (Part2 && foundIt) break;

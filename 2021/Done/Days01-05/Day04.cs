@@ -5,7 +5,7 @@ public partial class Day04 : Advent.Day
     public override void DoWork()
     {
         List<Board> boards = new();
-        int score = 0;
+        long score = 0;
         Board board = new();
 
         foreach (List<int> line in Inputs[2..].Select(l => l.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList()))
@@ -22,7 +22,7 @@ public partial class Day04 : Advent.Day
         }
         boards.Add(board);
 
-        foreach (int ball in Input.Split(',').Select(int.Parse).ToList())
+        foreach (long ball in InputNumbers[0])
         {
             for (int boardNumber = boards.Count - 1; boardNumber >= 0; boardNumber--)
                 if ((score = boards[boardNumber].CheckNumber(ball)) != 0)
@@ -41,7 +41,7 @@ public partial class Day04 : Advent.Day
 public class Board
 {
     readonly List<List<int>> lines = new();
-    int unselectedCount = 0;
+    long unselectedCount = 0;
 
     public void AddLine(List<int> row)
     {
@@ -49,9 +49,9 @@ public class Board
         if (lines.Count == 5) AddCols();
         unselectedCount += row.Sum();
     }
-    public int CheckNumber(int checkNumber)
+    public long CheckNumber(long checkNumber)
     {
-        int score = 0;
+        long score = 0;
         bool alreadyRemoved = false;
 
         foreach(List<int> line in lines)

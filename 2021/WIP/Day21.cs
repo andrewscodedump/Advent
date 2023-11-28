@@ -4,11 +4,11 @@ public partial class Day21 : Advent.Day
 {
     public override void DoWork()
     {
-        int[] scores = new int[2] { 0, 0 };
+        long[] scores = new long[2] { 0, 0 };
         int sides = Part1 ? 100 : 3;
         int target = Part1 ? 1000 : 21;
-        int[] positions = new int[2] { int.Parse(Input.Split()[4]), int.Parse(Inputs[1].Split()[4]) };
-        int player = 2, totalRolls = 0;
+        long[] positions = new long[2] { InputNumbers[0][1], InputNumbers[1][1] };
+        long player = 2, totalRolls = 0;
 
         int nextRoll = 1;
 
@@ -36,7 +36,7 @@ public partial class Day21 : Advent.Day
             scores[player - 1]+=positions[player - 1];
             totalRolls += 3;
         } while (scores[player-1] < target);
-        int result = scores[player - 1 + (player % 2 * 2)-1] * totalRolls;
+        long result = scores[player - 1 + (player % 2 * 2)-1] * totalRolls;
         Output = result.ToString();
     }
 }

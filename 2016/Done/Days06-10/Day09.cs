@@ -2,7 +2,7 @@
 
 public partial class Day09 : Advent.Day
 {
-    public override void DoWork() => Output = GetLength(Input).ToString();
+    public override void DoWork() => Output = GetLength(Inputs[0]).ToString();
 
     private long GetLength(string input)
     {

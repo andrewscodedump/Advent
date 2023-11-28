@@ -4,8 +4,8 @@ public partial class Day15 : Advent.Day
 {
     public override void DoWork()
     {
-        long gen1Value = long.Parse(Input);
-        long gen2Value = long.Parse(Inputs[1]);
+        long gen1Value = InputNumbers[0][0];
+        long gen2Value = InputNumbers[1][0];
         int matches = 0;
 
         for (int i = 0; i < (Part1 ? 40_000_000 : 5_000_000); i++)

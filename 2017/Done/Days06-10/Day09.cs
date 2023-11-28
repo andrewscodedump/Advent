@@ -4,7 +4,7 @@ public partial class Day09 : Advent.Day
 {
     public override void DoWork()
     {
-        string work = Input;
+        string work = Inputs[0];
         int removals = 0, sum = 0, level = 0;
 
         // Remove cancellations

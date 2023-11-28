@@ -10,7 +10,7 @@ public partial class Day01 : Advent.Day
         bool gotThere = false;
         Dictionary<(int, int), bool> visited = new() { { position, true } };
 
-        string[] steps = Input.Split(new string[] { ", " }, StringSplitOptions.None);
+        string[] steps = Inputs[0].Split(", ", StringSplitOptions.None);
 
         foreach (string step in steps)
         {

@@ -6,12 +6,13 @@ public partial class Day17 : Advent.Day
     {
         IEnumerable<int> offsets = Enumerable.Range(-1, 3);
         (int dx, int dy, int dz, int dw)[] neighbours4D = offsets.SelectMany(a => offsets.SelectMany(b => offsets.SelectMany(c => offsets.Select(d => (a, b, c, d))))).Where(t => t != (0, 0, 0, 0)).ToArray();
+        string input = Inputs[0];
 
-        int cycles = 6, startWidth = (int)Math.Sqrt(Input.Length), activeCells = 0;
+        int cycles = 6, startWidth = (int)Math.Sqrt(input.Length), activeCells = 0;
         IEnumerable<int> xyRange = Enumerable.Range(-cycles - 1, (2 * cycles) + startWidth + 2), zwRange = Enumerable.Range(-cycles - 1, (2 * cycles) + 3);
         Dictionary<(int, int, int, int), int> emptyMap = xyRange.SelectMany(x => xyRange.SelectMany(y => zwRange.SelectMany(z => zwRange.Select(w => (x, y, z, w))))).ToDictionary(t => t, t => 0);
         Dictionary<(int, int, int, int), int> map = new(emptyMap);
-        for (int i = 0; i < Input.Length; i++) if (Input[i] == '#') map[(i % startWidth, i / startWidth, 0, 0)] = 1;
+        for (int i = 0; i < input.Length; i++) if (input[i] == '#') map[(i % startWidth, i / startWidth, 0, 0)] = 1;
 
         for (int c = 1; c <= cycles; c++)
         {

@@ -4,7 +4,7 @@ public partial class Day20 : Advent.Day
 {
     public override void DoWork()
     {
-        long testValue = InputNumbersSingle[0];
+        long testValue = InputNumbers[0][0];
         bool foundIt = false;
         int house = 0, firstElf = 1, stopAfter = 50;
         int presentsPerHouse = Part1 ? 10 : 11;

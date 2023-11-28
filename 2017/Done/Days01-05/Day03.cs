@@ -5,8 +5,8 @@ public partial class Day03 : Advent.Day
     public override void DoWork()
     {
         (int X, int Y) pos = (0, 0);
-        int num = 1, step = 1, target = int.Parse(Input);
-        Dictionary<(int X, int Y), int> grid = new() { { pos, 1 } };
+        long num = 1, step = 1, target = InputNumbers[0][0];
+        Dictionary<(int X, int Y), long> grid = new() { { pos, 1 } };
         do
         {
             if (num >= target) break;
@@ -51,11 +51,11 @@ public partial class Day03 : Advent.Day
         Output = Part1 ? (Math.Abs(pos.X) + Math.Abs(pos.Y)).ToString() : num.ToString();
     }
 
-    private static int GetNum(int whichPart, int num, (int X, int Y) pos, Dictionary<(int, int), int> grid)
+    private static long GetNum(int whichPart, long num, (int X, int Y) pos, Dictionary<(int, int), long> grid)
     {
         if (whichPart == 1) return num + 1;
 
-        int value = 0;
+        long value = 0;
         for (int x = -1; x <= 1; x++)
             for (int y = -1; y <= 1; y++)
             {

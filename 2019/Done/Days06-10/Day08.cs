@@ -8,14 +8,14 @@ public partial class Day08 : Advent.Day
 
         int product = 0;
         int width = TestMode ? Part1 ? 3 : 2 : 25, height = TestMode ? 2 : 6, layerSize = width * height;
-        int minZeros = Int32.MaxValue;
+        int minZeros = int.MaxValue;
         char[] image = new string('2', layerSize).ToCharArray();
 
         #endregion Setup Variables and Parse Inputs
 
-        for (int pos = 0; pos < Input.Length; pos += layerSize)
+        for (int pos = 0; pos < Inputs[0].Length; pos += layerSize)
         {
-            string layer = Input.Substring(pos, layerSize);
+            string layer = Inputs[0].Substring(pos, layerSize);
             int zeros = layer.ToCharArray().Count(c => c == '0');
             if (zeros < minZeros)
             {

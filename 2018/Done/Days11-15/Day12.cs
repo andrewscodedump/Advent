@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Advent2018;
+﻿namespace Advent2018;
 
 public partial class Day12 : Advent.Day
 {
@@ -11,7 +9,7 @@ public partial class Day12 : Advent.Day
         for (int i = 1; i < Inputs.Length; i++)
             rules.Add(Inputs[i].Split(new char[] { ' ', '=', '>' }, StringSplitOptions.RemoveEmptyEntries)[0], Inputs[i].Split(new char[] { ' ', '=', '>' }, StringSplitOptions.RemoveEmptyEntries)[1]);
 
-        string currGen = Input[15..];
+        string currGen = Inputs[0][15..];
         long maxGens = Part1 ? 20 : 50000000000;
         int currLeft = 0;
         long score = 0, lastScore = 0;

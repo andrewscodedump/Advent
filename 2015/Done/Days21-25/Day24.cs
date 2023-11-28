@@ -10,7 +10,7 @@ public partial class Day24 : Advent.Day
     {
         int compartments = Part1 ? 3 : 4;
 
-        _ = FindValidCombos(InputNumbersSingle.Sum() / compartments, compartments, InputNumbersSingle, 1, out long bestProduct);
+        _ = FindValidCombos(InputNumbers[0].Sum() / compartments, compartments, InputNumbers[0], 1, out long bestProduct);
         Output = bestProduct.ToString();
     }
 

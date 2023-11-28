@@ -12,7 +12,7 @@ public partial class Day14 : Advent.Day
 
         for (int row = 0; row < 128; row++)
         {
-            string binary = string.Join(string.Empty, KnotHash(Input + '-' + row.ToString()).Select(c => Convert.ToString(Convert.ToInt32(c.ToString(), 16), 2).PadLeft(4, '0')));
+            string binary = string.Join(string.Empty, KnotHash(Inputs[0] + '-' + row.ToString()).Select(c => Convert.ToString(Convert.ToInt32(c.ToString(), 16), 2).PadLeft(4, '0')));
             rows.Add(binary.ToCharArray());
             used += binary.Replace("0", "").Length;
         }

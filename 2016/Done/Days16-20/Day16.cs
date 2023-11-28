@@ -5,7 +5,7 @@ public partial class Day16 : Advent.Day
     public override void DoWork()
     {
         int diskSize = TestMode ? 20 : Part1 ? 272 : 35651584;
-        Output = CheckSumify(Dragonify(Input, diskSize)).ToString();
+        Output = CheckSumify(Dragonify(Inputs[0], diskSize)).ToString();
     }
 
     private string Dragonify(string input, int requiredLength)

@@ -16,7 +16,7 @@ public partial class Day13 : Advent.Day
         {
             currentRoom = (Location)bfs.Dequeue();
             // It's not a room, or it is but we've already been here - skip to the next one
-            if (!IsRoom(currentRoom, InputNumbersSingle[0]) || alreadyVisited.Contains(currentRoom.Position))
+            if (!IsRoom(currentRoom, InputNumbers[0][0]) || alreadyVisited.Contains(currentRoom.Position))
                 continue;
 
             if (Part1)

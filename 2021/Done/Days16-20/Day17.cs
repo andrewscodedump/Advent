@@ -4,18 +4,18 @@ public partial class Day17 : Advent.Day
 {
     public override void DoWork()
     {
-        int[] area = Regex.Split(Input, @"[^-^\d]+").Where(x=>!String.IsNullOrEmpty(x)).Select(int.Parse).ToArray();
+        long[] area = InputNumbers[0];
 
-        int bestHeight = 0, v0 = 1;
-        Dictionary<int, List<int>> validXTimes = new();
-        HashSet<(int, int)> validVelocities = new();
+        long bestHeight = 0, v0 = 1;
+        Dictionary<long, List<long>> validXTimes = new();
+        HashSet<(long, long)> validVelocities = new();
         bool overshoot = false;
 
         // Get all the times where an x is in the range
         do
         {
             int time = 0;
-            int xpos;
+            long xpos;
             do
             {
                 time++;
@@ -35,7 +35,7 @@ public partial class Day17 : Advent.Day
         v0 = area[2]-1;
         do
         {
-            int ypos, time = v0 <= 0 ? 0 : (2 * v0) + 2, height = v0 <= 0 ? 0 : v0 * (v0 + 1) / 2;
+            long ypos, time = v0 <= 0 ? 0 : (2 * v0) + 2, height = v0 <= 0 ? 0 : v0 * (v0 + 1) / 2;
             do
             {
                 ypos = (v0 * time) - (time * (time - 1) / 2);
@@ -43,7 +43,7 @@ public partial class Day17 : Advent.Day
                     if (validXTimes.ContainsKey(time))
                     {
                         bestHeight = Math.Max(bestHeight, height);
-                        foreach (int x in validXTimes[time])
+                        foreach (long x in validXTimes[time])
                             validVelocities.Add((x, v0));
                     }
                 if (ypos < area[2] && time == (2*v0)+2) overshoot = true;

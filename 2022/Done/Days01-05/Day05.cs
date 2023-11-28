@@ -4,7 +4,7 @@ public partial class Day05 : Advent.Day
 {
     public override void DoWork()
     {
-        int numStacks = (Input.Length / 4) + 1;
+        int numStacks = (Inputs[0].Length / 4) + 1;
         Stack<char>[] stacks = new Stack<char>[numStacks];
 
         for(int rowNum=Inputs.Length-1; rowNum>=0; rowNum--)

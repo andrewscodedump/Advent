@@ -5,12 +5,12 @@ public partial class Day22 : Advent.Day
     public override void DoWork()
     {
         (int X, int Y) curPos = (0, 0);
-        int direction = 0, maxSteps = Part1 ? 10_000 : 10_000_000, infections = 0;
+        int direction = 0, rowLen = Inputs[0].Length, maxSteps = Part1 ? 10_000 : 10_000_000, infections = 0;
         Dictionary<(int, int), int> grid = new();
 
-        for (int col = 0; col < Input.Length; col++)
+        for (int col = 0; col < rowLen; col++)
             for (int row = 0; row < Inputs.Length; row++)
-                grid[(row - ((Inputs.Length - 1) / 2), -col + ((Input.Length - 1) / 2))] = Inputs[col][row] == '#' ? 2 : 0;
+                grid[(row - ((Inputs.Length - 1) / 2), -col + ((rowLen - 1) / 2))] = Inputs[col][row] == '#' ? 2 : 0;
 
         for (int step = 0; step < maxSteps; step++)
         {

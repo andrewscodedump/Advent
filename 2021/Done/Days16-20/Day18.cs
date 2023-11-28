@@ -4,7 +4,7 @@ public partial class Day18 : Advent.Day
 {
     public override void DoWork()
     {
-        string work = Input;
+        string work = Inputs[0];
         int result = 0;
         if (Part1)
         {

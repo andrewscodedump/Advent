@@ -14,7 +14,7 @@ public partial class Day14 : Advent.Day
             pairs[i] = (new string(i.ToString("x1")[0], 3), new string(i.ToString("x1")[0], 5));
 
         for (int i = 0; i < 1001; i++)
-            hashes.Add(GetHash(Input + i.ToString()));
+            hashes.Add(GetHash(Inputs[0] + i.ToString()));
 
         do
         {
@@ -49,7 +49,7 @@ public partial class Day14 : Advent.Day
 
             // delete current hash, add next
             hashes.RemoveAt(0);
-            hashes.Add(GetHash(Input + (currentRecord + 1001).ToString()));
+            hashes.Add(GetHash(Inputs[0] + (currentRecord + 1001).ToString()));
         } while (numberFound < 64);
 
         Output = currentRecord.ToString();

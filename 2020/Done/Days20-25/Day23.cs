@@ -7,7 +7,7 @@ public partial class Day23 : Advent.Day
         #region Setup Variables and Parse Inputs
 
         Dictionary<long, long> cups = new();
-        string cupString = Input;
+        string cupString = Inputs[0];
         int turns = Part1 ? 100 : 10_000_000;
         long current = int.Parse(cupString[0].ToString());
         long[] move = new long[3];

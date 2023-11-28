@@ -5,7 +5,7 @@ public partial class Day16 : Advent.Day
     public override void DoWork()
     {
         int numberOfDancers = TestMode ? 5 : 16, numberOfDances = Part1 ? 1 : 1000000000;
-        string[] steps = Input.Split(',');
+        string[] steps = Inputs[0].Split(',');
         char[] originalDancers = Enumerable.Range(97, numberOfDancers).Select(d => (char)d).ToArray(), dancers = originalDancers.ToArray();
         string pos1s = string.Empty, pos2s = string.Empty;
         int pos1 = 0, pos2 = 0;

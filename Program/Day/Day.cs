@@ -52,10 +52,8 @@ public abstract partial class Day
         }
     }
 
-    protected string Input;
     public string[] Inputs { get; private set; }
     protected List<long[]> InputNumbers { get; private set; }
-    protected long[] InputNumbersSingle { get; private set; }
 
     private List<List<string>> allInputs;
     public List<List<string>> AllInputs
@@ -245,7 +243,6 @@ public abstract partial class Day
         if (allInputs == null || allInputs.Count == 0 || BatchStatus == DayBatchStatus.NotDoneYet) return;
         if (BatchStatus == DayBatchStatus.NoInputs) BatchStatus = DayBatchStatus.Available;
         Inputs = AllInputs[CurrentInput].ToArray();
-        Input = Inputs[0];
         InputNumbers = new();
         try
         {
@@ -256,7 +253,6 @@ public abstract partial class Day
                                   select numbers.ToArray());
         }
         catch { };
-        InputNumbersSingle = InputNumbers.Count == 0 ? Array.Empty<long>() : InputNumbers[0];
     }
 
     #endregion Private Methods
