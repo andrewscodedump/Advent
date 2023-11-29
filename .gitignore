@@ -4,6 +4,8 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # User-specific files
+Settings.settings
+Settings.Designer.cs
 App.config
 *.rsuser
 *.suo
@@ -362,3 +364,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Properties/Settings.Designer.cs
+/Properties/Settings.settings
