@@ -1,1 +1,4 @@
-﻿
+﻿Input is a set of strings.
+
+Combine the first and last digits to get a single two digit number, and give the total.
+Treat full words as digits too.

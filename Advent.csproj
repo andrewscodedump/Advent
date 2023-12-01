@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows10.0.22000.0</TargetFramework>
+    <TargetFramework>net8.0-windows10.0.22000.0</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <SupportedOSPlatformVersion>10.0.22000.0</SupportedOSPlatformVersion>
 	  <ImplicitUsings>enable</ImplicitUsings>
@@ -30,6 +30,7 @@
     <Folder Include="2020\Refactor\" />
     <Folder Include="2020\ToDo\" />
     <Folder Include="2020\WIP\" />
+    <Folder Include="2023\WIP\" />
   </ItemGroup>
 
   <ItemGroup>
