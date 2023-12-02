@@ -11,7 +11,7 @@ public partial class Day01 : Advent.Day
         foreach (string line in Inputs)
         {
             string first = Regex.Match(line, matcher).Value;
-            var last = Regex.Match(line, matcher, RegexOptions.RightToLeft).Value;
+            string last = Regex.Match(line, matcher, RegexOptions.RightToLeft).Value;
             result += (numbers[first] * 10) + numbers[last];
         }
         Output = result.ToString();

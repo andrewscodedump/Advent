@@ -1,1 +1,4 @@
-﻿
+﻿Input is a number of games of drawing sets of coloured cubes drawn from a bag.
+
+Given a target position for the bag, which of these games would be possible (return the sum of the IDs)
+For each game, what is the minimum number of each colour possible (return the product of the numbers)
