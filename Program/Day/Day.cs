@@ -106,7 +106,7 @@ public abstract partial class Day
 
     private List<List<string>> GetInputs()
     {
-        List<List<string>> inputs = new();
+        List<List<string>> inputs = [];
         if (new DateTime(year, 12, day, 05, 00, 00) > DateTime.Now)
         {
             BatchStatus = DayBatchStatus.Future;
@@ -135,13 +135,13 @@ public abstract partial class Day
             return inputs;
         }
 
-        List<string> input = new();
+        List<string> input = [];
         foreach (string line in File.ReadAllLines($@"{inputPath}\{fileName}"))
         {
             if (line == "***AdditionalInput***")
             {
                 inputs.Add(input);
-                input = new();
+                input = [];
                 continue;
             }
             input.Add(line);
@@ -152,7 +152,7 @@ public abstract partial class Day
 
     private List<string> GetExpecteds()
     {
-        List<string> expecteds = new();
+        List<string> expecteds = [];
         if (new DateTime(year, 12, day, 05, 00, 00) > DateTime.Now) return expecteds;
         bool reading = false;
         string mode = TestMode ? "Test" : "Live";
@@ -170,9 +170,10 @@ public abstract partial class Day
             }
             if (reading)
             {
+                string[] skips = ["***NotDoneYet***", "***Performance***", "***NoTestData***", "***NonCoded***", "***NotWorking***", "***ManualIntervention***"];
                 if (line.StartsWith("Test") || line.StartsWith("Live"))
                     reading = false;
-                else if (new string[] { "***NotDoneYet***", "***Performance***", "***NoTestData***", "***NonCoded***", "***NotWorking***", "***ManualIntervention***" }.Contains(line))
+                else if (skips.Contains(line))
                     continue;
                 else
                     expecteds.Add(line);
@@ -240,16 +241,16 @@ public abstract partial class Day
     {
         if (allInputs == null || allInputs.Count == 0 || BatchStatus == DayBatchStatus.NotDoneYet) return;
         if (BatchStatus == DayBatchStatus.NoInputs) BatchStatus = DayBatchStatus.Available;
-        Inputs = AllInputs[CurrentInput].ToArray();
-        List<long[]> inputNumbers = new();
+        Inputs = [.. AllInputs[CurrentInput]];
+        List<long[]> inputNumbers = [];
         try
         {
             inputNumbers.AddRange(from string inp in Inputs
-                                  let m = Regex.Matches(inp, @"[\+-]?[0-9]*")
+                                  let m = Numbers().Matches(inp)
                                   let numbers = m.Select(m => m.ToString()).Where(n => long.TryParse(n, out _)).Select(i => long.Parse(i))
                                   where numbers.Any()
                                   select numbers.ToArray());
-            InputNumbers = inputNumbers.ToArray();
+            InputNumbers = [.. inputNumbers];
         }
         catch { };
     }
@@ -306,6 +307,9 @@ public abstract partial class Day
         Array.Reverse(arr);
         return new string(arr);
     }
+
+    [GeneratedRegex(@"[\+-]?[0-9]*")]
+    private static partial Regex Numbers();
 
     #endregion Common Methods
 }

@@ -1,0 +1,4 @@
+﻿[*.{cs,vb}]
+
+# IDE0045: Convert to conditional expression
+dotnet_diagnostic.IDE0045.severity = none

@@ -4,10 +4,10 @@ public abstract partial class Day
 {
     protected readonly Dictionary<char, (int x, int y)> Directions = new() { { 'N', (0, 1) }, { 'S', (0, -1) }, { 'E', (1, 0) }, { 'W', (-1, 0) }, { 'U', (0, 1) }, { 'D', (0, -1) }, { 'L', (-1, 0) }, { 'R', (1, 0) }, { '^', (0, 1) }, { 'v', (0, -1) }, { '>', (1, 0) }, { '<', (-1, 0) } };
     protected readonly Dictionary<char, (int x, int y)> DirectionsYDown = new() { { 'N', (0, -1) }, { 'S', (0, 1) }, { 'E', (1, 0) }, { 'W', (-1, 0) }, { 'U', (0, -1) }, { 'D', (0, 1) }, { 'L', (-1, 0) }, { 'R', (1, 0) }, { '^', (0, -1) }, { 'v', (0, 1) }, { '>', (1, 0) }, { '<', (-1, 0) } };
-    protected readonly List<(int, int)> DirectNeighbours = new() { (0, 1), (1, 0), (0, -1), (-1, 0) };
-    protected readonly List<(int, int)> Neighbours = new() { (-1, 1), (0, 1), (1, 1), (-1, 0), (1, 0), (-1, -1), (0, -1), (1, -1) };
+    protected readonly List<(int, int)> DirectNeighbours = [(0, 1), (1, 0), (0, -1), (-1, 0)];
+    protected readonly List<(int, int)> Neighbours = [(-1, 1), (0, 1), (1, 1), (-1, 0), (1, 0), (-1, -1), (0, -1), (1, -1)];
     protected readonly Dictionary<(char, char), char> turns = new() { { ('^', 'L'), '<' }, { ('^', 'R'), '>' }, { ('>', 'L'), '^' }, { ('>', 'R'), 'v' }, { ('v', 'L'), '>' }, { ('v', 'R'), '<' }, { ('<', 'L'), 'v' }, { ('<', 'R'), '^' } };
-    protected Dictionary<(int, int), char> SimpleMap = new();
+    protected Dictionary<(int, int), char> SimpleMap = [];
     protected int CountNeighbours(Dictionary<(int, int), char> area, int x, int y, char type) => Neighbours.Where(nbr => area[(x + nbr.Item1, y + nbr.Item2)] == type).Count();
 
     public void PopulateMapFromInput()
@@ -20,6 +20,18 @@ public abstract partial class Day
                 SimpleMap[(x, y)] = work[x];
             }
         }
+    }
+    public void PopulateMapFromInputWithBorders(char borderChar, out int width, out int height)
+    {
+        width = Inputs[0].Length; height = Inputs.Length;
+        for (int y = -1; y <= height; y++)
+            for (int x = -1; x <= width; x++)
+            {
+                if (x == -1 || y == -1 || x == width || y == height)
+                    SimpleMap[(x, y)] = borderChar;
+                else
+                    SimpleMap[(x, y)] = Inputs[y][x];
+            }
     }
     public void DrawMap() => DrawMap(true, false);
 
