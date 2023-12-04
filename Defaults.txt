@@ -1,4 +1,4 @@
-Day=3
-Puzzle=2
+Day=4
+Puzzle=1
 Mode=Test
 Year=2023

@@ -1,1 +1,5 @@
-﻿
+﻿Input is a pile of scratchcards.  The first set of numbers are the winning numbers, the second set your numbers.
+One match is worth a point, each subsequent match doubles the points.
+
+How many points in total are the cards worth?
+Each winning card duplicates the cards below up to the number of matchs.  How many cards do you have at the end?
