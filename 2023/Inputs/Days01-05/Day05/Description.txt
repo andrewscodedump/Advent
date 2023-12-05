@@ -1,1 +1,5 @@
-﻿
+﻿Input is a list of seeds to be planted and a set of mappings to map each seed to a location, via a series of intermediate mappings.
+Each mapping gives start destination and source codes along with how long the start and destination ranges are.
+
+What is the lowest location for the seeds given?
+The seeds values are actually pairs of start numbers and lengths.
