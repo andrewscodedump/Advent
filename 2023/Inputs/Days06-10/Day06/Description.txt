@@ -1,1 +1,5 @@
-﻿
+﻿Input is a set of stats for a boat race.  Time is the total time for the race and record the best distance so far.
+You charge up the boat for a time and then let go and it will travel at a speed equal to that time.
+
+How many (integer) charge times for each race will beat the current record (return the product)
+The input is actually a single race (squish together all the numbers to make a single one)
