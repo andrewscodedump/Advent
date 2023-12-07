@@ -1,1 +1,4 @@
-﻿
+﻿Input is a set of hands of cards with a corresponding bid.  Arrange the cards in order from worst to best.
+
+What is the sum of the bids mulitplied by the ranks?
+For part 2, J is now Joker rather than Jack (for settling ties, it is the weakest card).
