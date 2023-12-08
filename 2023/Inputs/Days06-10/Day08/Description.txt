@@ -1,1 +1,4 @@
-﻿
+﻿Input is a map and instructions for traversing it.
+
+How many steps to get from AAA to ZZZ?
+Starting from all nodes ending in A, how many steps until all nodes end in Z?
