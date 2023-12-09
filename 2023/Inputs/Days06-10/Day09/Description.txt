@@ -1,1 +1,4 @@
-﻿
+﻿Input is a series of sets of history data.  The next sequence for each history can be calculated by extrapolating the values.
+
+What is the sum of the extrapolated values?
+What is the sum of the extrapolated previous values?
