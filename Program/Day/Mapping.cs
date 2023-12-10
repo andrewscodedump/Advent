@@ -10,9 +10,10 @@ public abstract partial class Day
     protected Dictionary<(int, int), char> SimpleMap = [];
     protected int CountNeighbours(Dictionary<(int, int), char> area, int x, int y, char type) => Neighbours.Where(nbr => area[(x + nbr.Item1, y + nbr.Item2)] == type).Count();
 
-    public void PopulateMapFromInput()
+    public void PopulateMapFromInput(out int width, out int height)
     {
-        for (int y = 0; y < Inputs.Length; y++)
+        width = Inputs[0].Length; height = Inputs.Length;
+        for (int y = 0; y < height; y++)
         {
             string work = Inputs[y];
             for (int x = 0; x < work.Length; x++)
@@ -60,7 +61,7 @@ public abstract partial class Day
                 Debug.Print(s.ToString());
             }
         else
-            for (int y = 0; y <= maxY; y++)
+            for (int y = minY; y <= maxY; y++)
             {
                 s.Clear();
                 if (showCoords)

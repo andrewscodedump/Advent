@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="2023\Inputs\Days06-10\Day10\TestPart2.txt" />
     <None Remove="Advent.Designer.cs.bak" />
   </ItemGroup>
 

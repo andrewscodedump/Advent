@@ -4,19 +4,18 @@ public partial class Day12 : Advent.Day
 {
     public override void DoWork()
     {
-        Dictionary<(int, int), int> bestSteps = new();
-        PopulateMapFromInput();
-        int maxX = Inputs[0].Length, maxY = Inputs.Length;
+        Dictionary<(int, int), int> bestSteps = [];
+        PopulateMapFromInput(out int maxX, out int maxY);
         //DrawMap(false, false);
         (int, int) end = SimpleMap.Keys.Where(k => SimpleMap[k] == 'E').First();
         SimpleMap[end] = '{';
         (int, int) start = SimpleMap.Keys.Where(k => SimpleMap[k] == 'S').First();
 
         Queue<(List<(int, int)>, int)> bfs = new();
-        bfs.Enqueue((new() { start }, 0));
+        bfs.Enqueue(([start], 0));
         if (Part2)
             foreach ((int, int) a in SimpleMap.Keys.Where(k => SimpleMap[k] == 'a'))
-                bfs.Enqueue((new() { a }, 0));
+                bfs.Enqueue(([a], 0));
 
         do
         {

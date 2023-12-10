@@ -1,1 +1,4 @@
-﻿
+﻿Input is a map of a set of pipes with a continuous loop.
+
+What is the farthest point from the start (measured in number of steps to get there)?
+What is the number of locations that are totally enclosed by the loop (you can squeeze between pipes)?
