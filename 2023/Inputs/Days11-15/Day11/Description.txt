@@ -1,1 +1,4 @@
-﻿
+﻿Input is a map of the night sky, showing galaxies.  Due to cosmic expansion, every line and column containing no galaxies should be doubled.
+
+What is the sum of the (manhattan) distances between each pair of galaxies?
+Expansion is bigger than thought.  Each empty row/col should now be a million times bigger!
