@@ -1,1 +1,4 @@
-﻿
+﻿Input is a series of maps of the ground with a line of mirrors at some point.  Find where the mirrors are by finding a line of symmetry (either horizontal or vertical).
+
+What is the sum of the number of columns to the left of any vertical line plus 100 times the number of rows above a horizontal one?
+Each mirror has a smudge, meaning that the symbols have been reversed on a single location.  After cleaning this, what is the new score?
