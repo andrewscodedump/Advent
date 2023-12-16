@@ -1,1 +1,5 @@
-﻿
+﻿Input is a map of a cave full of mirrors.
+A beam of light enters the top left hand corner heading right, and bounces around the hall of mirrors (splitting in two at some points.).
+
+How many unique points (including mirrors) does the beam pass through before exiting?
+You can start the beam from anywhere on the edge.  What is the maximum possible number of points passed through?
