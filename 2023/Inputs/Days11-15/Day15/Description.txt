@@ -1,1 +1,6 @@
-﻿
+﻿Input is a series of codes for a control mechanism.
+There is a hashing algorithm to turn a string into an int
+
+What is the sum of the hashes for all inputs?
+Each input is a lens code an action and a focal length.  Use the hash of the lens code to determine which box to put it in.
+What is the sum of the lenses in all boxes (box+1 x slot+1 x focal length)
