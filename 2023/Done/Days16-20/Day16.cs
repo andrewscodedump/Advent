@@ -44,15 +44,10 @@ public partial class Day16 : Advent.Day
         return energizedCells.Count;
     }
 
-    public class Beam()
+    public class Beam((int, int) location, (int, int) direction)
     {
-        public Beam((int, int) location, (int, int) direction) : this()
-        {
-            Location = location;
-            Direction = direction;
-        }
-        public (int x, int y) Location { get; private set; }
-        public (int x, int y) Direction { get; private set; }
+        public (int x, int y) Location { get; private set; } = location;
+        public (int x, int y) Direction { get; private set; } = direction;
         public bool Move(Dictionary<(int x, int y), char> map, List<Beam> beams)
         {
             Location = (Location.x + Direction.x, Location.y + Direction.y);
