@@ -1,1 +1,4 @@
-﻿
+﻿Input is a set of rules for grading machine parts and a list of parts to be graded.
+
+What is the total sum of all the properties of the parts that are accepted?
+How many possible combinations of properties could be accepted (each property may have a value from 1 to 4000).
