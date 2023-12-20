@@ -31,6 +31,7 @@
     <Folder Include="2020\Refactor\" />
     <Folder Include="2020\ToDo\" />
     <Folder Include="2020\WIP\" />
+    <Folder Include="2023\ToDo\Days16-20\" />
     <Folder Include="2023\WIP\" />
   </ItemGroup>
 
