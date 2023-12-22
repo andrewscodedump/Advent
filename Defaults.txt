@@ -1,4 +1,4 @@
-Day=20
+Day=21
 Puzzle=1
-Mode=Live
+Mode=Test
 Year=2023

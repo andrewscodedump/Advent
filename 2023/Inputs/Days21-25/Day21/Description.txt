@@ -1,1 +1,4 @@
-﻿
+﻿Input is the layout of a garden.
+
+How many different plots can you visit in a given number of steps?
+Same, but the number of steps is much larger, and the map repeats infinitely in all directions.
