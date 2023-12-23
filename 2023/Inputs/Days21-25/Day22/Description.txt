@@ -1,1 +1,4 @@
-﻿
+﻿Input is a set of pairs of x,y,z coordinates for each end of a set of falling bricks.
+The bricks fall down until the have an other brick beneath them (they do not rotate).
+
+After they all fall, how many bricks can be removed without causing any others to fall again?
