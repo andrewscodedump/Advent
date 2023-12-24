@@ -1,4 +1,4 @@
 ﻿Input is a map of a city with each square giving a value representing heat loss in that square.  You cannot travel more than three squares in a line at any time.
 
 What is the path with the minimum heat loss?
-You've bow got a special one to move, which can't turn (or finish) in less than 4 moves, and must turn after 10.
+You've now got a special one to move, which can't turn (or finish) in less than 4 moves, and must turn after 10.
