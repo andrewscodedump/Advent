@@ -1,1 +1,4 @@
-﻿
+﻿Ìnput is a series of connections between nodes in a network.
+
+By cutting exactly three connections, you can split the network cleanly into two.
+What is the product of the sizes of the two subnetworks?
