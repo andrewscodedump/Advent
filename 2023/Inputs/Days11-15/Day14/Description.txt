@@ -1,1 +1,6 @@
-﻿
+﻿Input is a map of a series of stones and blockers.
+You can tilt the grid and all the stones will roll in that direction (North initially) until they hkt a blocker or another stone
+It also has a spin cycle which tilts N, W, S then E.
+
+What is the sum of the positions of the stones after rolling them North (bottom = 1)?
+What is the result after running the spin cycle 10M times?
