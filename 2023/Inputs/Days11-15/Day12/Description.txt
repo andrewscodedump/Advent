@@ -1,1 +1,5 @@
-﻿
+﻿Input is a set of (damaged) condition records for a series of hot springs.  A question marks means the status is unknown.
+The set of numbers at the end gives the length of each contiguous group of damaged (#) springs.
+
+How many different ways of arranging the ?s to match the numbers are there?
+As above, but each record is replicated 5 times (separated by ?s).
