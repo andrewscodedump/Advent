@@ -3,6 +3,8 @@
 public partial class Day14 : Advent.Day
 {
     int width = 0, height = 0;
+    bool debug = false;
+
     public override void DoWork()
     {
         PopulateMapFromInputWithBorders('*', out width, out height);
@@ -41,7 +43,7 @@ public partial class Day14 : Advent.Day
         MoveStones((-1, 0));
         MoveStones((0, 1));
         int result = MoveStones((1, 0));
-        //DrawMap(false, false);
+        if (debug) DrawMap(false, false);
         return result;
     }
     private int MoveStones((int dx, int dy) move)
@@ -64,8 +66,11 @@ public partial class Day14 : Advent.Day
                     //DrawMap(false, false);
                 }
                 totalScore += height - currentPos.y;
-                Debug.Print(SimpleMap.GetHashCode().ToString());
-                DrawMap(false, false);
+                if (debug)
+                {
+                    Debug.Print(SimpleMap.GetHashCode().ToString());
+                    DrawMap(false, false);
+                }
             }
         }
         return totalScore;
