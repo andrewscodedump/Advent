@@ -1,90 +1,89 @@
-﻿using System.Security.Cryptography.Xml;
-
-namespace Advent2023;
+﻿namespace Advent2023;
 
 public partial class Day23 : Advent.Day
 {
     public override void DoWork()
     {
-        PopulateMapFromInput(out int width, out int height);
-        int longestDistance = 0;
         char[] directions = ['^', '<', '>', 'v'];
+        PopulateMapFromInputWithBorders('#', out int width, out int height);
+        if (Part2) SimpleMap.Keys.Where(p => directions.Contains(SimpleMap[p])).ForEach(p => SimpleMap[p] = '.'); // Open up all the slopes
+        int longestDistance = 0;
+        (int x, int y) start = (1, 0), end = (width - 2, height - 1);
 
-        if (Part1)
-        {
-            PriorityQueue<(int, int, int, Dictionary<(int, int), int>), (int, int)> queue = new();
-            queue.Enqueue((1, 0, 0, new() { { (1, 0), 0 } }), (width + height - 4, 0));
-            do
-            {
-                (int x, int y, int distance, Dictionary<(int, int), int> visited) = queue.Dequeue();
-                foreach (char direction in directions)
-                {
-                    (int dx, int dy) = DirectionsYDown[direction];
-                    (int x, int y) newPos = (x + dx, y + dy);
-                    if (newPos.x < 0 || newPos.y < 0) continue;
-                    char nextSquare = SimpleMap[newPos];
-                    if (nextSquare == '#') continue;
-                    if (visited.ContainsKey(newPos))
-                        continue;
-                    else
-                        visited[newPos] = distance + 1;
-                    if (directions.Contains(nextSquare) && nextSquare != direction) continue;
-                    if (newPos.y == height - 1)
-                    {
-                        longestDistance = Math.Max(longestDistance, distance + 1);
-                        continue;
-                    }
-                    queue.Enqueue((newPos.x, newPos.y, distance + 1, new(visited)), (width - newPos.x - 1 + height - newPos.y - 1, -distance));
-                }
-            } while (queue.Count > 0);
-        }
-        else
-        {
-            List<(int, int)> junctions = [(1, 0), (width - 2, height - 1)];
-            Dictionary<((int x, int y) from, (int x, int y) to), int> edges = [];
+        List<(int x, int y)> junctions = [start];
+        Dictionary<((int x, int y) from, (int x, int y) to), int> edges = [];
 
-            foreach ((int, int) pos in SimpleMap.Keys)
-                if (directions.Contains(SimpleMap[pos]))
-                    SimpleMap[pos] = '.';
-            // Find all junctions
-            foreach ((int x, int y) in SimpleMap.Keys.Where(p => SimpleMap[p] == '.'))
+        //Get all junctions
+        SimpleMap.Keys.Where(p => SimpleMap[p] == '.').ForEach(p =>
             {
-                int paths = 0;
-                if (y == 0 || y == height - 1) continue;
-                foreach ((int dx, int dy) in DirectNeighbours)
-                    if (SimpleMap[(x + dx, y + dy)] == '.') paths++;
-                if (paths > 2) junctions.Add((x, y));
-            }
-            // for each junction, get the distance to each of the next junctions
-            foreach ((int sx, int sy) in junctions)
+                if (CountDirectNeighbours(SimpleMap, p.Item1, p.Item2, '#') <= 1)
+                    junctions.Add((p.Item1, p.Item2));
+            });
+        junctions.Add(end);
+
+        // for each junction, get the distance to each of the next junctions
+        foreach ((int sx, int sy) in junctions)
+        {
+            if ((sx, sy) == end) continue;
+            foreach (char direction in directions)
             {
+                bool found = false;
+                int length = 0;
                 (int x, int y) = (sx, sy);
-                (int px, int py) = (x, y);
-                foreach ((int dx, int dy) in DirectNeighbours)
+                (int px, int py) = (sx, sy);
+                (int dx, int dy) = DirectionsYDown[direction];
+                if (x + dx == px && y + dy == py) continue;
+                char nextSquare = SimpleMap[(x + dx, y + dy)];
+                if (nextSquare == '#') continue;
+                if (directions.Contains(nextSquare) && nextSquare != direction) continue;
+                length++;
+                (px, py) = (x, y);
+                (x, y) = (x + dx, y + dy);
+                do
                 {
-                    bool found = false;
-                    int length = 0;
-                    do
+                    foreach (char dirn in directions)
                     {
-                        foreach ((int ddx, int ddy) in DirectNeighbours)
+                        (int ddx, int ddy) = DirectionsYDown[dirn];
+                        if (x + ddx == px && y + ddy == py) continue;
+                        nextSquare = SimpleMap[(x + ddx, y + ddy)];
+                        if (nextSquare == '#') continue;
+                        if (directions.Contains(nextSquare) && nextSquare != dirn) continue;
+                        length++;
+                        (px, py) = (x, y);
+                        (x, y) = (x + ddx, y + ddy);
+                        if (junctions.Contains((x, y)))
                         {
-                            if (x + ddx == px && y + ddy == py) continue;
-                            if (x + ddx < 0 || y + ddy == height) continue;
-                            if (SimpleMap[(x + ddx, y + ddy)] == '#') continue;
-                            (px, py) = (x, y);
-                            (x, y) = (x + ddx, y + ddy);
-                            if (junctions.Contains((x, y)))
-                            {
-                                found = true;
-                                break;
-                            }
+                            found = true;
+                            break;
                         }
-                    } while (!found);
-                    if (!edges.ContainsKey(((x, y), (sx, sy))))
-                        edges[((sx, sy), (x, y))] = length;
-                }
+                    }
+                } while (!found);
+                edges[((sx, sy), (x, y))] = length;
             }
         }
+        (int, int) secondFromEnd = edges.Keys.Where(k=>k.to==end).First().from;
+
+        Queue<((int, int), int, Dictionary<(int, int), int>, List<(int, int)>)> queue = new();
+        queue.Enqueue((start, 0, new() { { start, 0 } }, [start]));
+        do
+        {
+            ((int x, int y) source, int distance, Dictionary<(int, int), int> visited, List<(int, int)> path) = queue.Dequeue();
+            foreach ((int, int) target in edges.Keys.Where(k => k.from == source).Select(k => k.to))
+            {
+                if (visited.ContainsKey(target)) continue;
+                if (source == secondFromEnd && target != end) continue;
+                int edgeLength = edges[(source, target)];
+                Dictionary<(int, int), int> newVisited = new(visited) { [target] = distance + edgeLength };
+                if (target == end)
+                {
+                    longestDistance = Math.Max(longestDistance, distance + edgeLength);
+                    continue;
+                }
+                List<(int, int)> newPath = new(path) { target };
+                queue.Enqueue((target, distance + edgeLength, newVisited, newPath));
+            }
+        } while (queue.Count > 0);
+
         Output = longestDistance.ToString();
     }
 }
