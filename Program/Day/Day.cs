@@ -102,6 +102,7 @@ public abstract partial class Day
 
     #endregion Public Methods
 
+    
     #region Private Methods
 
     private List<List<string>> GetInputs()

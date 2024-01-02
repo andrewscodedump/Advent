@@ -80,7 +80,7 @@ public partial class AdventOfCode : Form
     }
     private List<string> GetExpecteds()
     {
-        return CheckStatus(theDay.BatchStatus) || !theDay.Expecteds.Any() ? new() { theDay.StatusText } : theDay.Expecteds;
+        return CheckStatus(theDay.BatchStatus) || theDay.Expecteds.Count == 0 ? [theDay.StatusText] : theDay.Expecteds;
     }
 
     private string GetInput()
@@ -91,7 +91,7 @@ public partial class AdventOfCode : Form
 
     private List<List<string>> GetInputs()
     {
-        return CheckStatus(theDay.BatchStatus) ? new() : theDay.AllInputs;
+        return CheckStatus(theDay.BatchStatus) ? [] : theDay.AllInputs;
     }
 
     private static bool CheckStatus(Day.DayBatchStatus status)
@@ -178,18 +178,15 @@ public partial class AdventOfCode : Form
         ResetScreen();
     }
 
-    private void BatchTest() => BatchTest(1);
-
-    private void BatchTest(int reps)
+    private void BatchTest()
     {
         btnBatch.Enabled = false;
-        btnSuperBatch.Enabled = false;
         btnProcess.Enabled = false;
         btnExit.Text = "&Cancel";
-        BatchWorker.RunWorkerAsync(reps);
+        BatchWorker.RunWorkerAsync();
     }
 
-    private string DoBatch(int reps, BackgroundWorker worker)
+    private string DoBatch(BackgroundWorker worker)
     {
         int year = (int)updYear.Value;
         StringBuilder output = new();
@@ -204,16 +201,9 @@ public partial class AdventOfCode : Form
                 if (worker.CancellationPending)
                     return output.ToString();
                 worker.ReportProgress(((day - 1) * 2) + puzzle, $"{day}/{puzzle}");
-                Stopwatch sw = Stopwatch.StartNew();
-                try
-                {
-                    theDay = (Day)Activator.CreateInstance(Type.GetType($"Advent{year}.Day{day:D2})"), new object[] { chkTestMode.Checked, puzzle });
-                }
-                catch
-                {
-                    theDay = (Day)Activator.CreateInstance(Type.GetType($"Advent{year}.Day{day:D2}"));
-                    theDay.SetMode(chkTestMode.Checked, puzzle);
-                }
+                Stopwatch sw = new();
+                theDay = (Day)Activator.CreateInstance(Type.GetType($"Advent{year}.Day{day:D2}"));
+                theDay.SetMode(chkTestMode.Checked, puzzle);
 
                 if (theDay.BatchStatus == Day.DayBatchStatus.NotDoneYet || theDay.BatchStatus == Day.DayBatchStatus.Future || theDay.BatchStatus == Day.DayBatchStatus.NoInputs) continue;
                 if (puzzle == 1)
@@ -251,13 +241,11 @@ public partial class AdventOfCode : Form
                     case Day.DayBatchStatus.ManualIntervention:
                         theDay.BatchRun = true;
                         double totalTime = 0;
-                        for (int rep = 0; rep < reps; rep++)
-                        {
-                            if (worker.CancellationPending) break;
-                            theDay.DoWork();
-                            totalTime += sw.ElapsedTicks;
-                            sw.Restart();
-                        }
+                        if (worker.CancellationPending) break;
+                        sw.Restart();
+                        theDay.DoWork();
+                        totalTime += sw.ElapsedTicks;
+                        sw.Stop();
                         if (theDay.Output != theDay.Expecteds[0] && theDay.BatchStatus != Day.DayBatchStatus.ManualIntervention)
                         {
                             output.Append(" **Test Failed**");
@@ -265,8 +253,8 @@ public partial class AdventOfCode : Form
                         }
                         else
                         {
-                            output.Append(FormatTime(totalTime, reps));
-                            Debug.WriteLine($"Day: {day}, part {puzzle}{FormatTime(totalTime, reps)}");
+                            output.Append(FormatTime(totalTime));
+                            Debug.WriteLine($"Day: {day}, part {puzzle}{FormatTime(totalTime)}");
                         }
                         break;
                     default:
@@ -278,22 +266,21 @@ public partial class AdventOfCode : Form
         output.AppendLine().AppendLine();
         output.AppendLine("Batch Run Completed");
         Debug.WriteLine("Batch Run Completed");
-        output.AppendLine($"Total Time = {(DateTime.Now - overallStart).TotalSeconds / reps:0.000000} secs");
-        Debug.WriteLine($"Total Time = {(DateTime.Now - overallStart).TotalSeconds / reps:0.000000} secs");
+        output.AppendLine($"Total Time = {(DateTime.Now - overallStart).TotalSeconds:0.000000} secs");
+        Debug.WriteLine($"Total Time = {(DateTime.Now - overallStart).TotalSeconds:0.000000} secs");
         //Clipboard.SetText(output.ToString());
         return output.ToString();
     }
 
-    private static string FormatTime(double ticks, int reps)
+    private static string FormatTime(double ticks)
     {
-        string displayTime;
-        double repSeconds = ticks / Stopwatch.Frequency / reps;
-        displayTime = repSeconds switch
+        double seconds = ticks / Stopwatch.Frequency;
+        string displayTime = seconds switch
         {
-            >= 60 => $"{repSeconds / 60.0:0.000} mins",
-            >= 1 => $"{repSeconds:0.000} secs",
-            >= 0.001 => $"{repSeconds * 1000:0.000} ms",
-            _ => $"{repSeconds * 1000000:0} µs"
+            >= 60 => $"{seconds / 60.0:0.000} mins",
+            >= 1 => $"{seconds:0.000} secs",
+            >= 0.001 => $"{seconds * 1000:0.000} ms",
+            _ => $"{seconds * 1000000:0} µs"
         };
         return $"{Pad(displayTime, 16)}";
     }
@@ -339,8 +326,6 @@ public partial class AdventOfCode : Form
 
     private void Batch_Click(object sender, EventArgs e) => BatchTest();
 
-    private void SuperBatch_Click(object sender, EventArgs e) => BatchTest(100);
-
     private void PrevInput_Click(object sender, EventArgs e)
     {
         if (int.TryParse(inputNumber.Text, out int counter) && counter > 0)
@@ -364,7 +349,7 @@ public partial class AdventOfCode : Form
     private void BatchWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
     {
         BackgroundWorker worker = sender as BackgroundWorker;
-        e.Result = DoBatch((int)e.Argument, worker);
+        e.Result = DoBatch(worker);
     }
 
     private void BatchWorker_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
@@ -377,7 +362,6 @@ public partial class AdventOfCode : Form
     {
         ShowText(e.Result.ToString());
         btnBatch.Enabled = true;
-        btnSuperBatch.Enabled = true;
         btnProcess.Enabled = true;
         btnExit.Text = "E&xit";
         Progress.Value = 0;
