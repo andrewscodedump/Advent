@@ -112,9 +112,9 @@ public abstract partial class Day
             BatchStatus = DayBatchStatus.Future;
             return inputs;
         }
-        bool fileExists = false;
+        bool fileExists = false, encFileExists = false;
         string mode = TestMode ? "Test" : "Live";
-        string fileName = $"{mode}Both.txt";
+        string fileName = $"{mode}Both.txt", encFileName = $"{mode}Both.enc";
 
         if (File.Exists($@"{inputPath}\{fileName}"))
         {
@@ -125,6 +125,30 @@ public abstract partial class Day
             fileName = $"{mode}Part{WhichPart}.txt";
             if (File.Exists($@"{inputPath}\{fileName}"))
                 fileExists = true;
+        }
+
+        if (File.Exists($@"{inputPath}\{encFileName}"))
+        {
+            encFileExists = true;
+        }
+        else
+        {
+            encFileName = $"{mode}Part{WhichPart}.enc";
+            if (File.Exists($@"{inputPath}\{encFileName}"))
+                encFileExists = true;
+        }
+
+        if(fileExists && !encFileExists && mode == "Live")
+        {
+            // Create encrypted file - for live inputs only
+            encFileName = Path.ChangeExtension(fileName, "enc");
+            Encryption.Encrypt($@"{inputPath}\{fileName}", $@"{inputPath}\{encFileName}", "Advent");
+        }
+        else  if (!fileExists && encFileExists)
+        {
+            // Decrypt file
+            fileName = Path.ChangeExtension(encFileName, "txt");
+            fileExists = Encryption.Decrypt($@"{inputPath}\{encFileName}", $@"{inputPath}\{fileName}", "Advent");
         }
 
         if (!fileExists 
