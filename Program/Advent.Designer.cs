@@ -40,7 +40,6 @@
             btnExit = new Button();
             chkTestMode = new CheckBox();
             btnBatch = new Button();
-            btnSuperBatch = new Button();
             lblExpected = new Label();
             txtExpected = new TextBox();
             lblYear = new Label();
@@ -154,18 +153,6 @@
             lblPuzzle.TabIndex = 4;
             lblPuzzle.Text = "Puzzle";
             // 
-            // btnExit
-            // 
-            btnExit.DialogResult = DialogResult.Cancel;
-            btnExit.Location = new Point(417, 282);
-            btnExit.Margin = new Padding(9, 10, 9, 10);
-            btnExit.Name = "btnExit";
-            btnExit.Size = new Size(88, 27);
-            btnExit.TabIndex = 13;
-            btnExit.Text = "E&xit";
-            btnExit.UseVisualStyleBackColor = true;
-            btnExit.Click += Exit_Click;
-            // 
             // chkTestMode
             // 
             chkTestMode.AutoSize = true;
@@ -189,16 +176,17 @@
             btnBatch.UseVisualStyleBackColor = true;
             btnBatch.Click += Batch_Click;
             // 
-            // btnSuperBatch
+            // btnExit
             // 
-            btnSuperBatch.Location = new Point(323, 282);
-            btnSuperBatch.Margin = new Padding(9, 10, 9, 10);
-            btnSuperBatch.Name = "btnSuperBatch";
-            btnSuperBatch.Size = new Size(88, 27);
-            btnSuperBatch.TabIndex = 12;
-            btnSuperBatch.Text = "&SuperBatch";
-            btnSuperBatch.UseVisualStyleBackColor = true;
-            btnSuperBatch.Click += SuperBatch_Click;
+            btnExit.DialogResult = DialogResult.Cancel;
+            btnExit.Location = new Point(323, 282);
+            btnExit.Margin = new Padding(9, 10, 9, 10);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(88, 27);
+            btnExit.TabIndex = 12;
+            btnExit.Text = "E&xit";
+            btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += Exit_Click;
             // 
             // lblExpected
             // 

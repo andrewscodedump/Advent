@@ -9,6 +9,7 @@ public abstract partial class Day
     protected readonly Dictionary<(char, char), char> turns = new() { { ('^', 'L'), '<' }, { ('^', 'R'), '>' }, { ('>', 'L'), '^' }, { ('>', 'R'), 'v' }, { ('v', 'L'), '>' }, { ('v', 'R'), '<' }, { ('<', 'L'), 'v' }, { ('<', 'R'), '^' } };
     protected Dictionary<(int, int), char> SimpleMap = [];
     protected int CountNeighbours(Dictionary<(int, int), char> area, int x, int y, char type) => Neighbours.Where(nbr => area[(x + nbr.Item1, y + nbr.Item2)] == type).Count();
+    protected int CountDirectNeighbours(Dictionary<(int, int), char> area, int x, int y, char type) => DirectNeighbours.Where(nbr => area[(x + nbr.Item1, y + nbr.Item2)] == type).Count();
 
     public void PopulateMapFromInput(out int width, out int height)
     {

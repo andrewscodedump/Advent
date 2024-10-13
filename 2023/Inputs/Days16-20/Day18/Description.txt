@@ -1,1 +1,4 @@
-﻿
+﻿Input is a set of instructions for digging a pit.  After digging the perimeter, also dig out the inside.
+
+What is the area dug?
+You'd been reading the instructions wrong; the pit is *much* bigger than you'd thought.

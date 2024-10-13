@@ -1,8 +1,4 @@
-﻿using System.Linq;
-using System.Net;
-using Windows.Media.Editing;
-
-namespace Advent2015;
+﻿namespace Advent2015;
 
 public partial class Day24 : Advent.Day
 {

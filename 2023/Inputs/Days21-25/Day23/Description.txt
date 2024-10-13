@@ -1,1 +1,4 @@
-﻿
+﻿Input is a trail map.  You want to travel from the top left to the bottom right.  You cannot go up slopes (<>^v), and do not want to visit any square more than once.
+
+What is the longest possible route you can take?
+As above, but you can now go up slopes too.

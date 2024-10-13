@@ -1,1 +1,7 @@
-﻿
+﻿Input is a series of instructions for a circuit diagram.  Each time a button is pressed, it sends a low signal to the broadcast element.
+FlipFlop (%):		If input high, nothing happens; if input low, inverts and sends new state
+Conjunction (&):	If all sources high, send low, else send high
+"broadcaster":		Send input to all outputs
+
+After 1000 button presses, what is the total number of low pulses sent times the number of high.
+How many button presses does it take to send a low signal to the "rx" component?

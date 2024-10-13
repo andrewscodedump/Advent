@@ -1,1 +1,4 @@
-﻿
+﻿Input is a list of the positions and velocities of a set of hailstones.  Take each possible pair of hailstones.
+
+How many of the pairs' paths will intersect inside a given area?
+Where do you have to stand so that you can throw a single rock and hit every single hailstone?
