@@ -12,6 +12,9 @@ App.config
 *.user
 *.userosscache
 *.sln.docstates
+LiveBoth.txt
+LivePart1.txt
+LivePart2.txt
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
