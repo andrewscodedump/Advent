@@ -16,8 +16,26 @@ public static class Encryption
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Error retrieving key from store - {ex.Message}");
-            return false;
+            if (ex.Message == "Keyset does not exist")
+            {
+                // Keyset does not exist - create one
+                try
+                {
+                    cspParams = new() { KeyContainerName = keyName, Flags = CspProviderFlags.UseMachineKeyStore };
+                    rsaProvider = new RSACryptoServiceProvider(2048, cspParams) { PersistKeyInCsp = true };
+                    return true;
+                }
+                catch (Exception ex2)
+                {
+                    MessageBox.Show($"Error retrieving key from store - {ex2.Message}");
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show($"Error retrieving key from store - {ex.Message}");
+                return false;
+            }
         }
     }
 
@@ -33,7 +51,7 @@ public static class Encryption
             ICryptoTransform transform = aes.CreateEncryptor();
 
             // Use RSACryptoServiceProvider to encrypt the AES key.
-            byte[] keyEncrypted = rsaProvider.Encrypt(aes.Key, false);
+            byte[] keyEncrypted = rsaProvider.Encrypt(aes.Key, true);
 
             stage = "Prepare Arrays";
             // Create byte arrays to contain the length values of the key and IV.
@@ -44,14 +62,14 @@ public static class Encryption
 
             // Write the following to the FileStream for the encrypted file (outFs):
             // - length of the key, length of the IV, encrypted key, the IV, the encrypted cipher content
-            using var outFs = new FileStream(outputFile, FileMode.Create);
+            using FileStream outFs = new(outputFile, FileMode.Create);
             outFs.Write(LenK, 0, 4);
             outFs.Write(LenIV, 0, 4);
             outFs.Write(keyEncrypted, 0, lKey);
             outFs.Write(aes.IV, 0, lIV);
 
-            stage = "Do Encryption";
             // Now write the cipher text using a CryptoStream for encrypting.
+            stage = "Create Stream";
             using CryptoStream outStreamEncrypted = new(outFs, transform, CryptoStreamMode.Write);
             // By encrypting a chunk at a time, you can save memory and accommodate large files.
             int count = 0;
@@ -62,16 +80,15 @@ public static class Encryption
             byte[] data = new byte[blockSizeBytes];
             int bytesRead = 0;
 
-            using (FileStream inFs = new(file.FullName, FileMode.Open))
+            stage = "Do Encryption";
+            using FileStream inFs = new(file.FullName, FileMode.Open);
+            do
             {
-                do
-                {
-                    count = inFs.Read(data, 0, blockSizeBytes);
-                    offset += count;
-                    outStreamEncrypted.Write(data, 0, count);
-                    bytesRead += blockSizeBytes;
-                } while (count > 0);
-            }
+                count = inFs.Read(data, 0, blockSizeBytes);
+                offset += count;
+                outStreamEncrypted.Write(data, 0, count);
+                bytesRead += blockSizeBytes;
+            } while (count > 0);
             outStreamEncrypted.FlushFinalBlock();
             return true;
         }
@@ -99,9 +116,9 @@ public static class Encryption
             // Use FileStream objects to read the encrypted file (inFs) and save the decrypted file (outFs).
             using FileStream inFs = new(file.FullName, FileMode.Open);
             inFs.Seek(0, SeekOrigin.Begin);
-            inFs.Read(LenK, 0, 3);
+            _ = inFs.Read(LenK, 0, 3);
             inFs.Seek(4, SeekOrigin.Begin);
-            inFs.Read(LenIV, 0, 3);
+            _ = inFs.Read(LenIV, 0, 3);
 
             // Convert the lengths to integer values.
             int lenK = BitConverter.ToInt32(LenK, 0);
@@ -109,7 +126,7 @@ public static class Encryption
 
             // Determine the start position of the cipher text (startC) and its length(lenC).
             int startC = lenK + lenIV + 8;
-            int lenC = (int)inFs.Length - startC;
+            _ = (int)inFs.Length - startC;
 
             stage = "Extract keys";
             // Create the byte arrays for the encrypted Aes key, the IV, and the cipher text.
@@ -118,13 +135,13 @@ public static class Encryption
 
             // Extract the key and IV starting from index 8 after the length values.
             inFs.Seek(8, SeekOrigin.Begin);
-            inFs.Read(KeyEncrypted, 0, lenK);
+            _ = inFs.Read(KeyEncrypted, 0, lenK);
             inFs.Seek(8 + lenK, SeekOrigin.Begin);
-            inFs.Read(IV, 0, lenIV);
+            _ = inFs.Read(IV, 0, lenIV);
 
             // Use RSACryptoServiceProvider to decrypt the AES key.
             stage = "Decrypt Key";
-            byte[] KeyDecrypted = rsaProvider.Decrypt(KeyEncrypted, false);
+            byte[] KeyDecrypted = rsaProvider.Decrypt(KeyEncrypted, true);
 
             // Decrypt the key.
             stage = "Create Decryptor";
@@ -151,10 +168,8 @@ public static class Encryption
                 offset += count;
                 outStreamDecrypted.Write(data, 0, count);
             } while (count > 0);
-
             outStreamDecrypted.FlushFinalBlock();
             return true;
-
         }
         catch (Exception ex)
         {
