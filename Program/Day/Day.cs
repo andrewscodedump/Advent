@@ -1,4 +1,6 @@
-﻿namespace Advent;
+﻿using AndrewWatson.Library;
+
+namespace Advent;
 
 public abstract partial class Day
 {
@@ -143,13 +145,13 @@ public abstract partial class Day
         {
             // Create encrypted file - for live inputs only
             encFileName = Path.ChangeExtension(fileName, "enc");
-            Encryption.Encrypt($@"{inputPath}\{fileName}", $@"{inputPath}\{encFileName}", "Advent");
+            _ = Encryption.TryEncrypt($@"{inputPath}\{fileName}", $@"{inputPath}\{encFileName}", "Advent", out _);
         }
         else  if (!fileExists && encFileExists)
         {
             // Decrypt file
             fileName = Path.ChangeExtension(encFileName, "txt");
-            fileExists = Encryption.Decrypt($@"{inputPath}\{encFileName}", $@"{inputPath}\{fileName}", "Advent");
+            fileExists = Encryption.TryDecrypt($@"{inputPath}\{encFileName}", $@"{inputPath}\{fileName}", "Advent", out _);
         }
 
         if (!fileExists 

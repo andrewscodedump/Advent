@@ -11,13 +11,20 @@
   <ItemGroup>
     <Compile Remove="2021\ToDo\Days01-05\**" />
     <Compile Remove="2023\ToDo\Days16-20\**" />
+    <Compile Remove="Resources\**" />
     <Compile Remove="XXXX\**" />
     <EmbeddedResource Remove="2021\ToDo\Days01-05\**" />
     <EmbeddedResource Remove="2023\ToDo\Days16-20\**" />
+    <EmbeddedResource Remove="Resources\**" />
     <EmbeddedResource Remove="XXXX\**" />
     <None Remove="2021\ToDo\Days01-05\**" />
     <None Remove="2023\ToDo\Days16-20\**" />
+    <None Remove="Resources\**" />
     <None Remove="XXXX\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Program\Encryption.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +46,12 @@
   <ItemGroup>
     <PackageReference Include="System.Collections.Specialized" Version="4.3.0" />
     <PackageReference Include="System.Interactive" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AWEncryptionLibrary">
+      <HintPath>Resources\AWEncryptionLibrary.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 	<ItemGroup>
