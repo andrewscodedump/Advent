@@ -1,1 +1,3 @@
-﻿
+﻿Input is a pair of lists of numbers.  Add up the differences between the numbers in the two lists after sorting.
+
+For the second part, add up the sum of each number in the first list multiplied by the number of times it appears in the second.
