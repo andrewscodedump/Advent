@@ -1,1 +1,4 @@
-﻿
+﻿Input is a set of instructions for a computer.  The only valid instructions are in the format mul(x,y), where x and y are up to 3 digits, and there are no spaces.
+
+What is the result of adding up the results of all the multiplications?
+As above, but "don't()" disables calculation and "do()" re-enables it.
