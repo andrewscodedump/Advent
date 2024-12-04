@@ -1,1 +1,4 @@
-﻿
+﻿Input is a word search grid.
+
+How many times does the word XMAS appear in the grid?  (Any direction)
+How many times do a pair of MAS appear in the shape of an X?
