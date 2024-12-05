@@ -6,6 +6,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <SupportedOSPlatformVersion>10.0.22000.0</SupportedOSPlatformVersion>
 	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -41,6 +42,7 @@
     <Folder Include="2020\Refactor\" />
     <Folder Include="2020\ToDo\" />
     <Folder Include="2020\WIP\" />
+    <Folder Include="2024\WIP\" />
   </ItemGroup>
 
   <ItemGroup>

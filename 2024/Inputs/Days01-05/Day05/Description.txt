@@ -1,1 +1,4 @@
-﻿
+﻿Input is a set of page ordering rules followed by a set of updates to be printed.
+
+For each update that matches the rules, get the middle number and return the sum of these.
+Fix the page order of the incorrect updates and add the sum of the middle numbers of the corrected ones
