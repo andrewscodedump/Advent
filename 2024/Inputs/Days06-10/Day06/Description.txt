@@ -1,1 +1,4 @@
-﻿
+﻿Input is a map of a patrolled area with a single guard.
+
+How many locations does the guard visit on their patrol?
+How many locations are there that you could place an obstacle which would put the guard's route into a loop?

@@ -8,8 +8,8 @@ public abstract partial class Day
     protected readonly List<(int, int)> Neighbours = [(-1, 1), (0, 1), (1, 1), (-1, 0), (1, 0), (-1, -1), (0, -1), (1, -1)];
     protected readonly Dictionary<(char, char), char> turns = new() { { ('^', 'L'), '<' }, { ('^', 'R'), '>' }, { ('>', 'L'), '^' }, { ('>', 'R'), 'v' }, { ('v', 'L'), '>' }, { ('v', 'R'), '<' }, { ('<', 'L'), 'v' }, { ('<', 'R'), '^' } };
     protected Dictionary<(int, int), char> SimpleMap = [];
-    protected int CountNeighbours(Dictionary<(int, int), char> area, int x, int y, char type) => Neighbours.Where(nbr => area[(x + nbr.Item1, y + nbr.Item2)] == type).Count();
-    protected int CountDirectNeighbours(Dictionary<(int, int), char> area, int x, int y, char type) => DirectNeighbours.Where(nbr => area[(x + nbr.Item1, y + nbr.Item2)] == type).Count();
+    protected int CountNeighbours(Dictionary<(int, int), char> area, int x, int y, char type) => Neighbours.Count(nbr => area[(x + nbr.Item1, y + nbr.Item2)] == type);
+    protected int CountDirectNeighbours(Dictionary<(int, int), char> area, int x, int y, char type) => DirectNeighbours.Count(nbr => area[(x + nbr.Item1, y + nbr.Item2)] == type);
 
     public void PopulateMapFromInput(out int width, out int height)
     {
@@ -39,10 +39,15 @@ public abstract partial class Day
 
     public void DrawMap(bool yUp, bool showCoords)
     {
+        int maxX = SimpleMap.Keys.Max(x => x.Item1), maxY = SimpleMap.Keys.Max(x => x.Item2);
+        int minX = SimpleMap.Keys.Min(x => x.Item1), minY = SimpleMap.Keys.Min(x => x.Item2);
+        DrawMap(yUp, showCoords, minX, minY, maxX, maxY);
+    }
+
+    public void DrawMap(bool yUp, bool showCoords, int minX, int minY, int maxX, int maxY)
+    {
         StringBuilder s = new();
         Debug.Print("---------------------------------------------------------------------");
-        int maxX = SimpleMap.Keys.Max(x => x.Item1), maxY = SimpleMap.Keys.Max(x => x.Item2);
-        int minX = this.SimpleMap.Keys.Min(x => x.Item1), minY = this.SimpleMap.Keys.Min(x => x.Item2);
         if (showCoords)
         {
             s.Append("     ");
