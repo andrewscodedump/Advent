@@ -14,3 +14,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Major Code Smell", "S1854:Unused assignments should be removed", Justification = "<Pending>", Scope = "member", Target = "~M:Advent.Encryption.Encrypt(System.String,System.String,System.String)~System.Boolean")]
 [assembly: SuppressMessage("Major Code Smell", "S1854:Unused assignments should be removed", Justification = "<Pending>", Scope = "member", Target = "~M:Advent.Encryption.Decrypt(System.String,System.String,System.String)~System.Boolean")]
 [assembly: SuppressMessage("Minor Code Smell", "S3267:Loops should be simplified with \"LINQ\" expressions", Justification = "<Pending>", Scope = "member", Target = "~M:Advent2024.Day05.DoWork")]
+[assembly: SuppressMessage("Major Bug", "S4143:Collection elements should not be replaced unconditionally", Justification = "<Pending>", Scope = "member", Target = "~M:Advent2024.Day06.DoWork")]
