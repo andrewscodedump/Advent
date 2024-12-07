@@ -1,1 +1,4 @@
-﻿
+﻿Input is a set of sums missing their operators
+
+What is the sum of the results of those sums which can be fixed by inserting +/* in the gaps?
+As before, but adding a concatenation operator

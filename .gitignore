@@ -15,6 +15,7 @@ App.config
 LiveBoth.txt
 LivePart1.txt
 LivePart2.txt
+AoCSessionID.txt
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

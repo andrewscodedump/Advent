@@ -1,4 +1,4 @@
-Day=06
+Day=07
 Puzzle=1
 Mode=Test
 Year=2024
