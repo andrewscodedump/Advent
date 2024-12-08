@@ -1,1 +1,4 @@
-﻿
+﻿Input is a map of a set of antenna.  Each pair of matching antennae create a pair of antinodes.
+
+How many antinodes are there?
+As before, but now each pair of antennae create multiple antinodes.
