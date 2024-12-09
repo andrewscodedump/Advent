@@ -1,1 +1,4 @@
-﻿
+﻿Input is a representation of the layout of files on a disk.
+
+Get the checksum of the disk after defragmenting
+As before, but keeping files together
