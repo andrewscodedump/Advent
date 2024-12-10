@@ -1,1 +1,4 @@
-﻿
+﻿Input is a map of a hiking area
+
+What is the sum of the number of summits you can reach from each start point?
+How many different ways are there to get from a start point to a summit?
