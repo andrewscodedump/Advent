@@ -1,1 +1,4 @@
-﻿
+﻿Input is a list of numbers.  The list evolves according to a set of rules.
+
+How many items are in the list after 25 rounds of changes?
+How about 75 rounds?
