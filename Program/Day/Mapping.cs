@@ -15,6 +15,7 @@ public abstract partial class Day
 
     public void PopulateMapFromInput(out int width, out int height)
     {
+        SimpleMap = [];
         width = Inputs[0].Length; height = Inputs.Length;
         for (int y = 0; y < height; y++)
         {
@@ -29,6 +30,7 @@ public abstract partial class Day
     public void PopulateMapFromInputWithBorders(char borderChar) => PopulateMapFromInputWithBorders(borderChar, out _, out _);
     public void PopulateMapFromInputWithBorders(char borderChar, out int width, out int height)
     {
+        SimpleMap = [];
         width = Inputs[0].Length; height = Inputs.Length;
         for (int y = -1; y <= height; y++)
             for (int x = -1; x <= width; x++)

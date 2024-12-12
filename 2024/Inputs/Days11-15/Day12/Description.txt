@@ -1,1 +1,4 @@
-﻿
+﻿Input is the layout of a garden
+
+How much would it cost to put a fence round each block of plants (which may be embedded in areas of different plants)?
+As before, but using a different formula for the cost
