@@ -1,1 +1,4 @@
-﻿
+﻿Input is a list of locations and positions of a number of robots in a room.
+
+What is the product of the number of robots in each quadrant after 100 seconds?
+After how many seconds do they arrange themselves into a given pattern?
