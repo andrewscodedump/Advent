@@ -24,7 +24,7 @@ public partial class Day15 : Advent.Day
         {
             crates.Add((x, y));
             bool isVert = Math.Abs(dx) == 0, isCrate = SimpleMap[(x, y)] == '[';
-            (int x, int y) nextPos = (x + dx + (move == 'R' && isCrate ? 1 : 0), y + dy), nextPosR = (isCrate && isVert) ? (x + dx + 1, y + dy) : nextPos;
+            (int x, int y) nextPos = (x + dx + (move == '>' && isCrate ? 1 : 0), y + dy), nextPosR = (isCrate && isVert) ? (x + dx + 1, y + dy) : nextPos;
             char nextChar = SimpleMap[nextPos], nextCharR = SimpleMap[nextPosR];
             if (nextChar == '#' || nextCharR == '#') return false;
             if (nextChar == '.' && nextCharR == '.') continue;
@@ -48,7 +48,7 @@ public partial class Day15 : Advent.Day
             if (isCrate)
             {
                 SimpleMap[(x + dx + 1, y + dy)] = ']';
-                if (move != 'R') SimpleMap[(x + 1, y)] = '.';
+                if (move != '>') SimpleMap[(x + 1, y)] = '.';
             }
         }
         robot = (robot.x + dx, robot.y + dy);
