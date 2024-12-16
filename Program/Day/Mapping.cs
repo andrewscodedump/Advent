@@ -7,7 +7,7 @@ public abstract partial class Day
     protected readonly Dictionary<char, (int x, int y)> DirectionsYDown = new() { { 'N', (0, -1) }, { 'S', (0, 1) }, { 'E', (1, 0) }, { 'W', (-1, 0) }, { 'U', (0, -1) }, { 'D', (0, 1) }, { 'L', (-1, 0) }, { 'R', (1, 0) }, { '^', (0, -1) }, { 'v', (0, 1) }, { '>', (1, 0) }, { '<', (-1, 0) } };
     protected readonly List<(int, int)> DirectNeighbours = [(0, 1), (1, 0), (0, -1), (-1, 0)];
     protected readonly List<(int, int)> Neighbours = [(-1, 1), (0, 1), (1, 1), (-1, 0), (1, 0), (-1, -1), (0, -1), (1, -1)];
-    protected readonly Dictionary<(char, char), char> turns = new() { { ('^', 'L'), '<' }, { ('^', 'R'), '>' }, { ('>', 'L'), '^' }, { ('>', 'R'), 'v' }, { ('v', 'L'), '>' }, { ('v', 'R'), '<' }, { ('<', 'L'), 'v' }, { ('<', 'R'), '^' } };
+    protected readonly Dictionary<(char, char), char> turns = new() { { ('^', 'L'), '<' }, { ('^', 'R'), '>' }, { ('>', 'L'), '^' }, { ('>', 'R'), 'v' }, { ('v', 'L'), '>' }, { ('v', 'R'), '<' }, { ('<', 'L'), 'v' }, { ('<', 'R'), '^' }, { ('N', 'L'), 'W' }, { ('N', 'R'), 'E' }, { ('E', 'L'), 'N' }, { ('E', 'R'), 'S' }, { ('S', 'L'), 'E' }, { ('S', 'R'), 'W' }, { ('W', 'L'), 'S' }, { ('W', 'R'), 'N' } };
     protected readonly Dictionary<((int, int), char), (int, int)> changeDirection = new() { { ((0, -1), 'L'), (-1, 0) }, { ((0, -1), 'R'), (1, 0) }, { ((1, 0), 'L'), (0, -1) }, { ((1, 0), 'R'), (0, 1) }, { ((0, 1), 'L'), (1, 0) }, { ((0, 1), 'R'), (-1, 0) }, { ((-1, 0), 'L'), (1, 0) }, { ((-1, 0), 'R'), (0, -1) } };
     protected Dictionary<(int, int), char> SimpleMap = [];
     protected Dictionary<(int, int), char> StartingMap = [];
