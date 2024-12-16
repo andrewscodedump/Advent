@@ -1,1 +1,4 @@
-﻿
+﻿Input is a map of a warehouse and a list of directions a robot will try to make
+
+After the robot has finished moving, what are the locations of all the boxes in the warehouse?
+As above, but all the crates, spaces and walls are twice as wide (but the same height).

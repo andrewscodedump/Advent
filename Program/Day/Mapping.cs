@@ -2,6 +2,7 @@
 
 public abstract partial class Day
 {
+    public bool DrawMaps = false;
     protected readonly Dictionary<char, (int x, int y)> Directions = new() { { 'N', (0, 1) }, { 'S', (0, -1) }, { 'E', (1, 0) }, { 'W', (-1, 0) }, { 'U', (0, 1) }, { 'D', (0, -1) }, { 'L', (-1, 0) }, { 'R', (1, 0) }, { '^', (0, 1) }, { 'v', (0, -1) }, { '>', (1, 0) }, { '<', (-1, 0) } };
     protected readonly Dictionary<char, (int x, int y)> DirectionsYDown = new() { { 'N', (0, -1) }, { 'S', (0, 1) }, { 'E', (1, 0) }, { 'W', (-1, 0) }, { 'U', (0, -1) }, { 'D', (0, 1) }, { 'L', (-1, 0) }, { 'R', (1, 0) }, { '^', (0, -1) }, { 'v', (0, 1) }, { '>', (1, 0) }, { '<', (-1, 0) } };
     protected readonly List<(int, int)> DirectNeighbours = [(0, 1), (1, 0), (0, -1), (-1, 0)];
@@ -13,13 +14,17 @@ public abstract partial class Day
     protected int CountNeighbours(Dictionary<(int, int), char> area, int x, int y, char type) => Neighbours.Count(nbr => area[(x + nbr.Item1, y + nbr.Item2)] == type);
     protected int CountDirectNeighbours(Dictionary<(int, int), char> area, int x, int y, char type) => DirectNeighbours.Count(nbr => area[(x + nbr.Item1, y + nbr.Item2)] == type);
 
-    public void PopulateMapFromInput(out int width, out int height)
+    public void PopulateMapFromInput() => PopulateMapFromInput(out _, out _);
+    public void PopulateMapFromInput(out int width, out int height) => PopulateMap(Inputs, out width, out height);
+
+    public void PopulateMap(string[] inputs) => PopulateMap(inputs, out _, out _);
+    public void PopulateMap(string[] inputs, out int width, out int height)
     {
         SimpleMap = [];
-        width = Inputs[0].Length; height = Inputs.Length;
+        width = inputs[0].Length; height = inputs.Length;
         for (int y = 0; y < height; y++)
         {
-            string work = Inputs[y];
+            string work = inputs[y];
             for (int x = 0; x < work.Length; x++)
             {
                 SimpleMap[(x, y)] = work[x];
@@ -28,20 +33,22 @@ public abstract partial class Day
         StartingMap = new(SimpleMap);
     }
     public void PopulateMapFromInputWithBorders(char borderChar) => PopulateMapFromInputWithBorders(borderChar, out _, out _);
-    public void PopulateMapFromInputWithBorders(char borderChar, out int width, out int height)
+    public void PopulateMapFromInputWithBorders(char borderChar, out int width, out int height) => PopulateMapWithBorders(Inputs, borderChar, out width, out height);
+    public void PopulateMapWithBorders(string[] inputs, char borderChar, out int width, out int height)
     {
         SimpleMap = [];
-        width = Inputs[0].Length; height = Inputs.Length;
+        width = inputs[0].Length; height = inputs.Length;
         for (int y = -1; y <= height; y++)
             for (int x = -1; x <= width; x++)
             {
                 if (x == -1 || y == -1 || x == width || y == height)
                     SimpleMap[(x, y)] = borderChar;
                 else
-                    SimpleMap[(x, y)] = Inputs[y][x];
+                    SimpleMap[(x, y)] = inputs[y][x];
             }
         StartingMap = new(SimpleMap);
     }
+
     public void RestoreMap() => SimpleMap = new(StartingMap);
 
     public void DrawMap() => DrawMap(true, false);
@@ -55,6 +62,7 @@ public abstract partial class Day
 
     public void DrawMap(bool yUp, bool showCoords, int minX, int minY, int maxX, int maxY)
     {
+        if (!DrawMaps) return;
         StringBuilder s = new();
         Debug.Print("---------------------------------------------------------------------");
         if (showCoords)
