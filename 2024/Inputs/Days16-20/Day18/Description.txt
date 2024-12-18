@@ -1,1 +1,4 @@
-﻿
+﻿Input is a set of locations of corrupted bytes in computer memory.
+
+What is the shortest route out of the grid avoiding corrupted areas?
+What is the first corrupted block that blocks all routes out?
