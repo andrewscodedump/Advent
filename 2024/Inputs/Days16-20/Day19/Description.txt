@@ -1,1 +1,4 @@
-﻿
+﻿Input is a set of striped towels and a set of desired patterns
+
+How many of the patterns can be made from the towels?
+How many different ways are there of making up the patterns?

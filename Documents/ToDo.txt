@@ -1,7 +1,8 @@
+Add GetNeighbours to mapping stuff
 Create Map class (and maybe Point class)
 Create separate instantiations for part1 & part2
 Change description and input while batch running
-Fix NoPart2 processing (already done in work codebase)
+Fix NoPart2 processing
 Fix mismatch handling - show in form, not messagebox
 Add OCR
 Add branches for all missing/incomplete/slow solutions
