@@ -1,1 +1,4 @@
-﻿
+﻿Input is a map of a racetrack.  You can cheat by going through walls only once per race.
+
+How many cheats save at least 100 moves?
+Cheats can now last up to 20 steps.  How many save 100 moves or more now?
