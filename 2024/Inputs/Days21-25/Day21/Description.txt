@@ -1,1 +1,4 @@
-﻿
+﻿Input is a set of codes to be keyed on a keypad, via a convoluted set of instructions to a series of robots?
+
+What is the least complex set that can be used to send the codes?
+As before, but there are now many more robots.

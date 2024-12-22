@@ -36,6 +36,8 @@ public abstract partial class Day
     }
     public void PopulateMapFromInputWithBorders(char borderChar) => PopulateMapFromInputWithBorders(borderChar, out _, out _);
     public void PopulateMapFromInputWithBorders(char borderChar, out int width, out int height) => PopulateMapWithBorders(Inputs, borderChar, out width, out height);
+    public void PopulateMapWithBorders(string[] inputs, char borderChar) => PopulateMapWithBorders(inputs, borderChar, out _, out _);
+
     public void PopulateMapWithBorders(string[] inputs, char borderChar, out int width, out int height)
     {
         SimpleMap = [];
