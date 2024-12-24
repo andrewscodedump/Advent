@@ -1,1 +1,3 @@
-﻿
+﻿Input is a set of possible connections between computers
+
+In each set of three connected computers, how many sets have at least one computer beginning with "t"?
