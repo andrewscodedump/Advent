@@ -1,1 +1,3 @@
-﻿
+﻿Input is the initial state and wiring diagram of a logic circuit.
+
+What is the final output of running the circuit?
