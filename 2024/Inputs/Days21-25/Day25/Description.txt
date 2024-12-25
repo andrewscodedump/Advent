@@ -1,1 +1,3 @@
-﻿
+﻿Input is a set of schematics for locks and keys.
+
+How many pairs of locks and keys are potential matches?
