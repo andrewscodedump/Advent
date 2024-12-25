@@ -1,1 +1,4 @@
-﻿
+﻿Input is a list of initial numbers for an encryption algorithm
+
+What is the sum of the numbers produced by running the algorithm 2000 times on each initial number?
+Taking the last digits of each of the 2000, what is the sequence of 4 differences that will produce the greatest total?
