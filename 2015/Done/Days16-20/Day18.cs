@@ -6,10 +6,10 @@ public partial class Day18 : Advent.Day
     {
         int dimension = TestMode ? 6 : 100;
         int iterations = TestMode ? Part1 ? 4 : 5 : 100;
-        List<List<int>> after = new(), before = new() { Enumerable.Repeat(0, dimension + 2).ToList() };
+        List<List<int>> after = [], before = [Enumerable.Repeat(0, dimension + 2).ToList()];
         foreach (string lineInput in Inputs)
         {
-            List<int> row = new() { 0 };
+            List<int> row = [0];
             for (int col = 0; col < dimension; col++)
                 row.Add(lineInput[col] == '#' ? 1 : 0);
             row.Add(0);

@@ -5,7 +5,7 @@ public partial class Day15 : Advent.Day
     private struct Ingredient { public int Capacity; public int Durability; public int Flavour; public int Texture; public int Calories; }
     public override void DoWork()
     {
-        List<Ingredient> ingredients = new();
+        List<Ingredient> ingredients = [];
 
         foreach (string ingredientBase in Inputs)
         {

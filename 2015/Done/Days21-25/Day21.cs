@@ -2,21 +2,21 @@
 
 public partial class Day21 : Advent.Day
 {
-    private struct GameItem { public string Name; public int Cost; public int Damage; public int Armour; public GameItem(string name, int cost, int damage, int armour) { Name = name; Cost = cost; Damage = damage; Armour = armour; } };
+    private struct GameItem(string name, int cost, int damage, int armour) { public string Name = name; public int Cost = cost; public int Damage = damage; public int Armour = armour; };
 
     public override void DoWork()
     {
         int cheapest = int.MaxValue, dearest = 0;
         long bossPoints, bossArmour, bossDamage, playerPoints = 100;
-        List<GameItem> weapons = new(), armours = new(), rings = new();
+        List<GameItem> weapons = [], armours = [], rings = [];
 
         bossPoints = InputNumbers[0][0];
         bossDamage = InputNumbers[1][0];
         bossArmour = InputNumbers[2][0];
 
-        weapons.AddRange(new GameItem[] { new GameItem("Dagger", 8, 4, 0), new GameItem("Shortsword", 10, 5, 0), new GameItem("Warhammer", 25, 6, 0), new GameItem("Longsword", 40, 7, 0), new GameItem("Longsword", 74, 8, 0) });
-        armours.AddRange(new GameItem[] { new GameItem("None", 0, 0, 0), new GameItem("Leather", 13, 0, 1), new GameItem("Chainmail", 31, 0, 2), new GameItem("Splintmail", 53, 0, 3), new GameItem("Bandedmail", 75, 0, 4), new GameItem("Platemail", 102, 0, 5) });
-        rings.AddRange(new GameItem[] { new GameItem("None", 0, 0, 0), new GameItem("Damage +1", 25, 1, 0), new GameItem("Damage +2", 50, 2, 0), new GameItem("Damage +3", 100, 3, 0), new GameItem("Defense +1", 20, 0, 1), new GameItem("Defense +2", 40, 0, 2), new GameItem("Defense +3", 80, 0, 3) });
+        weapons.AddRange([new("Dagger", 8, 4, 0), new("Shortsword", 10, 5, 0), new("Warhammer", 25, 6, 0), new("Longsword", 40, 7, 0), new("Longsword", 74, 8, 0)]);
+        armours.AddRange([new("None", 0, 0, 0), new("Leather", 13, 0, 1), new("Chainmail", 31, 0, 2), new("Splintmail", 53, 0, 3), new("Bandedmail", 75, 0, 4), new("Platemail", 102, 0, 5)]);
+        rings.AddRange([new("None", 0, 0, 0), new("Damage +1", 25, 1, 0), new("Damage +2", 50, 2, 0), new("Damage +3", 100, 3, 0), new("Defense +1", 20, 0, 1), new("Defense +2", 40, 0, 2), new("Defense +3", 80, 0, 3)]);
 
         foreach (GameItem weapon in weapons)
             foreach (GameItem armour in armours)

@@ -5,8 +5,8 @@ public partial class Day09 : Advent.Day
     private struct Move { public string Town; public int DistanceSoFar; public List<string> Visited; }
     public override void DoWork()
     {
-        List<string> towns = new();
-        Dictionary<(string,string), int> distances = new();
+        List<string> towns = [];
+        Dictionary<(string,string), int> distances = [];
         int shortestDistance = int.MaxValue;
         int longestDistance = 0;
 
@@ -21,7 +21,7 @@ public partial class Day09 : Advent.Day
 
         Stack dfs = new();
         foreach(string town in towns)
-            dfs.Push(new Move { Town = town, DistanceSoFar = 0, Visited = new List<string>() });
+            dfs.Push(new Move { Town = town, DistanceSoFar = 0, Visited = [] });
 
         do
         {

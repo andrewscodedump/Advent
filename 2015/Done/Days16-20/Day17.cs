@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace Advent2015;
+﻿namespace Advent2015;
 
 public partial class Day17 : Advent.Day
 {
@@ -11,8 +9,8 @@ public partial class Day17 : Advent.Day
         int numCombos = 0;
         int bestNumber = int.MaxValue;
         int numberAtBest = 0;
-        List<long> sizes = new();
-        InputNumbers[0].ForEach(n => sizes.Add(n));
+        List<long> sizes = [];
+        InputNumbers[0].ForEach(sizes.Add);
         Queue bfs = new();
         for (int i = 0; i < sizes.Count; i++)
             bfs.Enqueue(new Move { NextIndex = i, VolumeSoFar = 0, NumberUsed = 0 });

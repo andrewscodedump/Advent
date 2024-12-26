@@ -5,8 +5,8 @@ public partial class Day13 : Advent.Day
     private struct Seat { public string nextPerson; public List<string> done; public int totalSoFar; public string lastPerson; }
     public override void DoWork()
     {
-        List<string> people = new();
-        Dictionary<(string,string), int> differences = new();
+        List<string> people = [];
+        Dictionary<(string,string), int> differences = [];
         int maxHappiness = 0;
         if (Part2) people.Add("Me");
         foreach (string coupleBase in Inputs)
@@ -24,7 +24,7 @@ public partial class Day13 : Advent.Day
         }
 
         Stack dfs = new();
-        dfs.Push(new Seat { done = new List<string>() });
+        dfs.Push(new Seat { done = [] });
         do
         {
             Seat seat = (Seat)dfs.Pop();

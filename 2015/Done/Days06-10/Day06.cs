@@ -13,11 +13,12 @@ public partial class Day06 : Advent.Day
         Output = lighting.ToString();
     }
 
+    private static readonly string[] rangeSplitter = ["through ", ","];
     private struct Action { public string Operation; public Point Point1; public Point Point2; };
     private static Action ParseInstruction(string baseInstruction)
     {
         string instruction = baseInstruction.Replace("toggle", "toggle  ").Replace("turn on", "turn on ");
-        string[] coords = instruction[8..].Split(new string[] { "through ", "," }, StringSplitOptions.None);
+        string[] coords = instruction[8..].Split(rangeSplitter, StringSplitOptions.None);
         return new Action { Operation = instruction[..8].Trim(), Point1 = new Point(int.Parse(coords[0]), int.Parse(coords[1])), Point2 = new Point(int.Parse(coords[2]), int.Parse(coords[3])) };
     }
 

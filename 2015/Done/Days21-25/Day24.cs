@@ -10,10 +10,10 @@ public partial class Day24 : Advent.Day
         Output = bestProduct.ToString();
     }
 
-    private bool FindValidCombos(long required, int maxLevel, long[] available, int level, out long result)
+    private static bool FindValidCombos(long required, int maxLevel, long[] available, int level, out long result)
     {
         int elements = 1;
-        long[] valid = Array.Empty<long>();
+        long[] valid = [];
         bool foundOne = false;
         do
         {
@@ -27,7 +27,7 @@ public partial class Day24 : Advent.Day
                 }
                 foreach(var tester in validCombinations)
                 {
-                    valid = Array.ConvertAll(tester.ToArray(), t => (long)t);
+                    valid = Array.ConvertAll(tester.ToArray(), t => t);
                     long[] remainder = available.Except(tester).ToArray();
                     foundOne = FindValidCombos(required, maxLevel, remainder, level+1, out _);
                     if (foundOne) break;

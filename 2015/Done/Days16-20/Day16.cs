@@ -4,13 +4,12 @@ public partial class Day16 : Advent.Day
 {
     public override void DoWork()
     {
-        List<List<(string, int)>> aunts = new();
+        List<List<(string, int)>> aunts = [];
         List<(string, int)> results = new() { { ("children", 3) }, { ("cats", 7) }, { ("samoyeds", 2) }, { ("pomeranians", 3) }, { ("akitas", 0) }, { ("vizslas", 0) }, { ("goldfish", 5) }, { ("trees", 3) }, { ("cars", 2) }, { ("perfumes", 1) } };
         foreach (string auntBase in Inputs)
         {
             string auntText = auntBase.Replace("Sue ", "Sue:").Replace(" ", "");
-            Dictionary<string, int> auntOld = new();
-            List<(string, int)> aunt = new();
+            List<(string, int)> aunt = [];
             foreach (string bit in auntText.Split(','))
                 aunt.Add((bit.Split(':')[0], int.Parse(bit.Split(':')[1])));
             aunts.Add(aunt);
