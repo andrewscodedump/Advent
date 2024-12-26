@@ -6,7 +6,7 @@ public partial class Day11 : Advent.Day
     {
         #region Setup Variables and Parse Inputs
 
-        int rows = Inputs.Length, cols = Inputs[0].Length;
+        int rows = Inputs.Length, cols = Input.Length;
         int tolerance = Part1 ? 4 : 5;
         Dictionary<(int, int), char> plan = new();
         for (int y = -1; y <= rows; y++)

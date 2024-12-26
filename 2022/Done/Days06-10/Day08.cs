@@ -4,7 +4,7 @@ public partial class Day08 : Advent.Day
 {
     public override void DoWork()
     {
-        int width = Inputs[0].Length, height = Inputs.Length;
+        int width = Input.Length, height = Inputs.Length;
         Dictionary<(int, int), TreeStats> trees = new();
         for (int y = 0; y < height; y++)
         {

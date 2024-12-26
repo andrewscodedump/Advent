@@ -6,7 +6,7 @@ public partial class Day17 : Advent.Day
     {
         IEnumerable<int> offsets = Enumerable.Range(-1, 3);
         (int dx, int dy, int dz, int dw)[] neighbours4D = offsets.SelectMany(a => offsets.SelectMany(b => offsets.SelectMany(c => offsets.Select(d => (a, b, c, d))))).Where(t => t != (0, 0, 0, 0)).ToArray();
-        string input = Inputs[0];
+        string input = Input;
 
         int cycles = 6, startWidth = (int)Math.Sqrt(input.Length), activeCells = 0;
         IEnumerable<int> xyRange = Enumerable.Range(-cycles - 1, (2 * cycles) + startWidth + 2), zwRange = Enumerable.Range(-cycles - 1, (2 * cycles) + 3);

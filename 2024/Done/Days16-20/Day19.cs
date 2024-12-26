@@ -7,7 +7,7 @@ public partial class Day19 : Advent.Day
 
     public override void DoWork()
     {
-        towels = Inputs[0].Split(", ");
+        towels = Input.Split(", ");
         long count = Part1
             ? Inputs[2..].Count(p => Arrangements(p) != 0)
             : Inputs[2..].Sum(Arrangements);

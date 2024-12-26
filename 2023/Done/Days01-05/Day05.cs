@@ -11,7 +11,7 @@ public partial class Day05 : Advent.Day
         List<(string sourceType, long sourceFrom, long sourceTo, long destOffset)> mappings = [];
         long lowestDest = long.MaxValue;
         string type = "", destType = "";
-        long[] seeds = Array.ConvertAll(Inputs[0].Split(' ')[1..], Convert.ToInt64);
+        long[] seeds = Array.ConvertAll(Input.Split(' ')[1..], Convert.ToInt64);
 
         foreach (string line in Inputs[2..])
         {

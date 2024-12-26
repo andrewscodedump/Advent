@@ -6,7 +6,7 @@ public abstract partial class Day
 
     public static string KnotHash(string inputValue)
     {
-        string denseHash = "";
+        StringBuilder denseHash = new();
         int skip = 0;
         int pos = 0;
         int len = 256;
@@ -26,10 +26,10 @@ public abstract partial class Day
             int hash = 0;
             for (int j = 0; j < 16; j++)
                 hash ^= work[(i * 16) + j];
-            denseHash += hash.ToString("x2");
+            denseHash.Append(hash.ToString("x2"));
         }
 
-        return denseHash;
+        return denseHash.ToString();
     }
 
     public static void TieKnot(List<int> work, int length, ref int position, ref int skip)
@@ -49,12 +49,12 @@ public abstract partial class Day
 
     public static int[] InterpretCode(string op, int[] inRegisters, int[] inputs)
     {
-        int[] regs = inRegisters.ToArray();
+        int[] regs = [.. inRegisters];
         int output, arg1, arg2 = 0;
-        output = inputs[2]; ;
+        output = inputs[2];
         if (op.StartsWith("set"))
         {
-            arg1 = op.EndsWith("r") ? regs[inputs[0]] : inputs[0];
+            arg1 = op.EndsWith('r') ? regs[inputs[0]] : inputs[0];
             op = op[..3];
         }
         else if (op.EndsWith("ir"))
@@ -78,7 +78,7 @@ public abstract partial class Day
         else
         {
             arg1 = regs[inputs[0]];
-            arg2 = op.EndsWith("r") ? regs[inputs[1]] : inputs[1];
+            arg2 = op.EndsWith('r') ? regs[inputs[1]] : inputs[1];
             op = op[..3];
         }
 
@@ -98,14 +98,14 @@ public abstract partial class Day
 
     public static (int ipVal, int[] regs) RunCode(List<(string op, int[] args)> code, (int ipVal, int ipReg, int[] inregs) input)
     {
-        int[] regs = input.inregs.ToArray();
+        int[] regs = [.. input.inregs];
         int ipVal = input.ipVal;
 
         regs[input.ipReg] = ipVal;
         regs = InterpretCode(code[ipVal].op, regs, code[ipVal].args);
         ipVal = regs[input.ipReg];
 
-        return (++ipVal, regs);
+        return (ipVal + 1, regs);
     }
 
     #endregion 2018
@@ -143,24 +143,13 @@ public abstract partial class Day
             verb = Verb;
             haveArgs = Noun != long.MaxValue;
             if (Input != long.MaxValue)
-                inputs = new long[1] { Input };
+                inputs = [Input];
             ResetCode(Code);
         }
         private void ResetCode(long[] input)
         {
             baseDict = Enumerable.Range(0, input.Length).ToDictionary(x => (long)x, x => input[x]);
             ResetCode(true);
-        }
-
-        public IntCode Clone()
-        {
-            IntCode newCode = new()
-            {
-                code = new Dictionary<long, long>(this.code),
-                pointer = this.pointer,
-                nextInput = 0
-            };
-            return newCode;
         }
 
         private void ResetCode(bool rebase)
@@ -174,12 +163,22 @@ public abstract partial class Day
             if (inputs == null || nextInput >= inputs.Length)
                 nextInput = 0;
             CodeComplete = false;
-            //Output = 0;
             if (haveArgs)
             {
                 code[1] = noun;
                 code[2] = verb;
             }
+        }
+
+        public IntCode Clone()
+        {
+            IntCode newCode = new()
+            {
+                code = new Dictionary<long, long>(this.code),
+                pointer = this.pointer,
+                nextInput = 0
+            };
+            return newCode;
         }
 
         (long, (long, long), (long, long), (long, long)) GetArgs(ref long pointer)
@@ -214,23 +213,14 @@ public abstract partial class Day
 
         private readonly Dictionary<long, long> Arguments = new() { { 1, 3 }, { 2, 3 }, { 3, 1 }, { 4, 1 }, { 5, 2 }, { 6, 2 }, { 7, 3 }, { 8, 3 }, { 9, 1 }, { 99, 0 } };
 
-        public long RunCode() { return RunCode(true); }
-        public long RunCodeWithNoReset() { return RunCode(false); }
-        public long RunCode(long[] Inputs)
+        public long RunIntCode() { return RunIntCode(true); }
+        public long RunIntCode(long[] Inputs)
         {
             inputs = Inputs;
-            return RunCode();
+            return RunIntCode();
         }
 
-        public long RunCodeWithNoReset(long[] Inputs)
-        {
-            inputs = Inputs;
-            return RunCodeWithNoReset();
-        }
-
-        public long RunCodeWithNoReset(long Input) { return RunCodeWithNoReset(new long[] { Input }); }
-
-        private long RunCode(bool doRebase)
+        private long RunIntCode(bool doRebase)
         {
             ResetCode(doRebase);
             HasOutput = false;
@@ -246,8 +236,6 @@ public abstract partial class Day
                         code[argument3.address] = argument1.value * argument2.value;
                         break;
                     case 3:
-                        //input = int.Parse(AWInputBox("Please enter value", "Please enter value", "0"));
-                        //Debug.Print("Input taken");
                         code[argument1.address] = inputs[nextInput];
                         nextInput++;
                         break;
@@ -279,6 +267,15 @@ public abstract partial class Day
             return Result;
         }
 
+        public long RunCodeWithNoReset() { return RunIntCode(false); }
+        public long RunCodeWithNoReset(long[] Inputs)
+        {
+            inputs = Inputs;
+            return RunCodeWithNoReset();
+        }
+
+        public long RunCodeWithNoReset(long Input) { return RunCodeWithNoReset([Input]); }
+
         public long FindResult(int ValueToFind)
         {
             haveArgs = true;
@@ -287,7 +284,8 @@ public abstract partial class Day
             {
                 for (verb = 0; verb < 100; verb++)
                 {
-                    if (foundResult = RunCode() == ValueToFind)
+                    foundResult = RunIntCode() == ValueToFind;
+                    if (foundResult)
                     {
                         ErrorCode = (noun * 100) + verb;
                         break;

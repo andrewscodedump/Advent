@@ -6,7 +6,7 @@ public partial class Day04 : Advent.Day
     {
         int points = 0, numCards = InputNumbers.Length;
         Dictionary<int, int> cards = Enumerable.Range(0, numCards).ToDictionary(k => k, v => 1);
-        int divider = Inputs[0].Split(' ', StringSplitOptions.RemoveEmptyEntries).TakeWhile(i => i != "|").Count() - 1;
+        int divider = Input.Split(' ', StringSplitOptions.RemoveEmptyEntries).TakeWhile(i => i != "|").Count() - 1;
 
         for (int i = 0; i < numCards; i++)
         {

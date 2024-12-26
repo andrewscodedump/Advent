@@ -6,7 +6,7 @@ public partial class Day05 : Advent.Day
     {
         int input = Part1 ? 1 : TestMode ? 8 : 5;
         IntCode code = new(InputNumbers[0], input);
-        code.RunCode();
+        code.RunIntCode();
         Output = code.Output.ToString();
     }
 }

@@ -12,7 +12,7 @@ public partial class Day11 : Advent.Day
             if (!Inputs[i].Contains('#'))
                 emptyRows.Add(i);
 
-        for (int x = 0; x < Inputs[0].Length; x++)
+        for (int x = 0; x < Input.Length; x++)
         {
             bool emptyCol = true;
             int realX = x + (emptyCols.Count * (expansionFactor - 1)), realY = 0;

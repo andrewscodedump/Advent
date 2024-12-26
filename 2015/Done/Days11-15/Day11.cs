@@ -4,12 +4,12 @@ public partial class Day11 : Advent.Day
 {
     public override void DoWork()
     {
-        string word = GetNext(Inputs[0]);
+        string word = GetNext(Input);
         if (Part2) word = GetNext(word);
         Output = word;
     }
 
-    private string GetNext(string input)
+    private static string GetNext(string input)
     {
         byte[] word = Encoding.ASCII.GetBytes(input);
         do
@@ -39,7 +39,7 @@ public partial class Day11 : Advent.Day
         return false;
     }
 
-    private void IncLetter(byte[] word, int pos)
+    private static void IncLetter(byte[] word, int pos)
     {
         int letter = ((word[pos] - 96) % 26) + 97;
         if (letter == 105 || letter == 108 || letter == 111) letter++;

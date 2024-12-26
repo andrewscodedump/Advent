@@ -9,7 +9,7 @@ public partial class Day19 : Advent.Day
         string[] inputs = Inputs;
         string startMolecule = inputs[^1];
         string[,] convs = new string[inputs.Length - 1, 2];
-        Dictionary<string, int> outputs = new();
+        Dictionary<string, int> outputs = [];
         for (int pos = 0; pos < inputs.Length - 1; pos++)
         {
             convs[pos, 0] = inputs[pos].Split(" => ")[0];
@@ -18,7 +18,6 @@ public partial class Day19 : Advent.Day
 
         for (int pos = 0; pos < startMolecule.Length; pos++)
         {
-            string newMolecule = startMolecule;
             string atom = startMolecule[pos].ToString();
             if (pos < startMolecule.Length - 1 && startMolecule[pos + 1].ToString().ToLower() == startMolecule[pos + 1].ToString())
             {
@@ -28,11 +27,11 @@ public partial class Day19 : Advent.Day
             {
                 if (atom == convs[swap, 0])
                 {
-                    newMolecule = pos == 0
-                        ? convs[swap, 1] + startMolecule[atom.Length..]
-                        : startMolecule[..pos] + convs[swap, 1] + startMolecule[(pos + atom.Length)..];
-                    if (outputs.ContainsKey(newMolecule))
-                        outputs[newMolecule]++;
+                    string newMolecule = pos == 0
+            ? convs[swap, 1] + startMolecule[atom.Length..]
+            : startMolecule[..pos] + convs[swap, 1] + startMolecule[(pos + atom.Length)..];
+                    if (outputs.TryGetValue(newMolecule, out int value))
+                        outputs[newMolecule] = ++value;
                     else
                         outputs.Add(newMolecule, 1);
                 }
@@ -44,13 +43,13 @@ public partial class Day19 : Advent.Day
     private string DoPart2()
     {
         string molecule;
-        List<string> inputs = Inputs.ToList();
+        List<string> inputs = [.. Inputs];
         string finalMolecule = inputs[^1];
         inputs.RemoveAt(inputs.Count - 1);
-        int moves = 0;
+        int moves;
         int bestMoves = int.MaxValue;
 
-        List<(string atom, string after)> convsRev = new();
+        List<(string atom, string after)> convsRev = [];
         foreach (string conv in inputs)
         {
             string inp = conv.Split(" => ")[0];
@@ -62,9 +61,9 @@ public partial class Day19 : Advent.Day
         int sequenceLength = 0;
         int numTries = 0;
         int prevBest = 0;
-        bool endLoop = false;
         int randomTries = 1;
 
+        bool endLoop;
         do
         {
             do
@@ -123,14 +122,14 @@ public partial class Day19 : Advent.Day
         } while (!endLoop);
         return bestMoves.ToString();
     }
+
     protected static void RandomizeList<T>(List<T> listIn)
     {
+        Random rnd = new();
         for (int pos = 0; pos < listIn.Count; pos++)
         {
-            int swapPos = Rand.Next(pos, listIn.Count);
-            T temp = listIn[pos];
-            listIn[pos] = listIn[swapPos];
-            listIn[swapPos] = temp;
+            int swapPos = rnd.Next(pos, listIn.Count);
+            (listIn[swapPos], listIn[pos]) = (listIn[pos], listIn[swapPos]);
         }
     }
 }

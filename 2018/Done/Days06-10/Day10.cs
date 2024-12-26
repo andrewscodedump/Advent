@@ -5,7 +5,7 @@ public partial class Day10 : Advent.Day
     public override void DoWork()
     {
         #region Setup Variables and Parse Inputs
-        List<(long x, long y, long vx, long vy)> points = new();
+        List<(long x, long y, long vx, long vy)> points = [];
         string output = "None found";
         int seconds = 0;
         InputNumbers.ForEach(state => points.Add((state[0], state[1], state[2], state[3])));

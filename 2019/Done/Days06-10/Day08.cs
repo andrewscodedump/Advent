@@ -13,9 +13,9 @@ public partial class Day08 : Advent.Day
 
         #endregion Setup Variables and Parse Inputs
 
-        for (int pos = 0; pos < Inputs[0].Length; pos += layerSize)
+        for (int pos = 0; pos < Input.Length; pos += layerSize)
         {
-            string layer = Inputs[0].Substring(pos, layerSize);
+            string layer = Input.Substring(pos, layerSize);
             int zeros = layer.ToCharArray().Count(c => c == '0');
             if (zeros < minZeros)
             {

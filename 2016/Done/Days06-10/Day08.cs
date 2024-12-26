@@ -49,9 +49,10 @@ public partial class Day08 : Advent.Day
 
         for (int row = 0; row < 6; row++)
         {
-            string outputRow = "";
+            StringBuilder outputRow = new();
             for (int col = 0; col < 50; col++)
-                outputRow += grid[col, row] == 1 ? "█" : " ";
+                outputRow.Append(grid[col, row] == 1 ? "█" : " ");
+            Debug.Print(outputRow.ToString());
         }
         Output = Part1 ? totalLit.ToString() : "Answer (AFBUPZBJPS) in Debug Output";
     }

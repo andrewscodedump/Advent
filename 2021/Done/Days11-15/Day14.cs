@@ -17,8 +17,8 @@ public partial class Day14 : Advent.Day
             counts[formula[6]] = 0;
         }
         pairs = new(basePairs);
-        for (int i = 0; i < Inputs[0].Length - 1; i++)
-            pairs[(Inputs[0][i], Inputs[0][i + 1])]++;
+        for (int i = 0; i < Input.Length - 1; i++)
+            pairs[(Input[i], Input[i + 1])]++;
 
         for (int i = 0; i < steps; i++)
         {
@@ -42,7 +42,7 @@ public partial class Day14 : Advent.Day
 
     public void DoWorkNaive()
     {
-        List<char> polymer = Inputs[0].ToCharArray().ToList();
+        List<char> polymer = Input.ToCharArray().ToList();
         Dictionary<(char, char), char> formulae = new();
         Dictionary<char, long> counts = new();
         int steps = Part1 ? 10 : 40;

@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using System.Linq;
 
 namespace Advent2023;
 
@@ -20,7 +21,7 @@ public partial class Day22 : Advent.Day
         Output = result.ToString();
     }
 
-    private class Brick
+    private sealed class Brick
     {
         public (long x, long y, long z) Min { get; private set; }
         public (long x, long y, long z) Max { get; private set; }
@@ -37,15 +38,12 @@ public partial class Day22 : Advent.Day
         public void GetBlockers(List<Brick> heap)
         {
             isOnFloor = Min.z == 1;
-            foreach (Brick b in heap.Where(b => b.Max.z == Min.z - 1))
-            {
-                if (IsBlockedBy(b))
-                {
-                    if (!blockedBy.Contains(b)) blockedBy.Add(b);
-                    if (!b.blocks.Contains(this)) b.blocks.Add(this);
-                }
-            }
 
+            foreach (Brick b in heap.Where(b => b.Max.z == Min.z - 1).Where(IsBlockedBy))
+            {
+                if (!blockedBy.Contains(b)) blockedBy.Add(b);
+                if (!b.blocks.Contains(this)) b.blocks.Add(this);
+            }
         }
 
         public void Move(List<Brick> heap)
@@ -91,11 +89,11 @@ public partial class Day22 : Advent.Day
                 brick.Move(heap);
                 moved.Add(brick);
             }
-        } while (heap.Where(b => b.blockedBy.Count == 0 && !b.isOnFloor).Any());
+        } while (heap.Any(b => b.blockedBy.Count == 0 && !b.isOnFloor));
         return moved.Count;
     }
 
-    private List<Brick> DeepCopyHeap(List<Brick> heap)
+    private static List<Brick> DeepCopyHeap(List<Brick> heap)
     {
         List<Brick> newHeap = [];
         heap.ForEach(b => newHeap.Add(new Brick([b.Min.x, b.Min.y, b.Min.z, b.Max.x, b.Max.y, b.Max.z])));
@@ -103,7 +101,7 @@ public partial class Day22 : Advent.Day
         return newHeap;
     } 
 
-    private int ChainReaction(List<Brick> heap)
+    private static int ChainReaction(List<Brick> heap)
     {
         int number = 0;
         for (int i = 0; i < heap.Count; i++)

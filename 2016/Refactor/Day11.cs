@@ -2,7 +2,6 @@
 
 public partial class Day11 : Advent.Day
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
     public override void DoWork()
     {
         int steps, bestSteps = 500, attempts = 0, maxAttempts = 1_000_000, currentFloor, numItems = 0;
@@ -14,6 +13,7 @@ public partial class Day11 : Advent.Day
                     numItems++;
         do
         {
+            Random rnd = new();
             bool hitError = false;
             floors = InitializeFloors();
             currentFloor = 0;
@@ -23,11 +23,11 @@ public partial class Day11 : Advent.Day
             {
                 // Get all valid combinations from this floor
                 List<(string, string)> thisFloor = floors[currentFloor];
-                List<Move> moves = new();
-                List<Move> moves1Up = new();
-                List<Move> moves1Down = new();
-                List<Move> moves2Up = new();
-                List<Move> moves2Down = new();
+                List<Move> moves = [];
+                List<Move> moves1Up = [];
+                List<Move> moves1Down = [];
+                List<Move> moves2Up = [];
+                List<Move> moves2Down = [];
                 Move move = new();
 
                 for (int i = 0; i < thisFloor.Count; i++)
@@ -59,7 +59,7 @@ public partial class Day11 : Advent.Day
                     {
                         (string element, string type) object2 = thisFloor[j];
                         if (object1.element == object2.element && object1.type == object2.type)
-                        { } // It's the same item - do nothing
+                        { /* It's the same item - do nothing */ } 
                         else
                         {
                             if (currentFloor < 3 && CheckMove(object1, object2, floors[currentFloor], floors[currentFloor + 1], lastMove, "Up"))
@@ -93,7 +93,7 @@ public partial class Day11 : Advent.Day
                 }
                 // Pick one at random
                 // Prefer double up to single, prefer single down to double
-                move = moves[Rand.Next(moves.Count)];
+                move = moves[rnd.Next(moves.Count)];
                 lastMove = move;
 
                 // Move it
@@ -109,27 +109,6 @@ public partial class Day11 : Advent.Day
                 floors[currentFloor] = oldFloor;
                 currentFloor = move.NewFloor;
                 steps++;
-
-                /* 
-                // For debugging - print out the current position
-                Debug.Print("***** Step " + steps.ToString() + "*****");
-                for (int i = 0; i < 4; i++)
-                {
-                    string debugString = "Floor " + i.ToString() + ": ";
-                    if (floors[i].Count == 0)
-                        debugString += ": empty";
-                    else
-                    {
-                        for (int j = 0; j < floors[i].Count; j++)
-                        {
-                            debugString += ((StringPair)floors[i][j]).Value1 + " " + ((StringPair)floors[i][j]).Value2;
-                            if (j < floors[i].Count - 1)
-                                debugString += ", ";
-                        }
-                    }
-                    Debug.Print(debugString);
-                }
-                //*/
             } while (floors[3].Count < numItems && steps <= bestSteps);
             if (!hitError && steps < bestSteps)
                 bestSteps = steps;
@@ -141,13 +120,13 @@ public partial class Day11 : Advent.Day
 
     private Dictionary<int, List<(string, string)>> InitializeFloors()
     {
-        Dictionary<int, List<(string, string)>> floors = new();
+        Dictionary<int, List<(string, string)>> floors = [];
         // Populate the floor setup
         foreach (string desc in Inputs)
         {
             int floor = 0;
             (string, string) item = ("", "");
-            List<(string, string)> floorItems = new();
+            List<(string, string)> floorItems = [];
             string[] words = desc.Split(' ');
             for (int i = 0; i < words.Length; i++)
             {
@@ -165,7 +144,7 @@ public partial class Day11 : Advent.Day
                     }
                     floorItems.Add(item);
                 }
-                if (words[i] == "a" && words[i - 1].EndsWith(","))
+                if (words[i] == "a" && words[i - 1].EndsWith(','))
                 {
                     if (words[i + 2][..9] == "generator" || words[i + 2][..9] == "microchip")
                     {
@@ -181,7 +160,6 @@ public partial class Day11 : Advent.Day
 
     private struct Move { public (string element, string type) Object1; public (string element, string type) Object2; public int NewFloor; public int NumberOfItems; public string Direction; }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
     private static bool CheckMove((string element, string type) object1, (string element, string type) object2, List<(string element, string type)> fromFloor, List<(string element, string type)> toFloor, Move lastMove, string direction)
     {
         bool matchedPair = false, foundMatched, foundUnmatched;
@@ -198,12 +176,12 @@ public partial class Day11 : Advent.Day
             return false;
 
         // If we're just reversing the last move, don't allow it
-        if (lastMove.Direction != direction)
-            if ((lastMove.Object1.element == object1.element && lastMove.Object1.type == object1.type
+        if (lastMove.Direction != direction 
+            && ((lastMove.Object1.element == object1.element && lastMove.Object1.type == object1.type
                 && lastMove.Object2.element == object2.element && lastMove.Object2.type == object2.type)
                 || (lastMove.Object1.element == object2.element && lastMove.Object1.type == object2.type
-                    && lastMove.Object2.element == object1.element && lastMove.Object2.type == object1.type))
-                return false;
+                    && lastMove.Object2.element == object1.element && lastMove.Object2.type == object1.type)))
+            return false;
 
         // If either item is a chip and there is a non-matching generator where we're going to - bad
         if (object1.type == "microchip" && !matchedPair)
@@ -236,7 +214,7 @@ public partial class Day11 : Advent.Day
         }
 
         // If either item is a generator and there is a non-paired chip where we're going to - bad
-        if (object1.type == "generator" || object1.type == "generator")
+        if (object1.type == "generator" || object2.type == "generator")
         {
             bool foundChip, foundMatch = false;
             foreach ((string element, string type) in toFloor)
@@ -294,9 +272,8 @@ public partial class Day11 : Advent.Day
     private static bool CheckMove((string element, string type) item, List<(string element, string type)> fromFloor, List<(string element, string type)> toFloor, Move lastMove, string direction)
     {
         // If we're just reversing the last move, don't allow it
-        if (lastMove.Direction != direction)
-            if (lastMove.Object1.element == item.element && lastMove.Object1.type == item.type)
-                return false;
+        if (lastMove.Direction != direction && lastMove.Object1.element == item.element && lastMove.Object1.type == item.type)
+            return false;
 
         // If it's a chip and there is a non-matching generator where we're going to - bad
         if (item.type == "microchip")

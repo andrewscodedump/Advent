@@ -2,14 +2,9 @@
 
 public partial class Day22 : Advent.Day
 {
-    private struct Spell
+    private struct Spell(string name, int mana, int damage, int heal, int armour, int recharge, int duration, bool singleUse)
     {
-        public string Name; public int Mana; public int Damage; public int Heal; public int Armour; public int Recharge; public int Duration; public bool SingleUse;
-        public Spell(string name, int mana, int damage, int heal, int armour, int recharge, int duration, bool singleUse)
-        {
-            Name = name; Mana = mana; Damage = damage; Heal = heal; Armour = armour; Recharge = recharge; Duration = duration; SingleUse = singleUse;
-        }
-
+        public string Name = name; public int Mana = mana; public int Damage = damage; public int Heal = heal; public int Armour = armour; public int Recharge = recharge; public int Duration = duration; public bool SingleUse = singleUse;
     };
     private struct Player { public int ManaLeft; public int ManaSpent; public long Armour; public long Points; public long Damage; }
     private enum Result { PlayerDead, BossDead, Continue, Terminated }
@@ -18,12 +13,12 @@ public partial class Day22 : Advent.Day
     {
         #region Init & Setup
 
-        Dictionary<Spell, int> recurring = new();
+        Dictionary<Spell, int> recurring = [];
         Player player = new(), boss = new();
-        List<Spell> spells = new();
+        List<Spell> spells = [];
         int bestMana = int.MaxValue;
 
-        spells.AddRange(new Spell[] { new Spell("Missile", 53, 4, 0, 0, 0, 0, false), new Spell("Drain", 73, 2, 2, 0, 0, 0, false), new Spell("Shield", 113, 0, 0, 7, 0, 6, true), new Spell("Poison", 173, 3, 0, 0, 0, 6, false), new Spell("Recharge", 229, 0, 0, 0, 101, 5, false) });
+        spells.AddRange([new Spell("Missile", 53, 4, 0, 0, 0, 0, false), new Spell("Drain", 73, 2, 2, 0, 0, 0, false), new Spell("Shield", 113, 0, 0, 7, 0, 6, true), new Spell("Poison", 173, 3, 0, 0, 0, 6, false), new Spell("Recharge", 229, 0, 0, 0, 101, 5, false)]);
 
         #endregion Init & Setup
 
@@ -118,7 +113,7 @@ public partial class Day22 : Advent.Day
         boss.Points = InputNumbers[0][0];
         boss.Damage = InputNumbers[1][0];
         boss.Armour = InputNumbers[2][0];
-        recurring = new();
+        recurring = [];
     }
 
     #endregion Initialise
@@ -138,7 +133,6 @@ public partial class Day22 : Advent.Day
         if (result != Result.BossDead)
         {
             Spell spellToUse = SelectRandomSpell(spells, player, recurring);
-            //Spell spellToUse = selectSpellFromList(rand, spells, player, recurring);
             result = spellToUse.Name == null ? Result.PlayerDead : ApplySpell(spellToUse, ref player, ref boss, ref recurring);
 
             if (player.ManaSpent >= bestMana)
@@ -172,21 +166,20 @@ public partial class Day22 : Advent.Day
 
     private static Spell SelectRandomSpell(List<Spell> spells, Player player, Dictionary<Spell, int> recurring)
     {
+        Random rnd = new();
         Spell spellToUse = new();
 
         // Get available spells (if any)
-        List<Spell> availSpells = new();
+        List<Spell> availSpells = [];
         foreach (Spell spell in spells)
         {
-            if (spell.Mana < player.ManaLeft)
-                if (!recurring.ContainsKey(spell))
-                    availSpells.Add(spell);
+            if (spell.Mana < player.ManaLeft && !recurring.ContainsKey(spell))
+                availSpells.Add(spell);
         }
         if (availSpells.Count > 0)
         {
             // Pick random weapon from available
-            int randSpell = Rand.Next(availSpells.Count);
-            //Debug.Print (availSpells.Count + ": " + randSpell);
+            int randSpell = rnd.Next(availSpells.Count);
 
             spellToUse = availSpells[randSpell];
         }

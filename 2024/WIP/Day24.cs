@@ -12,9 +12,7 @@ public partial class Day24 : Advent.Day
         foreach (string s in Inputs.Where(i => i.Contains(':')))
             values[s.Split(": ")[0]] = s.Split(": ")[1] == "1";
         foreach (string s in Inputs.Where(i => i.Contains('-')))
-        {
             gates.Add(s.Split(separator, StringSplitOptions.RemoveEmptyEntries));
-        }
 
         bool didSomething = false;
         do

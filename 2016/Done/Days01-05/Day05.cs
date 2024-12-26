@@ -10,7 +10,7 @@ public partial class Day05 : Advent.Day
 
         do
         {
-            string test = Inputs[0] + currentNumber.ToString();
+            string test = Input + currentNumber.ToString();
             string hash = GetMD5Hash(MD5, test);
             if (hash.StartsWith("00000"))
                 if (Part1)

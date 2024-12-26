@@ -367,7 +367,6 @@
             Controls.Add(lblExpected);
             Controls.Add(txtExpected);
             Controls.Add(btnBatch);
-            Controls.Add(btnSuperBatch);
             Controls.Add(chkTestMode);
             Controls.Add(btnExit);
             Controls.Add(lblPuzzle);
@@ -403,7 +402,6 @@
         private Button btnExit;
         private CheckBox chkTestMode;
         private Button btnBatch;
-        private Button btnSuperBatch;
         private Label lblExpected;
         private TextBox txtExpected;
         private Label lblYear;

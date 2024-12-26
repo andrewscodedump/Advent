@@ -4,7 +4,7 @@ public partial class Day10 : Advent.Day
 {
     public override void DoWork()
     {
-        string work = Inputs[0];
+        string work = Input;
         StringBuilder workOut = new();
         int iterations = TestMode ? 5 : Part1 ? 40 : 50;
         for (int round = 1; round <= iterations; round++)

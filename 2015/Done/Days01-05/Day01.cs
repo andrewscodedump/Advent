@@ -6,7 +6,7 @@ public partial class Day01 : Advent.Day
     {
         if (TestMode && Part2) return;
         int result = 0;
-        char[] chars = Inputs[0].ToCharArray();
+        char[] chars = Input.ToCharArray();
         for (int i = 0; i < chars.Length; i++)
         {
             if (chars[i] == '(')

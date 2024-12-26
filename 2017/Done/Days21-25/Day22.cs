@@ -5,7 +5,7 @@ public partial class Day22 : Advent.Day
     public override void DoWork()
     {
         (int X, int Y) curPos = (0, 0);
-        int direction = 0, rowLen = Inputs[0].Length, maxSteps = Part1 ? 10_000 : 10_000_000, infections = 0;
+        int direction = 0, rowLen = Input.Length, maxSteps = Part1 ? 10_000 : 10_000_000, infections = 0;
         Dictionary<(int, int), int> grid = new();
 
         for (int col = 0; col < rowLen; col++)

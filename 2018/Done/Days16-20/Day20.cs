@@ -4,7 +4,7 @@ public partial class Day20 : Advent.Day
 {
     public override void DoWork()
     {
-        string route = Inputs[0];
+        string route = Input;
         Queue<((int x, int y), int ptr, int len, int nextPos)> q = new();
         Dictionary<(int x, int y), (char state, int dist)> map = new() { { (0, 0), ('X', int.MaxValue) }, { (-1, 1), ('#', 0) }, { (0, 1), ('?', int.MaxValue) }, { (1, 1), ('#', 0) }, { (-1, 0), ('?', int.MaxValue) }, { (1, 0), ('?', int.MaxValue) }, { (-1, -1), ('#', 0) }, { (0, -1), ('?', int.MaxValue) }, { (1, -1), ('#', 0) } };
         q.Enqueue(((0, 0), 0, 0, 0));

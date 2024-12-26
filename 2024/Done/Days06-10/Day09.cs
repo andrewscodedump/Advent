@@ -4,7 +4,7 @@ public partial class Day09 : Advent.Day
 {
     public override void DoWork()
     {
-        List<int> disk = Expand(Inputs[0]);
+        List<int> disk = Expand(Input);
         Defrag(disk, Part2);
         Output = CheckSum(disk).ToString();
     }

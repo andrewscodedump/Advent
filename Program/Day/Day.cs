@@ -53,7 +53,9 @@ public abstract partial class Day
     }
 
     public string[] Inputs { get; private set; }
+    public string[][] InputBlocks { get; private set; }
     protected long[][] InputNumbers { get; private set; }
+    protected string Input { get; private set; }
 
     private List<List<string>> allInputs;
     public List<List<string>> AllInputs
@@ -98,19 +100,18 @@ public abstract partial class Day
         Expecteds = GetExpecteds();
         Description = GetDescription();
         Output = string.Empty;
-        Rand = new Random();
         MD5 = System.Security.Cryptography.MD5.Create();
     }
 
     #endregion Public Methods
 
-    
+
     #region Private Methods
 
     private List<List<string>> GetInputs()
     {
         List<List<string>> inputs = [];
-        if (new DateTime(year, 12, day, 05, 00, 00) > DateTime.Now)
+        if (new DateTime(year, 12, day, 05, 00, 00, DateTimeKind.Local) > DateTime.Now)
         {
             BatchStatus = DayBatchStatus.Future;
             return inputs;
@@ -141,46 +142,36 @@ public abstract partial class Day
                 encFileExists = true;
         }
 
-        if(fileExists && !encFileExists && mode == "Live")
+        if (fileExists && !encFileExists && mode == "Live")
         {
             // Create encrypted file - for live inputs only
             encFileName = Path.ChangeExtension(fileName, "enc");
             _ = Encryption.TryEncrypt($@"{inputPath}\{fileName}", $@"{inputPath}\{encFileName}", "Advent", out _);
         }
-        else  if (!fileExists && encFileExists)
+        else if (!fileExists && encFileExists)
         {
             // Decrypt file
             fileName = Path.ChangeExtension(encFileName, "txt");
             fileExists = Encryption.TryDecrypt($@"{inputPath}\{encFileName}", $@"{inputPath}\{fileName}", "Advent", out _);
         }
 
-        if (!fileExists 
-            || File.ReadAllLines($@"{inputPath}\{fileName}").Length == 0)
-            //|| (!TestMode && Part1 && BatchStatus == DayBatchStatus.Available))
+        if (!fileExists || File.ReadAllLines($@"{inputPath}\{fileName}").Length == 0)
         {
             BatchStatus = DayBatchStatus.NoInputs;
             return inputs;
         }
 
-        List<string> input = [];
-        foreach (string line in File.ReadAllLines($@"{inputPath}\{fileName}"))
-        {
-            if (line == "***AdditionalInput***")
-            {
-                inputs.Add(input);
-                input = [];
-                continue;
-            }
-            input.Add(line);
-        }
-        inputs.Add(input);
+        List<string> simpleInputs = [.. File.ReadAllLines($@"{inputPath}\{fileName}")];
+        int[] breaks = Enumerable.Range(0, simpleInputs.Count).Where(i => simpleInputs[i] == "***AdditionalInput***").ToArray();
+        breaks = [-1, ..breaks, simpleInputs.Count];
+        breaks.Skip(1).Zip(breaks, (second, first) => (first, second)).ForEach(p => inputs.Add(simpleInputs[(p.first + 1)..p.second]));
         return inputs;
     }
 
     private List<string> GetExpecteds()
     {
         List<string> expecteds = [];
-        if (new DateTime(year, 12, day, 05, 00, 00) > DateTime.Now) return expecteds;
+        if (new DateTime(year, 12, day, 05, 00, 00, DateTimeKind.Local) > DateTime.Now) return expecteds;
         bool reading = false;
         string mode = TestMode ? "Test" : "Live";
         //string 
@@ -212,7 +203,7 @@ public abstract partial class Day
     private string GetDescription()
     {
         StringBuilder description = new();
-        if (new DateTime(year, 12, day, 05, 00, 00) > DateTime.Now) return string.Empty;
+        if (new DateTime(year, 12, day, 05, 00, 00, DateTimeKind.Local) > DateTime.Now) return string.Empty;
 
         string filePath = $@"{inputPath}\Description.txt";
         if (!File.Exists(filePath) || File.ReadAllLines(filePath).Length == 0) return string.Empty;
@@ -226,7 +217,7 @@ public abstract partial class Day
 
     private DayBatchStatus CheckStatus(DayBatchStatus current)
     {
-        if (new DateTime(year, 12, day, 05, 00, 00) > DateTime.Now) return DayBatchStatus.Future;
+        if (new DateTime(year, 12, day, 05, 00, 00, DateTimeKind.Local) > DateTime.Now) return DayBatchStatus.Future;
         bool reading = false;
         string mode = TestMode ? "Test" : "Live";
         bool firstLine = true;
@@ -269,7 +260,13 @@ public abstract partial class Day
         if (allInputs == null || allInputs.Count == 0 || BatchStatus == DayBatchStatus.NotDoneYet) return;
         if (BatchStatus == DayBatchStatus.NoInputs) BatchStatus = DayBatchStatus.Available;
         Inputs = [.. AllInputs[CurrentInput]];
+        InputBlocks = [];
+        int[] breaks = Enumerable.Range(0, Inputs.Length).Where(i => Inputs[i] == "").ToArray();
+        breaks = [-1, .. breaks, Inputs.Length];
+        breaks.Skip(1).Zip(breaks, (second, first) => (first, second)).ForEach(p => InputBlocks = [..InputBlocks, Inputs[(p.first + 1)..p.second]]);
+
         List<long[]> inputNumbers = [];
+        Input = Inputs[0];
         try
         {
             inputNumbers.AddRange(from string inp in Inputs
@@ -279,15 +276,13 @@ public abstract partial class Day
                                   select numbers.ToArray());
             InputNumbers = [.. inputNumbers];
         }
-        catch { };
+        catch { /* Unable to create numbers - this is expected */ }
     }
 
     #endregion Private Methods
 
     #region Common Objects
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2211:NonConstantFieldsShouldNotBeVisible")]
-    protected static Random Rand;
     public enum DayBatchStatus { Available, NotDoneYet, Performance, NonCoded, NotWorking, NoTestData, NoPart2, ManualIntervention, Future, NoInputs };
 
     #endregion Common Objects

@@ -4,7 +4,7 @@ public partial class Day09 : Advent.Day
 {
     public override void DoWork()
     {
-        int height = Inputs.Length, width = Inputs[0].Length, result = 0;
+        int height = Inputs.Length, width = Input.Length, result = 0;
         List<(int, int)> Offsets = new() { (0, 1), (1, 0), (0, -1), (-1, 0) };
         Dictionary<(int, int), char> map = new();
         Dictionary<(int, int), int> minima = new();

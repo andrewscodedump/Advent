@@ -4,7 +4,7 @@ public partial class Day08 : Advent.Day
 {
     public override void DoWork()
     {
-        string directions = Inputs[0];
+        string directions = Input;
         long steps = 0;
         Dictionary<string, (string L, string R)> map = [];
         Dictionary<int, long> found = [];

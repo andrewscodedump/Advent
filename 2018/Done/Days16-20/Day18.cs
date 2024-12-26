@@ -5,7 +5,7 @@ public partial class Day18 : Advent.Day
     public override void DoWork()
     {
         #region Setup Variables and Parse Inputs
-        int width = Inputs[0].Length, height = Inputs.Length;
+        int width = Input.Length, height = Inputs.Length;
         Dictionary<(int, int), char> area = new();
         Dictionary<int, List<(int gen, Dictionary<(int, int), char> dict)>> history = new();
         int trees = 0, yards = 0, empty = 0;

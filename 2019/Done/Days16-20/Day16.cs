@@ -6,13 +6,13 @@ public partial class Day16 : Advent.Day
     {
         #region Setup Variables and Parse Inputs
 
-        int phases = TestMode && Inputs[0] == "12345678" ? 4 : 100;
+        int phases = TestMode && Input == "12345678" ? 4 : 100;
         int[] baseMultipliers = new int[4] { 0, 1, 0, -1 };
-        int len = Inputs[0].Length;
-        int end = int.Parse(Inputs[0][..7]);
+        int len = Input.Length;
+        int end = int.Parse(Input[..7]);
         string work = Part1 
-            ? Inputs[0] 
-            : string.Concat(string.Concat(Enumerable.Repeat(ReverseString(Inputs[0]), ((len * 10000) - end) / len)), ReverseString(Inputs[0]).AsSpan(0, ((len * 10000) - end) % len));
+            ? Input 
+            : string.Concat(string.Concat(Enumerable.Repeat(ReverseString(Input), ((len * 10000) - end) / len)), ReverseString(Input).AsSpan(0, ((len * 10000) - end) % len));
         int digits = work.Length;
 
         #endregion Setup Variables and Parse Inputs

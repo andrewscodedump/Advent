@@ -24,7 +24,7 @@ public partial class Day17 : Advent.Day
                         longest = check.Path.Length;
                 continue;
             }
-            string hash = GetMD5Hash(MD5, Inputs[0] + check.Path);
+            string hash = GetMD5Hash(MD5, Input + check.Path);
             // Get available doors
             if ("bcdef".Contains(hash[0]) && check.Position.Y > 0)
                 theQueue.Enqueue(new State(check.Path + "U", check.Position.X, check.Position.Y - 1));

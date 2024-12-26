@@ -10,7 +10,7 @@ public partial class Day05 : Advent.Day
         foreach (char letter in letters)
         {
             int pos = 0;
-            List<char> work = Inputs[0].Replace(letter.ToString(), "").Replace(char.ToUpper(letter).ToString(), "").ToList();
+            List<char> work = Input.Replace(letter.ToString(), "").Replace(char.ToUpper(letter).ToString(), "").ToList();
             do
             {
                 if (pos + 1 == work.Count) break;

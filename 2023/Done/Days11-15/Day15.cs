@@ -6,7 +6,7 @@ public partial class Day15 : Advent.Day
     {
         int totalResult = 0;
         Dictionary<int, List<Step>> boxes = [];
-        foreach (Step step in Inputs[0].Split(',').Select(i => new Step(i)))
+        foreach (Step step in Input.Split(',').Select(i => new Step(i)))
         {
             if (Part1) totalResult += step.Hash;
             List<Step> value = [];

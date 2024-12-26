@@ -11,7 +11,6 @@ public partial class AdventOfCode : Form
     #region Constructors and Declarations
 
     private Day theDay;
-    private DateTime startTime;
     bool noReset;
 
     public AdventOfCode()
@@ -29,7 +28,7 @@ public partial class AdventOfCode : Form
         if (noReset) return;
         try
         {
-            theDay = (Day)Activator.CreateInstance(Type.GetType($"Advent{updYear.Value}.Day{(int)updDay.Value:D2}"), new object[] { chkTestMode.Checked, (int)updPuzzle.Value });
+            theDay = (Day)Activator.CreateInstance(Type.GetType($"Advent{updYear.Value}.Day{(int)updDay.Value:D2}"), [chkTestMode.Checked, (int)updPuzzle.Value]);
         }
         catch
         {
@@ -41,7 +40,7 @@ public partial class AdventOfCode : Form
         List<string> Expecteds = GetExpecteds();
         if (Inputs.Count != Expecteds.Count)
         {
-            MessageBox.Show("Mismatch between Inputs and Expected Outputs", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            txtExpected.Text = "Mismatch between Inputs and Expected Outputs";
             if (Inputs.Count > 0)
                 Inputs = Inputs.GetRange(0, 1);
         }
@@ -193,7 +192,8 @@ public partial class AdventOfCode : Form
         Debug.WriteLine($"Starting Batch Run for {year}");
         output.AppendLine($"Starting Batch Run for {year}");
         output.AppendLine("\r\n    Day          Part1           Part2");
-        DateTime overallStart = DateTime.Now;
+        Stopwatch overall = new();
+        overall.Start();
         for (int day = 1; day <= 25; day++)
         {
             for (int puzzle = 1; puzzle <= 2; puzzle++)
@@ -266,9 +266,8 @@ public partial class AdventOfCode : Form
         output.AppendLine().AppendLine();
         output.AppendLine("Batch Run Completed");
         Debug.WriteLine("Batch Run Completed");
-        output.AppendLine($"Total Time = {(DateTime.Now - overallStart).TotalSeconds:0.000000} secs");
-        Debug.WriteLine($"Total Time = {(DateTime.Now - overallStart).TotalSeconds:0.000000} secs");
-        //Clipboard.SetText(output.ToString());
+        output.AppendLine($"Total Time = {overall.Elapsed.TotalSeconds:0.000000} secs");
+        Debug.WriteLine($"Total Time = {overall.Elapsed.TotalSeconds:0.000000} secs");
         return output.ToString();
     }
 
@@ -298,19 +297,20 @@ public partial class AdventOfCode : Form
 
     private void Process_Click(object sender, EventArgs e)
     {
-        startTime = DateTime.Now;
+        Stopwatch timer = new();
+        timer.Start();
         Cursor = Cursors.WaitCursor;
         txtOutput.Text = "";
         Update();
         txtOutput.Text = DoPuzzle();
         txtOutput.BackColor = txtOutput.Text == txtExpected.Text || txtExpected.Text == "NotDoneYet" ? Color.White : Color.Pink;
-        double timeTaken = (DateTime.Now - startTime).TotalSeconds;
-        if (timeTaken >= 1)
-            txtTimeTaken.Text = $"{timeTaken:0.000000} secs";
-        else if (timeTaken >= 0.001)
-            txtTimeTaken.Text = $"{timeTaken * 1000:0.000} ms";
+        double timeTaken = timer.Elapsed.TotalMilliseconds;
+        if (timeTaken >= 1000)
+            txtTimeTaken.Text = $"{timeTaken / 1000:0.000000} secs";
+        else if (timeTaken >= 1)
+            txtTimeTaken.Text = $"{timeTaken:0.000} ms";
         else
-            txtTimeTaken.Text = $"{timeTaken * 1000000:0} µs";
+            txtTimeTaken.Text = $"{timeTaken * 1000:0} µs";
         Cursor = Cursors.Default;
     }
 

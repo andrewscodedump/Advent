@@ -4,7 +4,7 @@ public partial class Day18 : Advent.Day
 {
     public override void DoWork()
     {
-        string work = Inputs[0];
+        string work = Input;
         int result = 0;
         if (Part1)
         {
@@ -39,8 +39,6 @@ public partial class Day18 : Advent.Day
 
         bool Explode(ref string toExplode)
         {
-            //Debug.WriteLine($"Before: {toExplode}");
-
             (int pairStart, int pairEnd) = (0, 0);
             (int prevStart, int prevEnd) = (0, 0);
             (int nextStart, int nextEnd) = (0, 0);
@@ -112,7 +110,6 @@ public partial class Day18 : Advent.Day
             else
                 newVal = $"{toExplode[0..prevStart]}{prev + first}{toExplode[(prevEnd+1)..pairStart]}0{toExplode[(pairEnd+1)..nextStart]}{next + second}{toExplode[(nextEnd+1)..]}";
             toExplode = newVal;
-            //Debug.WriteLine($"After:  {toExplode}");
             return true;
         }
 
@@ -122,7 +119,6 @@ public partial class Day18 : Advent.Day
             int number = 0;
             for (int i = 0; i < toSplit.Length - 1; i++)
             {
-                //Debug.WriteLine($"Before: {toSplit}");
                 if (char.IsDigit(toSplit[i]) && char.IsDigit(toSplit[i + 1]))
                 {
                     startPos = i;
@@ -139,7 +135,6 @@ public partial class Day18 : Advent.Day
             if (startPos==0) return false;
             string newVal = $"{toSplit[..startPos]}[{number / 2},{(number / 2) + (number % 2)}]{toSplit[(endPos + 1)..]}";
             toSplit = newVal;
-            //Debug.WriteLine($"After:  {toSplit}");
             return true;
         }
 
@@ -147,7 +142,6 @@ public partial class Day18 : Advent.Day
         {
             do
             {
-                //Debug.WriteLine($"Before: {toSum}");
                 int start = -1; int end = 0;
                 for (int i = 0;i < toSum.Length; i++)
                 {
@@ -164,7 +158,6 @@ public partial class Day18 : Advent.Day
                 string[] pair = toSum[(start+1)..end].Split(',');
                 int first = int.Parse(pair[0]), second = int.Parse(pair[1]);
                 toSum = $"{toSum[..start]}{(first * 3) + (second * 2)}{toSum[(end+1)..]}";
-                //Debug.WriteLine($"After:  {toSum}");
             } while (toSum.Contains('['));
             return int.Parse(toSum);
         }

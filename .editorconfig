@@ -8,3 +8,6 @@ dotnet_diagnostic.IDE0046.severity = silent
 
 # SYSLIB1045: Convert to 'GeneratedRegexAttribute'.
 dotnet_diagnostic.SYSLIB1045.severity = silent
+
+# S3358: Ternary operators should not be nested
+dotnet_diagnostic.S3358.severity = silent
