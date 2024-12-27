@@ -8,7 +8,7 @@ public partial class Day14 : Advent.Day
     {
         int used = 0;
         int regions = 0;
-        Collection<char[]> rows = new();
+        Collection<char[]> rows = [];
 
         for (int row = 0; row < 128; row++)
         {
@@ -28,17 +28,15 @@ public partial class Day14 : Advent.Day
         Output = (Part1 ? used : regions).ToString();
     }
 
-    private void SetNeighbours(Collection<char[]> rows, int row, int col)
+    private static void SetNeighbours(Collection<char[]> rows, int row, int col)
     {
         rows[row][col] = '0';
         for (int horiz = -1; horiz <= 1; horiz++)
             for (int vert = -1; vert <= 1; vert++)
             {
-                if (Math.Abs(horiz) != Math.Abs(vert) && row + vert >= 0 && row + vert < 128 && col + horiz >= 0 && col + horiz < 128)
-                {
-                    if (rows[row + vert][col + horiz] == '1')
-                        SetNeighbours(rows, row + vert, col + horiz);
-                }
+                if (Math.Abs(horiz) != Math.Abs(vert) && row + vert >= 0 && row + vert < 128 && col + horiz >= 0 && col + horiz < 128
+                && rows[row + vert][col + horiz] == '1')
+                    SetNeighbours(rows, row + vert, col + horiz);
             }
     }
 

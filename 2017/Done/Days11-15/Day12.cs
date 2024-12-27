@@ -4,13 +4,13 @@ public partial class Day12 : Advent.Day
 {
     public override void DoWork()
     {
-        Dictionary<string, string[]> pipes = new();
-        List<string> foundPrograms = new();
+        Dictionary<string, string[]> pipes = [];
+        List<string> foundPrograms = [];
         int numberInZeroGroup = 0, numberOfGroups = 0;
         string groupStart = "0";
 
         foreach (string pipe in Inputs)
-            pipes.Add(pipe.Split(new string[] { " <-> " }, StringSplitOptions.RemoveEmptyEntries)[0], pipe.Split(" <-> ")[1].Split(", "));
+            pipes.Add(pipe.Split(" <-> ", StringSplitOptions.RemoveEmptyEntries)[0], pipe.Split(" <-> ")[1].Split(", "));
 
         while (!string.IsNullOrEmpty(groupStart))
         {
@@ -30,7 +30,7 @@ public partial class Day12 : Advent.Day
         Output = Part1 ? numberInZeroGroup.ToString() : numberOfGroups.ToString();
     }
 
-    private void AddProgs(string key, Dictionary<string, string[]> pipes, List<string> found)
+    private static void AddProgs(string key, Dictionary<string, string[]> pipes, List<string> found)
     {
         found.Add(key);
         foreach (string program in pipes[key])

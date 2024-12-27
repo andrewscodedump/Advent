@@ -4,7 +4,7 @@ public partial class Day08 : Advent.Day
 {
     public override void DoWork()
     {
-        Dictionary<string, int> registers = new();
+        Dictionary<string, int> registers = [];
         int maxRunVal = 0;
 
         foreach (string instruction in Inputs)

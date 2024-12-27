@@ -5,7 +5,7 @@ public partial class Day17 : Advent.Day
     public override void DoWork()
     {
         long step = InputNumbers[0][0];
-        List<long> buffer = new() { 0 };
+        List<long> buffer = [0];
         long currPos = 0;
         int secondValue = 0;
 

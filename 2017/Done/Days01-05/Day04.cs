@@ -7,7 +7,7 @@ public partial class Day04 : Advent.Day
         int valid = 0;
         foreach (string line in Inputs)
         {
-            List<string> words = new();
+            List<string> words = [];
             bool matchFound = false;
             foreach (string word in line.Split(' '))
             {

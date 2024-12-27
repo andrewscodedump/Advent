@@ -17,3 +17,5 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Major Code Smell", "S127:\"for\" loop stop conditions should be invariant", Justification = "<Pending>", Scope = "member", Target = "~M:Advent2015.Day10.DoWork")]
 [assembly: SuppressMessage("Major Code Smell", "S127:\"for\" loop stop conditions should be invariant", Justification = "<Pending>", Scope = "member", Target = "~M:Advent2015.Day11.CheckWord(System.Byte[])~System.Boolean")]
 [assembly: SuppressMessage("Major Code Smell", "S127:\"for\" loop stop conditions should be invariant", Justification = "<Pending>", Scope = "member", Target = "~M:Advent2015.Day08.DoWork")]
+[assembly: SuppressMessage("Major Code Smell", "S127:\"for\" loop stop conditions should be invariant", Justification = "<Pending>", Scope = "member", Target = "~M:Advent2017.Day16.DoWork")]
+[assembly: SuppressMessage("Major Code Smell", "S125: Programmers should not comment out code as it bloats programs and reduces readability.", Justification = "<Pending>", Scope = "member", Target = "~M:Advent2017.Day23.DoWork")]

@@ -6,7 +6,7 @@ public partial class Day22 : Advent.Day
     {
         (int X, int Y) curPos = (0, 0);
         int direction = 0, rowLen = Input.Length, maxSteps = Part1 ? 10_000 : 10_000_000, infections = 0;
-        Dictionary<(int, int), int> grid = new();
+        Dictionary<(int, int), int> grid = [];
 
         for (int col = 0; col < rowLen; col++)
             for (int row = 0; row < Inputs.Length; row++)

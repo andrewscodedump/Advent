@@ -17,12 +17,11 @@ public partial class Day02 : Advent.Day
                     for (int j = 0; j < numbers.Length; j++)
                     {
                         int num1 = numbers[i], num2 = numbers[j];
-                        if (i != j)
-                            if (num1 % num2 == 0)
-                            {
-                                total += Math.Max(num1, num2) / Math.Min(num1, num2);
-                                break;
-                            }
+                        if (i != j && num1 % num2 == 0)
+                        {
+                            total += Math.Max(num1, num2) / Math.Min(num1, num2);
+                            break;
+                        }
                     }
         }
         Output = total.ToString();

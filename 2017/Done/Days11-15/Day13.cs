@@ -4,7 +4,7 @@ public partial class Day13 : Advent.Day
 {
     public override void DoWork()
     {
-        List<(int, int)> scanners = new();
+        List<(int, int)> scanners = [];
         int score = 0, delay = 0;
         bool caught = false;
 

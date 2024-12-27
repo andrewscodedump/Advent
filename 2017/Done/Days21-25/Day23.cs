@@ -5,7 +5,7 @@ public partial class Day23 : Advent.Day
     public override void DoWork()
     {
         long numMul = 0;
-        int[] currPos = new int[] { 0, 0 };
+        int[] currPos = [0, 0];
         long oldB = 0; long oldC = 0; long oldD = 0;
         string instruction;
         string[] instructions = Inputs;
@@ -34,9 +34,9 @@ public partial class Day23 : Advent.Day
                     }
             }
             #region C# Interpretation of assembly code
-            /*
             // Trying to run the interpreted code is waaaaaaay too slow, so translating into C# (via pseudocode) gives the following.
             // Still too slow, so figuring out what it's actually doing gives the above
+            /*
             do
             {
                 registers["b"] = 107900;

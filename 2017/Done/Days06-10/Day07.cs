@@ -1,60 +1,56 @@
-﻿namespace Advent2017;
+﻿using System.Linq;
+
+namespace Advent2017;
 
 public partial class Day07 : Advent.Day
 {
     public override void DoWork()
     {
-        Dictionary<string, Program> programs = new();
+        Dictionary<string, Program> programs = [];
 
+        string[] splitter = [" ", ",", "(", ")", "->"];
         string name = string.Empty;
         int size;
         int correctWeight = 0;
 
         foreach (string line in Inputs)
         {
-            string[] words = line.Split(new string[] { " ", ",", "(", ")", "->" }, StringSplitOptions.RemoveEmptyEntries);
+            string[] words = line.Split(splitter, StringSplitOptions.RemoveEmptyEntries);
 
 
             name = words[0];
             size = int.Parse(words[1]);
-            if (programs.ContainsKey(name))
+            if (programs.TryGetValue(name, out Program value))
             {
-                programs[name].Size = size;
-                programs[name].TotalSize = size;
+                value.Size = size;
+                value.TotalSize = size;
             }
             else
                 programs.Add(name, new Program(size));
             for (int word = 2; word < words.Length; word++)
             {
                 string childName = words[word];
-                if (programs.ContainsKey(childName))
-                    programs[childName].Parent = name;
+                if (programs.TryGetValue(childName, out Program value2))
+                    value2.Parent = name;
                 else
                     programs.Add(childName, new Program(name));
             }
         }
 
-        foreach (KeyValuePair<string, Program> program in programs)
-        {
-            if (string.IsNullOrEmpty(program.Value.Parent))
-            {
-                name = program.Key;
-                break;
-            }
-        }
+        name = programs.First(p=> string.IsNullOrEmpty(p.Value.Parent)).Key;
 
         GetTotalWeight(programs, name);
 
-        foreach (KeyValuePair<string, Program> kvp in programs)
+        foreach (Program program in programs.Values)
         {
             // If I'm balanced, but parent isn't, then I might be the problem
-            if (kvp.Value.NumberAtMax == kvp.Value.NumberAtMin && programs[kvp.Value.Parent].NumberAtMin != programs[kvp.Value.Parent].NumberAtMax)
+            if (program.NumberAtMax == program.NumberAtMin && programs[program.Parent].NumberAtMin != programs[program.Parent].NumberAtMax)
             {
                 // If I'm the only one at that weight, I definitely am
-                if (kvp.Value.TotalSize == programs[kvp.Value.Parent].MinWeight && programs[kvp.Value.Parent].NumberAtMin == 1)
-                    correctWeight = kvp.Value.Size + (programs[kvp.Value.Parent].MaxWeight - programs[kvp.Value.Parent].MinWeight);
-                if (kvp.Value.TotalSize == programs[kvp.Value.Parent].MaxWeight && programs[kvp.Value.Parent].NumberAtMax == 1)
-                    correctWeight = kvp.Value.Size - (programs[kvp.Value.Parent].MaxWeight - programs[kvp.Value.Parent].MinWeight);
+                if (program.TotalSize == programs[program.Parent].MinWeight && programs[program.Parent].NumberAtMin == 1)
+                    correctWeight = program.Size + (programs[program.Parent].MaxWeight - programs[program.Parent].MinWeight);
+                if (program.TotalSize == programs[program.Parent].MaxWeight && programs[program.Parent].NumberAtMax == 1)
+                    correctWeight = program.Size - (programs[program.Parent].MaxWeight - programs[program.Parent].MinWeight);
             }
 
         }
@@ -62,7 +58,7 @@ public partial class Day07 : Advent.Day
         Output = Part1 ? name.ToString() : correctWeight.ToString();
     }
 
-    private void GetTotalWeight(Dictionary<string, Program> programs, string name)
+    private static void GetTotalWeight(Dictionary<string, Program> programs, string name)
     {
         foreach (KeyValuePair<string, Program> program in programs)
         {
@@ -93,7 +89,7 @@ public partial class Day07 : Advent.Day
         programs[name].MaxWeight = programs[name].MaxWeight == 0 ? programs[name].Size : programs[name].MaxWeight;
         programs[name].MinWeight = programs[name].MinWeight == int.MaxValue ? programs[name].Size : programs[name].MinWeight;
     }
-    private class Program
+    private sealed class Program
     {
         public Program(string parent, int size)
         {

@@ -1,20 +1,18 @@
-﻿using System;
-
-namespace Advent2017;
+﻿namespace Advent2017;
 
 public partial class Day21 : Advent.Day
 {
     public override void DoWork()
     {
         int iterations = TestMode ? 2 : Part2 ? 18 : 5;
-        List<string> pattern = new();
-        Dictionary<string, string> rules = new();
+        List<string> pattern = [];
+        Dictionary<string, string> rules = [];
 
-        pattern.AddRange(new List<string> { ".#.", "..#", "###" });
+        pattern.AddRange([".#.", "..#", "###"]);
 
         foreach (string rule in Inputs)
         {
-            string[] bits = rule.Split(new string[] { " => " }, StringSplitOptions.RemoveEmptyEntries);
+            string[] bits = rule.Split(" => ", StringSplitOptions.RemoveEmptyEntries);
             (string trigger, string result) = (bits[0], bits[1]);
             rules[trigger] = result; rules[FlipV(trigger)] = result; rules[FlipH(trigger)] = result;
             rules[RotateC(trigger)] = result; rules[RotateC(RotateC(trigger))] = result; rules[RotateC(RotateC(RotateC(trigger)))] = result;
@@ -28,7 +26,7 @@ public partial class Day21 : Advent.Day
 
     private static List<string> Process(List<string> pattern, Dictionary<string, string> rules)
     {
-        List<string> newPattern = new();
+        List<string> newPattern = [];
         int patternSize = pattern[0].Length;
         int blockSize = patternSize % 2 == 0 ? 2 : 3;
 
@@ -58,14 +56,14 @@ public partial class Day21 : Advent.Day
 
     private static string RotateC(string block)
     {
-        string newString = string.Empty;
+        StringBuilder newString = new();
         string[] bits = block.Split('/');
         for (int i = 0; i < bits.Length; i++)
         {
-            newString += "/";
+            newString.Append('/');
             for (int j = bits.Length - 1; j >= 0; j--)
-                newString += bits[j][i];
+                newString.Append(bits[j][i]);
         }
-        return newString[1..];
+        return newString.ToString()[1..];
     }
 }

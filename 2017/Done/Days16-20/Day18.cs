@@ -5,14 +5,14 @@ public partial class Day18 : Advent.Day
     public override void DoWork()
     {
         long soundPlayed = 0;
-        int[] currPos = new int[] { 0, 0 };
+        int[] currPos = [0, 0];
         long result, received = 0;
-        Queue<long>[] queues = new Queue<long>[2] { new(), new() };
+        Queue<long>[] queues = [new(), new()];
         string instruction;
         string[] instructions = Inputs;
         int numSends = 0;
-        bool[] waiting = new bool[] { false, false };
-        Dictionary<string, long>[] registers = new Dictionary<string, long>[2] { new() { { "p", 0 } }, new() { { "p", 1 } } };
+        bool[] waiting = [false, false];
+        Dictionary<string, long>[] registers = [new() { { "p", 0 } }, new() { { "p", 1 } }];
 
         if (Part1)
         {
