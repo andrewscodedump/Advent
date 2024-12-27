@@ -29,9 +29,9 @@ public partial class Day20 : Advent.Day
         Dictionary<(int, int), char> work = new(SimpleMap);
         // Loop round map
         int maxX = work.Keys.Max(x => x.Item1), maxY = work.Keys.Max(x => x.Item2);
-        int minX = work.Keys.Min(x => x.Item1), minY = work.Keys.Min(x => x.Item2);
+        int minX = work.Keys.Min(x => x.Item1);
         int gapMinX = 0, gapMinY = 0, gapMaxX = 0, gapMaxY = 0;
-        (int, int) startPos = (0, 0), endPos = (0, 0), pos = (0, 0);
+        (int, int) startPos, endPos, pos = (0, 0);
         string pair = string.Empty;
 
         for (int y = 0; y <= maxY; y++)

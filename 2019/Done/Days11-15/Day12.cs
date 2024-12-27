@@ -12,10 +12,10 @@ public partial class Day12 : Advent.Day
         {
             planets[p] = ((InputNumbers[p][0], InputNumbers[p][1], InputNumbers[p][2]), (0, 0, 0));
         }
-        (long, long, long, long, long, long, long, long)[] originalStates = { (planets[0].position.x, planets[1].position.x, planets[2].position.x, planets[3].position.x, 0, 0, 0, 0) ,
+        (long, long, long, long, long, long, long, long)[] originalStates = [ (planets[0].position.x, planets[1].position.x, planets[2].position.x, planets[3].position.x, 0, 0, 0, 0) ,
             (planets[0].position.y, planets[1].position.y, planets[2].position.y, planets[3].position.y, 0, 0, 0, 0),
-            (planets[0].position.z, planets[1].position.z, planets[2].position.z, planets[3].position.z, 0, 0, 0, 0)};
-        (long, long, long, long, long, long, long, long)[] states = { (0, 0, 0, 0, 0, 0, 0, 0), (0, 0, 0, 0, 0, 0, 0, 0), (0, 0, 0, 0, 0, 0, 0, 0) };
+            (planets[0].position.z, planets[1].position.z, planets[2].position.z, planets[3].position.z, 0, 0, 0, 0)];
+        (long, long, long, long, long, long, long, long)[] states = [(0, 0, 0, 0, 0, 0, 0, 0), (0, 0, 0, 0, 0, 0, 0, 0), (0, 0, 0, 0, 0, 0, 0, 0)];
         int xLoop = 0, yLoop = 0, zLoop = 0;
         if (TestMode && Part1 && planets[0].position.x == -1) limit = 10;
         #endregion Setup Variables and Parse Inputs

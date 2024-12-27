@@ -11,6 +11,7 @@ public partial class Day19 : Advent.Day
         int targetSize = 100, gridSize = 50; //50
         int x, y = 0;
         bool foundIt = false;
+        DrawMaps = false;
 
         #endregion Setup Variables and Parse Inputs
 
@@ -21,7 +22,7 @@ public partial class Day19 : Advent.Day
                 SimpleMap[(x, y)] = code.Output == 1 ? '#' : '.';
                 if (code.Output == 1) counter++;
             }
-        //DrawMap(false, true);
+        DrawMap(false, true);
         int prevMinX = x;
         do
         {
@@ -40,8 +41,8 @@ public partial class Day19 : Advent.Day
                     bool test3 = code.Output == 1;
                     code.RunIntCode([x, y + targetSize]);
                     bool test4 = code.Output == 0;
-                    if (foundIt = test1 && test2 && test3 && test4) break;
-                    if (test2) break;
+                    foundIt = test1 && test2 && test3 && test4;
+                    if (foundIt || test2) break;
                 }
                 x++;
             } while (!foundIt);

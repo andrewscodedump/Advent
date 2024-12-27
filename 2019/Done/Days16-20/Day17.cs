@@ -6,7 +6,7 @@ public partial class Day17 : Advent.Day
     {
         IntCode code = new(InputNumbers[0]);
         if (Part2) code.Poke(0, 2);
-        Dictionary<(int x, int y), char> map = new();
+        Dictionary<(int x, int y), char> map = [];
         long result = 0;
         bool debug = false;
 
@@ -37,7 +37,7 @@ public partial class Day17 : Advent.Day
 
         else
         {
-            long[] instructions = new long[] { 65, 44, 66, 44, 65, 44, 67, 44, 66, 44, 65, 44, 67, 44, 65, 44, 67, 44, 66, 10, 76, 44, 49, 50, 44, 76, 44, 56, 44, 76, 44, 56, 10, 76, 44, 49, 50, 44, 82, 44, 52, 44, 76, 44, 49, 50, 44, 82, 44, 54, 10, 82, 44, 52, 44, 76, 44, 49, 50, 44, 76, 44, 49, 50, 44, 82, 44, 54, 10, 110, 10 };
+            long[] instructions = [65, 44, 66, 44, 65, 44, 67, 44, 66, 44, 65, 44, 67, 44, 65, 44, 67, 44, 66, 10, 76, 44, 49, 50, 44, 76, 44, 56, 44, 76, 44, 56, 10, 76, 44, 49, 50, 44, 82, 44, 52, 44, 76, 44, 49, 50, 44, 82, 44, 54, 10, 82, 44, 52, 44, 76, 44, 49, 50, 44, 76, 44, 49, 50, 44, 82, 44, 54, 10, 110, 10];
             do code.RunCodeWithNoReset(instructions); while (!code.CodeComplete);
             result = code.Output;
         }

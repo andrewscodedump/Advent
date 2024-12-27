@@ -6,6 +6,7 @@ public partial class Day18 : Advent.Day
     {
         #region Setup Variables and Parse Inputs
 
+        DrawMaps = false; ShowLogs = false;
         int numKeys = 0;
         (int x, int y) startPos = (0, 0);
         for (int y = 0; y < Inputs.Length; y++)
@@ -18,9 +19,9 @@ public partial class Day18 : Advent.Day
                 if ("qwertyuiopasdfghjklzxcvbnm".Contains(line[x])) numKeys++;
             }
         }
-        //DrawMap();
-        int fewestSteps = Int32.MaxValue;
-        Dictionary<((int, int), string), int> beenThere = new() { { (startPos, ""), Int32.MaxValue } };
+        DrawMap();
+        int fewestSteps = int.MaxValue;
+        Dictionary<((int, int), string), int> beenThere = new() { { (startPos, ""), int.MaxValue } };
 
         #endregion Setup Variables and Parse Inputs
 
@@ -39,11 +40,12 @@ public partial class Day18 : Advent.Day
             char whatsThere = map[pos];
             bool pickedUpKey = false;
 
-            //Debug.Print("{0}, {1}: {2}; {3}", pos.x.ToString(), pos.y.ToString(), steps, keysFound);
+
+            WriteLog($"{pos.x}, {pos.y}: {steps}; {keysFound}");
             // if we've been here before with the same set of keys (and in fewer steps), continue
             ((int, int), string) newHash = (pos, keysFound);
-            if (beenThere.ContainsKey(newHash))
-                if (steps > beenThere[newHash]) continue;
+            if (beenThere.TryGetValue(newHash, out int value) && steps > value) continue;
+
             beenThere[newHash] = steps;
 
             // If it's a key, pick it up
@@ -61,7 +63,7 @@ public partial class Day18 : Advent.Day
             // If it's a door and we don't have the key, stop.  If it's a door and we do have the key, remove from the map
             if ("QWERTYUIOPASDFGHJKLZXCVBNM".Contains(whatsThere))
             {
-                if (keysFound.Contains(Convert.ToChar((int)whatsThere + 32)))
+                if (keysFound.Contains(Convert.ToChar(whatsThere + 32)))
                     map[pos] = ' ';
                 else
                     continue;

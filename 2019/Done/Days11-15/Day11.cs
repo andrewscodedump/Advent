@@ -6,7 +6,7 @@ public partial class Day11 : Advent.Day
     {
         #region Setup Variables and Parse Inputs
 
-        Dictionary<(int, int), int> hull = new();
+        Dictionary<(int, int), int> hull = [];
         IntCode code = new(InputNumbers[0]);
         (int x, int y) curPos = (0, 0), min = (0, 0), max = (0, 0);
         char curDir = '^';
@@ -16,13 +16,13 @@ public partial class Day11 : Advent.Day
 
         do
         {
-            code.RunCodeWithNoReset(new long[] { curColour }); if (code.CodeComplete) break;
+            code.RunCodeWithNoReset([curColour]); if (code.CodeComplete) break;
             hull[curPos] = (int)code.Output;
             code.RunCodeWithNoReset(); if (code.CodeComplete) break;
             curDir = turns[(curDir, code.Output == 0 ? 'L' : 'R')];
             curPos = (curPos.x + Directions[curDir].x, curPos.y + Directions[curDir].y);
             min = (Math.Min(min.x, curPos.x), Math.Min(min.y, curPos.y)); max = (Math.Max(max.x, curPos.x), Math.Max(max.y, curPos.y));
-            curColour = hull.ContainsKey(curPos) ? hull[curPos] : 0;
+            curColour = hull.TryGetValue(curPos, out int value) ? value : 0;
         } while (true);
 
         if (Part2) PrintDictionary(hull, min, max);

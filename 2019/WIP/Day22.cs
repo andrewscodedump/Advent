@@ -7,7 +7,7 @@ public partial class Day22 : Advent.Day
         #region Setup Variables and Parse Inputs
 
         long bigCards = TestMode ? 10 : Part1 ? 10007 : 119315717514047;
-        List<(string, int)> shuffles = new();
+        List<(string, int)> shuffles = [];
         long testCard = TestMode ? 9 : Part1 ? 2019 : 2020;
         long testPos, numShuffles = Part1 ? 1 : 101741582076661;
         long targetCardPos = testCard;
@@ -18,7 +18,7 @@ public partial class Day22 : Advent.Day
             string shuffle = input.Replace("deal with increment", "inc");
             shuffle = shuffle.Replace("deal into new stack", "new 0");
 
-            shuffles.Add((shuffle.Split(' ')[0], Int32.Parse(shuffle.Split(' ')[1])));
+            shuffles.Add((shuffle.Split(' ')[0], int.Parse(shuffle.Split(' ')[1])));
         }
 
         #endregion Setup Variables and Parse Inputs

@@ -4,8 +4,8 @@ public partial class Day03 : Advent.Day
 {
     public override void DoWork()
     {
-        string[][] wires = new string[2][] { Input.Split(','), Inputs[1].Split(',') };
-        Dictionary<(int, int), int>[] wirePaths = new Dictionary<(int, int), int>[2] { new(), new() };
+        string[][] wires = [Input.Split(','), Inputs[1].Split(',')];
+        Dictionary<(int, int), int>[] wirePaths = [[], []];
 
         for (int wire = 0; wire < wires.Length; wire++)
         {
@@ -18,8 +18,7 @@ public partial class Day03 : Advent.Day
                 {
                     distance++;
                     pos.x += x; pos.y += y;
-                    if (!wirePaths[wire].ContainsKey(pos))
-                        wirePaths[wire].Add(pos, distance);
+                    wirePaths[wire].TryAdd(pos, distance);
                 }
             }
         }

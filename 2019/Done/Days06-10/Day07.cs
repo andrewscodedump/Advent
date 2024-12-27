@@ -6,8 +6,8 @@ public partial class Day07 : Advent.Day
     {
         #region Setup Variables and Parse Inputs
 
-        List<int[]> combinations = new();
-        int[] combination = new int[5] { 99, 99, 99, 99, 99 };
+        List<int[]> combinations = [];
+        int[] combination = [99, 99, 99, 99, 99];
         int offset = Part1 ? 0 : 5;
         long maxPower = 0;
         for (int i = 0; i < 5; i++)
@@ -17,21 +17,21 @@ public partial class Day07 : Advent.Day
                         for (int m = 0; m < 5; m++)
                         {
                             combination[0] = i + offset; combination[1] = j + offset; combination[2] = k + offset; combination[3] = l + offset; combination[4] = m + offset;
-                            if (combination.Length == combination.Distinct().Count()) combinations.Add(combination.ToArray());
+                            if (combination.Length == combination.Distinct().Count()) combinations.Add([.. combination]);
                         }
 
         #endregion Setup Variables and Parse Inputs
 
         foreach (int[] combo in combinations)
         {
-            IntCode[] codes = new IntCode[5] { new IntCode(InputNumbers[0]), new IntCode(InputNumbers[0]), new IntCode(InputNumbers[0]), new IntCode(InputNumbers[0]), new IntCode(InputNumbers[0]) };
+            IntCode[] codes = Enumerable.Repeat(new IntCode(InputNumbers[0]), 5).ToArray();
             long power = 0;
             bool firstTime = true;
             do
             {
                 for (int i = 0; i < 5; i++)
                 {
-                    long[] inputs = firstTime ? (new long[] { combo[i], power }) : (new long[] { power });
+                    long[] inputs = firstTime ? ([combo[i], power]) : ([power]);
                     codes[i].RunCodeWithNoReset(inputs);
                     power = codes[i].Output;
                 }

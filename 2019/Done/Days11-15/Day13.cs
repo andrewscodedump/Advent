@@ -9,14 +9,15 @@ public partial class Day13 : Advent.Day
         IntCode code = new(InputNumbers[0]);
         (int x, int y) pos = (0, 0);
         int id;
-        Dictionary<(int x, int y), int> screen = new();
+        Dictionary<(int x, int y), int> screen = [];
         int batX = 0, ballX = 0, score = 0, move = 0;
+        bool debug = false;
 
         #endregion Setup Variables and Parse Inputs
 
         do
         {
-            code.RunCodeWithNoReset(new long[] { move });
+            code.RunCodeWithNoReset([move]);
             if (code.CodeComplete) break;
             pos.x = (int)code.Output;
             code.RunCodeWithNoReset();
@@ -36,16 +37,16 @@ public partial class Day13 : Advent.Day
             move = batX == ballX ? 0 : batX > ballX ? -1 : 1;
         } while (!code.CodeComplete);
 
-        // printScreen(screen);
+        PrintScreen(screen, debug);
 
         Output = (Part1 ? screen.Values.Count(x => x == 2) : score).ToString();
     }
 
     #region Private Classes and Methods
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-    private static void PrintScreen(Dictionary<(int x, int y), int> screen)
+    private static void PrintScreen(Dictionary<(int x, int y), int> screen, bool debug)
     {
+        if (!debug) return;
         int maxX = screen.Keys.Max(x => x.x), maxY = screen.Keys.Max(x => x.y);
         for (int y = 0; y <= maxY; y++)
         {

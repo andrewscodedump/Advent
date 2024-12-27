@@ -7,7 +7,7 @@ public partial class Day16 : Advent.Day
         #region Setup Variables and Parse Inputs
 
         int phases = TestMode && Input == "12345678" ? 4 : 100;
-        int[] baseMultipliers = new int[4] { 0, 1, 0, -1 };
+        int[] baseMultipliers = [0, 1, 0, -1];
         int len = Input.Length;
         int end = int.Parse(Input[..7]);
         string work = Part1 

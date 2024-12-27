@@ -7,13 +7,12 @@ public partial class Day10 : Advent.Day
         #region Setup Variables and Parse Inputs
 
 
-        List<(int, int)> asteroids = new();
-        Dictionary<(int, int), int> counts = new();
+        List<(int, int)> asteroids = [];
+        Dictionary<(int, int), int> counts = [];
         int maxCount = 0;
         (int x, int y) baseLocation = (0, 0);
-        List<((int x, int y) pos, double angle, int distance)> targets = new();
+        List<((int x, int y) pos, double angle, int distance)> targets = [];
         double currentAngle = -1;
-        Dictionary<((int, int), (int, int)), double> angles = new();
         int height = Inputs.Length, width = Input.Length;
         for (int y = 0; y < height; y++)
             for (int x = 0; x < width; x++)
@@ -64,7 +63,7 @@ public partial class Day10 : Advent.Day
             targets.Add((asteroid, GetAngle(baseLocation, asteroid), Math.Abs(baseLocation.x - asteroid.x) + Math.Abs(baseLocation.y - asteroid.y)));
 
         int numberKilled = 0;
-        ((int x, int y) loc, double angle, int distance) nextTarget = ((0, 0), 0, 0);
+        ((int x, int y) loc, double angle, int distance) nextTarget;
         do
         {
             nextTarget = targets.Where(x => x.angle > currentAngle).OrderBy(x => x.angle).ThenBy(x => x.distance).FirstOrDefault();
@@ -85,7 +84,7 @@ public partial class Day10 : Advent.Day
 
     private static double GetAngle((int x, int y) a, (int x, int y) b)
     {
-        double angle = Math.Atan2((double)(b.x - a.x), a.y - b.y) / Math.PI * 180;
+        double angle = Math.Atan2(b.x - a.x, a.y - b.y) / Math.PI * 180;
         if (angle < 0) angle = 360 + angle;
         return angle;
     }
@@ -93,9 +92,8 @@ public partial class Day10 : Advent.Day
     private static bool IsBlocked((int x, int y) a, (int x, int y) b, (int x, int y) c)
     {
         return (c.x <= a.x || c.x <= b.x) && (c.x >= a.x || c.x >= b.x) && (c.y <= a.y || c.y <= b.y) && (c.y >= a.y || c.y >= b.y)
-&& ((c.x == a.x && c.x == b.x) || (c.y == a.y && c.y == b.y)
-|| (double)(a.x - b.x) / (double)(a.y - b.y) == (double)(a.x - c.x) / (double)(a.y - c.y));
-        //return true;
+                && ((c.x == a.x && c.x == b.x) || (c.y == a.y && c.y == b.y)
+                || (double)(a.x - b.x) / (a.y - b.y) == (double)(a.x - c.x) / (a.y - c.y));
     }
 
     #endregion Private Classes and Methods
