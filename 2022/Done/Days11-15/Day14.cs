@@ -21,9 +21,9 @@ public partial class Day14 : Advent.Day
         Output = grainCount.ToString();
     }
 
-    private Dictionary<(int, int), char> DoScan(string[] input)
+    private static Dictionary<(int, int), char> DoScan(string[] input)
     {
-        Dictionary<(int, int), char> map = new();
+        Dictionary<(int, int), char> map = [];
         foreach (string s in input)
         {
             string[] vertices = s.Split(" -> ");
@@ -35,7 +35,7 @@ public partial class Day14 : Advent.Day
         return map;
     }
 
-    private void DrawLine(Dictionary<(int, int), char> map, string from, string to)
+    private static void DrawLine(Dictionary<(int, int), char> map, string from, string to)
     {
         int startX = int.Parse(from.Split(',')[0]), startY = int.Parse(from.Split(',')[1]);
         int endX = int.Parse(to.Split(',')[0]), endY = int.Parse(to.Split(',')[1]);

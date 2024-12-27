@@ -1,7 +1,4 @@
-﻿using System.Windows.Forms;
-using System.Linq;
-
-namespace Advent2023;
+﻿namespace Advent2023;
 
 public partial class Day22 : Advent.Day
 {

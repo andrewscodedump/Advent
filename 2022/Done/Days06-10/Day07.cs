@@ -15,18 +15,12 @@ public partial class Day07 : Advent.Day
                     {
                         if (bits[1] == "cd")
                         {
-                            switch (bits[2])
+                            currentDirectory = bits[2] switch
                             {
-                                case "/":
-                                    currentDirectory = root;
-                                    break;
-                                case "..":
-                                    currentDirectory = currentDirectory.Parent;
-                                    break;
-                                default:
-                                    currentDirectory = currentDirectory.ChangeDirectory(bits[2]);
-                                    break;
-                            }
+                                "/" => root,
+                                ".." => currentDirectory.Parent,
+                                _ => currentDirectory.ChangeDirectory(bits[2]),
+                            };
                         }
                     }
                     break;
@@ -41,24 +35,24 @@ public partial class Day07 : Advent.Day
 
         long sizeRequired = 30_000_000 - (70_000_000 - root.Size);
         long result;
-        if (Part1) result = getSmallDirs(root, 100_000);
-        else result = getDirToDelete(root, sizeRequired, long.MaxValue);
+        if (Part1) result = GetSmallDirs(root, 100_000);
+        else result = GetDirToDelete(root, sizeRequired, long.MaxValue);
 
         Output = result.ToString();
     }
 
-    private class ElfDir
+    private sealed class ElfDir
     {
         public ElfDir(string name)
         {
             Name = name;
-            Children = new();
+            Children = [];
         }
 
         public ElfDir(string name, ElfDir parent)
         {
             Name = name;
-            Children = new();
+            Children = [];
             Parent = parent;
         }
         public string Name { get; set; }
@@ -71,7 +65,7 @@ public partial class Day07 : Advent.Day
         {
             //Assumes that we don't try adding the same file twice
             Size += size;
-            if(Parent is not null) Parent.AddFile(size);
+            Parent?.AddFile(size);
         }
         public ElfDir ChangeDirectory(string name)
         {
@@ -80,26 +74,26 @@ public partial class Day07 : Advent.Day
         }
     }
 
-    long getSmallDirs(ElfDir dir, long targetSize)
+    static long GetSmallDirs(ElfDir dir, long targetSize)
     {
         long result = 0;
         if (dir.Size < targetSize)
             result = dir.Size;
         foreach(ElfDir child in dir.Children)
         { 
-            result+= getSmallDirs(child, targetSize);
+            result+= GetSmallDirs(child, targetSize);
         }
         return result;
     }
 
-    long getDirToDelete(ElfDir dir, long sizeRequired, long currentSmallest)
+    static long GetDirToDelete(ElfDir dir, long sizeRequired, long currentSmallest)
     {
         long result = currentSmallest;
         if (dir.Size >= sizeRequired && dir.Size < currentSmallest)
             result = dir.Size;
         foreach(ElfDir child in dir.Children)
         {
-            result = getDirToDelete(child, sizeRequired, result);
+            result = GetDirToDelete(child, sizeRequired, result);
         }
         return result;
     }

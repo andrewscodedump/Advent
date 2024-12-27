@@ -5,9 +5,9 @@ public partial class Day21 : Advent.Day
     public override void DoWork()
     {
         if(Part1)
-            PopulateMapFromInputWithBorders('#',out int width, out int height);
+            PopulateMapFromInputWithBorders('#');
         else
-            PopulateMapFromInput(out int width, out int height);
+            PopulateMapFromInput();
 
         int stepGoal = TestMode ? Part1 ? 6 : 5000 : Part1 ? 64 : 26501365;
         // 26501365 = 5 x 11 x 481843
@@ -33,6 +33,6 @@ public partial class Day21 : Advent.Day
             }
         } while (queue.Count > 0);
         
-        Output = reachable.Where(r => r.steps == stepGoal).Count().ToString();
+        Output = reachable.Count(r => r.steps == stepGoal).ToString();
     }
 }

@@ -61,7 +61,7 @@ public partial class Day23 : Advent.Day
                 edges[((sx, sy), (x, y))] = length;
             }
         }
-        (int, int) secondFromEnd = edges.Keys.Where(k=>k.to==end).First().from;
+        (int, int) secondFromEnd = edges.Keys.First(k=>k.to==end).from;
 
         Queue<((int, int), int, Dictionary<(int, int), int>, List<(int, int)>)> queue = new();
         queue.Enqueue((start, 0, new() { { start, 0 } }, [start]));

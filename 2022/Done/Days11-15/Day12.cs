@@ -6,10 +6,9 @@ public partial class Day12 : Advent.Day
     {
         Dictionary<(int, int), int> bestSteps = [];
         PopulateMapFromInput(out int maxX, out int maxY);
-        //DrawMap(false, false);
-        (int, int) end = SimpleMap.Keys.Where(k => SimpleMap[k] == 'E').First();
+        (int, int) end = SimpleMap.Keys.First(k => SimpleMap[k] == 'E');
         SimpleMap[end] = '{';
-        (int, int) start = SimpleMap.Keys.Where(k => SimpleMap[k] == 'S').First();
+        (int, int) start = SimpleMap.Keys.First(k => SimpleMap[k] == 'S');
 
         Queue<(List<(int, int)>, int)> bfs = new();
         bfs.Enqueue(([start], 0));
@@ -20,7 +19,7 @@ public partial class Day12 : Advent.Day
         do
         {
             (List<(int, int)> path, int steps) = bfs.Dequeue();
-            (int oldX, int oldY)= path.Last();
+            (int oldX, int oldY)= path[^1];
             steps++;
             foreach((int dx, int dy) in DirectNeighbours)
             {
@@ -29,7 +28,7 @@ public partial class Day12 : Advent.Day
                 (int, int) newPos = (oldX + dx, oldY + dy);
                 if (!SimpleMap.TryGetValue(newPos, out char newHeight)) newHeight = '{';
                 if (SimpleMap[(oldX, oldY)] != 'S' && newHeight - SimpleMap[(oldX, oldY)] > 1) continue;
-                if (bestSteps.ContainsKey(newPos) && bestSteps[newPos] <= steps) continue;
+                if (bestSteps.TryGetValue(newPos, out int value) && value <= steps) continue;
                 if (path.Contains(newPos)) continue;
                 bestSteps[newPos] = steps;
                 List<(int, int)> newPath = new(path) { newPos };

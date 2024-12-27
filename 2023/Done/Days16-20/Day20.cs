@@ -5,7 +5,7 @@ public partial class Day20 : Advent.Day
     public override void DoWork()
     {
         Queue<(string, string, bool)> queue = [];
-        Dictionary<string, Component> circuit = [];
+        Dictionary<string, Component> circuit;
         int high = 0, low = 0, presses = 0;
         long result = 0;
         Dictionary<string, long> keyComponents = [];
@@ -33,7 +33,7 @@ public partial class Day20 : Advent.Day
         Output = result.ToString();
     }
 
-    private class Component
+    private sealed class Component
     {
         public string Label { get; private set; }
         public string Type { get; private set; }
@@ -94,7 +94,7 @@ public partial class Day20 : Advent.Day
         return circuit;
     }
 
-    Dictionary<string, long> FindKeyComponents(Dictionary<string, Component> circuit)
+    static Dictionary<string, long> FindKeyComponents(Dictionary<string, Component> circuit)
     {
         Dictionary<string, long> keyComponents = [];
         Queue<string> queue = [];
@@ -102,7 +102,7 @@ public partial class Day20 : Advent.Day
         do
         {
             Component comp = circuit[queue.Dequeue()];
-            if (!comp.Sources.Where(s => circuit[s.Key].Type == "Conjunction").Any()) keyComponents.Add(comp.Label, 0);
+            if (!comp.Sources.Any(s => circuit[s.Key].Type == "Conjunction")) keyComponents.Add(comp.Label, 0);
             else comp.Sources.ForEach(s => queue.Enqueue(s.Key));
         }while (queue.Count > 0);
         return keyComponents;

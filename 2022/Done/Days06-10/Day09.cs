@@ -7,7 +7,7 @@ public partial class Day09 : Advent.Day
         int numKnots = Part1 ? 2 : 10;
         (int x, int y)[] knots = new (int, int)[numKnots];
         for (int i = 0; i < numKnots; i++) knots[i] = (0, 0);
-        HashSet<(int x, int y)> visits = new() { (0, 0) };
+        HashSet<(int x, int y)> visits = [(0, 0)];
         
         foreach (string instruction in Inputs)
         {
@@ -27,8 +27,8 @@ public partial class Day09 : Advent.Day
                     }
                     else if (Math.Abs(xDiff) + Math.Abs(yDiff) == 2)
                     {
-                        knots[j].x += (xDiff) / 2;
-                        knots[j].y += (yDiff) / 2;
+                        knots[j].x += xDiff / 2;
+                        knots[j].y += yDiff / 2;
                     }
                 }
                 visits.Add(knots[numKnots - 1]);

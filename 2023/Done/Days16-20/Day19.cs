@@ -11,7 +11,6 @@ public partial class Day19 : Advent.Day
         {
             if (input == "") continue;
             else if (input.StartsWith('{')) parts.Add(new(input));
-            else if (input == "") continue;
             else workflows[input.Split('{')[0]] = new(input);
         }
 
@@ -91,7 +90,7 @@ public partial class Day19 : Advent.Day
         } while (!done);
         return result;
     }
-    private class Workflow
+    private sealed class Workflow
     {
         public Workflow (string input)
         {
@@ -105,11 +104,11 @@ public partial class Day19 : Advent.Day
         public string Default { get; private set; }
     }
 
-    private class Rule
+    private sealed class Rule
     {
         public Rule(string input)
         {
-            string[] bits = input.Split(['>', '<', ':']);
+            string[] bits = input.Split('>', '<', ':');
             Property = bits[0][0];
             Test = input[1];
             Value = int.Parse(bits[1]);
@@ -121,7 +120,7 @@ public partial class Day19 : Advent.Day
         public string Result { get; private set; }
     }
 
-    private class Part
+    private sealed class Part
     {
         public Dictionary<char, int> Properties { get; private set; } = [];
         public Part(string input) => input[1..^1].Split(',').ForEach(p => Properties[p[0]] = int.Parse(p[2..]));
@@ -132,13 +131,6 @@ public partial class Day19 : Advent.Day
             Properties['a'] = a;
             Properties['s'] = s;
         }
-
-    }
-
-    private class Property(char label, int value)
-    {
-        public char Label { get; private set; } = label;
-        public int Value { get; private set; } = value;
 
     }
 }

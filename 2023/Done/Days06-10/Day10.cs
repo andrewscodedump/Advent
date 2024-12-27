@@ -1,4 +1,6 @@
-﻿namespace Advent2023;
+﻿using System.Linq;
+
+namespace Advent2023;
 
 public partial class Day10 : Advent.Day
 {
@@ -31,15 +33,11 @@ public partial class Day10 : Advent.Day
                 }
 
         // Get a valid next move from the start point
-        foreach ((int dx, int dy) neighbour in DirectNeighbours)
+        foreach ((int dx, int dy) in DirectNeighbours.Where(n => moves.ContainsKey((SimpleMap[(location.x + n.x, location.y + n.y)], n.x, n.y))))
         {
-            if (moves.ContainsKey((SimpleMap[(location.x + neighbour.dx, location.y + neighbour.dy)], neighbour.dx, neighbour.dy)))
-            {
-                previousMove = neighbour;
-                location = (location.x + neighbour.dx, location.y + neighbour.dy);
-                steps++;
-                break;
-            }
+            previousMove = (dx, dy);
+            location = (location.x + dx, location.y + dy);
+            steps++;
         }
 
         // Follow the path

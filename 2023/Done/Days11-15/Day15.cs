@@ -9,8 +9,7 @@ public partial class Day15 : Advent.Day
         foreach (Step step in Input.Split(',').Select(i => new Step(i)))
         {
             if (Part1) totalResult += step.Hash;
-            List<Step> value = [];
-            if (step.FocalLength == -1 && boxes.TryGetValue(step.Box, out value))
+            if (step.FocalLength == -1 && boxes.TryGetValue(step.Box, out List<Step> value))
                 value.RemoveAll(b => b.LensCode == step.LensCode);
             else if (!boxes.TryGetValue(step.Box, out value))
                 boxes!.Add(step.Box, [step]);
@@ -34,11 +33,11 @@ public partial class Day15 : Advent.Day
          Output = totalResult.ToString();
     }
 
-    private class Step
+    private sealed class Step
     {
         public Step(string Input)
         {
-            LensCode = Input.Split(['=', '-'])[0];
+            LensCode = Input.Split('=', '-')[0];
             if (Input.Contains('=')) FocalLength = int.Parse(Input.Split('=')[1]);
             Hash = GetHash(Input);
             Box = GetHash(LensCode);

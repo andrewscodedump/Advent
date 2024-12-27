@@ -8,7 +8,7 @@ public partial class Day06 : Advent.Day
         for (; pos < Input.Length; pos++)
         {
             string packet = Input[(pos - len)..pos];
-            if (!packet.GroupBy(c => c).Where(g => g.Count() > 1).Any())
+            if (!packet.GroupBy(c => c).Any(g => g.Count() > 1))
                 break;
         }
 

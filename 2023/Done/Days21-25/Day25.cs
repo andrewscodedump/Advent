@@ -6,9 +6,9 @@ public partial class Day25 : Advent.Day
     {
         bool GenerateGraphWizInputs = true;
         HashSet<string> components = [];
-        Dictionary<string, List<string>> connectionMap = [];
+        Dictionary<string, List<string>> connectionMap;
         List<(string, string)> connections = [];
-        int result = 0;
+        int result;
         StringBuilder sb = new("strict graph {");
         foreach (string input in Inputs)
         {
@@ -28,8 +28,6 @@ public partial class Day25 : Advent.Day
         sb.AppendLine("}");
         if (GenerateGraphWizInputs) Debug.Print(sb.ToString());
         connectionMap = RebuildConnectionMap(connections);
-
-        int groups;
 
         /* This works for the test input, but would have taken 45 years for the live
         var combos = Combo.Combinator(connections, 3);
@@ -66,12 +64,12 @@ public partial class Day25 : Advent.Day
             connectionMap[left].Remove(right);
             connectionMap[right].Remove(left);
         }
-        groups = CountGroups(components, connectionMap, out result);
+        _ = CountGroups(components, connectionMap, out result);
 
         Output = result.ToString();
     }
 
-    private int CountGroups(HashSet<string> components, Dictionary<string, List<string>> connectionMap, out int result)
+    private static int CountGroups(HashSet<string> components, Dictionary<string, List<string>> connectionMap, out int result)
     {
         result = 0;
         List<List<string>> groups = [];
@@ -95,7 +93,7 @@ public partial class Day25 : Advent.Day
             AddToGroup(group, target, groups, connectionMap);
     }
 
-    private Dictionary<string, List<string>> RebuildConnectionMap(List<(string, string)> connections)
+    private static Dictionary<string, List<string>> RebuildConnectionMap(List<(string, string)> connections)
     {
         Dictionary<string, List<string>> connectionMap = [];
 

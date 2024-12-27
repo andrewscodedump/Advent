@@ -23,7 +23,7 @@ public partial class Day14 : Advent.Day
     {
         bool repeatFound = false;
         List<string> seenStates = [GetState(SimpleMap)];
-        int result = 0, cycles = 0;
+        int result, cycles = 0;
         do
         {
             cycles++;
@@ -43,6 +43,15 @@ public partial class Day14 : Advent.Day
         return result;
     }
 
+    private int RunSpinCycle()
+    {
+        MoveStones((0, -1));
+        MoveStones((-1, 0));
+        MoveStones((0, 1));
+        int result = MoveStones((1, 0));
+        return result;
+    }
+
     private int GetWeightFromState(string state)
     {
         int result = 0;
@@ -50,15 +59,6 @@ public partial class Day14 : Advent.Day
         for (int i = 0; i < state.Length; i++)
             if (state[i] == 'O')
                 result += height - (i / (width + 2)) + 1;
-        return result;
-    }
-
-    private int RunSpinCycle()
-    {
-        MoveStones((0, -1));
-        MoveStones((-1, 0));
-        MoveStones((0, 1));
-        int result = MoveStones((1, 0));
         return result;
     }
 

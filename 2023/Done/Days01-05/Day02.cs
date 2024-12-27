@@ -30,7 +30,7 @@ public partial class Day02 : Advent.Day
         }
         Output = result.ToString();
     }
-    private class Colour(int target)
+    private sealed class Colour(int target)
     {
         public int Target { get; set; } = target;
         public int Max { get; set; }

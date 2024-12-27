@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace Advent2022;
+﻿namespace Advent2022;
 
 public partial class Day11 : Advent.Day
 {
@@ -12,7 +10,7 @@ public partial class Day11 : Advent.Day
 
     }
 
-    private class Monkey
+    private sealed class Monkey
     {
         public Monkey() => Items = new();
         public Queue<long> Items { get; set; }
@@ -43,7 +41,7 @@ public partial class Day11 : Advent.Day
 
     private Monkey[] GetDetails()
     {
-        long numMonkeys = Inputs.Where(l=>l.StartsWith("Monkey")).Count();
+        long numMonkeys = Inputs.Count(l=>l.StartsWith("Monkey"));
         Monkey[] monkeys = new Monkey[numMonkeys];
         for (long i = 0; i < numMonkeys; i++) monkeys[i] = new();
         Monkey monkey = new();

@@ -32,9 +32,9 @@ public partial class Day13 : Advent.Day
     private int ProcessMap(List<string> rows, List<string> cols)
     {
         List<string> baseRows = new(rows), baseCols = new(cols);
-        if (!CheckOutsideRows(rows, cols, 999, out int part1Result))
-            if (!ProcessBlock(rows, 1, 999, out part1Result))
-                ProcessBlock(cols, 100, 999, out part1Result);
+        if (!CheckOutsideRows(rows, cols, 999, out int part1Result)
+        && !ProcessBlock(rows, 1, 999, out part1Result))
+            ProcessBlock(cols, 100, 999, out part1Result);
         if (Part1) return part1Result;
 
         int result = 0;
@@ -46,9 +46,9 @@ public partial class Day13 : Advent.Day
                 cols = new(baseCols);
                 rows[y] = PolishMirror(rows[y], x);
                 cols[x] = PolishMirror(cols[x], y);
-                if (!CheckOutsideRows(rows, cols, part1Result, out result))
-                    if (!ProcessBlock(rows, 1, part1Result, out result))
-                        ProcessBlock(cols, 100, part1Result, out result);
+                if (!CheckOutsideRows(rows, cols, part1Result, out result)
+                && !ProcessBlock(rows, 1, part1Result, out result))
+                    ProcessBlock(cols, 100, part1Result, out result);
                 if (result != 0) break;
             }
             if (result != 0) break;

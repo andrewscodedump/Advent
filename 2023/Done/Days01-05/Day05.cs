@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Advent2023;
+﻿namespace Advent2023;
 
 public partial class Day05 : Advent.Day
 {
@@ -24,7 +22,7 @@ public partial class Day05 : Advent.Day
             }
             else
             {
-                long[] numbers = Array.ConvertAll(line.Split([' ']), Convert.ToInt64);
+                long[] numbers = Array.ConvertAll(line.Split(' '), Convert.ToInt64);
                 mappings.Add((type, numbers[1], numbers[1] + numbers[2] - 1, numbers[0] - numbers[1]));
             }
         }
@@ -37,7 +35,7 @@ public partial class Day05 : Advent.Day
                 long sourceNumber = seedNumber;
                 do
                 {
-                    (string sourceType, long sourceFrom, long sourceTo, long destOffset)
+                    (string _, long _, long _, long destOffset)
                         = mappings.LastOrDefault(m => m.sourceType == type && m.sourceFrom <= sourceNumber && sourceNumber <= m.sourceTo, ("", 0, 0, 0));
                     sourceNumber += destOffset;
                     type = mappingTypes[type];
@@ -63,7 +61,7 @@ public partial class Day05 : Advent.Day
         Output = lowestDest.ToString();
     }
 
-    List<(long, long)> GetDestRanges(List<(long, long)> sourceRanges, List<(string sourceType, long sourceFrom, long sourceTo, long destOffset)> mappings)
+    static List<(long, long)> GetDestRanges(List<(long, long)> sourceRanges, List<(string sourceType, long sourceFrom, long sourceTo, long destOffset)> mappings)
     {
         List<(long, long)> result = [];
         foreach ((long , long) sourceRange in sourceRanges)
@@ -103,7 +101,6 @@ public partial class Day05 : Advent.Day
                 // Otherwise, add from the start of the range to the end of the mapping (with offsets), set the range start to the mapping end plus one and continue
                 else
                 {
-                    //sourceNumber = sourceNumber + destFrom - sourceFrom;
                     result.Add((testRange.from + destOffset, sourceTo + destOffset));
                     testRange = (sourceTo + 1, testRange.to);
                 }
