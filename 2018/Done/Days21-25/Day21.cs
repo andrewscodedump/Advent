@@ -5,24 +5,21 @@ public partial class Day21 : Advent.Day
     public override void DoWork()
     {
         #region Setup Variables and Parse Inputs
-        List<(string op, int[] args)> code = new();
-        int[] regs = new int[] { 0, 0, 0, 0, 0, 0 };
-#pragma warning disable CS0168 // Variable is declared but never used
-        int ipVal, ipReg;
-#pragma warning restore CS0168 // Variable is declared but never used
+        List<(string op, int[] args)> code = [];
+        int[] regs = [0, 0, 0, 0, 0, 0];
+        //int ipReg, ipVal;
+        char[] splitter = [' ', '[', ']', ',', '|'];
 
         for (int i = 0; i < Inputs.Length; i++)
         {
-            string[] bits = Inputs[i].Split(new char[] { ' ', '[', ']', ',', '|' }, StringSplitOptions.RemoveEmptyEntries);
-            if (bits[0] == "#ip")
-#pragma warning disable IDE0059 // Unnecessary assignment of a value
-                ipReg = int.Parse(bits[1]);
-#pragma warning restore IDE0059 // Unnecessary assignment of a value
-            else
+            string[] bits = Inputs[i].Split(splitter, StringSplitOptions.RemoveEmptyEntries);
+            if (bits[0] != "#ip")
                 code.Add((bits[0], new int[3] { int.Parse(bits[1]), int.Parse(bits[2]), int.Parse(bits[3]) }));
+            //else ipReg = int.Parse(bits[1]);
+
         }
         int foundValue, prevValue = 0;
-        HashSet<int> validKeys = new();
+        HashSet<int> validKeys = [];
 
         #endregion Setup Variables and Parse Inputs
 

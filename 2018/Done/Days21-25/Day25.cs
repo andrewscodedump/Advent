@@ -4,11 +4,11 @@ public partial class Day25 : Advent.Day
 {
     public override void DoWork()
     {
-        List<MyPoint> points = new();
+        List<MyPoint> points = [];
         int nextSetNumber = 0;
         foreach (string coord in Inputs)
         {
-            string[] coords = coord.Split(new char[] { ',' });
+            string[] coords = coord.Split(',');
             points.Add(new MyPoint(int.Parse(coords[0]), int.Parse(coords[1]), int.Parse(coords[2]), int.Parse(coords[3]), -1));
         }
 
@@ -24,7 +24,7 @@ public partial class Day25 : Advent.Day
                         points[first].Set = points[second].Set;
                     else if (set1 != -1 && set2 == -1)          // first one only in set
                         points[second].Set = points[first].Set;
-                    else if (set1 == set2) { }                  // both in same set
+                    else if (set1 == set2) { /* OK */}          // both in same set
                     else                                        // both in different sets
                         foreach (MyPoint point in points)
                             if (point.Set == set2) point.Set = set1;
@@ -36,7 +36,7 @@ public partial class Day25 : Advent.Day
     }
 
     #region Private Classes and Methods
-    private class MyPoint
+    private sealed class MyPoint
     {
         public int X { get; set; }
         public int Y { get; set; }

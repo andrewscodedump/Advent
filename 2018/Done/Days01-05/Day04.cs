@@ -6,9 +6,9 @@ public partial class Day04 : Advent.Day
     {
         #region Setup Variables and Parse Inputs
         (DateTime time, int guardNo, string action)[] shifts = new(DateTime, int, string)[Inputs.Length];
-        Dictionary<int, int> guardTotals = new();
-        Dictionary<(int, int), int> guardMinutes = new();
-        char[] separators = new char[] { '[', ']', ' ', '#' };
+        Dictionary<int, int> guardTotals = [];
+        Dictionary<(int, int), int> guardMinutes = [];
+        char[] separators = ['[', ']', ' ', '#'];
         int maxMins = 0, maxGuard = 0, maxMin = 0;
 
         for (int pos = 0; pos < Inputs.Length; pos++)
@@ -38,8 +38,11 @@ public partial class Day04 : Advent.Day
                 guardMinutes.TryGetValue((guard, minute), out int currMin);
                 guardMinutes[(guard, minute)] = currMin += 1;
             }
-            if (guardTotals[guard] > maxMins) maxMins = guardTotals[maxGuard = guard];
-
+            if (guardTotals[guard] > maxMins)
+            {
+                maxGuard = guard;
+                maxMins = guardTotals[maxGuard];
+            }
             pos--;
             offset += 2;
             if (pos + offset + 1 >= shifts.Length) break;

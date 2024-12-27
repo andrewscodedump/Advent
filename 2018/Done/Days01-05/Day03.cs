@@ -7,9 +7,9 @@ public partial class Day03 : Advent.Day
         #region Setup Variables and Parse Inputs
         int overlaps = 0;
         int independent = 0;
-        char[] separators = new char[] { '#', ' ', '@', 'x', ',', ':' };
-        Dictionary<(int x, int y), int> fabric = new();
-        List<(int num, int left, int top, int width, int height)> inputs = new();
+        char[] separators = ['#', ' ', '@', 'x', ',', ':'];
+        Dictionary<(int x, int y), int> fabric = [];
+        List<(int num, int left, int top, int width, int height)> inputs = [];
 
         foreach (string input in Inputs)
         {
@@ -18,7 +18,7 @@ public partial class Day03 : Advent.Day
         }
         #endregion Setup Variables and Parse Inputs
 
-        foreach ((int num, int left, int top, int width, int height) in inputs)
+        foreach ((int _, int left, int top, int width, int height) in inputs)
             for (int x = left; x < left + width; x++)
                 for (int y = top; y < top + height; y++)
                     if (fabric.ContainsKey((x, y)))

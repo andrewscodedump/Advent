@@ -5,13 +5,13 @@ public partial class Day15 : Advent.Day
     public override void DoWork()
     {
         #region Setup Variables and Parse Inputs
-        Dictionary<(int x, int y), (char state, int score, int round)> startGrid = new();
-        Dictionary<(int x, int y), (char state, int score, int round)> grid = new();
+        Dictionary<(int x, int y), (char state, int score, int round)> startGrid = [];
+        Dictionary<(int x, int y), (char state, int score, int round)> grid;
         (int score, bool finished) state;
         int round;
         int goblinPower = 3; int elfPower = 2;
         int rows = Inputs.Length, cols = Input.Length;
-        bool elfKilled;
+        bool elfKilled, debug = false;
         for (int y = 0; y < rows; y++)
             for (int x = 0; x < cols; x++)
                 startGrid.Add((x, y), (Inputs[y][x], Inputs[y][x] == 'G' || Inputs[y][x] == 'E' ? 200 : 0, -1));
@@ -25,7 +25,7 @@ public partial class Day15 : Advent.Day
             grid = new Dictionary<(int x, int y), (char state, int score, int round)>(startGrid);
             do
             {
-                //printIt(grid, rows, cols, round);
+                PrintIt(grid, rows, cols, round, debug);
                 for (int y = 0; y < rows; y++)
                 {
                     for (int x = 0; x < cols; x++)
@@ -52,13 +52,12 @@ public partial class Day15 : Advent.Day
     private bool TakeTurn(ref Dictionary<(int x, int y), (char state, int score, int moved)> grid, (int, int) pos, int round, int power)
     {
         bool elfKilled = false;
-        if (grid[pos].moved != round)
-            if (!DoCombat(ref grid, pos, power, ref elfKilled))
-            {
-                if (elfKilled) return elfKilled;
-                (int, int) newPos = DoMove(ref grid, pos, round);
-                DoCombat(ref grid, newPos, power, ref elfKilled);
-            }
+        if (grid[pos].moved != round && !DoCombat(ref grid, pos, power, ref elfKilled))
+        {
+            if (elfKilled) return elfKilled;
+            (int, int) newPos = DoMove(ref grid, pos, round);
+            DoCombat(ref grid, newPos, power, ref elfKilled);
+        }
         return elfKilled;
     }
 
@@ -99,7 +98,7 @@ public partial class Day15 : Advent.Day
         int bestLen = int.MaxValue;
         (int x, int y) bestFirst = (0, 1);
         Queue<((int x, int y) pos, (int x, int y) offset, int len, (int, int) first)> bfs = new();
-        HashSet<(int, int)> visited = new() { pos };
+        HashSet<(int, int)> visited = [pos];
 
         foreach ((int x, int y) offset in offsets.Keys)
             if (grid[(pos.x + offset.x, pos.y + offset.y)].state == '.' || grid[(pos.x + offset.x, pos.y + offset.y)].state == target)
@@ -128,7 +127,7 @@ public partial class Day15 : Advent.Day
                 if (grid[(newPos.x + offset.x, newPos.y + offset.y)].state == '.' || grid[(newPos.x + offset.x, newPos.y + offset.y)].state == target)
                     bfs.Enqueue((newPos, offset, state.len + 1, state.first));
             }
-        };
+        }
         if (bestLen < int.MaxValue)
         {
             (int, int) newPos = (pos.x + bestFirst.x, pos.y + bestFirst.y);
@@ -143,7 +142,7 @@ public partial class Day15 : Advent.Day
     private (int, bool) GetScore((char type, int score, int moved)[] grid, int round)
     {
         int goblins = 0, elves = 0;
-        foreach ((char type, int score, int moved) in grid)
+        foreach ((char type, int score, int _) in grid)
         {
             goblins += type == 'G' ? score : 0;
             elves += type == 'E' ? score : 0;
@@ -155,27 +154,26 @@ public partial class Day15 : Advent.Day
 
     private readonly Dictionary<(int x, int y), int> offsets = new() { { (0, -1), 1 }, { (-1, 0), 2 }, { (1, 0), 3 }, { (0, 1), 4 } };
 
-#pragma warning disable IDE0051 // Remove unused private members
-    private static void PrintIt(Dictionary<(int x, int y), (char state, int score, int moved)> grid, int rows, int cols, int round)
-#pragma warning restore IDE0051 // Remove unused private members
+    private static void PrintIt(Dictionary<(int x, int y), (char state, int score, int moved)> grid, int rows, int cols, int round, bool debug)
     {
-        string line, extra;
+        if (!debug) return;
+        StringBuilder line = new(), extra = new();
         Debug.WriteLine("Round: " + round);
         for (int y = 0; y < rows; y++)
         {
-            line = y.ToString("00: ");
-            extra = "   ";
+            line.Append(y.ToString("00: "));
+            extra.Append("   ");
             for (int x = 0; x < cols; x++)
             {
-                line += grid[(x, y)].state;
+                line.Append(grid[(x, y)].state);
                 if (grid[(x, y)].state == 'G' || grid[(x, y)].state == 'E')
                 {
-                    if (extra != "   ")
-                        extra += ", ";
-                    extra += grid[(x, y)].state + "(" + grid[(x, y)].score + ")";
+                    if (!extra.Equals("   "))
+                        extra.Append(", ");
+                    extra.Append(grid[(x, y)].state + "(" + grid[(x, y)].score + ")");
                 }
             }
-            Debug.WriteLine(line + extra);
+            Debug.WriteLine(line.ToString() + extra.ToString());
         }
         Debug.WriteLine("");
     }

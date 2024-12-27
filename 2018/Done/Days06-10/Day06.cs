@@ -9,18 +9,19 @@ public partial class Day06 : Advent.Day
         int maxX = 0, maxY = 0;
         int maxArea = 0;
         int distanceLimit = TestMode ? 32 : 10000;
+        char[] splitter = [',', ' '];
 
-        Dictionary<(int x, int y), int> points = new();
+        Dictionary<(int x, int y), int> points = [];
         for (int i = 0; i < Inputs.Length; i++)
         {
-            string[] coords = Inputs[i].Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] coords = Inputs[i].Split(splitter, StringSplitOptions.RemoveEmptyEntries);
             int x = int.Parse(coords[0]), y = int.Parse(coords[1]);
             minX = Math.Min(x, minX); minY = Math.Min(y, minY); maxX = Math.Max(x, maxX); maxY = Math.Max(y, maxY);
             points.Add((x, y), 0);
         }
         #endregion Setup Variables and Parse Inputs
 
-        Dictionary<(int, int), (int dist, (int, int) point)> grid = new();
+        Dictionary<(int, int), (int dist, (int, int) point)> grid = [];
         for (int x = minX - 1; x <= maxX + 1; x++)
             for (int y = minY - 1; y <= maxY + 1; y++)
             {

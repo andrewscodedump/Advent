@@ -5,8 +5,8 @@ public partial class Day13 : Advent.Day
     public override void DoWork()
     {
         #region Setup Variables and Parse Inputs
-        Dictionary<(int, int), (char track, int cart)> tracks = new();
-        Dictionary<int, (char, char, int)> carts = new();
+        Dictionary<(int, int), (char track, int cart)> tracks = [];
+        Dictionary<int, (char, char, int)> carts = [];
         int gridWidth = 0, gridHeight = Inputs.Length, time = 0;
         (int x, int y) finalLocation = (-1, -1);
 

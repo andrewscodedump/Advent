@@ -2,18 +2,21 @@
 
 public partial class Day24 : Advent.Day
 {
+
     public override void DoWork()
     {
         #region Setup Variables and Parse Inputs
-        Dictionary<int, Group> groups = new();
-        List<int> groupIDs = new();
+        Dictionary<int, Group> groups = [];
+        List<int> groupIDs = [];
+        char[] splitter = [' ', ',', '(', ')'];
+        string[] checkWords = ["with", "immune", "weak"];
 
         string prevprevWord = default, prevWord = default, currWord = default, nextWord = default;
         Group currGroup = new(string.Empty);
         int groupID = 1;
-        int winningScore = default;
+        int winningScore;
         bool immuneWins = default;
-        int immuneScore = default, infectionScore = default, prevIImmuneScore = default, prevInfectionScore = default;
+        int immuneScore = default, infectionScore = default, prevIImmuneScore, prevInfectionScore;
 
         foreach (string input in Inputs)
         {
@@ -21,7 +24,7 @@ public partial class Day24 : Advent.Day
                 currGroup.Type = input;
             else
             {
-                string[] words = input.Split(new char[] { ' ', ',', '(', ')' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] words = input.Split(splitter, StringSplitOptions.RemoveEmptyEntries);
                 for (int pos = 0; pos < words.Length; pos++)
                 {
                     prevprevWord = prevWord;
@@ -40,12 +43,12 @@ public partial class Day24 : Advent.Day
                         case "weak":
                         case "immune":
                             string charType = currWord;
-                            List<string> chars = new();
+                            List<string> chars = [];
                             pos += 2;
                             do
                             {
                                 chars.Add(words[pos++]);
-                            } while (!new string[] { "with", "immune", "weak" }.Contains(words[pos]));
+                            } while (!checkWords.Contains(words[pos]));
                             pos--;
                             if (charType == "weak") currGroup.Weaknesses = chars;
                             else currGroup.Immunities = chars;
@@ -132,20 +135,17 @@ public partial class Day24 : Advent.Day
     }
 
     #region Private Classes and Methods
-    private class Group
+    private sealed class Group(string Type)
     {
-        public string Type { get; set; }
-        public int Number { get; set; }
+        public string Type { get; set; } = Type; public int Number { get; set; }
         public int OriginalNumber { get; set; }
         public int HitPoints { get; set; }
-        public List<string> Immunities { get; set; }
-        public List<string> Weaknesses { get; set; }
+        public List<string> Immunities { get; set; } = [];
+        public List<string> Weaknesses { get; set; } = [];
         public int AttackPoints { get; set; }
         public string AttackType { get; set; }
         public int Initiative { get; set; }
-        public int Victim { get; set; }
-        public bool Selected { get; set; }
-        public Group(string Type) { this.Type = Type; Immunities = new List<string>(); Weaknesses = new List<string>(); Victim = -1; }
+        public int Victim { get; set; } = -1; public bool Selected { get; set; }
     }
     #endregion Private Classes and Methods
 }

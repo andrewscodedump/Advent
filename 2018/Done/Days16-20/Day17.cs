@@ -10,11 +10,14 @@ public partial class Day17 : Advent.Day
         flow.Enqueue(((500, 0), (0, 1), '|'));
         (int minX, int maxX, int minY, int maxY) = (int.MaxValue, 0, 0, 0);
         int water = 0;
+        char[] splitter = [' ', ',', '=', '.'];
+        bool debug = false;
+
         #endregion Setup Variables and Parse Inputs
 
         foreach (string line in Inputs)
         {
-            string[] bits = line.Split(new char[] { ' ', ',', '=', '.' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] bits = line.Split(splitter, StringSplitOptions.RemoveEmptyEntries);
             if (bits[0] == "x")
             {
                 int x = int.Parse(bits[1]);
@@ -42,16 +45,13 @@ public partial class Day17 : Advent.Day
         do
         {
             if (water == 0)
-            {// printIt(scan, limits);
-            }
+                PrintIt(scan, (minX, maxX, minY, maxY), debug);
             ((int x, int y) pos, (int x, int y) move, char fillChar) = flow.Dequeue();
             (int x, int y) newPos = (pos.x + move.x, pos.y + move.y);
             if (newPos.y >= 1867 && newPos.y <= 1883)
-            {
-                //printIt(scan, (430, 470, 1867, 1883));
-            }
+                PrintIt(scan, (430, 470, 1867, 1883), debug);
             if (newPos.y > maxY) continue;
-            if (!scan.ContainsKey(newPos)) scan.Add(newPos, '.');
+            scan.TryAdd(newPos, '.');
             char nextChar = scan[newPos];
 
             if (move == (1, 0)   // Right
@@ -196,7 +196,7 @@ public partial class Day17 : Advent.Day
 
         } while (flow.Count != 0);
 
-        //printIt(scan, limits);
+        PrintIt(scan, (minX, maxX, minY, maxY), debug);
 
         water = 0;
         int pooled = 0;
@@ -215,10 +215,10 @@ public partial class Day17 : Advent.Day
 
     #region Private Classes and Methods
     [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-    private static void PrintIt(Dictionary<(int x, int y), char> scan, (int minX, int maxX, int minY, int maxY) limits)
+    private static void PrintIt(Dictionary<(int x, int y), char> scan, (int minX, int maxX, int minY, int maxY) limits, bool debug)
     {
-        string[] lines = new string[3];
-        lines[0] = "     "; lines[1] = "     "; lines[2] = "     ";
+        if (debug) return;
+        string[] lines = ["     ", "     ", "     "];
         for (int x = limits.minX - 1; x <= limits.maxX + 1; x++)
         {
             lines[0] += x % 10 == 0 ? (x / 100 % 10).ToString() : " ";

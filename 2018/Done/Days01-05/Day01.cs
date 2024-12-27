@@ -6,12 +6,16 @@ public partial class Day01 : Advent.Day
     {
         int total = 0; int doubleValue = 0;
         bool doubleFound = false;
-        List<int> totals = new();
-        HashSet<int> found = new();
+        List<int> totals = [];
+        HashSet<int> found = [];
 
         foreach (string numString in Inputs)
         {
-            if ((doubleFound = found.Contains(doubleValue = total += int.Parse(numString))) && Part2) break;
+            total += int.Parse(numString);
+            doubleValue = total;
+            doubleFound = found.Contains(doubleValue);
+            if (doubleFound && Part2)
+                break;
             totals.Add(total);
             found.Add(total);
         }
@@ -19,8 +23,13 @@ public partial class Day01 : Advent.Day
         if (Part2)
             do
                 for (int pos = 0; !doubleFound && pos < totals.Count; pos++)
-                    if (!(doubleFound = found.Contains(doubleValue = totals[pos] += total)))
+                {
+                    totals[pos] += total;
+                    doubleValue = totals[pos];
+                    doubleFound = found.Contains(doubleValue);
+                    if (!doubleFound)
                         found.Add(totals[pos]);
+                }
             while (!doubleFound);
         Output = (Part1 ? total : doubleValue).ToString();
     }

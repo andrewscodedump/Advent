@@ -7,7 +7,7 @@ public partial class Day22 : Advent.Day
         #region Setup Variables and Parse Inputs
         long depth = InputNumbers[0][0];
         (long x, long y) target = (InputNumbers[1][0], InputNumbers[1][1]);
-        Dictionary<(int x, int y), (long gi, long el, string type, int bestTime)> map = new();
+        Dictionary<(int x, int y), (long gi, long el, string type, int bestTime)> map = [];
         long gi, el, typeScore, totalScore = 0, bestTime = (target.x * 8) + (target.y * 8) + 7;
         string type;
 
@@ -27,7 +27,7 @@ public partial class Day22 : Advent.Day
         #endregion Setup Variables and Parse Inputs
 
         Queue<((int, int) pos, int time, string kit)> bfs = new();
-        Dictionary<((int, int), string), int> alreadyBeen = new();
+        Dictionary<((int, int), string), int> alreadyBeen = [];
         if (Part2) bfs.Enqueue(((0, 0), 0, "Torch"));
 
         while (bfs.Count > 0)
@@ -60,28 +60,28 @@ public partial class Day22 : Advent.Day
                 switch (map[newPos].type)
                 {
                     case "rocky":
-                        if (currentType != "wet")
-                            if (!alreadyBeen.ContainsKey((newPos, "Torch")) || alreadyBeen[(newPos, "Torch")] > time + (kit == "Torch" ? 1 : 8))
-                                bfs.Enqueue((newPos, time + (kit == "Torch" ? 1 : 8), "Torch"));
-                        if (currentType != "narrow")
-                            if (!alreadyBeen.ContainsKey((newPos, "Climbing")) || alreadyBeen[(newPos, "Climbing")] > time + (kit == "Climbing" ? 1 : 8))
-                                bfs.Enqueue((newPos, time + (kit == "Climbing" ? 1 : 8), "Climbing"));
+                        if (currentType != "wet"
+                        && (!alreadyBeen.ContainsKey((newPos, "Torch")) || alreadyBeen[(newPos, "Torch")] > time + (kit == "Torch" ? 1 : 8)))
+                            bfs.Enqueue((newPos, time + (kit == "Torch" ? 1 : 8), "Torch"));
+                        if (currentType != "narrow"
+                        && (!alreadyBeen.ContainsKey((newPos, "Climbing")) || alreadyBeen[(newPos, "Climbing")] > time + (kit == "Climbing" ? 1 : 8)))
+                            bfs.Enqueue((newPos, time + (kit == "Climbing" ? 1 : 8), "Climbing"));
                         break;
                     case "wet":
-                        if (currentType != "narrow")
-                            if (!alreadyBeen.ContainsKey((newPos, "Climbing")) || alreadyBeen[(newPos, "Climbing")] > time + (kit == "Climbing" ? 1 : 8))
-                                bfs.Enqueue((newPos, time + (kit == "Climbing" ? 1 : 8), "Climbing"));
-                        if (currentType != "rocky")
-                            if (!alreadyBeen.ContainsKey((newPos, "")) || alreadyBeen[(newPos, "")] > time + (kit == "" ? 1 : 8))
-                                bfs.Enqueue((newPos, time + (kit == "" ? 1 : 8), ""));
+                        if (currentType != "narrow"
+                        && (!alreadyBeen.ContainsKey((newPos, "Climbing")) || alreadyBeen[(newPos, "Climbing")] > time + (kit == "Climbing" ? 1 : 8)))
+                            bfs.Enqueue((newPos, time + (kit == "Climbing" ? 1 : 8), "Climbing"));
+                        if (currentType != "rocky"
+                        && (!alreadyBeen.ContainsKey((newPos, "")) || alreadyBeen[(newPos, "")] > time + (kit == "" ? 1 : 8)))
+                            bfs.Enqueue((newPos, time + (kit == "" ? 1 : 8), ""));
                         break;
                     case "narrow":
-                        if (currentType != "wet")
-                            if (!alreadyBeen.ContainsKey((newPos, "Torch")) || alreadyBeen[(newPos, "Torch")] > time + (kit == "Torch" ? 1 : 8))
-                                bfs.Enqueue((newPos, time + (kit == "Torch" ? 1 : 8), "Torch"));
-                        if (currentType != "rocky")
-                            if (!alreadyBeen.ContainsKey((newPos, "")) || alreadyBeen[(newPos, "")] > time + (kit == "" ? 1 : 8))
-                                bfs.Enqueue((newPos, time + (kit == "" ? 1 : 8), ""));
+                        if (currentType != "wet"
+                        && (!alreadyBeen.ContainsKey((newPos, "Torch")) || alreadyBeen[(newPos, "Torch")] > time + (kit == "Torch" ? 1 : 8)))
+                            bfs.Enqueue((newPos, time + (kit == "Torch" ? 1 : 8), "Torch"));
+                        if (currentType != "rocky"
+                        && (!alreadyBeen.ContainsKey((newPos, "")) || alreadyBeen[(newPos, "")] > time + (kit == "" ? 1 : 8)))
+                            bfs.Enqueue((newPos, time + (kit == "" ? 1 : 8), ""));
                         break;
                     default:
                         break;

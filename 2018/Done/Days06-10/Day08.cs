@@ -13,9 +13,9 @@ public partial class Day08 : Advent.Day
         Output = (Part1 ? total1 : total2).ToString();
     }
 
-    private long ProcessNode(ref int pointer, ref long total, long[] nodes)
+    private static long ProcessNode(ref int pointer, ref long total, long[] nodes)
     {
-        List<long> children = new();
+        List<long> children = [];
         long localSum = 0;
         long numChildren = nodes[pointer];
         long numMeta = nodes[pointer + 1];

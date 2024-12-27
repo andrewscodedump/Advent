@@ -4,8 +4,8 @@ public partial class Day14 : Advent.Day
 {
     public override void DoWork()
     {
-        List<long> scores = new() { 3, 7 };
-        string testString = "37";
+        List<long> scores = [3, 7];
+        StringBuilder testString = new("37");
         int elf1Pos = 0, elf2Pos = 1, pos = 0;
         long limit = InputNumbers[0][0];
         bool foundIt = false;
@@ -19,18 +19,18 @@ public partial class Day14 : Advent.Day
                 if (i == 1 || newScores[i] != 0)
                 {
                     scores.Add(newScores[i]);
-                    testString += newScores[i];
+                    testString.Append(newScores[i]);
                     if (testString.Length > limit.ToString().Length)
                     {
-                        testString = testString[1..];
+                        testString = new(testString.ToString()[1..]);
                         pos++;
                     }
-                    foundIt = testString == InputNumbers[0][0].ToString();
+                    foundIt = testString.ToString() == InputNumbers[0][0].ToString();
                     if (Part2 && foundIt) break;
                 }
             if (Part2 && foundIt) break;
-            elf1Pos = (int)(((long)elf1Pos + scores[elf1Pos] + 1) % scores.Count);
-            elf2Pos = (int)(((long)elf2Pos + scores[elf2Pos] + 1) % scores.Count);
+            elf1Pos = (int)((elf1Pos + scores[elf1Pos] + 1) % scores.Count);
+            elf2Pos = (int)((elf2Pos + scores[elf2Pos] + 1) % scores.Count);
         } while ((Part2 && !foundIt) || (Part1 && scores.Count < limit + 11));
 
         Output = Part1 ? string.Join("", scores).Substring((int)limit, 10) : pos.ToString();

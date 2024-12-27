@@ -9,24 +9,24 @@ public partial class Day07 : Advent.Day
         int timeTaken = 0;
         int secondsPerStep = TestMode ? 0 : 60;
         int numWorkers = Part1 ? 1 : TestMode ? 2 : 5;
-        Dictionary<char, List<char>> allSteps = new();
-        SortedSet<char> availSteps = new();
-        Dictionary<char, int> inProgress = new();
+        Dictionary<char, List<char>> allSteps = [];
+        SortedSet<char> availSteps = [];
+        Dictionary<char, int> inProgress = [];
         Queue<int> availWorkers = new(Enumerable.Range(0, numWorkers));
 
         foreach (string instruction in Inputs)
         {
             char precursor = char.Parse(instruction.Split(' ')[1]), dependent = char.Parse(instruction.Split(' ')[7]);
-            if (allSteps.ContainsKey(dependent))
+            if (allSteps.TryGetValue(dependent, out List<char> value))
             {
-                allSteps[dependent].Add(precursor);
+                value.Add(precursor);
                 availSteps.Remove(dependent);
             }
             else
-                allSteps.Add(dependent, new List<char> { precursor });
+                allSteps.Add(dependent, [precursor]);
             if (!allSteps.ContainsKey(precursor))
             {
-                allSteps.Add(precursor, new List<char>());
+                allSteps.Add(precursor, []);
                 availSteps.Add(precursor);
             }
         }
@@ -52,12 +52,11 @@ public partial class Day07 : Advent.Day
                     inProgress.Remove(ipItem);
                     availWorkers.Enqueue(0);
                     foreach (char item in allSteps.Keys)
-                        if (allSteps[item].Contains(ipItem))
-                        {
-                            allSteps[item].Remove(ipItem);
-                            if (allSteps[item].Count == 0)
-                                availSteps.Add(item);
-                        }
+                    {
+                        allSteps[item].Remove(ipItem);
+                        if (allSteps[item].Count == 0)
+                            availSteps.Add(item);
+                    }
                 }
             }
         } while (availSteps.Count > 0 || inProgress.Count > 0);

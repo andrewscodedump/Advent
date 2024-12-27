@@ -39,10 +39,10 @@ public partial class Day20 : Advent.Day
                                         else if (x == 0 || y == 0)
                                             if (!map.ContainsKey((newPos.x + x, newPos.y + y)))
                                                 map.Add((newPos.x + x, newPos.y + y), ('?', int.MaxValue));
-                                            else { }
+                                            else { /* Don't care */ }
                                         else
                                             if (!map.ContainsKey((newPos.x + x, newPos.y + y)))
-                                            map.Add((newPos.x + x, newPos.y + y), ('#', 0));
+                                                map.Add((newPos.x + x, newPos.y + y), ('#', 0));
                                 pos = newPos;
                                 ptr++;
                             } while ("NSEW".Contains(route[ptr]));
@@ -54,7 +54,7 @@ public partial class Day20 : Advent.Day
                         case ')':
                             break;
                         case '(':
-                            List<((int, int), int, int, int)> tbq = new();
+                            List<((int, int), int, int, int)> tbq = [];
                             int offset = 0;
                             newPos = (pos.x, pos.y);
                             tbq.Add((newPos, ++ptr, len, 0));
