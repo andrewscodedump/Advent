@@ -24,10 +24,6 @@ public partial class Day23 : Advent.Day
                     registers[parts[1]]--;
                     break;
                 case "jnz":
-                    isNumber = int.TryParse(parts[1], out test);
-                    if ((isNumber && test != 0) || (!isNumber && registers[parts[1]] != 0))
-                        pos += int.Parse(parts[2]) - 1;
-                    break;
                 case "tgl":
                     isNumber = int.TryParse(parts[1], out test);
                     if ((isNumber && test != 0) || (!isNumber && registers[parts[1]] != 0))

@@ -5,7 +5,7 @@ public partial class Day15 : Advent.Day
     public override void DoWork()
     {
         int currentTime = 0;
-        List<Disk> disks = new();
+        List<Disk> disks = [];
 
         // Populate list of disks
         InputNumbers.ForEach(input => disks.Add(new Disk(input[0], input[1], input[3] - (input[2] % input[1]))));
@@ -20,17 +20,11 @@ public partial class Day15 : Advent.Day
         Output = currentTime.ToString();
     }
 
-    private class Disk
+    private sealed class Disk(long number, long positions, long startingPosition)
     {
-        public Disk(long number, long positions, long startingPosition)
-        {
-            Number = number;
-            Positions = positions;
-            StartingPosition = startingPosition;
-        }
-        public long Number { get; set; }
-        public long Positions { get; set; }
-        public long StartingPosition { get; set; }
+        public long Number { get; set; } = number;
+        public long Positions { get; set; } = positions;
+        public long StartingPosition { get; set; } = startingPosition;
 
         public bool IsAtZero(int releaseTime) => (StartingPosition + ((releaseTime + Number) % Positions)) % Positions == 0;
     }

@@ -1,4 +1,6 @@
-﻿namespace Advent2016;
+﻿using System.Linq;
+
+namespace Advent2016;
 
 public partial class Day07 : Advent.Day
 {
@@ -26,7 +28,7 @@ public partial class Day07 : Advent.Day
                         inside = false;
                         continue;
                     }
-                    else if (address.Substring(pos, 4).Contains('[') || address.Substring(pos, 4).Contains('['))
+                    else if (address.Substring(pos, 4).Contains('[') || address.Substring(pos, 4).Contains(']'))
                         continue;
                     else if (address.Substring(pos, 1) == address.Substring(pos + 3, 1)
                         && address.Substring(pos + 1, 1) == address.Substring(pos + 2, 1)
@@ -50,8 +52,8 @@ public partial class Day07 : Advent.Day
         {
             foreach (string address in Inputs)
             {
-                ArrayList inner = new();
-                ArrayList outer = new();
+                List<string> inner = [];
+                List<string> outer = [];
 
                 for (int pos = 0; pos < address.Length - 2; pos++)
                 {
@@ -79,12 +81,8 @@ public partial class Day07 : Advent.Day
                             outer.Add(reverse);
                     }
                 }
-                foreach (string test in outer)
-                    if (inner.Contains(test))
-                    {
-                        okNumber++;
-                        break;
-                    }
+
+                if (outer.Any(inner.Contains)) okNumber++;
             }
         }
         Output = okNumber.ToString();

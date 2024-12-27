@@ -5,12 +5,12 @@ public partial class Day18 : Advent.Day
     public override void DoWork()
     {
         int numberSafe = 0;
-        List<List<bool>> floor = new();
+        List<List<bool>> floor = [];
         string firstRow = Input;
         int numRows = Part2 ? 400_000 : !TestMode ? 40 : Part1 ? firstRow == "..^^." ? 3 : 10 : 40;
         for (int row = 0; row < numRows; row++)
         {
-            floor.Add(new List<bool>());
+            floor.Add([]);
             floor[row].Add(true);
             for (int col = 1; col <= firstRow.Length; col++)
             {

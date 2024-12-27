@@ -2,12 +2,11 @@
 
 public partial class Day02 : Advent.Day
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
     public override void DoWork()
     {
         int row = Part1 ? 1 : 2;
         int col = Part1 ? 1 : 0;
-        string code = string.Empty;
+        StringBuilder code = new();
 
         foreach (string sequence in Inputs)
         {
@@ -41,22 +40,22 @@ public partial class Day02 : Advent.Day
             }
 
             if (Part1)
-                code += ((row * 3) + col + 1).ToString();
+                code.Append((row * 3) + col + 1);
             else
                 switch (row)
                 {
                     case 0:
                     case 1:
-                        code += (col + 1).ToString();
+                        code.Append(col + 1);
                         break;
                     case 2:
-                        code += (col + 5).ToString();
+                        code.Append(col + 5);
                         break;
                     case 3:
-                        code += (col + 9).ToString("X1");
+                        code.Append((col + 9).ToString("X1"));
                         break;
                     case 4:
-                        code += "D";
+                        code.Append('D');
                         break;
                     default:
                         break;

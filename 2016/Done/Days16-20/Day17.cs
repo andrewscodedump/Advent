@@ -19,9 +19,8 @@ public partial class Day17 : Advent.Day
                     shortestPath = check.Path;
                     break;
                 }
-                else if (Part2)
-                    if (check.Path.Length > longest)
-                        longest = check.Path.Length;
+                else if (Part2 && check.Path.Length > longest)
+                    longest = check.Path.Length;
                 continue;
             }
             string hash = GetMD5Hash(MD5, Input + check.Path);
@@ -39,7 +38,7 @@ public partial class Day17 : Advent.Day
         Output = Part1 ? shortestPath.ToString() : longest.ToString();
     }
 
-    private class State
+    private sealed class State
     {
         public State() { }
         public State(string path, int x, int y)

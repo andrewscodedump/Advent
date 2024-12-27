@@ -10,7 +10,7 @@ public partial class Day13 : Advent.Day
         Point target = TestMode ? new Point(7, 4) : new Point(31, 39);
         Queue bfs = new();
         bfs.Enqueue(currentRoom);
-        HashSet<Point> alreadyVisited = new();
+        HashSet<Point> alreadyVisited = [];
 
         do
         {
@@ -47,12 +47,9 @@ public partial class Day13 : Advent.Day
         Output = Part1 ? bestSteps.ToString() : alreadyVisited.Count.ToString();
     }
 
-    private class Location
+    private sealed class Location(int x, int y, int steps)
     {
-        public Location(int x, int y, int steps) { Position = new Point(x, y); Steps = steps; }
-        public Point Position { get; set; }
-        public int Steps { get; set; }
-        public Location Up() => new(Position.X, Position.Y - 1, Steps + 1);
+        public Point Position { get; set; } = new Point(x, y); public int Steps { get; set; } = steps; public Location Up() => new(Position.X, Position.Y - 1, Steps + 1);
         public Location Down() => new(Position.X, Position.Y + 1, Steps + 1);
         public Location Left() => new(Position.X - 1, Position.Y, Steps + 1);
         public Location Right() => new(Position.X + 1, Position.Y, Steps + 1);

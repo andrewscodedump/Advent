@@ -8,7 +8,7 @@ public partial class Day16 : Advent.Day
         Output = CheckSumify(Dragonify(Input, diskSize)).ToString();
     }
 
-    private string Dragonify(string input, int requiredLength)
+    private static string Dragonify(string input, int requiredLength)
     {
         char[] arr = input.ToCharArray();
         Array.Reverse(arr);
@@ -20,7 +20,7 @@ public partial class Day16 : Advent.Day
         return work.Length >= requiredLength ? work[..requiredLength] : Dragonify(work, requiredLength);
     }
 
-    private string CheckSumify(string input)
+    private static string CheckSumify(string input)
     {
         StringBuilder work = new();
         for (int i = 0; i < input.Length; i += 2)

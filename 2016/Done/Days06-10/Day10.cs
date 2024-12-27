@@ -7,8 +7,8 @@ public partial class Day10 : Advent.Day
         int requiredRobot = -1;
         bool somethingsChanged;
 
-        Dictionary<int, (int first, int second)> robots = new();
-        Dictionary<int, int> outputs = new();
+        Dictionary<int, (int first, int second)> robots = [];
+        Dictionary<int, int> outputs = [];
 
         // Do all the gets first
         foreach (string rule in Inputs)
@@ -19,8 +19,8 @@ public partial class Day10 : Advent.Day
                 int bot = int.Parse(words[5]);
                 int input = int.Parse(words[1]);
 
-                if (robots.ContainsKey(bot))
-                    robots[bot] = (input, robots[bot].first);
+                if (robots.TryGetValue(bot, out (int first, int second) value))
+                    robots[bot] = (input, value.first);
                 else
                     robots.Add(bot, (input, -1));
             }
@@ -37,33 +37,27 @@ public partial class Day10 : Advent.Day
                 {
                     int bot = int.Parse(words[1]);
 
-                    if (robots.ContainsKey(bot) && robots[bot].second != -1)
+                    if (robots.TryGetValue(bot, out (int first, int second) value) && value.second != -1)
                     {
                         int passLowTo = int.Parse(words[6]);
-                        int low = Math.Min(robots[bot].first, robots[bot].second);
+                        int low = Math.Min(value.first, value.second);
                         int passHighTo = int.Parse(words[11]);
-                        int high = Math.Max(robots[bot].first, robots[bot].second);
+                        int high = Math.Max(value.first, value.second);
 
                         if (words[5] == "bot")
-                            if (robots.ContainsKey(passLowTo))
-                                robots[passLowTo] = (low, robots[passLowTo].first);
+                            if (robots.TryGetValue(passLowTo, out (int first, int second) value2))
+                                robots[passLowTo] = (low, value2.first);
                             else
                                 robots.Add(passLowTo, (low, -1));
-                        else if (outputs.ContainsKey(passLowTo))
+                        else if (!outputs.TryAdd(passLowTo, low))
                             outputs[passLowTo] = low;
-                        else
-                            outputs.Add(passLowTo, low);
-
                         if (words[10] == "bot")
-                            if (robots.ContainsKey(passHighTo))
-                                robots[passHighTo] = (high, robots[passHighTo].first);
+                            if (robots.TryGetValue(passHighTo, out (int first, int second) value3))
+                                robots[passHighTo] = (high, value3.first);
                             else
                                 robots.Add(passHighTo, (high, -1));
-                        else if (outputs.ContainsKey(passHighTo))
+                        else if (!outputs.TryAdd(passHighTo, high))
                             outputs[passHighTo] = high;
-                        else
-                            outputs.Add(passHighTo, high);
-
                         robots[bot] = (-1, -1);
 
                         if ((TestMode && low == 2 && high == 5) || (!TestMode && low == 17 && high == 61))

@@ -5,7 +5,7 @@ public partial class Day05 : Advent.Day
     public override void DoWork()
     {
         int currentNumber = 0, found = 0;
-        string password = "";
+        StringBuilder password = new();
         char[] password2 = new char[8];
 
         do
@@ -15,7 +15,7 @@ public partial class Day05 : Advent.Day
             if (hash.StartsWith("00000"))
                 if (Part1)
                 {
-                    password += hash.Substring(5, 1);
+                    password.Append(hash.AsSpan(5, 1));
                     found++;
                 }
 

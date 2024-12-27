@@ -23,11 +23,7 @@ public partial class Day11 : Advent.Day
             {
                 // Get all valid combinations from this floor
                 List<(string, string)> thisFloor = floors[currentFloor];
-                List<Move> moves = [];
-                List<Move> moves1Up = [];
-                List<Move> moves1Down = [];
-                List<Move> moves2Up = [];
-                List<Move> moves2Down = [];
+                List<Move> moves = [], moves1Up = [], moves1Down = [], moves2Up = [], moves2Down = [];
                 Move move = new();
 
                 for (int i = 0; i < thisFloor.Count; i++)

@@ -6,12 +6,12 @@ public partial class Day22 : Advent.Day
     {
         if (TestMode) return;
 
-        List<Node> used = new(), avail = new();
-        Dictionary<Point, int> grid = new();
+        List<Node> used = [], avail = [];
+        Dictionary<Point, int> grid = [];
 
         PopulateLists(used, avail, grid);
 
-        List<Point> numbers = new();
+        List<Point> numbers = [];
         int currPointer = 0;
         long currUsed = -1;
         int number = 0;
@@ -48,7 +48,7 @@ public partial class Day22 : Advent.Day
         Output = "OutputVariable".ToString();
     }
 
-    private class Node
+    private sealed class Node
     {
         public Node(long x, long y, long avail, long used)
         {
@@ -86,15 +86,15 @@ public partial class Day22 : Advent.Day
         {
             for (int y = 0; y < maxY; y++)
             {
-                string line = "";
+                StringBuilder line = new();
                 for (int x = 0; x < maxX; x++)
                 {
                     Point sqr = new(x, y);
                     int size = grid[sqr];
-                    line += size.ToString() + (x == maxX - 1 ? "" : ", ");
+                    line.Append(size.ToString() + (x == maxX - 1 ? "" : ", "));
                 }
                 if (debug)
-                    Debug.Print(line);
+                    Debug.Print(line.ToString());
             }
             return;
         }

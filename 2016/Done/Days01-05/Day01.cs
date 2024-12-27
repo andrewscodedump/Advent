@@ -6,7 +6,7 @@ public partial class Day01 : Advent.Day
     {
         int direction = 0;
         (int x, int y) position = (0,0);
-        int[] hSteps = new int[] { 0, 1, 0, -1 }, vSteps = new int[] { 1, 0, -1, 0 };
+        int[] hSteps = [0, 1, 0, -1], vSteps = [1, 0, -1, 0];
         bool gotThere = false;
         Dictionary<(int, int), bool> visited = new() { { position, true } };
 
@@ -14,7 +14,7 @@ public partial class Day01 : Advent.Day
 
         foreach (string step in steps)
         {
-            direction = (direction + (step.StartsWith("R") ? 1 : 3)) % 4;
+            direction = (direction + (step.StartsWith('R') ? 1 : 3)) % 4;
 
             if (Part1)
             {
@@ -27,10 +27,8 @@ public partial class Day01 : Advent.Day
                 {
                     position.x += hSteps[direction];
                     position.y += vSteps[direction];
-                    if (visited.ContainsKey(position))
+                    if (!visited.TryAdd(position, true))
                         gotThere = true;
-                    else
-                        visited.Add(position, true);
                 }
             }
             if (gotThere) break;

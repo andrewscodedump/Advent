@@ -4,7 +4,7 @@ public partial class Day06 : Advent.Day
 {
     public override void DoWork()
     {
-        string message = string.Empty;
+        StringBuilder message = new();
         int messageLength = Input.Length;
         int numberOfMessages = Inputs.Length;
 
@@ -49,7 +49,7 @@ public partial class Day06 : Advent.Day
                     bestCount = currentCount;
                 }
             }
-            message += bestLetter;
+            message.Append(bestLetter);
         }
         Output = message.ToString();
     }

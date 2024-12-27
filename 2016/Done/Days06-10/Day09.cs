@@ -6,7 +6,7 @@ public partial class Day09 : Advent.Day
 
     private long GetLength(string input)
     {
-        if (input.StartsWith("("))
+        if (input.StartsWith('('))
         {
             int nextBracket = input.IndexOf(')') - 1;
             string[] numbers = input.Substring(1, nextBracket).Split('x');
@@ -18,7 +18,7 @@ public partial class Day09 : Advent.Day
         }
         else if (input.Contains('('))
         {
-            int pos = input.IndexOf("(");
+            int pos = input.IndexOf('(');
             return pos + GetLength(input[pos..]);
         }
         else

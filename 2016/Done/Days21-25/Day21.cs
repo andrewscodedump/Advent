@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Advent2016;
+﻿namespace Advent2016;
 
 public partial class Day21 : Advent.Day
 {

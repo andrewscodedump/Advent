@@ -13,7 +13,6 @@ public partial class Day25 : Advent.Day
         bool notValid = false;
         int currDigit = int.MaxValue;
         int numDigits = 0;
-        string outputSoFar = "";
 
         Dictionary<string, int> registers = new() { { "a", 0 }, { "b", 0 }, { "c", 0 }, { "d", 0 } };
         do
@@ -47,7 +46,6 @@ public partial class Day25 : Advent.Day
                     {
                         currDigit = output;
                         numDigits++;
-                        outputSoFar += currDigit;
                     }
 
                     break;
@@ -91,7 +89,6 @@ public partial class Day25 : Advent.Day
                 notValid = false;
                 currDigit = int.MaxValue;
                 numDigits = 0;
-                outputSoFar = "";
                 continue;
             }
             if (numDigits == 1000)

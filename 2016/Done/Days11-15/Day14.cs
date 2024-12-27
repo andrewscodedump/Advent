@@ -1,4 +1,6 @@
-﻿namespace Advent2016;
+﻿using System.Linq;
+
+namespace Advent2016;
 
 public partial class Day14 : Advent.Day
 {
@@ -21,18 +23,13 @@ public partial class Day14 : Advent.Day
             currentRecord++;
             int firstMatch = int.MaxValue;
             (string, string) letterFound = ("", "");
-            // for 0 to F
-            foreach ((string first, string second) pair in pairs)
+            foreach (var pair in pairs.Where(pair => hashes[0].Contains(pair.Item1))) // look for triples in current for 0 to F
             {
-                // look for triples in current
-                if (hashes[0].Contains(pair.first))
+                matchFoundAt = hashes[0].IndexOf(pair.Item1);
+                if (matchFoundAt < firstMatch)
                 {
-                    matchFoundAt = hashes[0].IndexOf(pair.first);
-                    if (matchFoundAt < firstMatch)
-                    {
-                        firstMatch = matchFoundAt;
-                        letterFound = pair;
-                    }
+                    firstMatch = matchFoundAt;
+                    letterFound = pair;
                 }
             }
 

@@ -4,8 +4,8 @@ public partial class Day24 : Advent.Day
 {
     public override void DoWork()
     {
-        Dictionary<Point, char> map = new();
-        Dictionary<Pair, int> pairs = new();
+        Dictionary<Point, char> map = [];
+        Dictionary<Pair, int> pairs = [];
 
         PopulateMap(map, out Point startPoint, out List<Point> targets);
         GetPairs(pairs, map, targets);
@@ -16,7 +16,7 @@ public partial class Day24 : Advent.Day
     private void PopulateMap(Dictionary<Point, char> map, out Point startPoint, out List<Point> targets)
     {
         startPoint = new Point();
-        targets = new List<Point>();
+        targets = [];
         for (int y = 0; y < Inputs.Length; y++)
             for (int x = 0; x < Inputs[y].Length; x++)
             {
@@ -57,21 +57,21 @@ public partial class Day24 : Advent.Day
         int bestSteps = int.MaxValue;
         Point start = pair.from;
         Point end = pair.to;
-        Dictionary<Point, int> bestMoves = new();
+        Dictionary<Point, int> bestMoves = [];
 
         Stack dfs = new();
-        dfs.Push(new Move { Cell = start, Visits = new List<Point>() });
+        dfs.Push(new Move { Cell = start, Visits = [] });
 
         while (dfs.Count > 0)
         {
             Move move = (Move)dfs.Pop();
             Point currPoint = new(move.Cell.X, move.Cell.Y);
-            List<Point> visits = visits = new(move.Visits);
+            List<Point> visits = new(move.Visits);
 
-            if (!bestMoves.ContainsKey(currPoint))
+            if (!bestMoves.TryGetValue(currPoint, out int value))
                 // We've not been to this cell already (in any iterations), so set this as the best so far
                 bestMoves.Add(currPoint, visits.Count - 1);
-            else if (visits.Count - 1 >= bestMoves[currPoint])
+            else if (visits.Count - 1 >= value)
                 // We've already been to this square in the same or fewer moves, so stop trying
                 continue;
             else
@@ -90,7 +90,7 @@ public partial class Day24 : Advent.Day
                 continue;
             }
 
-            Dictionary<Point, decimal> availMoves = new();
+            Dictionary<Point, decimal> availMoves = [];
             // Get all valid moves
             for (int x = 1; x >= -1; x--)
                 for (int y = -1; y <= 1; y++)
@@ -123,7 +123,7 @@ public partial class Day24 : Advent.Day
     {
         int bestDist = int.MaxValue;
         Queue bfs = new();
-        bfs.Enqueue(new Move { Cell = start, Visits = new List<Point> { start }, Distance = 0 });
+        bfs.Enqueue(new Move { Cell = start, Visits = [start], Distance = 0 });
 
         while (bfs.Count > 0)
         {
@@ -170,7 +170,7 @@ public partial class Day24 : Advent.Day
     private static decimal GetMod(Point from, Point to) => ((from.X - to.X) * (from.X - to.X)) + ((from.Y - to.Y) * (from.Y - to.Y));
 
     private struct Pair { public Point from; public Point to; }
-    private class Move
+    private sealed class Move
     {
         public Point Cell { get; set; }
         public List<Point> Visits { get; set; }

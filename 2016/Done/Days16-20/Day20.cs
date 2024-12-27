@@ -6,12 +6,12 @@ public partial class Day20 : Advent.Day
     {
         if (TestMode && Part2) return;
 
-        List<uint[]> exclusions = new();
+        List<uint[]> exclusions = [];
         uint firstOne = uint.MaxValue;
         uint count = 0;
 
         foreach (string item in Inputs)
-            exclusions.Add(new uint[] { uint.Parse(item.Split('-')[0]), uint.Parse(item.Split('-')[1]) });
+            exclusions.Add([uint.Parse(item.Split('-')[0]), uint.Parse(item.Split('-')[1])]);
 
         // Sort the list into numerical order on first number
         exclusions.Sort(delegate (uint[] a, uint[] b) { return a[0].CompareTo(b[0]); });
