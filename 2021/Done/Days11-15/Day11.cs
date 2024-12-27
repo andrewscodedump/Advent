@@ -29,24 +29,17 @@ public partial class Day11 : Advent.Day
             foreach ((int x, int y) in map.Keys.Where(p => !map[p].IsDummy))
                     map[(x, y)].Reset();
             round++;
-            allFlash = map.Where(o=>o.Value.Energy==0).Count() == map.Count;
+            allFlash = map.Count(o=>o.Value.Energy==0) == map.Count;
         } while ((Part1 && round < rounds) || (Part2 && !allFlash));
 
         Output = (Part1 ? flashes : round).ToString();
     }
      
-    private class Octopus
+    private sealed class Octopus(int energy, bool isSpent, bool isDummy)
     {
-        public int Energy { get; private set; }
-        public bool IsSpent { get; private set; }
-        public bool IsDummy { get; private set; }
-
-        public Octopus(int energy,bool isSpent,bool isDummy)
-        {
-            Energy = energy;
-            IsSpent = isSpent;
-            IsDummy = isDummy;
-        }
+        public int Energy { get; private set; } = energy;
+        public bool IsSpent { get; private set; } = isSpent;
+        public bool IsDummy { get; private set; } = isDummy;
 
         public void Energise()
         {
@@ -70,7 +63,7 @@ public partial class Day11 : Advent.Day
     }
     private static Dictionary<(int, int), Octopus> FillMapWithBorders(string[] inputs)
     {
-        Dictionary<(int, int), Octopus> map = new();
+        Dictionary<(int, int), Octopus> map = [];
         int height = inputs.Length, width = inputs[0].Length;
         for (int y = -1; y <= height; y++)
             for (int x = -1; x <= width; x++)
@@ -80,7 +73,7 @@ public partial class Day11 : Advent.Day
 
     private static Dictionary<(int, int), Octopus> CopyMap(Dictionary<(int, int), Octopus> old)
     {
-        Dictionary<(int, int), Octopus> copy = new();
+        Dictionary<(int, int), Octopus> copy = [];
         foreach ((int, int) pos in old.Keys)
             copy[pos] = old[pos].DeepCopy();
         return copy;

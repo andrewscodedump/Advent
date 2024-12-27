@@ -4,21 +4,21 @@ public partial class Day12 : Advent.Day
 {
     public override void DoWork()
     {
-        Dictionary<string, HashSet<string>> options = new();
+        Dictionary<string, HashSet<string>> options = [];
         Queue<(string, List<string>, HashSet<string>, bool)> explore = new();
-        List<List<string>> paths = new();
+        List<List<string>> paths = [];
 
         foreach (string input in Inputs)
         {
             string start = input.Split('-')[0], end = input.Split('-')[1];
             if (start == "start" || start == "end") start = start.ToUpper();
             if (end == "start" || end == "end") end = end.ToUpper();
-            if (!options.ContainsKey(start)) options[start] = new();
-            if (!options.ContainsKey(end)) options[end] = new();
+            if (!options.ContainsKey(start)) options[start] = [];
+            if (!options.ContainsKey(end)) options[end] = [];
             if (start != "END" && end != "START") options[start].Add(end);
             if (start != "START" && end != "END") options[end].Add(start);
         }
-        explore.Enqueue(("START", new(), new(), false));
+        explore.Enqueue(("START", [], [], false));
 
         do
         {

@@ -4,7 +4,7 @@ public partial class Day05 : Advent.Day
 {
     public override void DoWork()
     {
-        Dictionary<(int, int),int> map = new();
+        Dictionary<(int, int),int> map = [];
 
         foreach (string line in Inputs)
         {

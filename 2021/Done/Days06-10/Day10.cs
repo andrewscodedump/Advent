@@ -8,7 +8,7 @@ public partial class Day10 : Advent.Day
         Dictionary<char, char> pairs = new() { { '(', ')' }, { '[', ']' }, { '{', '}' }, { '<', '>' } };
         Stack<char> openBrackets = new();
         long result = 0;
-        List<long> results = new();
+        List<long> results = [];
 
         foreach (string input in Inputs)
         {

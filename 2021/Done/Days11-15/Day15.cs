@@ -4,12 +4,12 @@ public partial class Day15 : Advent.Day
 {
     public override void DoWork()
     {
-        Dictionary<(int, int), int> map = new(), shortestPaths = new() { { (0, 0), 0 } };
+        Dictionary<(int, int), int> map = [], shortestPaths = new() { { (0, 0), 0 } };
         PriorityQueue<((int, int), HashSet<(int,int)>, int), int> explore = new();
         int finalScore = int.MaxValue, width = Inputs.Length;
         int multiplier = Part1 ? 1 : 5;
         (int x, int y) endPos = ((width * multiplier) - 1, (width * multiplier) - 1);
-        List<(int, int)> Offsets = new() { (0, 1), (1, 0), (0, -1), (-1, 0) };
+        List<(int, int)> Offsets = [(0, 1), (1, 0), (0, -1), (-1, 0)];
 
         for (int y = 0; y < width; y++)
             for (int i = 0; i < multiplier; i++)
@@ -19,7 +19,7 @@ public partial class Day15 : Advent.Day
                         int val = int.Parse(Inputs[y][x].ToString());
                         map[(x + (j * width), y + (i * width))] = val + i + j - ((val + i + j - 1) / 9 * 9);
                     }
-        explore.Enqueue(((0, 0), new(), 0), 0);
+        explore.Enqueue(((0, 0), [], 0), 0);
 
         do
         {

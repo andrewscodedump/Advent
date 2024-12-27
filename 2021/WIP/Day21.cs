@@ -4,10 +4,10 @@ public partial class Day21 : Advent.Day
 {
     public override void DoWork()
     {
-        long[] scores = new long[2] { 0, 0 };
+        long[] scores = [0, 0];
         int sides = Part1 ? 100 : 3;
         int target = Part1 ? 1000 : 21;
-        long[] positions = new long[2] { InputNumbers[0][1], InputNumbers[1][1] };
+        long[] positions = [InputNumbers[0][1], InputNumbers[1][1]];
         long player = 2, totalRolls = 0;
 
         int nextRoll = 1;

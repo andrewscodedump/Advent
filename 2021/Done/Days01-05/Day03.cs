@@ -22,7 +22,7 @@ public partial class Day03 : Advent.Day
             for (int j = oxyList.Count - 1; j >= 0 && oxyList.Count > 1; j--)
                 if ((oxyOne && oxyList[j][i] == '0') || (!oxyOne && oxyList[j][i] == '1')) oxyList.RemoveAt(j);
             for (int j = co2List.Count - 1; j >= 0 && co2List.Count > 1; j--)
-                if ((co2One && co2List[j][i] == '1') || (!co2One && co2List[j][i] == '0')) co2List.RemoveAt(j); ;
+                if ((co2One && co2List[j][i] == '1') || (!co2One && co2List[j][i] == '0')) co2List.RemoveAt(j);
         }
         Output = (Part1 ? gamma * epsilon : Convert.ToInt32(oxyList[0], 2) * Convert.ToInt32(co2List[0], 2)).ToString();
     }
@@ -32,6 +32,6 @@ public partial class Day03 : Advent.Day
         int bitSum = 0;
         foreach (string num in numbers)
             bitSum += num[bitPos] - 48;
-        return (double)bitSum >= (double)numbers.Count / 2;
+        return bitSum >= (double)numbers.Count / 2;
     }
 }

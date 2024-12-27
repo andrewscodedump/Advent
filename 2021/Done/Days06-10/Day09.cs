@@ -5,9 +5,9 @@ public partial class Day09 : Advent.Day
     public override void DoWork()
     {
         int height = Inputs.Length, width = Input.Length, result = 0;
-        List<(int, int)> Offsets = new() { (0, 1), (1, 0), (0, -1), (-1, 0) };
-        Dictionary<(int, int), char> map = new();
-        Dictionary<(int, int), int> minima = new();
+        List<(int, int)> Offsets = [(0, 1), (1, 0), (0, -1), (-1, 0)];
+        Dictionary<(int, int), char> map = [];
+        Dictionary<(int, int), int> minima = [];
 
         for (int y = -1; y <= height; y++)
             for (int x = -1; x <= width; x++)
@@ -17,7 +17,7 @@ public partial class Day09 : Advent.Day
             for (int x = 0; x < width; x++)
             {
                 char test = map[(x, y)];
-                if (Offsets.Where(nbr => map[(x + nbr.Item1, y + nbr.Item2)] > test).Count() == 4)
+                if (Offsets.Count(nbr => map[(x + nbr.Item1, y + nbr.Item2)] > test) == 4)
                 {
                     result += int.Parse(test.ToString()) + 1;
                     minima[(x, y)] = 1;
@@ -26,7 +26,7 @@ public partial class Day09 : Advent.Day
 
         if (Part2)
         {
-            Dictionary<(int x, int y), (int mx, int my)> processed = new();
+            Dictionary<(int x, int y), (int mx, int my)> processed = [];
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)

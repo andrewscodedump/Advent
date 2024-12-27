@@ -6,9 +6,9 @@ public partial class Day14 : Advent.Day
     {
         int steps = Part1 ? 10 : 40;
 
-        Dictionary<(char, char), ((char, char) first, (char, char) second)> translations = new();
-        Dictionary<(char, char), long> basePairs = new(), pairs;
-        Dictionary<char, long> counts = new();
+        Dictionary<(char, char), ((char, char) first, (char, char) second)> translations = [];
+        Dictionary<(char, char), long> basePairs = [], pairs;
+        Dictionary<char, long> counts = [];
 
         foreach (string formula in Inputs[2..])
         {
@@ -42,9 +42,9 @@ public partial class Day14 : Advent.Day
 
     public void DoWorkNaive()
     {
-        List<char> polymer = Input.ToCharArray().ToList();
-        Dictionary<(char, char), char> formulae = new();
-        Dictionary<char, long> counts = new();
+        List<char> polymer = [.. Input.ToCharArray()];
+        Dictionary<(char, char), char> formulae = [];
+        Dictionary<char, long> counts = [];
         int steps = Part1 ? 10 : 40;
 
         foreach (string formula in Inputs[2..])
@@ -60,8 +60,8 @@ public partial class Day14 : Advent.Day
         }
 
         foreach (char c in polymer)
-            if (counts.ContainsKey(c))
-                counts[c]++;
+            if (counts.TryGetValue(c, out long value))
+                counts[c] = ++value;
             else
                 counts[c] = 1;
 

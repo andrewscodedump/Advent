@@ -4,7 +4,7 @@ public partial class Day07 : Advent.Day
 {
     public override void DoWork()
     {
-        Dictionary<long, long> positions = new();
+        Dictionary<long, long> positions = [];
         for (int pos = (int)InputNumbers[0].Min(); pos <= InputNumbers[0].Max(); pos++)
         {
             if ((Part1 && !InputNumbers[0].Contains(pos)) || positions.ContainsKey(pos)) continue;

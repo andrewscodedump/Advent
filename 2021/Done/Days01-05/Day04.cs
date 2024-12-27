@@ -4,16 +4,14 @@ public partial class Day04 : Advent.Day
 {
     public override void DoWork()
     {
-        List<Board> boards = new();
+        List<Board> boards = [];
         long score = 0;
         Board board = new();
 
         foreach (List<int> line in Inputs[2..].Select(l => l.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList()))
         {
             if (line.Count > 0)
-            {
                 board.AddLine(line);
-            }
             else
             {
                 boards.Add(board);
@@ -36,42 +34,42 @@ public partial class Day04 : Advent.Day
         Output = score.ToString();
     }
 
-}
-
-public class Board
-{
-    readonly List<List<int>> lines = new();
-    long unselectedCount = 0;
-
-    public void AddLine(List<int> row)
+    private sealed class Board
     {
-        lines.Add(row);
-        if (lines.Count == 5) AddCols();
-        unselectedCount += row.Sum();
-    }
-    public long CheckNumber(long checkNumber)
-    {
-        long score = 0;
-        bool alreadyRemoved = false;
+        readonly List<List<int>> lines = [];
+        long unselectedCount = 0;
 
-        foreach(List<int> line in lines)
-            for (int number = line.Count - 1; number >= 0; number--)
-                if (line[number] == checkNumber)
-                {
-                    if (!alreadyRemoved)
+        public void AddLine(List<int> row)
+        {
+            lines.Add(row);
+            if (lines.Count == 5) AddCols();
+            unselectedCount += row.Sum();
+        }
+        public long CheckNumber(long checkNumber)
+        {
+            long score = 0;
+            bool alreadyRemoved = false;
+
+            foreach (List<int> line in lines)
+                for (int number = line.Count - 1; number >= 0; number--)
+                    if (line[number] == checkNumber)
                     {
-                        unselectedCount -= checkNumber;
-                        alreadyRemoved = true;
+                        if (!alreadyRemoved)
+                        {
+                            unselectedCount -= checkNumber;
+                            alreadyRemoved = true;
+                        }
+                        line.RemoveAt(number);
+                        if (line.Count == 0 && score == 0) score = unselectedCount * checkNumber;
                     }
-                    line.RemoveAt(number);
-                    if (line.Count == 0 && score == 0) score = unselectedCount * checkNumber;
-                }
-        return score;
-    }
+            return score;
+        }
 
-    private void AddCols()
-    {
-        for (int colNum = 0; colNum < 5; colNum++)
-            lines.Add(lines.GetRange(0,5).Select(l=>l[colNum]).ToList());
+        private void AddCols()
+        {
+            for (int colNum = 0; colNum < 5; colNum++)
+                lines.Add(lines.GetRange(0, 5).Select(l => l[colNum]).ToList());
+        }
     }
 }
+
