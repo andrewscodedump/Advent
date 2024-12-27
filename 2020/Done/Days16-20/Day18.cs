@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Advent2020;
+﻿namespace Advent2020;
 
 public partial class Day18 : Advent.Day
 {
@@ -8,10 +6,11 @@ public partial class Day18 : Advent.Day
 
     private static long Calculate(string sum)
     {
-        string[] bits = sum.Split(new char[] { ' ', '(', ')' }, StringSplitOptions.RemoveEmptyEntries);
+        char[] splitter = [' ', '(', ')'];
+        string[] bits = sum.Split(splitter, StringSplitOptions.RemoveEmptyEntries);
         long result = long.Parse(bits[0]);
         for (int i = 0; i < bits.Length - 2; i += 2)
-            result = bits[i + 1] == "*" ? result * long.Parse(bits[i + 2]) : result += long.Parse(bits[i + 2]);
+            result = bits[i + 1] == "*" ? result * long.Parse(bits[i + 2]) : result + long.Parse(bits[i + 2]);
         return result;
     }
 

@@ -22,7 +22,9 @@ public partial class Day17 : Advent.Day
                     for (int z = -c; z <= c; z++)
                         for (int w = Part1 ? 0 : -c; w <= (Part1 ? 0 : c); w++)
                         {
-                            int neighbourCount = Part1 ? neighbours4D.Where(n => n.dw == 0).Where(n => map[(x + n.dx, y + n.dy, z + n.dz, 0)] == 1).Count() : neighbours4D.Where(n => map[(x + n.dx, y + n.dy, z + n.dz, w + n.dw)] == 1).Count();
+                            int neighbourCount = 
+                                Part1 ? neighbours4D.Where(n => n.dw == 0).Count(n => map[(x + n.dx, y + n.dy, z + n.dz, 0)] == 1)
+                                : neighbours4D.Count(n => map[(x + n.dx, y + n.dy, z + n.dz, w + n.dw)] == 1);
                             if ((map[(x, y, z, w)] == 0 && neighbourCount == 3) || (map[(x, y, z, w)] == 1 && (neighbourCount == 2 || neighbourCount == 3)))
                                 newMap[(x, y, z, w)] = 1;
                             if (c == cycles)

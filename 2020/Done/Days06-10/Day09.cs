@@ -13,8 +13,10 @@ public partial class Day09 : Advent.Day
             bool valid = false;
             for (int i = pos - range; i < pos; i++)
                 for (int j = i + 1; j < pos; j++)
-                    if (valid = numbers[i] + numbers[j] == numbers[pos]) goto valid;
-                    valid: if (!valid) break;
+                {
+                    valid = numbers[i] + numbers[j] == numbers[pos];
+                    if (!valid) break;
+                }
         }
         long target = numbers[pos];
 

@@ -1,4 +1,6 @@
-﻿namespace Advent2020;
+﻿using System.Linq;
+
+namespace Advent2020;
 
 public partial class Day16 : Advent.Day
 {
@@ -6,11 +8,12 @@ public partial class Day16 : Advent.Day
     {
         #region Setup Variables and Parse Inputs
 
-        Dictionary<string, List<int>> rules = new();
-        List<int> mine = new();
-        List<List<int>> others = new();
+        Dictionary<string, List<int>> rules = [];
+        List<int> mine = [];
+        List<List<int>> others = [];
         string parseMode = "rules";
         long result = Part1 ? 0 : 1;
+        string[] splitter = [": ", " or "];
 
         foreach (string line in Inputs)
         {
@@ -19,9 +22,9 @@ public partial class Day16 : Advent.Day
             switch (parseMode)
             {
                 case "rules":
-                    string[] bits = line.Split(new string[] { ": ", " or " }, StringSplitOptions.RemoveEmptyEntries);
+                    string[] bits = line.Split(splitter, StringSplitOptions.RemoveEmptyEntries);
                     string rule = bits[0];
-                    List<int> validNumbers = new();
+                    List<int> validNumbers = [];
                     foreach (string range in bits[1..])
                         validNumbers.AddRange(Enumerable.Range(int.Parse(range.Split('-')[0]), int.Parse(range.Split('-')[1]) - int.Parse(range.Split('-')[0]) + 1));
                     rules.Add(rule, validNumbers);
@@ -43,14 +46,7 @@ public partial class Day16 : Advent.Day
         foreach (List<int> numbers in new List<List<int>>(others))
             foreach (int number in numbers)
             {
-                bool foundIt = false;
-                foreach (List<int> rule in rules.Values)
-                    if (rule.Contains(number))
-                    {
-                        foundIt = true;
-                        break;
-                    }
-                if (!foundIt)
+                if (!rules.Values.Any(rule => rule.Contains(number)))
                 {
                     others.Remove(numbers);
                     if (Part2) break;
@@ -64,11 +60,11 @@ public partial class Day16 : Advent.Day
             foreach (List<int> numbers in others)
                 for (int i = 0; i < numbers.Count; i++)
                     if (positions[i] == null)
-                        positions[i] = new() { numbers[i] };
+                        positions[i] = [numbers[i]];
                     else
                         positions[i].Add(numbers[i]);
 
-            List<(int, string)> mappings = new();
+            List<(int, string)> mappings = [];
             while (rules.Count > 0)
             {
                 for (int i = 0; i < positions.Length; i++)
@@ -77,10 +73,7 @@ public partial class Day16 : Advent.Day
                     string ruleName = string.Empty;
                     foreach (KeyValuePair<string, List<int>> rule in rules)
                     {
-                        numberFound = 0;
-                        foreach (int number in positions[i])
-                            if (rule.Value.Contains(number))
-                                numberFound++;
+                        numberFound = positions[i].Count(rule.Value.Contains);
                         if (numberFound == positions[i].Count)
                         {
                             ruleName = rule.Key;

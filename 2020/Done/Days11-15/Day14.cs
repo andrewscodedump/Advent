@@ -4,9 +4,9 @@ public partial class Day14 : Advent.Day
 {
     public override void DoWork()
     {
-        Dictionary<long, char> mask = new();
-        Dictionary<long, long> registers = new();
-        List<long> floaters = new();
+        Dictionary<long, char> mask = [];
+        Dictionary<long, long> registers = [];
+        List<long> floaters = [];
         long addressBase = 0;
 
         foreach (string linein in Inputs)
@@ -41,7 +41,7 @@ public partial class Day14 : Advent.Day
             }
             else
             {
-                List<long> addresses = new() { long.Parse(line.Split('=')[0]) | addressBase };
+                List<long> addresses = [long.Parse(line.Split('=')[0]) | addressBase];
                 foreach (long floater in floaters)
                     foreach (long address in new List<long>(addresses))
                         if ((address & floater) == 0)

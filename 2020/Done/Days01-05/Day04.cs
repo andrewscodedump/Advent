@@ -14,7 +14,7 @@ public partial class Day04 : Advent.Day
         if (key == "eyr" && int.TryParse(value, out intTest) && intTest >= 2020 && intTest <= 2030) return 1;
         if (key == "hgt" && value.EndsWith("cm") && int.TryParse(value[0..^2], out intTest) && intTest >= 150 && intTest <= 193) return 1;
         if (key == "hgt" && value.EndsWith("in") && int.TryParse(value[0..^2], out intTest) && intTest >= 59 && intTest <= 76) return 1;
-        if (key == "hcl" && value.StartsWith("#") && value.Length == 7
+        if (key == "hcl" && value.StartsWith('#') && value.Length == 7
             && int.TryParse(value[1..], System.Globalization.NumberStyles.HexNumber, default, out intTest) && intTest <= 0xFFFFFF) return 1;
         if (key == "ecl" && new List<string> { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" }.Contains(value)) return 1;
         if (key == "pid" && value.Length == 9 && int.TryParse(value, out _)) return 1;

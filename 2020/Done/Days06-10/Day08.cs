@@ -7,7 +7,7 @@ public partial class Day08 : Advent.Day
         #region Setup Variables and Parse Inputs
 
         int result;
-        Dictionary<int, (string, int)> program = new();
+        Dictionary<int, (string, int)> program = [];
 
         for (int i = 0; i < Inputs.Length; i++)
             program.Add(i, (Inputs[i].Split(' ')[0], int.Parse(Inputs[i].Split(' ')[1])));
@@ -35,7 +35,7 @@ public partial class Day08 : Advent.Day
     {
         int next = 0;
         acc = 0;
-        HashSet<int> done = new();
+        HashSet<int> done = [];
         do
         {
             done.Add(next);

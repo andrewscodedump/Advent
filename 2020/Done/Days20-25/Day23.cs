@@ -6,7 +6,7 @@ public partial class Day23 : Advent.Day
     {
         #region Setup Variables and Parse Inputs
 
-        Dictionary<long, long> cups = new();
+        Dictionary<long, long> cups = [];
         string cupString = Input;
         int turns = Part1 ? 100 : 10_000_000;
         long current = int.Parse(cupString[0].ToString());
@@ -46,20 +46,20 @@ public partial class Day23 : Advent.Day
             current = cups[current];
 
         }
-        string result = string.Empty;
+        StringBuilder result = new();
         if (Part1)
         {
             current = 1;
             while (cups[current] != 1)
             {
-                result += cups[current].ToString();
+                result.Append(cups[current]);
                 current = cups[current];
             }
         }
         else
-            result = (cups[1] * cups[cups[1]]).ToString();
+            result = new((cups[1] * cups[cups[1]]).ToString());
 
-        Output = result;
+        Output = result.ToString();
     }
 
     private static long RemoveAfter(Dictionary<long, long> dict, long current)

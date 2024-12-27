@@ -20,22 +20,22 @@ public partial class Day12 : Advent.Day
             int num = int.Parse(instr[1..^0]);
             if (Part1)
             {
-                if (dirns.ContainsKey(cmd))
-                    (px, py) = (px + (dirns[cmd].x * num), py + (dirns[cmd].y * num));
+                if (dirns.TryGetValue(cmd, out (int x, int y) value))
+                    (px, py) = (px + (value.x * num), py + (value.y * num));
                 if (cmd == 'F')
                     (px, py) = (px + (headings[heading].x * num), py + (headings[heading].y * num));
-                if (turns.ContainsKey(cmd))
-                    heading = (heading + 360 + (turns[cmd] * num)) % 360;
+                if (turns.TryGetValue(cmd, out int value2))
+                    heading = (heading + 360 + (value2 * num)) % 360;
             }
             else
             {
-                if (dirns.ContainsKey(cmd))
-                    (wx, wy) = (wx + (dirns[cmd].x * num), wy + (dirns[cmd].y * num));
+                if (dirns.TryGetValue(cmd, out (int x, int y) value))
+                    (wx, wy) = (wx + (value.x * num), wy + (value.y * num));
                 if (cmd == 'F')
                     (px, py) = (px + (wx * num), py + (wy * num));
-                if (turns.ContainsKey(cmd))
+                if (turns.TryGetValue(cmd, out int value2))
                 {
-                    (int sin, int cos) = headings[(360 + (turns[cmd] * num)) % 360];
+                    (int sin, int cos) = headings[(360 + (value2 * num)) % 360];
                     (wx, wy) = ((wx * cos) + (wy * sin), (wy * cos) - (wx * sin));
                 }
             }

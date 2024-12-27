@@ -8,7 +8,7 @@ public partial class Day11 : Advent.Day
 
         int rows = Inputs.Length, cols = Input.Length;
         int tolerance = Part1 ? 4 : 5;
-        Dictionary<(int, int), char> plan = new();
+        Dictionary<(int, int), char> plan = [];
         for (int y = -1; y <= rows; y++)
         {
             string row = (y == -1 || y == rows) ? new string('*', cols + 2) : "*" + Inputs[y] + "*";

@@ -9,14 +9,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="2020\Refactor\**" />
+    <Compile Remove="2020\ToDo\**" />
+    <Compile Remove="2020\WIP\**" />
     <Compile Remove="2021\ToDo\Days01-05\**" />
     <Compile Remove="2023\ToDo\Days16-20\**" />
     <Compile Remove="Resources\**" />
     <Compile Remove="XXXX\**" />
+    <EmbeddedResource Remove="2020\Refactor\**" />
+    <EmbeddedResource Remove="2020\ToDo\**" />
+    <EmbeddedResource Remove="2020\WIP\**" />
     <EmbeddedResource Remove="2021\ToDo\Days01-05\**" />
     <EmbeddedResource Remove="2023\ToDo\Days16-20\**" />
     <EmbeddedResource Remove="Resources\**" />
     <EmbeddedResource Remove="XXXX\**" />
+    <None Remove="2020\Refactor\**" />
+    <None Remove="2020\ToDo\**" />
+    <None Remove="2020\WIP\**" />
     <None Remove="2021\ToDo\Days01-05\**" />
     <None Remove="2023\ToDo\Days16-20\**" />
     <None Remove="Resources\**" />
@@ -38,9 +47,6 @@
     <Folder Include="2017\Done\Days21-25\" />
     <Folder Include="2018\Done\" />
     <Folder Include="2018\Inputs\" />
-    <Folder Include="2020\Refactor\" />
-    <Folder Include="2020\ToDo\" />
-    <Folder Include="2020\WIP\" />
   </ItemGroup>
 
   <ItemGroup>

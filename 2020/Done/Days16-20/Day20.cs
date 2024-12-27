@@ -1,10 +1,11 @@
-﻿namespace Advent2020;
+﻿using System.Linq;
+
+namespace Advent2020;
 
 public partial class Day20 : Advent.Day
 {
-    private readonly List<Tile> tiles = new();
-    private readonly List<string> allSides = new();
-    private readonly List<string> bigGrid = new();
+    private readonly List<Tile> tiles = [];
+    private readonly List<string> allSides = [], bigGrid = [];
 
     public override void DoWork()
     {
@@ -45,9 +46,7 @@ public partial class Day20 : Advent.Day
 
         foreach (Tile tile1 in tiles)
         {
-            int matches = 0;
-            foreach (string side in tile1.Combos[0].Sides)
-                if (IsMatched(side)) matches++;
+            int matches = tile1.Combos[0].Sides.Count(IsMatched);
             if (matches==2) result *= tile1.Id;
         }
 
@@ -115,7 +114,7 @@ public partial class Day20 : Advent.Day
         return (null, null);
     }
 
-    private bool IsMatched(string edge) => allSides.Where(s => s == edge).Count() > 1;
+    private bool IsMatched(string edge) => allSides.Count(s => s == edge) > 1;
 
     private static int FindMonsters(List<string> grid)
     {
@@ -145,13 +144,13 @@ public partial class Day20 : Advent.Day
 
     #region private Classes
 
-    private class Combo
+    private sealed class Combo
     {
         private List<string> raw;
 
         public Combo()
         {
-            Raw = new();
+            Raw = [];
             Sides = new string[4];
         }
         public List<string> Raw
@@ -167,13 +166,9 @@ public partial class Day20 : Advent.Day
 
         private void GetSides()
         {
-            string left = string.Empty, right = string.Empty;
-            foreach (string line in raw)
-            {
-                left += line[0];
-                right += line.Last();
-            }
-            Sides = new string[] { raw[0], raw[^1], left, right };
+            string left = new(raw.Select(l => l[0]).ToArray());
+            string right = new(raw.Select(l => l[^1]).ToArray());
+            Sides = [raw[0], raw[^1], left, right];
         }
 
         public Combo Rotate()
@@ -210,18 +205,16 @@ public partial class Day20 : Advent.Day
         }
     }
 
-    private class Tile
+    private sealed class Tile
     {
         public Tile()
         {
-            Raw = new();
+            Raw = [];
             Combos = new Combo[8];
         }
         public List<string> Raw { get; set; }
         public int Id { get; set; }
         public Combo[] Combos { get; set; }
-        public bool IsCorner { get; set; }
-        public bool IsEdge { get; set; }
         public bool IsPlaced { get; set; }
         public void BuildCombos()
         {

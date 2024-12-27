@@ -6,14 +6,15 @@ public partial class Day19 : Advent.Day
     {
         #region Setup Variables and Parse Inputs
 
-        List<(int, List<string>)> unresolved = new();
-        List<string> messages = new(), validMessages = new(), c42 = new(), c31 = new();
+        List<(int, List<string>)> unresolved = [];
+        List<string> messages = [], validMessages = [], c42 = [], c31 = [];
         Queue<(int, List<string>)> resolved = new();
+        char[] splitter = [':', '|'];
 
         foreach (string input in Inputs)
         {
             if (string.IsNullOrEmpty(input)) continue;
-            string[] bits = input.Split(new char[] { ':', '|' });
+            string[] bits = input.Split(splitter);
             if (bits.Length == 1)
                 messages.Add(bits[0]);
             else
@@ -22,11 +23,11 @@ public partial class Day19 : Advent.Day
                 string rule1 = bits[1];
                 if (bits.Length == 2)
                     if (!rule1.Any(char.IsDigit))
-                        resolved.Enqueue((ruleNo, new() { rule1.Replace("\"", "").Trim() }));
+                        resolved.Enqueue((ruleNo, [rule1.Replace("\"", "").Trim()]));
                     else
-                        unresolved.Add((ruleNo, new() { rule1 + ' ' }));
+                        unresolved.Add((ruleNo, [rule1 + ' ']));
                 else
-                    unresolved.Add((ruleNo, new() { rule1 + ' ', bits[2] + ' ' }));
+                    unresolved.Add((ruleNo, [rule1 + ' ', bits[2] + ' ']));
             }
         }
 
@@ -44,7 +45,7 @@ public partial class Day19 : Advent.Day
 
                 while (rules.Any(r => r.Contains(pattern)))
                 {
-                    List<string> newList = new();
+                    List<string> newList = [];
                     foreach (string rule in rules)
                     {
                         if (!rule.Contains(pattern)) newList.Add(rule);
@@ -62,7 +63,7 @@ public partial class Day19 : Advent.Day
                             changeMade = true;
                         }
                     }
-                    rules = newList.ToList();
+                    rules = [.. newList];
                 }
 
                 if (!rules.Any(s => s.Any(char.IsDigit)))

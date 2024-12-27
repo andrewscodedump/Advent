@@ -6,8 +6,8 @@ public partial class Day24 : Advent.Day
     {
         #region Setup Variables and Parse Inputs
 
-        (int x, int y) pos = (0, 0);
-        Dictionary<(int x, int y), int> floor = new();
+        (int x, int y) pos;
+        Dictionary<(int x, int y), int> floor = [];
         (int minX, int minY, int maxX, int maxY) = (0, 0, 0, 0);
         Dictionary<string, (int, int)> directions = new() { { "nw", (-1, 1) }, { "ne", (1, 1) }, { "w", (-2, 0) }, { "e", (2, 0) }, { "sw", (-1, -1) }, { "se", (1, -1) } };
 

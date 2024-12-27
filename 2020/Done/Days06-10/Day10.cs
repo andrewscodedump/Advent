@@ -4,7 +4,7 @@ public partial class Day10 : Advent.Day
 {
     public override void DoWork()
     {
-        int[] cables = Inputs.Select(int.Parse).OrderBy(n => n).ToArray();
+        int[] cables = [.. Inputs.Select(int.Parse).OrderBy(n => n)];
         int ones = Math.Abs(cables[0] - 2), threes = 1;
         int device = cables.Max() + 3;
 

@@ -4,7 +4,7 @@ public partial class Day22 : Advent.Day
 {
     public override void DoWork()
     {
-        Queue<int>[] hands = new Queue<int>[2] { new(), new() };
+        Queue<int>[] hands = [new(), new()];
         int player = -1;
         foreach (string card in Inputs)
         {
@@ -20,7 +20,7 @@ public partial class Day22 : Advent.Day
     {
         int winner;
         string cardString = string.Join(',', hands[0]) + '|' + string.Join(',', hands[1]);
-        HashSet<string> handsPlayed = new() { cardString };
+        HashSet<string> handsPlayed = [cardString];
 
         while (hands[0].Count > 0 && hands[1].Count > 0)
         {
@@ -28,7 +28,7 @@ public partial class Day22 : Advent.Day
             for (int player = 0; player <= 1; player++)
                 nextCards[player] = hands[player].Dequeue();
             winner = Part2 && nextCards[0] <= hands[0].Count && nextCards[1] <= hands[1].Count
-                ? PlayGame(new Queue<int>[] { new(hands[0].ToArray()[0..nextCards[0]]), new(hands[1].ToArray()[0..nextCards[1]]) })
+                ? PlayGame([new(hands[0].ToArray()[0..nextCards[0]]), new(hands[1].ToArray()[0..nextCards[1]])])
                 : nextCards[0] > nextCards[1] ? 0 : 1;
             hands[winner].Enqueue(nextCards[winner]);
             hands[winner].Enqueue(nextCards[Math.Abs(winner - 1)]);

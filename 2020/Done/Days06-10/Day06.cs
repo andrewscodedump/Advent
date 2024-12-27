@@ -8,7 +8,7 @@ public partial class Day06 : Advent.Day
 
         foreach (string group in Inputs)
         {
-            Dictionary<char, int> questions = new();
+            Dictionary<char, int> questions = [];
             foreach (string set in group.Split(','))
                 foreach (char q in set)
                     questions[q] = questions.GetValueOrDefault(q) + 1;
