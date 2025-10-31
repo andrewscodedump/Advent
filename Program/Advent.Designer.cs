@@ -221,7 +221,7 @@
             // 
             updYear.Location = new Point(133, 33);
             updYear.Margin = new Padding(9, 10, 9, 10);
-            updYear.Maximum = new decimal(new int[] { 2024, 0, 0, 0 });
+            updYear.Maximum = new decimal(new int[] { 2025, 0, 0, 0 });
             updYear.Minimum = new decimal(new int[] { 2015, 0, 0, 0 });
             updYear.Name = "updYear";
             updYear.Size = new Size(51, 23);

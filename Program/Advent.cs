@@ -1,5 +1,4 @@
-﻿
-using Advent.Controls;
+﻿using Advent.Controls;
 using System.ComponentModel;
 
 [assembly: CLSCompliant(true)]
@@ -7,6 +6,17 @@ namespace Advent;
 
 public partial class AdventOfCode : Form
 {
+    // todo Add site dropdown
+    // https://everybody.codes/event/2024/quests 2024/2025, 20 days, 3 parts
+    // https://www.codyssi.com/ 2024, 4 days, 2025 18 days
+    // Other possibilities:
+    // https://projecteuler.net/ - 19 pages of 50 + 1 of 6,
+    // Have own IDE
+    // https://www.codingame.com/ - own ide
+    // https://www.codewars.com/ 8 kyu, open number - has own interface
+    // https://edabit.com/ - own interface
+
+
 
     #region Constructors and Declarations
 
@@ -25,7 +35,9 @@ public partial class AdventOfCode : Form
 
     private void ResetScreen()
     {
+        
         if (noReset) return;
+        updDay.Maximum = updYear.Value == 2025 ? 12 : 25;
         try
         {
             theDay = (Day)Activator.CreateInstance(Type.GetType($"Advent{updYear.Value}.Day{(int)updDay.Value:D2}"), [chkTestMode.Checked, (int)updPuzzle.Value]);
@@ -379,7 +391,7 @@ public partial class AdventOfCode : Form
         ShowMe showMe = new()
         {
             Contents = text,
-            Centre = this.Bounds,
+            Centre = Bounds,
         };
         showMe.ShowDialog();
     }
