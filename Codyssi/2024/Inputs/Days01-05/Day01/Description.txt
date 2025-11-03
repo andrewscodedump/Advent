@@ -1,0 +1,5 @@
+﻿Input is a list of prices
+
+What is the total price?
+What is the total price if the first 20 items are free?
+What is the total if every second item is taken away rather than added?

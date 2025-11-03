@@ -6,6 +6,7 @@ public abstract partial class Day
 {
     #region Constructors and Declarations
 
+    private string challenge;
     private int year;
     private int day;
 
@@ -86,14 +87,15 @@ public abstract partial class Day
 
     public void SetMode(bool testMode, int whichPart, DayBatchStatus batchStatus)
     {
-        year = int.Parse(GetType().Namespace[^4..]);
+        challenge = string.Concat(GetType().Namespace.Where(char.IsAsciiLetter));
+        year = int.Parse(string.Concat(GetType().Namespace.Where(char.IsDigit)));
         day = int.Parse(GetType().Name[^2..]);
         WhichPart = whichPart;
         Part1 = whichPart == 1;
         Part2 = !Part1;
         TestMode = testMode;
         BatchStatus = batchStatus;
-        inputPath = $@"{rootFolder}\{year}\Inputs\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}";
+        inputPath = GetInputPath();
         AllInputs = GetInputs();
         SetInputs();
         BatchStatus = CheckStatus(BatchStatus);
@@ -107,6 +109,17 @@ public abstract partial class Day
 
 
     #region Private Methods
+
+    private string GetInputPath()
+    {
+        string result = challenge switch
+        {
+            "Codyssi" or "Everybody" => $@"{rootFolder}\{challenge}\{year}\Inputs\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}",
+            "Euler" => $@"{rootFolder}\{challenge}\Pages{((year - 1) / 5 * 5) + 1:D2}-{((year - 1) / 5 * 5) + 5:D2}\Page{year:D2}\Inputs\Parts{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Part{day:D2}",
+            _ => $@"{rootFolder}\{year}\Inputs\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}",
+        };
+        return result;
+    }
 
     private List<List<string>> GetInputs()
     {
@@ -162,7 +175,7 @@ public abstract partial class Day
         }
 
         List<string> simpleInputs = [.. File.ReadAllLines($@"{inputPath}\{fileName}")];
-        int[] breaks = Enumerable.Range(0, simpleInputs.Count).Where(i => simpleInputs[i] == "***AdditionalInput***").ToArray();
+        int[] breaks = [.. Enumerable.Range(0, simpleInputs.Count).Where(i => simpleInputs[i] == "***AdditionalInput***")];
         breaks = [-1, ..breaks, simpleInputs.Count];
         breaks.Skip(1).Zip(breaks, (second, first) => (first, second)).ForEach(p => inputs.Add(simpleInputs[(p.first + 1)..p.second]));
         return inputs;
@@ -261,7 +274,7 @@ public abstract partial class Day
         if (BatchStatus == DayBatchStatus.NoInputs) BatchStatus = DayBatchStatus.Available;
         Inputs = [.. AllInputs[CurrentInput]];
         InputBlocks = [];
-        int[] breaks = Enumerable.Range(0, Inputs.Length).Where(i => Inputs[i] == "").ToArray();
+        int[] breaks = [.. Enumerable.Range(0, Inputs.Length).Where(i => Inputs[i] == "")];
         breaks = [-1, .. breaks, Inputs.Length];
         breaks.Skip(1).Zip(breaks, (second, first) => (first, second)).ForEach(p => InputBlocks = [..InputBlocks, Inputs[(p.first + 1)..p.second]]);
 

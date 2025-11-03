@@ -6,27 +6,31 @@ namespace Advent;
 
 public partial class AdventOfCode : Form
 {
-    // todo Add site dropdown
-    // https://everybody.codes/event/2024/quests 2024/2025, 20 days, 3 parts
-    // https://www.codyssi.com/ 2024, 4 days, 2025 18 days
-    // Other possibilities:
-    // https://projecteuler.net/ - 19 pages of 50 + 1 of 6,
-    // Have own IDE
-    // https://www.codingame.com/ - own ide
-    // https://www.codewars.com/ 8 kyu, open number - has own interface
-    // https://edabit.com/ - own interface
-
-
+    // todo Defaults for non-advent
 
     #region Constructors and Declarations
 
     private Day theDay;
     bool noReset;
-
+    private List<Challenge> Challenges;
     public AdventOfCode()
     {
         InitializeComponent();
+        PopulateDropDown();
         SetupForm();
+    }
+
+    private void PopulateDropDown()
+    {
+        Challenges = [
+            new("Advent", "Advent of Code", "https://adventofcode.com/"),
+            new("Everybody", "Everybody Codes", "https://everybody.codes/event/"),
+            new("Codyssi", "Codyssi", "https://www.codyssi.com/view_problem_"),
+            new("Euler", "Project Euler", "https://projecteuler.net/problem="),
+        ];
+        ChallengeType.DataSource = Challenges;
+        ChallengeType.DisplayMember = "Description";
+
     }
 
     #endregion Constructors and Declarations
@@ -35,17 +39,28 @@ public partial class AdventOfCode : Form
 
     private void ResetScreen()
     {
-        
+        string challenge = ((Challenge)ChallengeType.SelectedItem).Abbreviation;
+        SetLimits(challenge, (int)updYear.Value);
         if (noReset) return;
-        updDay.Maximum = updYear.Value == 2025 ? 12 : 25;
+        btnProcess.Enabled = true;
+        string typeName = $"{challenge}{(int)updYear.Value:D4}.Day{(int)updDay.Value:D2}";
         try
         {
-            theDay = (Day)Activator.CreateInstance(Type.GetType($"Advent{updYear.Value}.Day{(int)updDay.Value:D2}"), [chkTestMode.Checked, (int)updPuzzle.Value]);
+            theDay = (Day)Activator.CreateInstance(Type.GetType(typeName), [chkTestMode.Checked, (int)updPuzzle.Value]);
         }
         catch
         {
-            theDay = (Day)Activator.CreateInstance(Type.GetType($"Advent{updYear.Value}.Day{(int)updDay.Value:D2}"));
-            theDay.SetMode(chkTestMode.Checked, (int)updPuzzle.Value);
+            try
+            {
+                theDay = (Day)Activator.CreateInstance(Type.GetType(typeName));
+                theDay.SetMode(chkTestMode.Checked, (int)updPuzzle.Value);
+            }
+            catch
+            {
+                txtExpected.Text = "Unable to fetch code";
+                btnProcess.Enabled = false;
+                return;
+            }
         }
         Description.Text = theDay.Description;
         List<List<string>> Inputs = GetInputs();
@@ -119,9 +134,16 @@ public partial class AdventOfCode : Form
         };
     }
 
-    private static bool TryGetDefaults(out (int year, int day, int puzzle, bool testMode) defaults, out string errorMessage)
+    private sealed class Challenge (string Abbreviation, string Description, string Website)
     {
-        defaults = (2015, 1, 2, true);
+        public string Abbreviation { get; set; } = Abbreviation;
+        public string Description { get; set; } = Description;
+        public string Website { get; set; } = Website;
+    }
+
+    private bool TryGetDefaults(out (Challenge challenge, int year, int day, int puzzle, bool testMode) defaults, out string errorMessage)
+    {
+        defaults = (Challenges.First(c => c.Abbreviation == "Advent"), 2015, 1, 2, true);
         StringBuilder error = new();
         string filePath = $@"{Properties.Settings.Default["RootFolder"]}\Defaults.txt";
         if (!File.Exists(filePath) || File.ReadAllLines(filePath).Length == 0)
@@ -135,6 +157,12 @@ public partial class AdventOfCode : Form
                 string[] bits = line.Split('=');
                 switch (bits[0])
                 {
+                    case "Challenge":
+                        if (Challenges.Any(c => c.Abbreviation == bits[1]))
+                            defaults.challenge = Challenges.First(c => c.Abbreviation == bits[1]);
+                        else
+                            error.AppendLine("Invalid Challenge type");
+                        break;
                     case "Day":
                         if (!int.TryParse(bits[1], out defaults.day))
                             error.AppendLine("Invalid Day value");
@@ -174,12 +202,14 @@ public partial class AdventOfCode : Form
     private void SetupForm()
     {
         noReset = true;
-        if (!TryGetDefaults(out (int year, int day, int puzzle, bool testMode) defaults, out string errorMessage))
+        if (!TryGetDefaults(out (Challenge challenge, int year, int day, int puzzle, bool testMode) defaults, out string errorMessage))
         {
             MessageBox.Show($"Error in defaults file\r\n\r\n{errorMessage}");
         }
         else
         {
+            SetLimits(defaults.challenge.Abbreviation, defaults.year);
+            ChallengeType.SelectedItem = defaults.challenge;
             updYear.Value = defaults.year;
             updDay.Value = defaults.day;
             updPuzzle.Value = defaults.puzzle;
@@ -187,6 +217,38 @@ public partial class AdventOfCode : Form
         }
         noReset = false;
         ResetScreen();
+    }
+
+    private void SetLimits(string challenge, int year)
+    {
+        switch (challenge)
+        {
+            case "Everybody":
+                updYear.Minimum = 2024;
+                updYear.Maximum = 2025;
+                updDay.Maximum = 20;
+                updPuzzle.Maximum = 3;
+                break;
+            case "Codyssi":
+                updYear.Minimum = 2024;
+                updYear.Maximum = 2025;
+                updDay.Maximum = year == 2024 ? 4 : 18;
+                updPuzzle.Maximum = 3;
+                break;
+            case "Euler":
+                updYear.Minimum = 1;
+                updYear.Maximum = 20;
+                updDay.Maximum = year == 20 ? 6 : 50;
+                updPuzzle.Maximum = 1;
+                break;
+            default:
+                updYear.Minimum = 2016;
+                updYear.Maximum = 2025;
+                updDay.Maximum = year == 2025 ? 12 : 25;
+                updPuzzle.Maximum = 2;
+                break;
+        }
+
     }
 
     private void BatchTest()
@@ -199,22 +261,38 @@ public partial class AdventOfCode : Form
 
     private string DoBatch(BackgroundWorker worker)
     {
+        string challenge = "";
+        ChallengeType.Invoke(new MethodInvoker(delegate { challenge = ((Challenge)ChallengeType.SelectedItem).Abbreviation; }));
         int year = (int)updYear.Value;
+        int puzzles = challenge switch
+        {
+            "Euler" => 1,
+            "Codyssi" => 3,
+            "Everybody" => 4,
+            _ => 2
+        };
+        int days = challenge switch
+        {
+            "Euler" => 50,
+            "Codyssi" => year == 2024 ? 4 : 18,
+            "Everybody" => 20,
+            _ => year == 2025 ? 12 : 25
+        };
         StringBuilder output = new();
         Debug.WriteLine($"Starting Batch Run for {year}");
         output.AppendLine($"Starting Batch Run for {year}");
         output.AppendLine("\r\n    Day          Part1           Part2");
         Stopwatch overall = new();
         overall.Start();
-        for (int day = 1; day <= 25; day++)
+        for (int day = 1; day <= days; day++)
         {
-            for (int puzzle = 1; puzzle <= 2; puzzle++)
+            for (int puzzle = 1; puzzle <= puzzles; puzzle++)
             {
                 if (worker.CancellationPending)
                     return output.ToString();
                 worker.ReportProgress(((day - 1) * 2) + puzzle, $"{day}/{puzzle}");
                 Stopwatch sw = new();
-                theDay = (Day)Activator.CreateInstance(Type.GetType($"Advent{year}.Day{day:D2}"));
+                theDay = (Day)Activator.CreateInstance(Type.GetType($"{challenge}{year:D4}.Day{day:D2}"));
                 theDay.SetMode(chkTestMode.Checked, puzzle);
 
                 if (theDay.BatchStatus == Day.DayBatchStatus.NotDoneYet || theDay.BatchStatus == Day.DayBatchStatus.Future || theDay.BatchStatus == Day.DayBatchStatus.NoInputs) continue;
@@ -358,19 +436,19 @@ public partial class AdventOfCode : Form
         ResetInputs();
     }
 
-    private void BatchWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+    private void BatchWorker_DoWork(object sender, DoWorkEventArgs e)
     {
         BackgroundWorker worker = sender as BackgroundWorker;
         e.Result = DoBatch(worker);
     }
 
-    private void BatchWorker_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+    private void BatchWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
     {
         Progress.Value = e.ProgressPercentage;
         ProgressText.Text = e.UserState.ToString();
     }
 
-    private void BatchWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+    private void BatchWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
     {
         ShowText(e.Result.ToString());
         btnBatch.Enabled = true;
@@ -398,10 +476,18 @@ public partial class AdventOfCode : Form
 
     private void Website_Click(object sender, EventArgs e)
     {
+        Challenge selected = (Challenge)ChallengeType.SelectedItem;
+        string webPage = selected.Abbreviation switch
+        {
+            "Codyssi" => $"{(((int)updYear.Value - 2024) * 4) + (int)updDay.Value}",
+            "Euler" => $"{(((int)updYear.Value - 1) * 20) + (int)updDay.Value}",
+            "Everybody" => $"{updYear.Value}/quests/{updDay.Value}",
+            _ => $"{updYear.Value}/day/{updDay.Value}",
+        };
         var psi = new ProcessStartInfo
         {
-            FileName = $"https://adventofcode.com/{updYear.Value}/day/{updDay.Value}",
-            UseShellExecute = true
+            UseShellExecute = true,
+            FileName = $"{selected.Website}{webPage}",
         };
         Process.Start(psi);
     }

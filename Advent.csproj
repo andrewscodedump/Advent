@@ -14,6 +14,7 @@
     <Compile Remove="2020\WIP\**" />
     <Compile Remove="2021\ToDo\Days01-05\**" />
     <Compile Remove="2023\ToDo\Days16-20\**" />
+    <Compile Remove="Euler\Page01\**" />
     <Compile Remove="Resources\**" />
     <Compile Remove="XXXX\**" />
     <EmbeddedResource Remove="2020\Refactor\**" />
@@ -21,6 +22,7 @@
     <EmbeddedResource Remove="2020\WIP\**" />
     <EmbeddedResource Remove="2021\ToDo\Days01-05\**" />
     <EmbeddedResource Remove="2023\ToDo\Days16-20\**" />
+    <EmbeddedResource Remove="Euler\Page01\**" />
     <EmbeddedResource Remove="Resources\**" />
     <EmbeddedResource Remove="XXXX\**" />
     <None Remove="2020\Refactor\**" />
@@ -28,6 +30,7 @@
     <None Remove="2020\WIP\**" />
     <None Remove="2021\ToDo\Days01-05\**" />
     <None Remove="2023\ToDo\Days16-20\**" />
+    <None Remove="Euler\Page01\**" />
     <None Remove="Resources\**" />
     <None Remove="XXXX\**" />
   </ItemGroup>
@@ -47,6 +50,10 @@
     <Folder Include="2017\Done\Days21-25\" />
     <Folder Include="2018\Done\" />
     <Folder Include="2018\Inputs\" />
+    <Folder Include="Codyssi\2024\Inputs\" />
+    <Folder Include="Codyssi\2024\Done\" />
+    <Folder Include="Codyssi\2024\WIP\" />
+    <Folder Include="Codyssi\2024\ToDo\" />
   </ItemGroup>
 
   <ItemGroup>

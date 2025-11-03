@@ -1,4 +1,5 @@
-Day=21
+Challenge=Advent
+Day=1
 Puzzle=1
 Mode=Test
-Year=2024
+Year=2025
