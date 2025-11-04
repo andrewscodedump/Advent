@@ -1,1 +1,5 @@
-﻿
+﻿Input is a list of names and a set of instructions for navigating through them.
+
+Starting from the beginning of the list and taking the instructions at face value, what name do you end up on?
+The list is actually a circular loop.  Where do you end up now?
+Still using a loop, each step now swaps position 0 and the name pointed to by the instruction.  What name ends up in position zero?
