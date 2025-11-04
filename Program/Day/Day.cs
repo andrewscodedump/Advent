@@ -126,8 +126,8 @@ public abstract partial class Day
         List<List<string>> inputs = [];
         if (new DateTime(year, 12, day, 05, 00, 00, DateTimeKind.Local) > DateTime.Now)
         {
-            BatchStatus = DayBatchStatus.Future;
-            return inputs;
+            //BatchStatus = DayBatchStatus.Future;
+            //return inputs;
         }
         bool fileExists = false, encFileExists = false;
         string mode = TestMode ? "Test" : "Live";
@@ -230,7 +230,7 @@ public abstract partial class Day
 
     private DayBatchStatus CheckStatus(DayBatchStatus current)
     {
-        if (new DateTime(year, 12, day, 05, 00, 00, DateTimeKind.Local) > DateTime.Now) return DayBatchStatus.Future;
+        //if (new DateTime(year, 12, day, 05, 00, 00, DateTimeKind.Local) > DateTime.Now) return DayBatchStatus.Future;
         bool reading = false;
         string mode = TestMode ? "Test" : "Live";
         bool firstLine = true;

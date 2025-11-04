@@ -1,0 +1,3 @@
+Helrex,Ulthar,Helnar,Jalendris,Thyroslon,Ryssmirix,Agnaradarin,Tharildravor,Quirfal,Urulth,Kroncion,Zyrixzrak,Mavlar,Larural,Eltsarix,Sarnvor,Myndzyth,Ulmardra,Sarnynn,Tharnris,Xaralvel,Adalroth,Azcion,Eltasis,Erypyros,Felmarzrak,Jaervyr,Caelgoril,Caelxaril,Ascalzor
+
+L31,R27,L34,R27,L14,R32,L29,R39,L34,R33,L48,R5,L9,R48,L22,R5,L20,R28,L16,R38,L5,R24,L5,R29,L5,R31,L5,R17,L5,R19,L5,R32,L5,R12,L5,R13,L5,R39,L5,R14,L38,R47,L42,R43,L42,R25,L30,R46,L24,R11,L23,R6,L37,R38,L36,R24,L30,R22,L23
