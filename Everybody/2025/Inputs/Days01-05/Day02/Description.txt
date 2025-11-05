@@ -1,1 +1,5 @@
-﻿
+﻿Input is a seed coordinate
+
+Applying a (suspiciously mandel-like) formula to the seed, what is the final value after 3 iterations?
+Applying the same formula over a grid for 100 iterations, how many points do not blow up?
+As above, but for a much finer grid.
