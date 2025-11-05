@@ -1,1 +1,5 @@
-﻿
+﻿Input is a list of crate sizes which can be packed inside each other.
+
+What is the largest total size of a set of nested crates possible?
+What is the largest total size of 20 nested crates?
+What is the minimum number of ways of packing all the crates?
