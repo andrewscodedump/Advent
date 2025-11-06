@@ -4,17 +4,11 @@ public class Day03 : Advent.Day
 {
     public override void DoWork()
     {
-        switch (WhichPart)
+        Output = WhichPart switch
         {
-            case 1:
-                Output = InputNumbers[0].Distinct().Sum().ToString();
-                break;
-            case 2:
-                Output = InputNumbers[0].Distinct().Order().Take(20).Sum().ToString();
-                break;
-            case 3:
-                Output = InputNumbers[0].GroupBy(n => n).Max(g => g.Count()).ToString();
-                break;
-        }
+            1 => InputNumbers[0].Distinct().Sum().ToString(),
+            2 => InputNumbers[0].Distinct().Order().Take(20).Sum().ToString(),
+            _ => InputNumbers[0].GroupBy(n => n).Max(g => g.Count()).ToString(),
+        };
     }
 }
