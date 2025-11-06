@@ -29,7 +29,6 @@ public abstract partial class Day
             DayBatchStatus.NonCoded => "Solved by non-code method",
             DayBatchStatus.NoTestData => "No Test Data",
             DayBatchStatus.NoPart2 => "There is no part 2 for this puzzle",
-            DayBatchStatus.Future => "Task is in the future - no inputs available",
             DayBatchStatus.NoInputs => "No inputs available",
             DayBatchStatus.Available => "Available",
             DayBatchStatus.Performance => "Performance problems",
@@ -124,11 +123,6 @@ public abstract partial class Day
     private List<List<string>> GetInputs()
     {
         List<List<string>> inputs = [];
-        if (new DateTime(year, 12, day, 05, 00, 00, DateTimeKind.Local) > DateTime.Now)
-        {
-            //BatchStatus = DayBatchStatus.Future;
-            //return inputs;
-        }
         bool fileExists = false, encFileExists = false;
         string mode = TestMode ? "Test" : "Live";
         string fileName = $"{mode}Both.txt", encFileName = $"{mode}Both.enc";
@@ -184,7 +178,6 @@ public abstract partial class Day
     private List<string> GetExpecteds()
     {
         List<string> expecteds = [];
-        if (new DateTime(year, 12, day, 05, 00, 00, DateTimeKind.Local) > DateTime.Now) return expecteds;
         bool reading = false;
         string mode = TestMode ? "Test" : "Live";
         //string 
@@ -216,7 +209,6 @@ public abstract partial class Day
     private string GetDescription()
     {
         StringBuilder description = new();
-        if (new DateTime(year, 12, day, 05, 00, 00, DateTimeKind.Local) > DateTime.Now) return string.Empty;
 
         string filePath = $@"{inputPath}\Description.txt";
         if (!File.Exists(filePath) || File.ReadAllLines(filePath).Length == 0) return string.Empty;
@@ -230,7 +222,6 @@ public abstract partial class Day
 
     private DayBatchStatus CheckStatus(DayBatchStatus current)
     {
-        //if (new DateTime(year, 12, day, 05, 00, 00, DateTimeKind.Local) > DateTime.Now) return DayBatchStatus.Future;
         bool reading = false;
         string mode = TestMode ? "Test" : "Live";
         bool firstLine = true;
@@ -296,7 +287,7 @@ public abstract partial class Day
 
     #region Common Objects
 
-    public enum DayBatchStatus { Available, NotDoneYet, Performance, NonCoded, NotWorking, NoTestData, NoPart2, ManualIntervention, Future, NoInputs };
+    public enum DayBatchStatus { Available, NotDoneYet, Performance, NonCoded, NotWorking, NoTestData, NoPart2, ManualIntervention, NoInputs };
 
     #endregion Common Objects
 

@@ -128,7 +128,6 @@ public partial class AdventOfCode : Form
             or Day.DayBatchStatus.NonCoded
             or Day.DayBatchStatus.NoTestData
             or Day.DayBatchStatus.NoPart2
-            or Day.DayBatchStatus.Future
             or Day.DayBatchStatus.NoInputs => true,
             _ => false,
         };
@@ -295,7 +294,7 @@ public partial class AdventOfCode : Form
                 theDay = (Day)Activator.CreateInstance(Type.GetType($"{challenge}{year:D4}.Day{day:D2}"));
                 theDay.SetMode(chkTestMode.Checked, puzzle);
 
-                if (theDay.BatchStatus == Day.DayBatchStatus.NotDoneYet || theDay.BatchStatus == Day.DayBatchStatus.Future || theDay.BatchStatus == Day.DayBatchStatus.NoInputs) continue;
+                if (theDay.BatchStatus == Day.DayBatchStatus.NotDoneYet || theDay.BatchStatus == Day.DayBatchStatus.NoInputs) continue;
                 if (puzzle == 1)
                 {
                     output.AppendLine();
