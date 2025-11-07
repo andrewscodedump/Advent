@@ -1,1 +1,5 @@
-﻿
+﻿Inputs are the sizes of a series of cogs.
+
+How many times does the final cog turn if the first one turns 2025 times?
+How many times does the first one have to turn to make the final one turn 10,000,000,000,000 times?
+Intermediate gears are now doing actual gearing.  How many times does the final one turn if the first one turns 100 times?

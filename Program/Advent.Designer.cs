@@ -65,24 +65,24 @@
             // 
             // updDay
             // 
-            updDay.Location = new Point(970, 77);
-            updDay.Margin = new Padding(22, 27, 22, 27);
+            updDay.Location = new Point(399, 28);
+            updDay.Margin = new Padding(9, 10, 9, 10);
             updDay.Maximum = new decimal(new int[] { 25, 0, 0, 0 });
             updDay.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             updDay.Name = "updDay";
-            updDay.Size = new Size(124, 47);
+            updDay.Size = new Size(51, 23);
             updDay.TabIndex = 3;
             updDay.Value = new decimal(new int[] { 1, 0, 0, 0 });
             updDay.ValueChanged += ResetScreenHandler;
             // 
             // updPuzzle
             // 
-            updPuzzle.Location = new Point(1250, 77);
-            updPuzzle.Margin = new Padding(22, 27, 22, 27);
+            updPuzzle.Location = new Point(515, 28);
+            updPuzzle.Margin = new Padding(9, 10, 9, 10);
             updPuzzle.Maximum = new decimal(new int[] { 2, 0, 0, 0 });
             updPuzzle.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             updPuzzle.Name = "updPuzzle";
-            updPuzzle.Size = new Size(124, 47);
+            updPuzzle.Size = new Size(51, 23);
             updPuzzle.TabIndex = 5;
             updPuzzle.Value = new decimal(new int[] { 1, 0, 0, 0 });
             updPuzzle.ValueChanged += ResetScreenHandler;
@@ -90,18 +90,18 @@
             // txtInput
             // 
             txtInput.Cursor = Cursors.IBeam;
-            txtInput.Location = new Point(323, 503);
-            txtInput.Margin = new Padding(22, 27, 22, 27);
+            txtInput.Location = new Point(133, 184);
+            txtInput.Margin = new Padding(9, 10, 9, 10);
             txtInput.Name = "txtInput";
-            txtInput.Size = new Size(1099, 47);
+            txtInput.Size = new Size(455, 23);
             txtInput.TabIndex = 8;
             // 
             // btnProcess
             // 
-            btnProcess.Location = new Point(323, 771);
-            btnProcess.Margin = new Padding(22, 27, 22, 27);
+            btnProcess.Location = new Point(133, 282);
+            btnProcess.Margin = new Padding(9, 10, 9, 10);
             btnProcess.Name = "btnProcess";
-            btnProcess.Size = new Size(214, 74);
+            btnProcess.Size = new Size(88, 27);
             btnProcess.TabIndex = 11;
             btnProcess.Text = "&Process";
             btnProcess.UseVisualStyleBackColor = true;
@@ -109,59 +109,59 @@
             // 
             // txtOutput
             // 
-            txtOutput.Location = new Point(323, 1006);
-            txtOutput.Margin = new Padding(22, 27, 22, 27);
+            txtOutput.Location = new Point(133, 368);
+            txtOutput.Margin = new Padding(9, 10, 9, 10);
             txtOutput.Name = "txtOutput";
-            txtOutput.Size = new Size(1099, 47);
+            txtOutput.Size = new Size(455, 23);
             txtOutput.TabIndex = 15;
             // 
             // lblOutput
             // 
             lblOutput.AutoSize = true;
-            lblOutput.Location = new Point(197, 1003);
-            lblOutput.Margin = new Padding(22, 0, 22, 0);
+            lblOutput.Location = new Point(81, 367);
+            lblOutput.Margin = new Padding(9, 0, 9, 0);
             lblOutput.Name = "lblOutput";
-            lblOutput.Size = new Size(113, 41);
+            lblOutput.Size = new Size(45, 15);
             lblOutput.TabIndex = 14;
             lblOutput.Text = "Output";
             // 
             // lblInput
             // 
             lblInput.AutoSize = true;
-            lblInput.Location = new Point(222, 503);
-            lblInput.Margin = new Padding(22, 0, 22, 0);
+            lblInput.Location = new Point(91, 184);
+            lblInput.Margin = new Padding(9, 0, 9, 0);
             lblInput.Name = "lblInput";
-            lblInput.Size = new Size(88, 41);
+            lblInput.Size = new Size(35, 15);
             lblInput.TabIndex = 7;
             lblInput.Text = "Input";
             // 
             // lblDay
             // 
             lblDay.AutoSize = true;
-            lblDay.Location = new Point(901, 80);
-            lblDay.Margin = new Padding(22, 0, 22, 0);
+            lblDay.Location = new Point(371, 29);
+            lblDay.Margin = new Padding(9, 0, 9, 0);
             lblDay.Name = "lblDay";
-            lblDay.Size = new Size(69, 41);
+            lblDay.Size = new Size(27, 15);
             lblDay.TabIndex = 2;
             lblDay.Text = "Day";
             // 
             // lblPuzzle
             // 
             lblPuzzle.AutoSize = true;
-            lblPuzzle.Location = new Point(1126, 80);
-            lblPuzzle.Margin = new Padding(22, 0, 22, 0);
+            lblPuzzle.Location = new Point(464, 29);
+            lblPuzzle.Margin = new Padding(9, 0, 9, 0);
             lblPuzzle.Name = "lblPuzzle";
-            lblPuzzle.Size = new Size(103, 41);
+            lblPuzzle.Size = new Size(40, 15);
             lblPuzzle.TabIndex = 4;
             lblPuzzle.Text = "Puzzle";
             // 
             // btnExit
             // 
             btnExit.DialogResult = DialogResult.Cancel;
-            btnExit.Location = new Point(784, 771);
-            btnExit.Margin = new Padding(22, 27, 22, 27);
+            btnExit.Location = new Point(323, 282);
+            btnExit.Margin = new Padding(9, 10, 9, 10);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(214, 74);
+            btnExit.Size = new Size(88, 27);
             btnExit.TabIndex = 12;
             btnExit.Text = "E&xit";
             btnExit.UseVisualStyleBackColor = true;
@@ -170,10 +170,10 @@
             // chkTestMode
             // 
             chkTestMode.AutoSize = true;
-            chkTestMode.Location = new Point(1457, 78);
-            chkTestMode.Margin = new Padding(22, 27, 22, 27);
+            chkTestMode.Location = new Point(600, 29);
+            chkTestMode.Margin = new Padding(9, 10, 9, 10);
             chkTestMode.Name = "chkTestMode";
-            chkTestMode.Size = new Size(195, 45);
+            chkTestMode.Size = new Size(81, 19);
             chkTestMode.TabIndex = 6;
             chkTestMode.Text = "Test Mode";
             chkTestMode.UseVisualStyleBackColor = true;
@@ -181,10 +181,10 @@
             // 
             // btnBatch
             // 
-            btnBatch.Location = new Point(554, 771);
-            btnBatch.Margin = new Padding(22, 27, 22, 27);
+            btnBatch.Location = new Point(228, 282);
+            btnBatch.Margin = new Padding(9, 10, 9, 10);
             btnBatch.Name = "btnBatch";
-            btnBatch.Size = new Size(214, 74);
+            btnBatch.Size = new Size(88, 27);
             btnBatch.TabIndex = 12;
             btnBatch.Text = "&Batch";
             btnBatch.UseVisualStyleBackColor = true;
@@ -193,40 +193,40 @@
             // lblExpected
             // 
             lblExpected.AutoSize = true;
-            lblExpected.Location = new Point(171, 631);
-            lblExpected.Margin = new Padding(22, 0, 22, 0);
+            lblExpected.Location = new Point(70, 231);
+            lblExpected.Margin = new Padding(9, 0, 9, 0);
             lblExpected.Name = "lblExpected";
-            lblExpected.Size = new Size(139, 41);
+            lblExpected.Size = new Size(54, 15);
             lblExpected.TabIndex = 9;
             lblExpected.Text = "Expected";
             // 
             // txtExpected
             // 
             txtExpected.Cursor = Cursors.IBeam;
-            txtExpected.Location = new Point(325, 631);
-            txtExpected.Margin = new Padding(22, 27, 22, 27);
+            txtExpected.Location = new Point(134, 231);
+            txtExpected.Margin = new Padding(9, 10, 9, 10);
             txtExpected.Name = "txtExpected";
-            txtExpected.Size = new Size(1099, 47);
+            txtExpected.Size = new Size(455, 23);
             txtExpected.TabIndex = 10;
             // 
             // lblYear
             // 
             lblYear.AutoSize = true;
-            lblYear.Location = new Point(666, 80);
-            lblYear.Margin = new Padding(22, 0, 22, 0);
+            lblYear.Location = new Point(274, 29);
+            lblYear.Margin = new Padding(9, 0, 9, 0);
             lblYear.Name = "lblYear";
-            lblYear.Size = new Size(73, 41);
+            lblYear.Size = new Size(29, 15);
             lblYear.TabIndex = 0;
             lblYear.Text = "Year";
             // 
             // updYear
             // 
-            updYear.Location = new Point(743, 77);
-            updYear.Margin = new Padding(22, 27, 22, 27);
+            updYear.Location = new Point(306, 28);
+            updYear.Margin = new Padding(9, 10, 9, 10);
             updYear.Maximum = new decimal(new int[] { 2025, 0, 0, 0 });
             updYear.Minimum = new decimal(new int[] { 2015, 0, 0, 0 });
             updYear.Name = "updYear";
-            updYear.Size = new Size(124, 47);
+            updYear.Size = new Size(51, 23);
             updYear.TabIndex = 1;
             updYear.Value = new decimal(new int[] { 2019, 0, 0, 0 });
             updYear.ValueChanged += ResetScreenHandler;
@@ -234,27 +234,27 @@
             // lblTimeTaken
             // 
             lblTimeTaken.AutoSize = true;
-            lblTimeTaken.Location = new Point(143, 1115);
-            lblTimeTaken.Margin = new Padding(22, 0, 22, 0);
+            lblTimeTaken.Location = new Point(59, 408);
+            lblTimeTaken.Margin = new Padding(9, 0, 9, 0);
             lblTimeTaken.Name = "lblTimeTaken";
-            lblTimeTaken.Size = new Size(167, 41);
+            lblTimeTaken.Size = new Size(68, 15);
             lblTimeTaken.TabIndex = 16;
             lblTimeTaken.Text = "Time Taken";
             // 
             // txtTimeTaken
             // 
-            txtTimeTaken.Location = new Point(323, 1115);
-            txtTimeTaken.Margin = new Padding(22, 27, 22, 27);
+            txtTimeTaken.Location = new Point(133, 408);
+            txtTimeTaken.Margin = new Padding(9, 10, 9, 10);
             txtTimeTaken.Name = "txtTimeTaken";
-            txtTimeTaken.Size = new Size(1099, 47);
+            txtTimeTaken.Size = new Size(455, 23);
             txtTimeTaken.TabIndex = 17;
             // 
             // prevInput
             // 
-            prevInput.Location = new Point(1554, 503);
-            prevInput.Margin = new Padding(22, 27, 22, 27);
+            prevInput.Location = new Point(640, 184);
+            prevInput.Margin = new Padding(9, 10, 9, 10);
             prevInput.Name = "prevInput";
-            prevInput.Size = new Size(58, 63);
+            prevInput.Size = new Size(24, 23);
             prevInput.TabIndex = 18;
             prevInput.Text = "<";
             prevInput.UseVisualStyleBackColor = true;
@@ -262,10 +262,10 @@
             // 
             // nextInput
             // 
-            nextInput.Location = new Point(1632, 503);
-            nextInput.Margin = new Padding(22, 27, 22, 27);
+            nextInput.Location = new Point(672, 184);
+            nextInput.Margin = new Padding(9, 10, 9, 10);
             nextInput.Name = "nextInput";
-            nextInput.Size = new Size(58, 63);
+            nextInput.Size = new Size(24, 23);
             nextInput.TabIndex = 19;
             nextInput.Text = ">";
             nextInput.UseVisualStyleBackColor = true;
@@ -273,41 +273,38 @@
             // 
             // inputNumber
             // 
-            inputNumber.Location = new Point(1450, 631);
-            inputNumber.Margin = new Padding(22, 27, 22, 27);
+            inputNumber.Location = new Point(597, 231);
+            inputNumber.Margin = new Padding(9, 10, 9, 10);
             inputNumber.Name = "inputNumber";
-            inputNumber.Size = new Size(128, 47);
+            inputNumber.Size = new Size(55, 23);
             inputNumber.TabIndex = 20;
             inputNumber.Visible = false;
             // 
             // Progress
             // 
-            Progress.Location = new Point(323, 907);
-            Progress.Margin = new Padding(7, 8, 7, 8);
+            Progress.Location = new Point(133, 332);
             Progress.MarqueeAnimationSpeed = 10;
             Progress.Maximum = 50;
             Progress.Name = "Progress";
-            Progress.Size = new Size(962, 63);
+            Progress.Size = new Size(396, 23);
             Progress.Step = 1;
             Progress.TabIndex = 21;
             // 
             // lblProgress
             // 
             lblProgress.AutoSize = true;
-            lblProgress.Location = new Point(177, 907);
-            lblProgress.Margin = new Padding(7, 0, 7, 0);
+            lblProgress.Location = new Point(73, 332);
             lblProgress.Name = "lblProgress";
-            lblProgress.Size = new Size(133, 41);
+            lblProgress.Size = new Size(52, 15);
             lblProgress.TabIndex = 22;
             lblProgress.Text = "Progress";
             // 
             // ProgressText
             // 
             ProgressText.Enabled = false;
-            ProgressText.Location = new Point(1299, 907);
-            ProgressText.Margin = new Padding(7, 8, 7, 8);
+            ProgressText.Location = new Point(535, 332);
             ProgressText.Name = "ProgressText";
-            ProgressText.Size = new Size(123, 47);
+            ProgressText.Size = new Size(53, 23);
             ProgressText.TabIndex = 23;
             ProgressText.TextAlign = HorizontalAlignment.Right;
             // 
@@ -321,10 +318,9 @@
             // 
             // FullInput
             // 
-            FullInput.Location = new Point(1457, 500);
-            FullInput.Margin = new Padding(7, 8, 7, 8);
+            FullInput.Location = new Point(600, 183);
             FullInput.Name = "FullInput";
-            FullInput.Size = new Size(83, 66);
+            FullInput.Size = new Size(34, 24);
             FullInput.TabIndex = 24;
             FullInput.Text = "&Full";
             FullInput.UseVisualStyleBackColor = true;
@@ -332,10 +328,9 @@
             // 
             // Website
             // 
-            Website.Location = new Point(1457, 191);
-            Website.Margin = new Padding(7, 8, 7, 8);
+            Website.Location = new Point(600, 70);
             Website.Name = "Website";
-            Website.Size = new Size(182, 63);
+            Website.Size = new Size(75, 23);
             Website.TabIndex = 26;
             Website.Text = "&Website";
             Website.UseVisualStyleBackColor = true;
@@ -344,38 +339,40 @@
             // Description
             // 
             Description.Cursor = Cursors.IBeam;
-            Description.Location = new Point(323, 191);
-            Description.Margin = new Padding(22, 27, 22, 27);
+            Description.Location = new Point(133, 70);
+            Description.Margin = new Padding(9, 10, 9, 10);
             Description.Multiline = true;
             Description.Name = "Description";
             Description.ScrollBars = ScrollBars.Vertical;
-            Description.Size = new Size(1099, 250);
+            Description.Size = new Size(455, 94);
             Description.TabIndex = 27;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(160, 76);
+            label1.Location = new Point(66, 28);
+            label1.Margin = new Padding(1, 0, 1, 0);
             label1.Name = "label1";
-            label1.Size = new Size(150, 41);
+            label1.Size = new Size(60, 15);
             label1.TabIndex = 28;
             label1.Text = "Challenge";
             // 
             // ChallengeType
             // 
             ChallengeType.FormattingEnabled = true;
-            ChallengeType.Location = new Point(325, 76);
+            ChallengeType.Location = new Point(134, 28);
+            ChallengeType.Margin = new Padding(1, 1, 1, 1);
             ChallengeType.Name = "ChallengeType";
-            ChallengeType.Size = new Size(302, 49);
+            ChallengeType.Size = new Size(127, 23);
             ChallengeType.TabIndex = 29;
             ChallengeType.SelectedIndexChanged += ResetScreenHandler;
             // 
             // AdventOfCode
             // 
             AcceptButton = btnProcess;
-            AutoScaleDimensions = new SizeF(17F, 41F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1817, 1296);
+            ClientSize = new Size(722, 463);
             Controls.Add(ChallengeType);
             Controls.Add(label1);
             Controls.Add(Description);
@@ -405,7 +402,7 @@
             Controls.Add(txtInput);
             Controls.Add(updPuzzle);
             Controls.Add(updDay);
-            Margin = new Padding(22, 27, 22, 27);
+            Margin = new Padding(9, 10, 9, 10);
             Name = "AdventOfCode";
             Text = "Advent Of Code";
             ((System.ComponentModel.ISupportInitialize)updDay).EndInit();
