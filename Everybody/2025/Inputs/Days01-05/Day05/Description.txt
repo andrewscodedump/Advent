@@ -1,1 +1,5 @@
-﻿
+﻿Input is a list of numbers relating to a set of swords.
+
+What is the quality of the sword?
+What is the difference between the qualities of the best and worst swords?
+What is the checksum of the list of swords once placed in quality (and some) order?
