@@ -11,3 +11,6 @@ dotnet_diagnostic.SYSLIB1045.severity = silent
 
 # S3358: Ternary operators should not be nested
 dotnet_diagnostic.S3358.severity = silent
+
+# WFO1000: Missing code serialization configuration for property content
+dotnet_diagnostic.WFO1000.severity = silent
