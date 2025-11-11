@@ -1,1 +1,5 @@
-﻿
+﻿Input is a list of squires and mentors.  A squire can be mentored by the appropriate type of mentor before them in the list.
+
+How many possible pairings are there for swordfighting (A/a)?
+How many possible pairings are there of any type?
+Repeating the list 1000 times, how many pairings are there if we allow a squire to be paired with an appropriate mentor within 1000 places of them?
