@@ -1,1 +1,5 @@
-﻿
+﻿Input is a list of names and a set of rules for checking or generating names
+
+What is the only name in the list that meets the rules?
+What is the sum of the (1 based) indices of the names meeting the rules?
+How many different names between 7 and 11 characters can be generated from the initial names and the rules?
