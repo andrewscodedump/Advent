@@ -1,1 +1,5 @@
-﻿
+﻿Input is a set of instructions for creating a string picture on a circular frame.
+
+How many of the strings pass through the centre of the picture?
+How many strings cross existing strings?
+After the pattern is complete, what is the greatest number of strings that can be cut in a single stroke?
