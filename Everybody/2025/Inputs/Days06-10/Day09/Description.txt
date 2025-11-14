@@ -1,1 +1,5 @@
-﻿
+﻿Input is a set of genomes
+
+What is the product of the relatedness (number of matching bases) of the child to each parent?
+Find all the parent-child relationships, and add their relatedness products.
+Merge together all inter-related families and return the sum of the IDs for the largest one.
