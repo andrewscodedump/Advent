@@ -6,7 +6,7 @@ public class Day08 : Advent.Day
 
         long[] order = InputNumbers[0];
         int result = 0;
-        HashSet<(long first, long second)> chords = [];
+        List<(long first, long second)> chords = [];
 
         switch (WhichPart)
         {
@@ -47,22 +47,16 @@ public class Day08 : Advent.Day
         return a > pair.c && a < pair.d;
     }
 
-    private static int CountKnots((long a, long b) test, HashSet<(long c, long d)> chords) => CountStrings(test, chords, false);
+    private static int CountKnots((long a, long b) test, List<(long c, long d)> chords) => CountStrings(test, chords, false);
 
-    private static int CountStrings((long a, long b) test, HashSet<(long c, long d)> chords, bool includeSelf)
+    private static int CountStrings((long a, long b) test, List<(long c, long d)> chords, bool includeSelf)
     {
         int result = 0;
         foreach ((long c, long d) in chords)
         {
-            if (includeSelf && ((test.a == c && test.b == d) || (test.b == c && test.a == d))) result++;
+            if (includeSelf && (((c,d) == test) || ((d, c) == test))) result++;
             if (test.a == c || test.a == d || test.b == c || test.b == d) continue;
-            if (
-                (Between(test.a, (c, d)) && !Between(test.b, (c, d)))
-                || (!Between(test.a, (c, d)) && Between(test.b, (c, d)))
-                )
-            {
-                result++;
-            }
+            if (Between(test.a, (c, d)) != Between(test.b, (c, d))) result++;
         }
         return result;
     }
