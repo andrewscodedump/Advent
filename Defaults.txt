@@ -1,5 +1,5 @@
 Challenge=Everybody
-Day=9
+Day=11
 Puzzle=3
-Mode=Test
+Mode=Live
 Year=2025

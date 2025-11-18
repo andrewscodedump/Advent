@@ -1,1 +1,5 @@
-﻿
+﻿Input is a list of the number of ducks in a formation
+
+What is the checksum (col index * number in column) after 10 rounds of (sort of) bubble sort?
+How many rounds does it take to get the columns equally numbered?
+As before, but a much, much (much) bigger flock.
