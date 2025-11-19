@@ -1,1 +1,6 @@
-﻿
+﻿Input is a grid of explosive barrels.  If a barrel blows up, it takes any next to it with a lower or equal value.
+
+If you ignite the top left barrel, how many are destroyed?
+Ditto, but also exloding the bottom right.
+Ingite the one that has the biggest effect, then the one that has the biggest effect on the remaining matrix, and then another.
+How many are destroyed in total?
