@@ -1,5 +1,5 @@
 Challenge=Everybody
-Day=12
-Puzzle=3
+Day=13
+Puzzle=1
 Mode=Test
 Year=2025

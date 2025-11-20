@@ -1,1 +1,5 @@
-﻿
+﻿Input is a list of numbers for a combination lock.  Numbers are added to the lock alternately on the right and left of the dial.
+
+What number does the lock end up on if it is turned 2025 times?
+Inputs are now ranges, added in the same way (all numbers in a range on the same side).  Number of turns is now 20252025.
+As above, but much bigger ranges, and 202520252025 turns.
