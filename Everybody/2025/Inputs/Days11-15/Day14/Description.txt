@@ -1,1 +1,5 @@
-﻿
+﻿Input is the starting grid for a cellular automaton.
+
+What is the sum of the live cells after each round after 10 rounds?
+2025 rounds?
+Starting from a completely blank 34x34 grid, and only counting rounds where the centre of the pattern matches the input, what is the total after 1Bn rounds?
