@@ -1,1 +1,5 @@
-﻿
+﻿Puzzle involves a magic spell for building a wall.
+
+Given the spell, how many bricks are needed to build a wall 90 bricks long?
+Given the starting section of a built wall, what is the product of the numbers in the spell which built it?
+Given the starting section of a wall and a (huge) number of bricks, how long a wall could be built?

@@ -36,3 +36,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Minor Code Smell", "S3220:Method calls should not resolve ambiguously to overloads with \"params\"", Justification = "<Pending>", Scope = "member", Target = "~M:Advent2023.Day15.Step.#ctor(System.String)")]
 [assembly: SuppressMessage("Major Code Smell", "S125: Programmers should not comment out code as it bloats programs and reduces readability.", Justification = "<Pending>", Scope = "member", Target = "~M:Advent2023.Day25.DoWork")]
 [assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:Advent2024.Day20.tracert~System.Collections.Generic.Dictionary{System.ValueTuple{System.Int32,System.Int32},System.Int32}")]
+[assembly: SuppressMessage("Style", "IDE0220:Add explicit cast", Justification = "<Pending>", Scope = "member", Target = "~M:Everybody2025.Day16.DoWork")]
