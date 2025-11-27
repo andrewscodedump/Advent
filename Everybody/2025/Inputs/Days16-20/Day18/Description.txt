@@ -1,1 +1,5 @@
-﻿
+﻿Input is a description of a network of plants
+
+Given the rules for propogating energy from plant to plant, what is the final energy of the last plant?
+Given another grid of plants and a set of test values for the initial line of plants, what is the total of the test outputs?
+What is the sum of the differences between the tests and the best possible output?
