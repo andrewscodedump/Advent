@@ -55,7 +55,6 @@
     <Folder Include="Codyssi\2024\Done\" />
     <Folder Include="Codyssi\2024\WIP\" />
     <Folder Include="Codyssi\2024\ToDo\" />
-    <Folder Include="Everybody\2025\WIP\" />
   </ItemGroup>
 
   <ItemGroup>
