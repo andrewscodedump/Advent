@@ -111,10 +111,11 @@ public abstract partial class Day
 
     private string GetInputPath()
     {
-        string result = challenge switch
+        string result = (challenge, year) switch
         {
-            "Codyssi" or "Everybody" => $@"{rootFolder}\{challenge}\{year}\Inputs\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}",
-            "Euler" => $@"{rootFolder}\{challenge}\Pages{((year - 1) / 5 * 5) + 1:D2}-{((year - 1) / 5 * 5) + 5:D2}\Page{year:D2}\Inputs\Parts{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Part{day:D2}",
+            ("Codyssi", _) or ("Everybody", _) => $@"{rootFolder}\{challenge}\{year}\Inputs\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}",
+            ("Advent", 2025) => $@"{rootFolder}\{challenge}\{year}\Inputs\Days{((day - 1) / 6 * 6) + 1:D2}-{((day - 1) / 6 * 6) + 6:D2}\Day{day:D2}",
+            ("Euler", _) => $@"{rootFolder}\{challenge}\Pages{((year - 1) / 5 * 5) + 1:D2}-{((year - 1) / 5 * 5) + 5:D2}\Page{year:D2}\Inputs\Parts{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Part{day:D2}",
             _ => $@"{rootFolder}\{year}\Inputs\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}",
         };
         return result;
@@ -337,5 +338,10 @@ public abstract partial class Day
     [GeneratedRegex(@"[\+-]?[0-9]*")]
     private static partial Regex Numbers();
 
+    public static long Mod(long dividend, long divisor)
+    {
+        long result = dividend % divisor;
+        return result < 0 ? result + divisor : result;
+    }
     #endregion Common Methods
 }

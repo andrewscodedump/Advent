@@ -1,0 +1,4 @@
+﻿Inputs are a series of rotations for a rotational safe dial with 100 positions.
+
+How many of the rotations leave the dial at position 0?
+How many times does the dial pass through zero?

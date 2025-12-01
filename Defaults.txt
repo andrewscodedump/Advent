@@ -1,5 +1,5 @@
-Challenge=Everybody
-Day=18
-Puzzle=3
-Mode=Test
+Challenge=Advent
+Day=1
+Puzzle=2
+Mode=Live
 Year=2025
