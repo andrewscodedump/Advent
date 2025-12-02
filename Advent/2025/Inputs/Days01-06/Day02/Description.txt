@@ -1,1 +1,4 @@
-﻿
+﻿Input is a list of ranges of IDs
+
+What is the sum of all numbers in any of the ranges where the number is a repeated pair of numbers?
+As above, but where a sequence of digits is repeated any number of times?
