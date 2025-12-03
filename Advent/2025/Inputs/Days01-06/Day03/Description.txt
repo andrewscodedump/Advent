@@ -1,1 +1,4 @@
-﻿
+﻿Input is the voltages of a set of battery banks.
+
+What is the maximum voltage available if you turn on two of the batteries in each bank?
+As above, but turning on 12 in each bank.
