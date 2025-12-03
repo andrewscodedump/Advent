@@ -8,7 +8,7 @@ public class Day03 : Advent.Day
         int numberToSelect = WhichPart == 1 ? 2 : 12;
         foreach (string bank in Inputs)
         {
-            List<int> bankValues = [.. bank.ToCharArray().Select(x => x - 48)];
+            int[] bankValues = [.. bank.ToCharArray().Select(x => x - 48)];
             for (int i = numberToSelect - 1; i >= 0; i--)
             {
                 //find the biggest that isn't in the last i
