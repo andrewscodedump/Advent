@@ -11,10 +11,10 @@ public abstract partial class Day
     protected readonly Dictionary<((int, int), char), (int, int)> changeDirection = new() { { ((0, -1), 'L'), (-1, 0) }, { ((0, -1), 'R'), (1, 0) }, { ((1, 0), 'L'), (0, -1) }, { ((1, 0), 'R'), (0, 1) }, { ((0, 1), 'L'), (1, 0) }, { ((0, 1), 'R'), (-1, 0) }, { ((-1, 0), 'L'), (1, 0) }, { ((-1, 0), 'R'), (0, -1) } };
     protected Dictionary<(int, int), char> SimpleMap = [];
     protected Dictionary<(int, int), char> StartingMap = [];
-    protected int CountNeighbours(Dictionary<(int, int), char> area, int x, int y, char type) => Neighbours.Count(nbr => area[(x + nbr.Item1, y + nbr.Item2)] == type);
-    protected int CountDirectNeighbours(Dictionary<(int, int), char> area, int x, int y, char type) => DirectNeighbours.Count(nbr => area[(x + nbr.Item1, y + nbr.Item2)] == type);
-    protected List<(int, int)> GetNeighbours((int x, int y) pos) => Neighbours.Select(n => (pos.x + n.x, pos.y + n.y)).ToList();
-    protected List<(int, int)> GetDirectNeighbours((int x, int y) pos) => DirectNeighbours.Select(n => (pos.x + n.x, pos.y + n.y)).ToList();
+    protected int CountNeighbours(Dictionary<(int, int), char> area, int x, int y, char type) => Neighbours.Count(nbr => area[(x + nbr.x, y + nbr.y)] == type);
+    protected int CountDirectNeighbours(Dictionary<(int, int), char> area, int x, int y, char type) => DirectNeighbours.Count(nbr => area[(x + nbr.x, y + nbr.y)] == type);
+    protected List<(int, int)> GetNeighbours((int x, int y) pos) => [.. Neighbours.Select(n => (pos.x + n.x, pos.y + n.y))];
+    protected List<(int, int)> GetDirectNeighbours((int x, int y) pos) => [.. DirectNeighbours.Select(n => (pos.x + n.x, pos.y + n.y))];
 
     public void PopulateMapFromInput() => PopulateMapFromInput(out _, out _);
     public void PopulateMapFromInput(out int width, out int height) => PopulateMap(Inputs, out width, out height);
