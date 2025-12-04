@@ -1,1 +1,4 @@
-﻿
+﻿Input is the floorplan of a warehouse.
+
+How many rolls of paper have fewer than 4 neighbours?
+Removing all of the above and then repeating until no more, how many in total?
