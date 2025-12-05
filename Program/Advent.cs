@@ -187,7 +187,7 @@ public partial class AdventOfCode : Form
         return string.IsNullOrEmpty(errorMessage);
     }
 
-    private string DoPuzzle()
+    private object DoPuzzle()
     {
         if (CheckStatus(theDay.BatchStatus))
             return theDay.StatusText;
@@ -335,7 +335,7 @@ public partial class AdventOfCode : Form
                         theDay.DoWork();
                         totalTime += sw.ElapsedTicks;
                         sw.Stop();
-                        if (theDay.Output != theDay.Expecteds[0] && theDay.BatchStatus != Day.DayBatchStatus.ManualIntervention)
+                        if (theDay.Output.ToString() != theDay.Expecteds[0] && theDay.BatchStatus != Day.DayBatchStatus.ManualIntervention)
                         {
                             output.Append(" **Test Failed**");
                             Debug.WriteLine($"Day: {day}, part {puzzle} Test Failed");
@@ -391,7 +391,7 @@ public partial class AdventOfCode : Form
         Cursor = Cursors.WaitCursor;
         txtOutput.Text = "";
         Update();
-        txtOutput.Text = DoPuzzle();
+        txtOutput.Text = DoPuzzle().ToString();
         txtOutput.BackColor = txtOutput.Text == txtExpected.Text || txtExpected.Text == "NotDoneYet" ? Color.White : Color.Pink;
         double timeTaken = timer.Elapsed.TotalMilliseconds;
         if (timeTaken >= 1000)

@@ -11,12 +11,13 @@ public class Day01 : Advent.Day
             zeroes += (WhichPart, pointer, newPos) switch
             {
                 (1, 0, _) => 1,
+                (1, _, _) => 0,
                 (2, not 0, <= 0) => Math.Abs(newPos / dialSize) + 1,
                 (_, _, _) => Math.Abs(newPos / dialSize),
             };
             pointer = Mod(newPos, dialSize);
         }
 
-        Output = zeroes.ToString();
+        Output = zeroes;
     }
 }

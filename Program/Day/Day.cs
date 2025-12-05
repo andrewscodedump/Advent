@@ -39,7 +39,7 @@ public abstract partial class Day
     }
 
     public bool BatchRun { get; set; }
-    public string Output { get; set; }
+    public object Output { get; set; }
     public string Description { get; private set; }
     private int currentInput;
     public int CurrentInput
