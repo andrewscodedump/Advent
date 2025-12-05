@@ -12,27 +12,16 @@ public class Day05 : Advent.Day
             result = ingredients.Where(i => fresh.Exists(f => i >= f[0] && i <= f[1])).Count();
         else
         {
-            bool found = false;
-            do
+            for (int i = 0; i < fresh.Count - 1; i++)
             {
-                found = false;
-                for(int i = 0; i < fresh.Count; i++)
+                if (fresh[i][1] >= fresh[i+1][0])
                 {
-                    for(int j = 0; j < i; j++)
-                    {
-                        if (fresh[i][0] >= fresh[j][0] && fresh[i][0] <= fresh[j][1])
-                        {
-                            if (fresh[i][1] > fresh[j][1])
-                                fresh[j][1] = fresh[i][1];
-                            fresh.RemoveAt(i);
-                            found = true;
-                            break;
-                        }
-                    }
-                    if (found) break;
+                    if (fresh[i + 1][1] > fresh[i][1]) // For the case where the next range is completely subsumed by this one
+                        fresh[i][1] = fresh[i + 1][1];
+                    fresh.RemoveAt(i+1);
+                    i--; // For the case where multiple subsequent ranges all overlap this one
                 }
-
-            } while (found);
+            }
             result = fresh.Sum(f => f[1] - f[0] + 1);
         }
 
