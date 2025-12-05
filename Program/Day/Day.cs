@@ -55,6 +55,7 @@ public abstract partial class Day
     public string[] Inputs { get; private set; }
     public string[][] InputBlocks { get; private set; }
     protected long[][] InputNumbers { get; private set; }
+    protected long[][] InputNumbersPositive { get; private set; }
     protected string Input { get; private set; }
 
     private List<List<string>> allInputs;
@@ -270,16 +271,22 @@ public abstract partial class Day
         breaks = [-1, .. breaks, Inputs.Length];
         breaks.Skip(1).Zip(breaks, (second, first) => (first, second)).ForEach(p => InputBlocks = [..InputBlocks, Inputs[(p.first + 1)..p.second]]);
 
-        List<long[]> inputNumbers = [];
+        List<long[]> inputNumbers = [], inputNumbersPositive = [];
         Input = Inputs[0];
         try
         {
             inputNumbers.AddRange(from string inp in Inputs
                                   let m = Numbers().Matches(inp)
-                                  let numbers = m.Select(m => m.ToString()).Where(n => long.TryParse(n, out _)).Select(i => long.Parse(i))
+                                  let numbers = m.Select(m => m.ToString()).Where(n => long.TryParse(n, out _)).Select(long.Parse)
                                   where numbers.Any()
                                   select numbers.ToArray());
             InputNumbers = [.. inputNumbers];
+            inputNumbersPositive.AddRange(from string inp in Inputs
+                                  let m = Numbers().Matches(inp)
+                                  let numbers = m.Select(m => m.ToString()).Where(n => long.TryParse(n, out _)).Select(l=>Math.Abs(long.Parse(l)))
+                                  where numbers.Any()
+                                  select numbers.ToArray());
+            InputNumbersPositive = [.. inputNumbersPositive];
         }
         catch { /* Unable to create numbers - this is expected */ }
     }
@@ -343,5 +350,11 @@ public abstract partial class Day
         long result = dividend % divisor;
         return result < 0 ? result + divisor : result;
     }
+
+    public static IEnumerable<long> LongRange(long from, long to)
+    {
+        for (long i = from; i <= to; i++) yield return i;
+    }
+
     #endregion Common Methods
 }

@@ -1,1 +1,4 @@
-﻿
+﻿Input is two lists - a list of ranges of fresh stock and a list of ingredients
+
+How many of the ingredients are fresh?
+How many fresh items are there?

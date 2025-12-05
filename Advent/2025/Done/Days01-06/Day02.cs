@@ -22,9 +22,4 @@ public class Day02 : Advent.Day
         }
         return false;
     }
-
-    private static IEnumerable<long> LongRange(long from, long to)
-    {
-        for (long i = from; i <= to; i++) yield return i;
-    }
 }
