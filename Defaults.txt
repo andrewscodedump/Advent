@@ -1,5 +1,5 @@
 Challenge=Advent
-Day=5
-Puzzle=2
+Day=6
+Puzzle=1
 Mode=Test
 Year=2025
