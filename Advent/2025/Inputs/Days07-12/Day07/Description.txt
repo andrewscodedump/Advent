@@ -1,1 +1,4 @@
-﻿
+﻿Input is a grid with a starting point for a beam, and a number of splitters.
+
+How many times does the beam split?
+How many different paths can the beam take?
