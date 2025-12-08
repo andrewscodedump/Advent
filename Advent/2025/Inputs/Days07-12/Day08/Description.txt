@@ -1,1 +1,4 @@
-﻿
+﻿Input is a list of points in a 3d space
+
+After connecting a specified number of pairs of points (in order of distance), what is the multiple of the sizes of the 3 largest circuits?
+What is the multiple of the x coordinates of the two points which when connected make all points connected to a single circuit?
