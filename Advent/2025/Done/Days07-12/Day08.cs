@@ -23,12 +23,19 @@ public class Day08 : Advent.Day
         Output = result;
     }
 
-    private class Connector(long x, long y, long z)
+    private class Connector
     {
-        public long x = x, y = y, z = z;
-        public Circuit circuit = null;
+        public long x, y, z;
+        public Circuit circuit;
 
-        public double DistanceFrom(Connector other)
+        public Connector(long x, long y, long z)
+        {
+            this.x = x; this.y = y; this.z = z;
+            circuit = new() { { this } };
+        }
+    
+
+    public double DistanceFrom(Connector other)
         {
             long dx = Math.Abs(x - other.x), dy = Math.Abs(y - other.y), dz = Math.Abs(z - other.z);
             return (dx * dx) + (dy * dy) + (dz * dz);
@@ -36,26 +43,13 @@ public class Day08 : Advent.Day
 
         public Circuit ConnectTo(Connector conn)
         {
-            if (circuit is null && conn.circuit is null)
-                return new() { { this }, { conn } };
-            else if (circuit is null)
-            {
-                conn.circuit.Add(this);
-                return conn.circuit;
-            }
-            else if (conn.circuit is null)
-            {
-                circuit.Add(conn);
-                return circuit;
-            }
-            else if (circuit != conn.circuit)
+            if (circuit != conn.circuit)
             {
                 Circuit toMerge = conn.circuit;
                 circuit.Merge(toMerge);
                 toMerge.Clear();
-                return circuit;
             }
-            else return circuit;
+            return circuit;
         }
     }
 
