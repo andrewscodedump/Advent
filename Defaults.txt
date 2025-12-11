@@ -1,5 +1,5 @@
 Challenge=Advent
-Day=8
+Day=10
 Puzzle=1
 Mode=Test
 Year=2025
