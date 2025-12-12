@@ -1,0 +1,1 @@
+dot -Tsvg -Kdot live.dot > LiveDot.svg
