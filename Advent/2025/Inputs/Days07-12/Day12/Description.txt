@@ -1,1 +1,3 @@
-﻿
+﻿Input is a list of present shapes and a list of trees with the spaces available under them and the numbers of presents to go there.
+
+How many trees are there where the required presents will actually fit?
