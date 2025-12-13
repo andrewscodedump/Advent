@@ -114,11 +114,9 @@ public abstract partial class Day
     {
         string result = (challenge, year) switch
         {
-            ("Codyssi", _) or ("Everybody", _) => $@"{rootFolder}\{challenge}\{year}\Inputs\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}",
-            ("Euler", _) => $@"{rootFolder}\{challenge}\Pages{((year - 1) / 5 * 5) + 1:D2}-{((year - 1) / 5 * 5) + 5:D2}\Page{year:D2}\Inputs\Parts{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Part{day:D2}",
-            ("Advent", <= 2024) => $@"{rootFolder}\{challenge}\{year}\Inputs\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}",
             ("Advent", 2025) => $@"{rootFolder}\{challenge}\{year}\Inputs\Days{((day - 1) / 6 * 6) + 1:D2}-{((day - 1) / 6 * 6) + 6:D2}\Day{day:D2}",
-            ("Advent", _) => $@"{rootFolder}\{year}\Inputs\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}",
+            ("Advent" or "Codyssi" or "Everybody", _) => $@"{rootFolder}\{challenge}\{year}\Inputs\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}",
+            ("Euler", _) => $@"{rootFolder}\{challenge}\Pages{((year - 1) / 5 * 5) + 1:D2}-{((year - 1) / 5 * 5) + 5:D2}\Page{year:D2}\Inputs\Parts{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Part{day:D2}",
             _ => throw new ArgumentException("Invalid challenge type", "challenge"),
         };
         return result;
