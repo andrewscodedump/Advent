@@ -196,7 +196,7 @@ public abstract partial class Day
             }
             if (reading)
             {
-                string[] skips = ["***NotDoneYet***", "***Performance***", "***NoTestData***", "***NonCoded***", "***NotWorking***", "***ManualIntervention***"];
+                string[] skips = ["***NotDoneYet***", "***Performance***", "***NoTestData***", "***NonCoded***", "***NotWorking***", "***ManualIntervention***", "***NoPart2***"];
                 if (line.StartsWith("Test") || line.StartsWith("Live"))
                     reading = false;
                 else if (skips.Contains(line))
@@ -251,6 +251,7 @@ public abstract partial class Day
                     "***NonCoded***" => DayBatchStatus.NonCoded,
                     "***NotWorking***" => DayBatchStatus.NotWorking,
                     "***ManualIntervention***" => DayBatchStatus.ManualIntervention,
+                    "***NoPart2***" => DayBatchStatus.NoPart2,
                     _ => current,
                 };
                 if (test != current)
