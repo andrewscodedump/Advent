@@ -13,8 +13,7 @@ App.config
 *.userosscache
 *.sln.docstates
 LiveBoth.txt
-LivePart1.txt
-LivePart2.txt
+LivePart*.txt
 AoCSessionID.txt
 
 # User-specific files (MonoDevelop/Xamarin Studio)

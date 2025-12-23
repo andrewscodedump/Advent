@@ -16,14 +16,14 @@ public class Day14 : Advent.Day
             case 3:
                 CreateEmptyMap();
                 long count = 0;
-                Dictionary<long, long> seen = [];
+                Dictionary<string, long> seen = [];
                 bool loopFound = false;
                 for (long i = 1; i <= rounds; i++)
                 {
                     int localCount = PlayRound();
                     if (CheckCentre())
                         count += localCount;
-                    long hash = GetDictionaryHash();
+                    string hash = string.Join("", SimpleMap.Values);
                     if (!loopFound && !seen.TryAdd(hash, i))
                     {
                         // This only works because the repeat starts at 1.  Would need more work if it didn't.
@@ -61,14 +61,6 @@ public class Day14 : Advent.Day
             for (int y = -1; y < 35; y++)
                 if (x == -1 || y == -1 || x == 34 || y == 34) SimpleMap[(x, y)] = 'x';
                 else SimpleMap[(x, y)] = '.';
-    }
-
-    private long GetDictionaryHash()
-    {
-        StringBuilder sb = new();
-        foreach(KeyValuePair<(int x, int y),char> kvp in SimpleMap)
-            sb.Append($"{kvp.Key.x:D2}{kvp.Key.y:D2}{kvp.Value}");
-        return sb.ToString().GetHashCode();
     }
 
     private bool CheckCentre()
