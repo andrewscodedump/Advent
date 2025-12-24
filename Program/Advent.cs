@@ -241,7 +241,7 @@ public partial class AdventOfCode : Form
                 updPuzzle.Maximum = 1;
                 break;
             default:
-                updYear.Minimum = 2016;
+                updYear.Minimum = 2015;
                 updYear.Maximum = 2025;
                 updDay.Maximum = year == 2025 ? 12 : 25;
                 updPuzzle.Maximum = 2;

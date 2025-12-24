@@ -3,8 +3,6 @@
 Live1
 576
 Test2
-***Performance***
-7
+6
 Live2
-***Performance***
 207

@@ -2,60 +2,33 @@
 
 public partial class Day19 : Advent.Day
 {
-    public override void DoWork() => Output = Part1 ? DoPart1() : DoPart2();
+    (string from, string to)[] convs = [];
+
+    public override void DoWork()
+    {
+        convs = [.. Inputs[..^1].Select(i => i.Split(" => ")).Select(i => (i[0], i[1]))];
+        Output = Part1 ? DoPart1() : DoPart2();
+    }  
 
     private string DoPart1()
     {
-        string[] inputs = Inputs;
-        string startMolecule = inputs[^1];
-        string[,] convs = new string[inputs.Length - 1, 2];
-        Dictionary<string, int> outputs = [];
-        for (int pos = 0; pos < inputs.Length - 1; pos++)
-        {
-            convs[pos, 0] = inputs[pos].Split(" => ")[0];
-            convs[pos, 1] = inputs[pos].Split(" => ")[1];
-        }
+        string[] targetMolecule = [.. Regex.Matches(Inputs[^1], "[A-Z][a-z]|[A-Z](?![a-z])|[A-Z]$").Select(m => m.Value)];
+        HashSet<string> outputs = [];
 
-        for (int pos = 0; pos < startMolecule.Length; pos++)
-        {
-            string atom = startMolecule[pos].ToString();
-            if (pos < startMolecule.Length - 1 && startMolecule[pos + 1].ToString().ToLower() == startMolecule[pos + 1].ToString())
-            {
-                atom += startMolecule[pos + 1].ToString();
-            }
-            for (int swap = 0; swap < convs.Length / 2; swap++)
-            {
-                if (atom == convs[swap, 0])
-                {
-                    string newMolecule = pos == 0
-            ? convs[swap, 1] + startMolecule[atom.Length..]
-            : startMolecule[..pos] + convs[swap, 1] + startMolecule[(pos + atom.Length)..];
-                    if (outputs.TryGetValue(newMolecule, out int value))
-                        outputs[newMolecule] = ++value;
-                    else
-                        outputs.Add(newMolecule, 1);
-                }
-            }
-        }
+        for (int pos = 0; pos < targetMolecule.Length; pos++)
+            foreach ((string from, string to) in convs.Where(c => c.from == targetMolecule[pos]))
+                outputs.Add(string.Join("", [.. targetMolecule[..pos], to, .. targetMolecule[(pos + 1)..]]));
+
         return outputs.Count.ToString();
     }
 
     private string DoPart2()
     {
+        // This is horrible, and it really shouldn't work as well as it does.
         string molecule;
-        List<string> inputs = [.. Inputs];
-        string finalMolecule = inputs[^1];
-        inputs.RemoveAt(inputs.Count - 1);
+        string targetMolecule = Inputs[^1];
         int moves;
         int bestMoves = int.MaxValue;
-
-        List<(string atom, string after)> convsRev = [];
-        foreach (string conv in inputs)
-        {
-            string inp = conv.Split(" => ")[0];
-            string outp = conv.Split(" => ")[1];
-            convsRev.Add((outp, inp));
-        }
 
         int sequenceTarget = 10;
         int sequenceLength = 0;
@@ -71,16 +44,16 @@ public partial class Day19 : Advent.Day
                 do
                 {
                     moves = 0;
-                    molecule = finalMolecule;
+                    molecule = targetMolecule;
                     int pos = -1;
                     do
                     {
                         //Pick a conv at random
-                        RandomizeList(convsRev);
-                        for (int i = 0; i < convsRev.Count; i++)
+                        RandomizeArray(convs);
+                        for (int i = 0; i < convs.Length; i++)
                         {
-                            string atom = convsRev[i].atom;
-                            string after = convsRev[i].after;
+                            string atom = convs[i].from;
+                            string after = convs[i].to;
                             //Find the first occurrence and replace it
                             pos = molecule.IndexOf(after);
                             if (pos == -1)
@@ -101,6 +74,7 @@ public partial class Day19 : Advent.Day
             endLoop = false;
             if (sequenceLength == 0 || bestMoves == prevBest)
             {
+                // Try a few times, and if they all give the same best answer, assume it's the right one
                 prevBest = bestMoves;
                 sequenceLength++;
                 if (sequenceLength == sequenceTarget)
@@ -113,6 +87,7 @@ public partial class Day19 : Advent.Day
             }
             else
             {
+                // We haven't found a stable answer, so double the amount of random shuffles to try each time.
                 sequenceLength = 0;
                 numTries = 0;
                 prevBest = 0;
@@ -123,12 +98,12 @@ public partial class Day19 : Advent.Day
         return bestMoves.ToString();
     }
 
-    protected static void RandomizeList<T>(List<T> listIn)
+    protected static void RandomizeArray<T>(T[] listIn)
     {
         Random rnd = new();
-        for (int pos = 0; pos < listIn.Count; pos++)
+        for (int pos = 0; pos < listIn.Length; pos++)
         {
-            int swapPos = rnd.Next(pos, listIn.Count);
+            int swapPos = rnd.Next(pos, listIn.Length);
             (listIn[swapPos], listIn[pos]) = (listIn[pos], listIn[swapPos]);
         }
     }

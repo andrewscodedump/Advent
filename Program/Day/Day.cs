@@ -315,20 +315,7 @@ public abstract partial class Day
     }
 
     protected static string GetMD5Hash(System.Security.Cryptography.HashAlgorithm md5Hash, string input)
-    {
-        // Convert the input string to a byte array and compute the hash.
-        byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-
-        // Create a new Stringbuilder to collect the bytes and create a string.
-        StringBuilder sBuilder = new();
-
-        // Loop through each byte of the hashed data and format each one as a hexadecimal string.
-        for (int i = 0; i < data.Length; i++)
-            sBuilder.Append(data[i].ToString("x2"));
-
-        // Return the hexadecimal string.
-        return sBuilder.ToString();
-    }
+        => string.Join("", md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input)).Select(b => b.ToString("x2")));
 
     protected static bool DictionaryCompare<TKey, TValue>(Dictionary<TKey, TValue> dictionary1, Dictionary<TKey, TValue> dictionary2)
     {
