@@ -344,5 +344,23 @@ public abstract partial class Day
         for (long i = from; i <= to; i++) yield return i;
     }
 
+    public static IEnumerable<int> GetDivisors(int n)
+    {
+        // Pinched from here: https://codereview.stackexchange.com/questions/237416/c-code-to-find-all-divisors-of-an-integer
+        if (n <= 0) { yield return default; }
+
+        int iterator = (int)Math.Sqrt(n);
+
+        for (int i = 1; i <= iterator; i++)
+        {
+            if (n % i == 0)
+            {
+                yield return i;
+
+                if (i != n / i) { yield return n / i; }
+            }
+        }
+    }
+
     #endregion Common Methods
 }

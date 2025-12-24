@@ -1,5 +1,5 @@
 Challenge=Advent
-Day=19
-Puzzle=2
-Mode=Test
+Day=20
+Puzzle=1
+Mode=Live
 Year=2015
