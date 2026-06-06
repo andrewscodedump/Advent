@@ -112,14 +112,26 @@ public abstract partial class Day
 
     private string GetInputPath()
     {
-        string result = (challenge, year) switch
+        string folderSuffix= (challenge, year) switch
         {
-            ("Advent", 2025) => $@"{rootFolder}\{challenge}\{year}\Inputs\Days{((day - 1) / 6 * 6) + 1:D2}-{((day - 1) / 6 * 6) + 6:D2}\Day{day:D2}",
-            ("Advent" or "Codyssi" or "Everybody", _) => $@"{rootFolder}\{challenge}\{year}\Inputs\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}",
-            ("Euler", _) => $@"{rootFolder}\{challenge}\Pages{((year - 1) / 5 * 5) + 1:D2}-{((year - 1) / 5 * 5) + 5:D2}\Page{year:D2}\Inputs\Parts{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Part{day:D2}",
+            // Try in Inputs folder first
+            ("Advent", 2025) => $@"{year}\Inputs\Days{((day - 1) / 6 * 6) + 1:D2}-{((day - 1) / 6 * 6) + 6:D2}\Day{day:D2}",
+            ("Advent" or "Codyssi" or "Everybody", _) => $@"{year}\Inputs\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}",
+            ("Euler", _) => $@"Pages{((year - 1) / 5 * 5) + 1:D2}-{((year - 1) / 5 * 5) + 5:D2}\Page{year:D2}\Inputs\Parts{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Part{day:D2}",
             _ => throw new ArgumentException("Invalid challenge type", "challenge"),
         };
-        return result;
+        if (!Directory.Exists($@"{rootFolder}\{challenge}\{folderSuffix}"))
+        {
+            folderSuffix = (challenge, year) switch
+            {
+                // Not in Inputs - try the Done folder instead
+                ("Advent", 2025) => $@"{year}\Done\Days{((day - 1) / 6 * 6) + 1:D2}-{((day - 1) / 6 * 6) + 6:D2}\Day{day:D2}",
+                ("Advent" or "Codyssi" or "Everybody", _) => $@"{year}\Done\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}",
+                ("Euler", _) => $@"Pages{((year - 1) / 5 * 5) + 1:D2}-{((year - 1) / 5 * 5) + 5:D2}\Page{year:D2}\Done\Parts{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Part{day:D2}",
+                _ => throw new ArgumentException("Invalid challenge type", "challenge"),
+            };
+        }
+        return $@"{rootFolder}\{challenge}\{folderSuffix}";
     }
 
     private List<List<string>> GetInputs()
