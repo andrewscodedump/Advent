@@ -1,0 +1,5 @@
+﻿Input is a bunch of bananas.
+
+1: How many "ba", "na" or "ne" are there in total?
+2: Exclude all bananas with an odd score.
+3: Exclude all the ones with "ne" in the name.

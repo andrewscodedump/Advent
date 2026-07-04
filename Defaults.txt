@@ -1,5 +1,5 @@
-Challenge=Advent
-Day=20
+Challenge=FlipFlop
+Day=1
 Puzzle=1
-Mode=Live
-Year=2015
+Mode=Test
+Year=2025

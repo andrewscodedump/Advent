@@ -1,4 +1,4 @@
-﻿namespace FilpFlop2025;
+﻿namespace FlipFlop2025;
 
 public partial class Day03 : Advent.Day
 {
