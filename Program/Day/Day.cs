@@ -116,7 +116,8 @@ public abstract partial class Day
         {
             // Try in Inputs folder first
             ("Advent", 2025) => $@"{year}\Inputs\Days{((day - 1) / 6 * 6) + 1:D2}-{((day - 1) / 6 * 6) + 6:D2}\Day{day:D2}",
-            ("Advent" or "Codyssi" or "Everybody" or "FlipFlop", _) => $@"{year}\Inputs\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}",
+            ("Advent" or "Codyssi" or "Everybody", _) => $@"{year}\Inputs\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}",
+            ("FlipFlop", _) => $@"{year}\Inputs\Day{day:D2}",
             ("Euler", _) => $@"Pages{((year - 1) / 5 * 5) + 1:D2}-{((year - 1) / 5 * 5) + 5:D2}\Page{year:D2}\Inputs\Parts{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Part{day:D2}",
             _ => throw new ArgumentException("Invalid challenge type", "challenge"),
         };
@@ -126,7 +127,8 @@ public abstract partial class Day
             {
                 // Not in Inputs - try the Done folder instead
                 ("Advent", 2025) => $@"{year}\Done\Days{((day - 1) / 6 * 6) + 1:D2}-{((day - 1) / 6 * 6) + 6:D2}\Day{day:D2}",
-                ("Advent" or "Codyssi" or "Everybody" or "FlipFlop", _) => $@"{year}\Done\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}",
+                ("Advent" or "Codyssi" or "Everybody", _) => $@"{year}\Done\Days{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Day{day:D2}",
+                ("FlipFlop", _) => $@"{year}\Done\Day{day:D2}",
                 ("Euler", _) => $@"Pages{((year - 1) / 5 * 5) + 1:D2}-{((year - 1) / 5 * 5) + 5:D2}\Page{year:D2}\Done\Parts{((day - 1) / 5 * 5) + 1:D2}-{((day - 1) / 5 * 5) + 5:D2}\Part{day:D2}",
                 _ => throw new ArgumentException("Invalid challenge type", "challenge"),
             };
