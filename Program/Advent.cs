@@ -27,6 +27,7 @@ public partial class AdventOfCode : Form
             new("Everybody", "Everybody Codes", "https://everybody.codes/event/"),
             new("Codyssi", "Codyssi", "https://www.codyssi.com/view_problem_"),
             new("Euler", "Project Euler", "https://projecteuler.net/problem="),
+            new("FlipFlop", "FlipFlop Codes", "https://flipflop.slome.org/"),
         ];
         ChallengeType.DataSource = Challenges;
         ChallengeType.DisplayMember = "Description";
@@ -240,6 +241,12 @@ public partial class AdventOfCode : Form
                 updDay.Maximum = year == 20 ? 6 : 50;
                 updPuzzle.Maximum = 1;
                 break;
+            case "FlipFlop":
+                updYear.Minimum = 2025;
+                updYear.Maximum = 2026;
+                updDay.Maximum = 7;
+                updPuzzle.Maximum = 3;
+                break;
             default:
                 updYear.Minimum = 2015;
                 updYear.Maximum = 2025;
@@ -268,12 +275,14 @@ public partial class AdventOfCode : Form
             "Euler" => 1,
             "Codyssi" => 3,
             "Everybody" => 4,
+            "FlipFlop" => 3,
             _ => 2
         };
         int days = challenge switch
         {
             "Euler" => 50,
             "Codyssi" => year == 2024 ? 4 : 18,
+            "FlipFlop" => 7,
             "Everybody" => 20,
             _ => year == 2025 ? 12 : 25
         };
@@ -481,6 +490,7 @@ public partial class AdventOfCode : Form
             "Codyssi" => $"{(((int)updYear.Value - 2024) * 4) + (int)updDay.Value}",
             "Euler" => $"{(((int)updYear.Value - 1) * 20) + (int)updDay.Value}",
             "Everybody" => $"{updYear.Value}/quests/{updDay.Value}",
+            "FlipFlop" => $"{updYear.Value}/{updDay.Value}",
             _ => $"{updYear.Value}/day/{updDay.Value}",
         };
         var psi = new ProcessStartInfo
